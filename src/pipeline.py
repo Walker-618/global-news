@@ -22,7 +22,7 @@ def load_config() -> dict:
         return yaml.safe_load(f)
 
 
-MAX_ITEMS_PER_SOURCE = 5
+MAX_ITEMS_PER_SOURCE = 10
 
 
 def run_pipeline(only_domestic: bool = False) -> dict:
