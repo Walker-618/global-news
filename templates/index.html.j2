@@ -227,7 +227,7 @@
     <div class="featured-grid">
       {% for card in featured %}
       <a class="featured-card" href="{{ card.url }}" target="_blank" rel="noopener">
-        <div class="featured-card-thumb" style="background:{{ card.gradient }};">
+        <div class="featured-card-thumb" style="background:{{ card.gradient }};{% if card.thumbnail_url %}background-image:url(&quot;{{ card.thumbnail_url }}&quot;);background-size:cover;background-position:center{% endif %}">
           <span class="featured-card-tag">{{ card.tag_label }}</span>
         </div>
         <div class="featured-card-body">

@@ -80,7 +80,7 @@ def generate_tag_pages():
                 tag_label=label, tag_key=key, tag_color=color,
                 items=rendered, total=len(items),
                 page=page, total_pages=total_pages,
-                back_url="../index.html" if page == 1 else "../../index.html",
+                back_url="../../index.html",
                 page_url=f"./{page}.html" if page > 1 else "./index.html",
             )
 
