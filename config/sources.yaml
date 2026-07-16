@@ -1,0 +1,163 @@
+# 数据源配置
+sources:
+  # ===== 国内源（直连） =====
+  - name: "36氪"
+    icon: "氪"
+    color: "#06b6d4"
+    category: "TECH"
+    rss_url: "https://36kr.com/feed"
+    needs_proxy: false
+
+  - name: "机器之心"
+    icon: "机"
+    color: "#7c3aed"
+    category: "AI"
+    rss_url: "https://www.jiqizhixin.com/rss"
+    needs_proxy: false
+
+  - name: "开源中国"
+    icon: "源"
+    color: "#22c55e"
+    category: "TECH"
+    rss_url: "https://www.oschina.net/news/rss"
+    needs_proxy: false
+
+  - name: "InfoQ"
+    icon: "Q"
+    color: "#f59e0b"
+    category: "AI"
+    rss_url: "https://www.infoq.cn/feed"
+    needs_proxy: false
+
+  - name: "知乎每日精选"
+    icon: "知"
+    color: "#0078d7"
+    category: "TECH"
+    rss_url: "https://www.zhihu.com/rss"
+    needs_proxy: false
+
+  - name: "华尔街见闻"
+    icon: "见"
+    color: "#ca8a04"
+    category: "FINANCE"
+    rss_url: "https://wallstreetcn.com/rss"
+    needs_proxy: false
+
+  # ===== 国际新闻源（需代理） =====
+  - name: "The Guardian"
+    icon: "G"
+    color: "#052962"
+    category: "TECH"
+    rss_url: "https://www.theguardian.com/world/rss"
+    needs_proxy: true
+
+  - name: "Reuters"
+    icon: "R"
+    color: "#dc2626"
+    category: "FINANCE"
+    rss_url: "https://www.rss-bridge.org/bridge01/?action=display&bridge=FilterBridge&url=https%3A%2F%2Fwww.reuters.com%2Fbusiness%2F&content_filter=&content_filter_type=text&title_filter=&inverse=on&case_insensitive=on&fix_encoding=on&format=Atom"
+    needs_proxy: true
+
+  - name: "Associated Press"
+    icon: "A"
+    color: "#0057b8"
+    category: "TECH"
+    rss_url: "https://rsshub.app/ap/topics/technology"
+    needs_proxy: true
+
+  - name: "Bloomberg"
+    icon: "B"
+    color: "#2563eb"
+    category: "FINANCE"
+    rss_url: "https://feeds.bloomberg.com/markets/news.rss"
+    needs_proxy: true
+
+  - name: "Financial Times"
+    icon: "F"
+    color: "#f59e0b"
+    category: "FINANCE"
+    rss_url: "https://www.ft.com/news-feed?format=rss"
+    needs_proxy: true
+
+  - name: "Hacker News"
+    icon: "Y"
+    color: "#f97316"
+    category: "AI"
+    rss_url: "https://hnrss.org/frontpage?count=30"
+    needs_proxy: true
+
+  - name: "TechCrunch"
+    icon: "T"
+    color: "#0a9e01"
+    category: "TECH"
+    rss_url: "https://techcrunch.com/feed/"
+    needs_proxy: true
+
+  - name: "The Verge"
+    icon: "V"
+    color: "#10b981"
+    category: "TECH"
+    rss_url: "https://www.theverge.com/rss/index.xml"
+    needs_proxy: true
+
+  - name: "ArXiv AI"
+    icon: "X"
+    color: "#e11d48"
+    category: "AI"
+    rss_url: "http://export.arxiv.org/rss/cs.AI"
+    needs_proxy: true
+
+  # ===== YouTube 视频源（使用频道 RSS，需代理） =====
+  - name: "MKBHD"
+    icon: "▶"
+    color: "#ff0000"
+    category: "VIDEO"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCBJycsmduvYEL83R_U4JriQ"
+    needs_proxy: true
+
+  - name: "Linus Tech Tips"
+    icon: "▶"
+    color: "#ff0000"
+    category: "VIDEO"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw"
+    needs_proxy: true
+
+  - name: "Two Minute Papers"
+    icon: "▶"
+    color: "#ff0000"
+    category: "VIDEO"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg"
+    needs_proxy: true
+
+  - name: "CNBC"
+    icon: "▶"
+    color: "#ff0000"
+    category: "VIDEO"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCrp_UI8XtuYfpiqluWLD7Lw"
+    needs_proxy: true
+
+  - name: "Bloomberg Markets"
+    icon: "▶"
+    color: "#ff0000"
+    category: "VIDEO"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCUMZ7gohGI8Hc_UoR9GqKpA"
+    needs_proxy: true
+
+  - name: "Reuters Video"
+    icon: "▶"
+    color: "#ff0000"
+    category: "VIDEO"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCtvlN2xwlRfHHFf2T8J5wiA"
+    needs_proxy: true
+
+  - name: "AI Explained"
+    icon: "▶"
+    color: "#ff0000"
+    category: "VIDEO"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCZNMx0R-4C7s3QRxPiBwNhA"
+    needs_proxy: true
+
+# 代理配置
+proxy:
+  http: "http://127.0.0.1:7897"
+  https: "http://127.0.0.1:7897"

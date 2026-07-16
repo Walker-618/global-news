@@ -1,0 +1,57 @@
+name: 采集 + 部署
+
+on:
+  schedule:
+    # 每2小时运行一次（GitHub Actions 最短间隔）
+    - cron: '0 */2 * * *'
+  push:
+    branches: [main]
+  workflow_dispatch:  # 可以手动触发
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整历史，用于提交
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: |
+          pip install feedparser httpx pyyaml jinja2
+
+      - name: 采集新闻
+        run: python scripts/fetch_once.py
+        # GitHub 服务器在美国，所有国际源直连，无需代理
+
+      - name: 生成静态页面
+        run: python scripts/build.py
+
+      - name: 提交更新后的数据
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 每日自动采集 $(date '+%Y-%m-%d %H:%M')"
+          file_pattern: 'data/'
+          skip_dirty_check: false
+
+      - name: 部署到 GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true
+          user_name: 'news-bot'
+          user_email: 'bot@global-news.local'
+          commit_message: "📰 部署 $(date '+%Y-%m-%d %H:%M')"

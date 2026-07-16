@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球AI·科技·财经动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
+    --color-accent: #0071e3;
+    --color-border: #e5e5ea;
+    --color-text: #1d1d1f;
+    --color-muted: #86868b;
+    --color-bg: #f5f5f7;
+    --color-surface: #ffffff;
+    --color-tag-ai: #7c3aed;
+    --color-tag-tech: #0891b2;
+    --color-tag-finance: #059669;
+    --color-tag-video: #e11d48;
+    --max-width: 1440px;
+    --header-h: 52px;
+  }
+
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 8px; color: #fff;
+    font-weight: 700; font-size: 15px; white-space: nowrap;
+    letter-spacing: -0.2px;
+  }
+  .logo-icon {
+    width: 26px; height: 26px; border-radius: 6px;
+    background: linear-gradient(135deg, #0071e3, #7c3aed);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: #fff; flex-shrink: 0;
+  }
+  .header-date {
+    display: flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+  .header-date .dot { opacity: 0.3; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+
+  /* Featured */
+  .featured-section { margin-bottom: 20px; }
+  .featured-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+  .featured-card {
+    background: var(--color-surface); border-radius: var(--radius-md);
+    overflow: hidden; cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .featured-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  .featured-card-thumb {
+    width: 100%; aspect-ratio: 16/12;
+    display: flex; align-items: flex-end; padding: 12px;
+    position: relative;
+  }
+  .featured-card-thumb::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 50%);
+  }
+  .featured-card-tag {
+    position: relative; z-index: 1;
+    padding: 3px 10px; border-radius: 10px; font-size: 10px; font-weight: 600;
+    color: #fff; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px);
+  }
+  .featured-card-body { padding: 10px 12px 12px; }
+  .featured-card-title {
+    font-size: 13px; font-weight: 600; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; color: var(--color-text);
+  }
+  .featured-card-meta {
+    font-size: 11px; color: var(--color-muted); margin-top: 5px;
+    display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  }
+  .featured-card-src-icon {
+    width: 13px; height: 13px; border-radius: 2px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 7px; color: #fff; flex-shrink: 0;
+  }
+
+  /* Tab bar */
+  .tab-bar-wrap {
+    position: sticky; top: var(--header-h); z-index: 50;
+    background: #f5f5f7; padding: 10px 0 0; margin-bottom: 0;
+  }
+  .tab-bar {
+    display: flex; gap: 6px; align-items: center;
+    overflow-x: auto; white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0; padding: 8px 20px; border-radius: 20px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface); font-size: 14px; font-weight: 500;
+    color: var(--color-muted); cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px; user-select: none;
+  }
+  .tab-btn.active { background: #1d1d1f; border-color: #1d1d1f; color: #fff; }
+  .tab-btn .tab-count { font-size: 11px; font-weight: 400; opacity: 0.6; }
+  .tab-more {
+    flex-shrink: 0; margin-left: auto; padding: 8px 16px;
+    font-size: 13px; font-weight: 500; color: var(--color-accent);
+    cursor: pointer; display: flex; align-items: center; gap: 4px;
+    transition: gap 0.2s; white-space: nowrap;
+  }
+  .tab-more:hover { gap: 8px; }
+  .tab-more::after { content: "→"; }
+
+  /* Tab Content */
+  .tab-content { display: none; margin-top: 12px; }
+  .tab-content.active { display: block; }
+
+  /* News List */
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 12px; padding: 12px 14px;
+    background: var(--color-surface); border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source {
+    display: flex; align-items: center; gap: 5px; margin-bottom: 3px;
+  }
+  .news-source-icon {
+    width: 14px; height: 14px; border-radius: 3px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 7px; color: #fff; flex-shrink: 0;
+  }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title {
+    font-size: 14px; font-weight: 600; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+    overflow: hidden; color: var(--color-text); margin-bottom: 2px;
+  }
+  .news-summary {
+    font-size: 12px; color: var(--color-muted); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+
+  .section-footer {
+    text-align: center; padding: 20px 0 8px; grid-column: 1 / -1;
+  }
+  .section-footer a {
+    font-size: 13px; color: var(--color-accent); font-weight: 500;
+    display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s;
+  }
+  .section-footer a:hover { gap: 8px; }
+  .section-footer a::after { content: "→"; }
+
+  .footer {
+    background: #1d1d1f; color: rgba(255,255,255,0.4);
+    padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .featured-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 20px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; gap: 4px; }
+    .header-date .lunar { display: none; }
+    .featured-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+    .tab-btn { font-size: 13px; padding: 6px 14px; }
+    .tab-bar { gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+{% include 'partials/header.html.j2' %}
+
+<main class="container">
+
+  <!-- Featured -->
+  <section class="featured-section">
+    <div class="featured-grid">
+      {% for card in featured %}
+      <a class="featured-card" href="{{ card.url }}" target="_blank" rel="noopener">
+        <div class="featured-card-thumb" style="background:{{ card.gradient }};">
+          <span class="featured-card-tag">{{ card.tag_label }}</span>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">{{ card.title }}</div>
+          <div class="featured-card-meta">
+            <span class="featured-card-src-icon" style="background:{{ card.source_color }};">{{ card.source_icon }}</span>
+            {{ card.source_name }} · {{ card.time_ago }}
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Tab bar -->
+  <div class="tab-bar-wrap">
+    <div class="tab-bar">
+      {% for tab in tabs %}
+      <button class="tab-btn {{ 'active' if loop.first }}" data-tab="{{ tab.key }}">{{ tab.label }} <span class="tab-count">{{ tab.count }}</span></button>
+      {% endfor %}
+      <a class="tab-more" href="tag-page.html?tag={{ tabs[0].key }}">查看更多</a>
+    </div>
+  </div>
+
+  <!-- Tab Contents -->
+  {% for tab in tabs %}
+  <div class="tab-content {{ 'active' if loop.first }}" id="tab{{ tab.key|capitalize }}">
+    <div class="news-list">
+      {% for item in tab.articles %}
+      <a class="news-item" href="{{ item.url }}" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:{{ tab.color }};">{{ tab.key }}</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:{{ item.source_color }};">{{ item.source_icon }}</span>
+            <span class="news-source-name">{{ item.source_name }}</span>
+          </div>
+          <div class="news-title">{{ item.title }}</div>
+          <div class="news-summary">{{ item.summary[:80] }}</div>
+          <div class="news-time">{{ item.time_ago }}</div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="section-footer"><a href="tag-page.html?tag={{ tab.key }}">查看全部 {{ tab.count }}+ 条{{ tab.label }}</a></div>
+  </div>
+  {% endfor %}
+
+</main>
+
+{% include 'partials/footer.html.j2' %}
+
+<script>
+// Tab switching
+(function() {
+  var btns = document.querySelectorAll('.tab-btn');
+  var more = document.querySelector('.tab-more');
+  var tabKeys = ['ai','tech','finance','video'];
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      var tab = this.dataset.tab;
+      document.querySelectorAll('.tab-content').forEach(function(c) {
+        c.classList.toggle('active', c.id === 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1));
+      });
+      more.href = 'tag-page.html?tag=' + tab;
+      this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    });
+  });
+})();
+</script>
+</body>
+</html>

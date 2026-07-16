@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>加载中... - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --radius-sm: 6px; --radius-md: 10px;
+    --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date {
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.6); font-size: 12px;
+  }
+  .header-date .dot { opacity: 0.3; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+
+  .section-meta {
+    font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px;
+  }
+
+  .news-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2;
+    align-items: flex-start;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-item:hover { background: #f8f8fa; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source {
+    display: flex; align-items: center; gap: 5px; margin-bottom: 3px;
+  }
+  .news-source-icon {
+    width: 14px; height: 14px; border-radius: 3px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 7px; color: #fff; flex-shrink: 0;
+  }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title {
+    font-size: 14px; font-weight: 600; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+    overflow: hidden; color: #1d1d1f; margin-bottom: 2px;
+  }
+  .news-summary {
+    font-size: 12px; color: var(--color-muted); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+
+  .news-channel { font-size: 11px; color: var(--color-muted); margin-top: 2px; }
+
+  .load-more-wrap { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .load-more-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 32px; border: 1px solid #d2d2d7;
+    border-radius: 20px; background: #fff; color: #1d1d1f;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .load-more-btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .load-more-btn:disabled { opacity: 0.4; cursor: default; }
+  .loading-spinner {
+    display: inline-block; width: 16px; height: 16px;
+    border: 2px solid #d2d2d7; border-top-color: var(--color-accent);
+    border-radius: 50%; animation: spin 0.6s linear infinite;
+    display: none;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loaded-all {
+    text-align: center; padding: 20px 0 40px;
+    font-size: 13px; color: var(--color-muted); grid-column: 1 / -1;
+  }
+
+  .footer {
+    background: #1d1d1f; color: rgba(255,255,255,0.4);
+    padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8;
+  }
+
+  @media (max-width: 900px) {
+    .news-list { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; gap: 4px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="history.back()">←</button>
+      <span class="page-title" id="pageTitle">加载中...</span>
+    </div>
+    <div class="header-date">
+      <span id="dateStr"></span>
+      <span class="dot">·</span>
+      <span id="weekStr"></span>
+      <span class="dot">·</span>
+      <span class="lunar" id="lunarStr"></span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta" id="sectionMeta"></div>
+  <div class="news-list" id="newsList"></div>
+  <div class="load-more-wrap" id="loadMoreWrap">
+    <button class="load-more-btn" id="loadMoreBtn">
+      <span class="loading-spinner" id="spinner"></span>
+      <span id="btnText">加载更多</span>
+    </button>
+  </div>
+  <div class="loaded-all" id="loadedAll" style="display:none;">已加载全部 50 条内容</div>
+</main>
+
+<footer class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</footer>
+
+<script>
+// ===== Same data as index.html =====
+const aiSources = [
+  { name:'OpenAI', icon:'O', color:'#10a37f' }, { name:'Google DeepMind', icon:'G', color:'#8b5cf6' },
+  { name:'Anthropic', icon:'A', color:'#ea580c' }, { name:'Meta AI', icon:'M', color:'#2563eb' },
+  { name:'The Verge', icon:'V', color:'#10b981' }, { name:'36氪', icon:'氪', color:'#06b6d4' },
+  { name:'机器之心', icon:'机', color:'#7c3aed' }, { name:'arXiv', icon:'X', color:'#e11d48' },
+  { name:'Hugging Face', icon:'H', color:'#f59e0b' }, { name:'MIT Tech Review', icon:'M', color:'#dc2626' },
+];
+const techSources = [
+  { name:'Apple', icon:'A', color:'#555' }, { name:'Tesla', icon:'T', color:'#e11d48' },
+  { name:'NVIDIA', icon:'N', color:'#76b900' }, { name:'Samsung', icon:'S', color:'#1428a0' },
+  { name:'Microsoft', icon:'M', color:'#0078d4' }, { name:'The Verge', icon:'V', color:'#10b981' },
+  { name:'Wired', icon:'W', color:'#000' }, { name:'36氪', icon:'氪', color:'#06b6d4' },
+  { name:'品玩', icon:'品', color:'#f43f5e' }, { name:'TechCrunch', icon:'T', color:'#0a9e01' },
+];
+const finSources = [
+  { name:'Bloomberg', icon:'B', color:'#2563eb' }, { name:'Reuters', icon:'R', color:'#dc2626' },
+  { name:'Financial Times', icon:'F', color:'#f59e0b' }, { name:'WSJ', icon:'W', color:'#000' },
+  { name:'CNBC', icon:'C', color:'#005594' }, { name:'日经新闻', icon:'日', color:'#e11d48' },
+  { name:'36氪', icon:'氪', color:'#06b6d4' }, { name:'晚点LatePost', icon:'晚', color:'#1d1d1f' },
+  { name:'财新', icon:'财', color:'#ca8a04' }, { name:'第一财经', icon:'一', color:'#dc2626' },
+];
+const channels = ['AI Tech Review','Two Minute Papers','MKBHD','Linus Tech Tips','Y Combinator','AI Explained','科技早报','果子狸','差评','爱范儿'];
+
+const aiTitles = [
+  'GPT-5 正式发布：推理能力跃升 62%，多模态全面进化',
+  'Gemini 2.5 上线百万级上下文：可分析整本技术手册',
+  'Claude 4 发布 Agent 模式：自主编程 30 分钟不间断',
+  'Llama 4 开源：4000 亿参数，性能对标 GPT-4o',
+  'Stable Diffusion 4 发布：视频生成进入实时时代',
+  'Mistral Large 2 登顶开源排行榜：数学推理超越 GPT-4',
+  'Midjourney V7 引入 3D 场景生成，设计师工作流颠覆',
+  'OpenAI 推出 AI Agent SDK：开发者可构建自主智能体',
+  'Google 将 AI Overview 全面开放搜索，覆盖 200+ 国家',
+  'Anthropic 发布安全框架：AI 对齐研究取得突破性进展',
+  'Hugging Face 推出开源多模态模型 IDEFICS-3',
+  '微软 Copilot 接入 GPT-5：Office 全系 AI 能力升级',
+  '百度文心 5.0 发布：中文理解能力对标 GPT-5',
+  '阿里通义千问 2.5 开源：MoE 架构，推理成本降低 70%',
+  '字节跳动豆包大模型日活突破 1 亿',
+  'AI 编程助手 Cursor 估值突破 100 亿美元',
+  'Runway Gen-4 实现电影级视频生成：分辨率达 4K',
+  'ElevenLabs 发布情感语音 API：支持 30 种语言实时克隆',
+  'Perplexity AI 推出深度研究模式：自动生成研究报告',
+  'Notion AI 升级：知识库自动关联，智能写作助手',
+  'AI 教育平台 Khan Academy 接入 GPT-5：个性化学习革命',
+  'Spotify AI DJ 新增实时歌单生成：用户留存提升 40%',
+  'DeepL 推出企业翻译引擎：针对 50 个行业的专业术语优化',
+  'GitHub Copilot 支持多文件重构：AI 驱动的代码迁移',
+  'Cohere 发布 Command R+：企业级 RAG 系统性能翻倍',
+  'AI 芯片初创公司 Groq 发布 LPU 推理引擎：速度提升 10 倍',
+  'Google 将 AI 搜索结果引入智能眼镜：实时信息叠加',
+  'AI 医疗诊断系统在肺癌早期检测中超越放射科医生',
+  'Salesforce Einstein GPT 集成企业 CRM：自动生成销售策略',
+  'AI 生成音乐工具 Suno V4 发布：支持歌词创作到完整编曲',
+  'Wonder Dynamics 推出 AI 电影制作平台：单人生成动画电影',
+  '智谱 AI 发布 GLM-5：多模态能力全面对标 GPT-4o',
+  'MiniMax 发布万亿参数模型：视频理解能力达到新高度',
+  '阶跃星辰 Step-2 开源：国产大模型性能首超 GPT-4',
+  'AI 数字人直播带货市场规模突破 500 亿',
+  '理想汽车接入大模型：智能座舱语音助手升级',
+  'Apple 内部测试 Ajax 大模型：Siri 将全面重构',
+  'AI 制药公司 Isomorphic Labs 宣布药物进入临床试验',
+  'Character.AI 上线语音通话：与 AI 角色实时对话',
+  'Hume AI 发布情感理解模型：通过语音识别情绪',
+  'Replit Agent 实现需求到部署全自动化',
+  'Supabase 集成 AI：数据库自然语言查询功能上线',
+  'Vercel AI SDK 支持多模型路由：智能选择最优模型',
+  'AI 写作工具 Jasper 推出品牌声音功能：统一企业内容风格',
+  'Grammarly 升级 AI 写作助手：支持长文结构优化',
+  'AI 法律助手 Harvey 完成 2 亿美元融资',
+  'AI 建筑设计平台 Architext 生成可施工图纸',
+  'DeepMind 用 AI 预测蛋白质结构突破 3 亿个',
+  'AI 气候模型预测极端天气准确率提升 35%',
+];
+const techTitles = [
+  'Apple Vision Pro 2 曝光：重量减半，价格降至 $2499',
+  '特斯拉 Optimus 机器人开始内部产线测试',
+  'NVIDIA Blackwell Ultra 发布：3nm 制程，AI 性能翻 3 倍',
+  'Samsung Galaxy S30 将搭载自研 Exynos 芯片',
+  '微软推出 Surface Pro 11：搭载高通骁龙 X Elite',
+  'Apple M4 Ultra 芯片性能曝光：192 核 GPU',
+  '特斯拉 Cybertruck 国内上市：售价 68 万元起',
+  'SpaceX Starship 第五飞成功：超重型火箭回收',
+  'Google 发布 Pixel 11：首款搭载自研 Tensor G6 芯片',
+  'Meta Orion AR 眼镜量产版明年发售',
+  '台积电 2nm 工艺量产：晶体管密度提升 15%',
+  'ASML 推出新一代 High-NA EUV 光刻机',
+  '高通骁龙 8 Gen 5 发布：AI 算力提升 4 倍',
+  'AMD Ryzen 9000 系列：Zen 6 架构性能大跃进',
+  '英特尔 Lunar Lake 处理器能效比提升 2 倍',
+  '国产 7nm 芯片量产：中芯国际突破先进工艺',
+  '宁德时代发布凝聚态电池：能量密度 500 Wh/kg',
+  '比亚迪仰望 U9 量产交付：国产超跑 0-100 仅需 2 秒',
+  '小鹏飞行汽车获适航认证：2026 年量产交付',
+  '华为鸿蒙生态设备突破 10 亿',
+  '小米汽车 SU7 月交付破 2 万辆：产能爬坡超预期',
+  '大疆发布 DJI Air 4：一英寸传感器，续航 45 分钟',
+  '索尼 PlayStation 6 细节曝光：云游戏原生支持',
+  '微软 Xbox 云游戏登陆智能电视：无需主机',
+  'Apple 智能家居 Hub 曝光：7 英寸屏幕+ 摄像头',
+  '三星推出可卷曲 OLED 电视：65 英寸卷收入柜',
+  'LG 透明 OLED 电视量产：家居融合新形态',
+  'HTC 发布新一代 VR 头显：轻薄设计，双目 8K',
+  'Rokid AR 眼镜销量突破 50 万台',
+  'DJI 发布车载激光雷达：探测距离 300 米',
+  'Intel 发布 AI PC 加速计划：50+ OEM 合作',
+  'AMD 收购 AI 芯片初创公司：加速 GPU 生态',
+  '高通与宝马合作：骁龙座舱平台赋能下一代 iDrive',
+  'Waymo 自动驾驶出租车在洛杉矶全面运营',
+  '百度 Apollo 无人驾驶出租车覆盖 20 个城市',
+  '特斯拉 FSD V13 发布：端到端神经网络全新升级',
+  '蔚来 NIO Phone 2 发布：车机无缝互联',
+  '宁德时代与特斯拉延长电池供应协议',
+  '华为问界 M9 月销破万：50 万以上 SUV 销冠',
+  'Apple 可折叠设备延期：铰链技术遇挑战',
+  'OPPO 发布 Find N6 折叠屏：轻薄机身，IPX8 防水',
+  'vivo 发布自研影像芯片 V5：AI 计算摄影新突破',
+  '小米仿生机器人 CyberOne 二代：已能完成家务',
+  'Google 量子计算机 Willow 解决 10^25 年难题',
+  'IBM 发布 1000+ 量子比特处理器 Condor',
+  '中国空间站科学实验成果频出：AI 协助太空实验',
+  '蓝色起源 New Glenn 火箭首飞成功',
+  'SpaceX 星链用户突破 500 万：覆盖 100 国',
+  'Starlink 推出直连手机服务：无信号区也能通话',
+  '全球半导体市场规模突破 8000 亿美元',
+];
+const finTitles = [
+  '英伟达市值突破 4 万亿美元：AI 芯片股持续暴涨',
+  '美联储维持利率不变，市场预期 9 月首次降息',
+  '全球 AI 投资上半年达 1500 亿美元',
+  '苹果市值重回 3 万亿美元：AI 战略提振信心',
+  '特斯拉股价飙升 15%：Optimus 机器人超预期',
+  '比特币突破 12 万美元：机构资金持续流入',
+  '日本央行加息至 0.75%：全球套利交易大幅平仓',
+  '欧盟对苹果开出 40 亿欧元反垄断罚单',
+  '中概股集体大涨：政策利好推动信心回暖',
+  'AI 公司 IPO 热潮：2025 年融资额超 300 亿美元',
+  '美国就业数据超预期：新增 35 万岗位',
+  '中国央行降准 50 基点：释放长期资金 1 万亿',
+  '人民币汇率突破 7.0：创两年新高',
+  '沙特主权基金 PIF 投资 AI 超过 500 亿美元',
+  '软银愿景基金扭亏为盈：AI 投资组合升值',
+  '高通宣布 200 亿美元股票回购计划',
+  '台积电 Q2 营收同比增 40%：AI 芯片需求强劲',
+  'ASML 订单暴增：中国客户占比升至 30%',
+  '黑石集团 200 亿美元收购数据中心运营商',
+  '黄仁勋连续减持英伟达股票套现 12 亿美元',
+  '中国电动车品牌出海：欧洲市场份额达 15%',
+  '华为 2025 上半年营收增长 30%：终端业务复苏',
+  '比亚迪市值超越大众：全球第三大车企',
+  'SpaceX 估值达 3500 亿美元：星链业务扭亏',
+  'OpenAI 估值突破 3000 亿美元：新一轮融资完成',
+  'Anthropic 估值 600 亿美元：谷歌追加投资',
+  '字节跳动营收超腾讯：成中国最赚钱互联网公司',
+  'TikTok 美国月活突破 2 亿：电商 GMV 翻倍',
+  '阿里云拆分后首次财报：利润同比增长 60%',
+  '腾讯大股东 Prosus 减持：套现 150 亿美元',
+  '美团外卖业务利润创新高：即时零售增长 80%',
+  '拼多多 Temu 全球月活突破 5 亿',
+  'Shein 估值降至 300 亿美元：IPO 计划推迟',
+  '黄金价格突破 2800 美元/盎司：避险情绪升温',
+  '石油价格跌破 70 美元：OPEC+ 减产协议承压',
+  '美国国债收益率曲线倒挂结束：经济软着陆预期',
+  '欧洲央行降息 25 基点：经济复苏乏力',
+  '印度股市市值突破 5 万亿美元：外资持续流入',
+  '日本股市创 35 年新高：日经指数突破 45000 点',
+  '香港恒生科技指数暴涨 8%：AI 概念股领涨',
+  'A 股成交额突破 3 万亿：政策底确认市场底',
+  '北向资金单日净流入 280 亿：创历史纪录',
+  '公募基金 AI 主题规模突破 8000 亿',
+  '高盛：AI 将在未来 10 年将全球 GDP 提高 7%',
+  '摩根士丹利下调美国经济衰退概率至 15%',
+  '桥水基金加仓中国资产：仓位升至 8%',
+  '贝莱德：AI 基础设施投资将持续 3-5 年',
+  '瑞银：全球富豪 AI 投资配置占比升至 25%',
+  '加密货币总市值突破 4 万亿美元',
+  '数字人民币跨境支付覆盖 30 国',
+];
+const videoTitles = [
+  'GPT-5 深度评测：推理能力实测对比 GPT-4o 与 Claude 4',
+  'Blackwell Ultra 架构解析：3nm 制程背后的技术革命',
+  'Apple Vision Pro 2 上手体验：轻了一半！',
+  '特斯拉 Optimus 产线实测：机器人能干多少活？',
+  'AI Agent 框架大乱斗：LangChain vs CrewAI vs AutoGPT',
+  '小鹏飞行汽车试驾：真的能飞了',
+  '量子计算机 Willow 到底是什么？',
+  'Llama 4 本地部署教程：4000 亿参数有多快？',
+  'NVIDIA GTC 2025 主题演讲全程回顾',
+  'Stable Diffusion 4 视频生成实测',
+  'AI 投资 2025：哪些赛道值得押注？',
+  'SpaceX Starship 第五飞全程录像',
+  'Midjourney V7 3D 功能深度测试',
+  'Suno V4 音乐生成：AI 能写出好歌吗？',
+  'Claude 4 Agent 模式：让 AI 自己写一个 App',
+  'Tesla FSD V13 城市实测：全程零接管',
+  '华为鸿蒙生态深度体验：手机+车+家居',
+  'AI 芯片创业公司 Groq 实测：速度到底多快？',
+  '宁德时代凝聚态电池技术揭秘',
+  'MiniMax 万亿参数模型 API 测试',
+  'AI 编程工具终极对比：Cursor vs Copilot vs Codex',
+  'Meta Orion AR 眼镜提前上手',
+  'PlayStation 6 传闻汇总：你会买吗？',
+  '如何用 AI 搭建个人知识库（完整教程）',
+  'Waymo 自动驾驶出租车实测：比人类司机稳吗？',
+  'AI 制药：药物研发流程彻底改变了',
+  '北京车展 2025 最值得看的 10 款新车',
+  'Runway Gen-4 生成电影短片全流程',
+  'AI 教育助手实测：Khan Academy 接入 GPT-5 后',
+  'DeepMind 蛋白质结构预测 3 亿个：意味着什么？',
+  'Copilot 接入 GPT-5：Office 效率提升实测',
+  '三星可卷曲 OLED 电视开箱',
+  '大疆 Air 4 航拍评测：一英寸传感器画质飞跃',
+  'Rokid AR 眼镜日常体验：真能替代屏幕吗？',
+  '字节跳动豆包大模型实战：中文能力如何？',
+  'AI 法律助手 Harvey 使用体验',
+  'Google 量子计算突破：Willow 详解',
+  '比亚迪仰望 U9 赛道测试：国产超跑很强',
+  '蔚来 NIO Phone 2 深度评测',
+  '小米 CyberOne 仿生机器人二代：能做家务了',
+  'Perplexity 深度研究模式与 ChatGPT 搜索对比',
+  '如何用 AI Agent 自动化你的工作流',
+  'AI 数字人直播带货全流程拆解',
+  '理想汽车智能座舱 AI 体验',
+  '苹果 M4 Ultra 芯片跑分出炉',
+  '索尼 PS6 传闻：云游戏是未来吗？',
+  '中国空间站 AI 实验：太空中的智能助手',
+  'AI 音乐创作：从提示词到完整歌曲',
+  '2025 科技趋势预测：下半年值得关注',
+  'AI 安全：Anthropic 对齐研究到底做了什么',
+];
+
+function rand(n) { return Math.floor(Math.random() * n); }
+function pick(arr) { return arr[rand(arr.length)]; }
+
+function genNews(sources, titles, count, tag, tagColor) {
+  const items = [];
+  for (let i = 0; i < count; i++) {
+    const src = sources[i % sources.length];
+    const t = titles[i % titles.length];
+    const mins = rand(1440) + 10;
+    const h = Math.floor(mins / 60);
+    items.push({
+      source: src.name, icon: src.icon, color: src.color,
+      title: t, tag: tag, tagColor: tagColor,
+      summary: `${['最新研究显示','业内人士透露','多家媒体确认','据知情人士透露','最新报告显示'][i%5]}，${['值得关注的突破性进展','引发行业广泛讨论','市场反应积极','技术社区高度关注','开启新的可能性'][i%5]}。`,
+      time: h < 1 ? `${mins}分钟前` : h < 24 ? `${h}小时前` : `${h/24|0}天前`,
+    });
+  }
+  return items;
+}
+
+// ===== Page Config =====
+const params = new URLSearchParams(location.search);
+const tag = params.get('tag') || 'ai';
+
+const configs = {
+  ai: { title: '🤖 AI 资讯', tagLabel: 'AI', sources: aiSources, titles: aiTitles, color: '#7c3aed', isVideo: false },
+  tech: { title: '🔧 科技动态', tagLabel: 'TECH', sources: techSources, titles: techTitles, color: '#0891b2', isVideo: false },
+  finance: { title: '💰 财经要闻', tagLabel: 'FINANCE', sources: finSources, titles: finTitles, color: '#059669', isVideo: false },
+  video: { title: '▶ 热门视频', tagLabel: 'VIDEO', sources: [{name:'YouTube',icon:'▶',color:'#ff0000'}], titles: videoTitles, color: '#e11d48', isVideo: true },
+};
+
+const cfg = configs[tag] || configs.ai;
+document.getElementById('pageTitle').textContent = cfg.title.replace(/[🤖🔧💰▶]/g,'').trim() || cfg.title;
+
+// ===== Generate Data =====
+let allItems;
+if (tag === 'video') {
+  allItems = [];
+  for (let i = 0; i < 50; i++) {
+    const t = cfg.titles[i % cfg.titles.length];
+    const mins = rand(1440) + 10;
+    const h = Math.floor(mins / 60);
+    allItems.push({
+      source: 'YouTube', icon: '▶', color: '#ff0000',
+      title: t, tag: 'VIDEO', tagColor: cfg.color,
+      summary: pick(channels),
+      time: h < 1 ? `${mins}分钟前` : h < 24 ? `${h}小时前` : `${h/24|0}天前`,
+    });
+  }
+} else {
+  allItems = genNews(cfg.sources, cfg.titles, 50, cfg.tagLabel, cfg.color);
+}
+
+// ===== Pagination State =====
+const PAGE_SIZE = 20;
+let rendered = 0;
+const list = document.getElementById('newsList');
+const meta = document.getElementById('sectionMeta');
+meta.textContent = `共 ${allItems.length} 条内容`;
+
+function renderItem(item) {
+  const isVideo = tag === 'video';
+  const grad = isVideo
+    ? `linear-gradient(135deg,${['#1e293b','#4f46e5','#0891b2','#dc2626','#059669'][rand(5)]},${['#334155','#6366f1','#22d3ee','#f43f5e','#34d399'][rand(5)]})`
+    : `linear-gradient(135deg,#e2e8f0,#cbd5e1)`;
+  const thumb = isVideo
+    ? `<div class="news-thumb" style="background:${grad};">
+        <span class="list-tag" style="background:${cfg.color};">视频</span>
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;box-shadow:0 2px 8px rgba(0,0,0,0.3);">▶</div>
+        <span style="position:absolute;bottom:4px;right:4px;background:rgba(0,0,0,0.8);color:#fff;padding:1px 6px;border-radius:3px;font-size:10px;font-weight:600;">${[24,18,32,14,27,21,45,9,38,16][rand(10)]}:${String(rand(60)).padStart(2,'0')}</span>
+      </div>`
+    : `<div class="news-thumb" style="background:${grad};">
+        <span class="list-tag" style="background:${item.tagColor};">${item.tag === 'VIDEO' ? '视频' : item.tag}</span>
+      </div>`;
+  const after = isVideo
+    ? `<div class="news-channel">${pick(channels)} · ${rand(50)+1}万次观看</div>`
+    : `<div class="news-time">${item.time}</div>`;
+  return `<div class="news-item" onclick="window.open('#','_blank')">
+    ${thumb}
+    <div class="news-content">
+      <div class="news-source">
+        <span class="news-source-icon" style="background:${item.color};">${item.icon}</span>
+        <span class="news-source-name">${item.source}</span>
+      </div>
+      <div class="news-title">${item.title}</div>
+      <div class="news-summary">${item.summary}</div>
+      ${after}
+    </div>
+  </div>`;
+}
+
+function loadMore() {
+  const next = Math.min(rendered + PAGE_SIZE, allItems.length);
+  const fragment = document.createDocumentFragment();
+  const tmp = document.createElement('div');
+  for (let i = rendered; i < next; i++) {
+    tmp.innerHTML = renderItem(allItems[i]);
+    while (tmp.firstChild) fragment.appendChild(tmp.firstChild);
+  }
+  list.appendChild(fragment);
+  rendered = next;
+  if (rendered >= allItems.length) {
+    document.getElementById('loadMoreWrap').style.display = 'none';
+    document.getElementById('loadedAll').style.display = 'block';
+  }
+}
+
+// Initial load
+loadMore();
+
+// Button handler
+document.getElementById('loadMoreBtn').addEventListener('click', function() {
+  const btn = this;
+  const spinner = document.getElementById('spinner');
+  const txt = document.getElementById('btnText');
+  btn.disabled = true;
+  spinner.style.display = 'inline-block';
+  txt.textContent = '加载中...';
+  setTimeout(() => {
+    loadMore();
+    btn.disabled = false;
+    spinner.style.display = 'none';
+    txt.textContent = '加载更多';
+  }, 400);
+});
+
+// Infinite scroll
+let scrollTimer;
+window.addEventListener('scroll', function() {
+  clearTimeout(scrollTimer);
+  scrollTimer = setTimeout(function() {
+    const btn = document.getElementById('loadMoreBtn');
+    if (!btn || btn.disabled || rendered >= allItems.length) return;
+    const rect = btn.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 100) btn.click();
+  }, 200);
+});
+
+// ===== Date & Lunar Calendar =====
+(function() {
+  const weekNames = ['周日','周一','周二','周三','周四','周五','周六'];
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = now.getMonth() + 1;
+  const d = now.getDate();
+  const dow = weekNames[now.getDay()];
+  document.getElementById('dateStr').textContent = y + '年' + m + '月' + d + '日';
+  document.getElementById('weekStr').textContent = dow;
+  try {
+    var fmt = new Intl.DateTimeFormat('zh-CN-u-ca-chinese', { year:'numeric', month:'long', day:'numeric' });
+    var lunarText = fmt.format(now).replace(/^\d+年/, '').replace(/\s+/g, '');
+    document.getElementById('lunarStr').textContent = '农历' + lunarText;
+  } catch(e) {
+    document.getElementById('lunarStr').textContent = '';
+  }
+})();
+</script>
+</body>
+</html>

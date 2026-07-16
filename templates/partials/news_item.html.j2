@@ -1,0 +1,14 @@
+<a class="news-item" href="{{ item.url }}" target="_blank" rel="noopener">
+  <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+    <span class="list-tag" style="background:{{ item.tag_color }};">{{ item.category }}</span>
+  </div>
+  <div class="news-content">
+    <div class="news-source">
+      <span class="news-source-icon" style="background:{{ item.source_color }};">{{ item.source_icon }}</span>
+      <span class="news-source-name">{{ item.source_name }}</span>
+    </div>
+    <div class="news-title">{{ item.title }}</div>
+    <div class="news-summary">{{ item.summary[:80] }}</div>
+    <div class="news-time">{{ item.time_ago }}</div>
+  </div>
+</a>
