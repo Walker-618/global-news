@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔧 科技动态 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🔧 科技动态</span>
+    </div>
+    <div class="header-date">
+      <span>2026年7月16日</span><span> · </span><span>周四</span><span> · </span><span class="lunar">农历6月3日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.zdnet.com/article/7-home-security-checks-before-vacation/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0078d4;">Z</span>
+          <span class="news-source-name">ZDNet</span>
+        </div>
+        <div class="news-title">I never leave for vacation without doing these 7 home security checks first</div>
+        <div class="news-summary">Burglars target empty homes, and insurers deny frozen-pipe claims. Here's the te</div>
+        <div class="news-time">23小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://36kr.com/p/3895721094842249?f=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#06b6d4;">氪</span>
+          <span class="news-source-name">36氪</span>
+        </div>
+        <div class="news-title">斯年智驾获3亿元C轮融资，自动驾驶重卡赛道再升温｜36氪独家</div>
+        <div class="news-summary">自动驾驶重卡赛道，今年显著升温。 36氪独家获悉，斯年智驾近日已完成 3 亿元 C 轮融资，由兴证资本、颐道资本联合投资，资金将主要用于新一代车规级自动驾驶方案</div>
+        <div class="news-time">23小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/tech/966022/skullcandy-cruser-1080-anc-bose-tuning-noise-cancelling-wireless-headphones" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">Skullcandy’s bass-boosting Crusher headphones now come with Bose’s ANC</div>
+        <div class="news-summary">Skullcandy announced a new version of its Crusher wireless headphones today feat</div>
+        <div class="news-time">23小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://techcrunch.com/2026/07/15/microsoft-is-reportedly-training-salespeople-to-talk-down-openai-and-anthropic/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0a9e01;">T</span>
+          <span class="news-source-name">TechCrunch</span>
+        </div>
+        <div class="news-title">Microsoft is reportedly training salespeople to talk down OpenAI and Anthropic</div>
+        <div class="news-summary">Microsoft is looking to sell its in-house AI models as more efficient and cost-e</div>
+        <div class="news-time">23小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://36kr.com/p/3897553391978371?f=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#06b6d4;">氪</span>
+          <span class="news-source-name">36氪</span>
+        </div>
+        <div class="news-title">8点1氪丨国行苹果AI功能完成备案；三家共享单车上调起步价；知情人曝DeepSeek开始筹备IPO</div>
+        <div class="news-summary">今日热点导览 澳洲将设AI办公室，限制数据中心能源消耗 巴菲特宣布8年内清仓伯克希尔股票 前高通自动驾驶工程副总裁将加入英伟达自动驾驶团队 长鑫科技：上市后仍将</div>
+        <div class="news-time">23小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/gadgets/966209/hp-omnibook-x-flip-oled-laptop-windows-11-deal-sale" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">HP&#8217;s OLED-equipped 2-in-1 laptop is a solid back-to-school deal</div>
+        <div class="news-summary">With storage and memory prices still at an all-time high, we’re happy to tell yo</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/tech/966219/apple-care-plus-price-increase" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">Apple’s reportedly raising the price for AppleCare Plus on Macs and iPads</div>
+        <div class="news-summary">An AppleCare Plus subscription for a Mac or iPad will cost more soon, with price</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://arstechnica.com/gaming/2026/07/hundreds-rally-at-bethesda-hq-to-protest-xbox-layoffs-and-ars-was-there/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://cdn.arstechnica.net/wp-content/uploads/2026/07/rally13-500x500-1784152696.jpeg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">A</span>
+          <span class="news-source-name">Ars Technica</span>
+        </div>
+        <div class="news-title">Hundreds rally at Bethesda HQ to protest Xbox layoffs, and Ars was there</div>
+        <div class="news-summary">Union wants to halt a "perpetual cycle" of layoffs, get back to contract bargain</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/games/966106/valve-ifixit-will-keep-selling-steam-deck-lcd-battery" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">Valve says iFixit will keep selling Steam Deck batteries after all</div>
+        <div class="news-summary">Valve has been incredibly friendly to customers who need repairs - which is why </div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://arstechnica.com/space/2026/07/apollo-11s-broken-switch-and-mission-saving-pen-sell-for-860k/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://cdn.arstechnica.net/wp-content/uploads/2026/07/news-071526a-lg-500x500.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">A</span>
+          <span class="news-source-name">Ars Technica</span>
+        </div>
+        <div class="news-title">Buzz Aldrin sells famous felt-tip pen that helped launch Apollo from the Moon</div>
+        <div class="news-summary">While an impressive sale, the pen and switch did not break records.</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://arstechnica.com/information-technology/2026/07/sheetz-moves-838-stores-off-vmware-broadcom-created-too-much-uncertainty/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://cdn.arstechnica.net/wp-content/uploads/2026/07/images-500x395.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">A</span>
+          <span class="news-source-name">Ars Technica</span>
+        </div>
+        <div class="news-title">Sheetz is quitting VMware, migrating 11,000 virtual machines</div>
+        <div class="news-summary">The convenience store chain will use StorMagic instead.</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/ai-artificial-intelligence/966293/xai-grok-user-lawsuit-csam" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">xAI sues a man for using Grok to generate CSAM &#8216;deepfakes&#8217;</div>
+        <div class="news-summary">The Elon Musk-owned xAI is suing a South Carolina man who allegedly used the com</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/policy/966283/fcc-broadcast-ownership-cap-brendan-carr" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">Brendan Carr plans to let broadcast giants dominate the airwaves</div>
+        <div class="news-summary">The Federal Communications Commission will vote next month on whether a single c</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://arstechnica.com/tech-policy/2026/07/judge-trump-cant-deport-researchers-just-for-working-in-content-moderation/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://cdn.arstechnica.net/wp-content/uploads/2026/07/GettyImages-2201944209-500x500-1784148021.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">A</span>
+          <span class="news-source-name">Ars Technica</span>
+        </div>
+        <div class="news-title">Judge: Trump can’t deport researchers just for working in content moderation</div>
+        <div class="news-summary">Disinformation researchers praise ruling blocking Trump visa denials and deporta</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://arstechnica.com/gadgets/2026/07/engineer-identifies-and-explains-every-90s-computer-seen-in-jurassic-park/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://cdn.arstechnica.net/wp-content/uploads/2026/07/unix-system-jp-500x500.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">A</span>
+          <span class="news-source-name">Ars Technica</span>
+        </div>
+        <div class="news-title">Engineer identifies and explains every '90s computer seen in Jurassic Park</div>
+        <div class="news-summary">Yes, it was, in fact, a Unix system.</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theguardian.com/us-news/2026/jul/15/mexico-investigate-ice-deaths" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#052962;">G</span>
+          <span class="news-source-name">The Guardian</span>
+        </div>
+        <div class="news-title">Mexico asks US state attorneys general to investigate immigrant ICE deaths</div>
+        <div class="news-summary">Since start of Trump’s second term, 14 Mexican immigrants have died in ICE custo</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://techcrunch.com/2026/07/15/tesla-driver-in-fatal-texas-crash-pressed-accelerator-100-ntsb-confirms/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0a9e01;">T</span>
+          <span class="news-source-name">TechCrunch</span>
+        </div>
+        <div class="news-title">Tesla driver in fatal Texas crash pressed accelerator 100%, NTSB confirms</div>
+        <div class="news-summary">The safety board confirmed Tesla's account of the crash, which the company share</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/games/966181/roblox-connect-video-chat-calling-service-shut-down" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">Roblox is shutting down its video chat service</div>
+        <div class="news-summary">Roblox will be shutting down Roblox Connect, its video calling service introduce</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/entertainment/965616/ash-koosha-odysseus-the-fall-foundtain-zero-tilly-norwood" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">AI slop movies are the new direct-to-video cash grabs</div>
+        <div class="news-summary">This weekend, cinephiles across the world will march to their local theaters to </div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://arstechnica.com/security/2026/07/windows-0-day-drops-the-same-day-microsoft-releases-record-number-of-patches/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://cdn.arstechnica.net/wp-content/uploads/2022/10/windows-malware-500x500.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">A</span>
+          <span class="news-source-name">Ars Technica</span>
+        </div>
+        <div class="news-title">Windows 0-day drops the same day Microsoft releases record number of patches</div>
+        <div class="news-summary">HiveLegacy is a "powerful primitive" that's likely capable of other nefarious ac</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./7.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="active">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./9.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

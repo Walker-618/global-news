@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>▶ 热门视频 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">▶ 热门视频</span>
+    </div>
+    <div class="header-date">
+      <span>2026年7月16日</span><span> · </span><span>周四</span><span> · </span><span class="lunar">农历6月3日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 92 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=NwAWgYRpuFg" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i3.ytimg.com/vi/NwAWgYRpuFg/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">OpenAI Chairman Bret Taylor on Apple lawsuit: We have no interest in other companies' trade secrets</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">8小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/shorts/YA26UCXBj_s" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i2.ytimg.com/vi/YA26UCXBj_s/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Pending home sales plunge in June and homebuilder sentiment remains weak</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">8小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=ODtvWJuIlSo" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i4.ytimg.com/vi/ODtvWJuIlSo/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">CFR's Rebecca Patterson: It makes sense that the market is biased toward rate hikes</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">9小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/shorts/GHdyTwaf0jk" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i4.ytimg.com/vi/GHdyTwaf0jk/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Uber CEO Dara Khosrowshahi on Delivery Hero deal: We don't have any overlap</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">9小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=UkoAxTegQCk" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i2.ytimg.com/vi/UkoAxTegQCk/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Market Open: Stocks Mixed, Crude Above $80; Retail Sales as Expected • 7/16/26</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">9小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/shorts/L5wpFXymvkU" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i1.ytimg.com/vi/L5wpFXymvkU/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">United Airlines CEO Scott Kirby: Airfares are higher because all costs are up post-Covid</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">9小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/shorts/NdQZNjVha1I" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i3.ytimg.com/vi/NdQZNjVha1I/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Eli Lilly to buy psychedelics maker AtaiBeckley for $2.8 billion</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=8mUk4SPmliM" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i1.ytimg.com/vi/8mUk4SPmliM/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">White House press secretary Karoline Leavitt holds a briefing with reporters — 7/16/2026</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=xbmaSrBBNqA" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i1.ytimg.com/vi/xbmaSrBBNqA/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">The Fed has to hike interest rates this year, says SMBC's Joe Lavorgna</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/shorts/B2tVxkffuW0" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i3.ytimg.com/vi/B2tVxkffuW0/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">UnitedHealth blows past estimates, hikes earnings outlook as it reins in costs</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=ufwYag7NcqY" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i2.ytimg.com/vi/ufwYag7NcqY/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Uber CEO Dara Khosrowshahi on $14.8B Delivery Hero deal: The combination represents compelling value</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">11小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=fIGcFL0Xaoo" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://i3.ytimg.com/vi/fIGcFL0Xaoo/hqdefault.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">It's quite easy today to find a diversified portfolio trading at low-teens multiples: Bill Nygren</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">11小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=pY8No4oDiKc" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Retirement Annuities 7/16/26</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">16小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=IpYDJgTmF7U" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Mad Money 07/15/26 | Audio Only</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">23小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=wbLiFZN-WzA" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Market Close: Stocks Higher, Apple Hits Record; United Warns on Jet Fuel • 7/15/26</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/shorts/901xf5uNbuA" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Stripe, Advent make $53 billion takeover offer for PayPal, sending stock soaring</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=6hYR-uFKp_4" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">President Trump participates in Pennsylvania Defense and Innovation Summit — 7/15/2026</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/shorts/MYQdakhCO0E" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Gary Cohn on Fed Chairman Warsh: I believe he will not touch interest rates</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/shorts/euz-64Qck8k" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Guy Spier on living with glioblastoma: "I know that I have to celebrate today"</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.youtube.com/watch?v=0bIm-8LMEyM" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#ff0000;">▶</span>
+          <span class="news-source-name">CNBC</span>
+        </div>
+        <div class="news-title">Dan Ives: Q2 earnings will be the driver for mega-cap stocks</div>
+        <div class="news-summary">CNBC Television</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    
+    <a href="./index.html" class="active">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    
+    <a href="./2.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

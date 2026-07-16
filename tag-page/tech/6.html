@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔧 科技动态 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🔧 科技动态</span>
+    </div>
+    <div class="header-date">
+      <span>2026年7月16日</span><span> · </span><span>周四</span><span> · </span><span class="lunar">农历6月3日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://36kr.com/p/3897686922266244?f=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#06b6d4;">氪</span>
+          <span class="news-source-name">36氪</span>
+        </div>
+        <div class="news-title">硬氪首发 | 民用航空动力企业再获近亿元融资，切入国际巨头垄断的关键功率段</div>
+        <div class="news-summary">作者&nbsp;|&nbsp;乔钰杰 编辑&nbsp;|&nbsp;袁斯来 硬氪获悉，民用航空动力企业汉发长空近日完成近亿元Pre-A轮融资，本轮融资由方广资本</div>
+        <div class="news-time">13小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theregister.com/security/2026/07/16/telegram-shortlinks-knocked-offline-over-sanctioned-vpn-connection/5271964" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://image.theregister.com/?imageId=222435&width=800&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">R</span>
+          <span class="news-source-name">The Register</span>
+        </div>
+        <div class="news-title">Telegram shortlinks knocked offline over sanctioned VPN connection</div>
+        <div class="news-summary">t.me borked for a day until platform proved it had no ties to service favored by</div>
+        <div class="news-time">13小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.bbc.co.uk/news/articles/c36yj4pn7jdo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/78fd/live/b69ee8d0-80f0-11f1-b976-0b9c15b0ccfc.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#bb1919;">B</span>
+          <span class="news-source-name">BBC News</span>
+        </div>
+        <div class="news-title">Who is the frontrunner to be the UK's next chancellor?</div>
+        <div class="news-summary">Andy Burnham will be moving into Downing Street next week, and a question remain</div>
+        <div class="news-time">13小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/471982/rider-2026-2-release-candidate" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">Rider 2026.2 RC 发布</div>
+        <div class="news-summary">Rider 2026.2 RC 版本现已发布。即将发布的版本将向 AI 编程智能体开放 IDE 自身的智能功能，原生集成 GitHub Copilot，并大幅提</div>
+        <div class="news-time">13小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.engadget.com/2216274/the-oversight-board-says-leading-ai-models-might-be-restricting-free-expression/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.engadget.com/img/gallery/the-oversight-board-says-leading-ai-models-might-be-restricting-free-expression/l-intro-1784158214.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">E</span>
+          <span class="news-source-name">Engadget</span>
+        </div>
+        <div class="news-title">The Oversight Board says leading AI models might be restricting free expression</div>
+        <div class="news-summary">The group is trying to extend its influence beyond Meta.</div>
+        <div class="news-time">13小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnet.com/tech/services-and-software/best-streaming-services-for-kids/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.cnet.com/a/img/resize/0915226a4fe69d421550abf582a339ef3dc7f4de/hub/2026/02/10/c78cfdd1-11c6-4353-a006-7529f1fa2a4e/cocomelon-lane-netflix.jpg?auto=webp&width=300&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e61d23;">C</span>
+          <span class="news-source-name">CNET</span>
+        </div>
+        <div class="news-title">Best Streaming Services for Kids in 2026</div>
+        <div class="news-summary">These are the best platforms for family-friendly programming, including Cocomelo</div>
+        <div class="news-time">13小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://36kr.com/p/3896586337978244?f=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://img.36krcdn.com/hsossms/20260715/v2_c4bb82b0c6c243999c5b719dd7da6478@6022551_oswg6668333oswg4000oswg2667_img_jpg?x-oss-process=image/quality,q_80/format,jpg/interlace,1&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#06b6d4;">氪</span>
+          <span class="news-source-name">36氪</span>
+        </div>
+        <div class="news-title">众筹近400万美金，这家明星AI体育硬件公司做了款多合一教练机器人 ｜产品观察</div>
+        <div class="news-summary">作者｜黄楠 编辑｜袁斯来 在首款网球发球机卖爆后，庞伯特做了一款多合一AI教练机器人 。 这家公司是在一级市场很受关注的标的，2025年半年内完成三轮融资累计数</div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/471901/gstreamer-1-28-5-released" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">GStreamer 1.28.5 发布，开源多媒体框架</div>
+        <div class="news-summary">GStreamer 1.28.5 现已发布，此版本包含错误修复和一些安全修复。具体更新内容如下： 修复了多个安全问题和播放问题 修复 AMD GPU上使用 VA</div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnet.com/tech/mobile/oneplus-pulls-out-of-us-and-europe/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.cnet.com/a/img/resize/b33d5e66150b5fa4923f9d2f2b0048c90455844b/hub/2025/01/06/aece1081-e876-4e7f-966c-f1e4bc597007/oneplus-13-review-cnet-lanxon-promo-03.jpg?auto=webp&width=300&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e61d23;">C</span>
+          <span class="news-source-name">CNET</span>
+        </div>
+        <div class="news-title">It's Official: OnePlus Is Dead. Long Live Oppo</div>
+        <div class="news-summary">"Never settle" takes on a whole new meaning, as the once-maverick phone-maker re</div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnet.com/tech/mobile/i-used-every-oneplus-phone-these-were-my-favorites/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.cnet.com/a/img/resize/d0aeea29921a0d3887de39e10a67cede27ce3474/hub/2025/01/06/274e6f29-9faf-4825-bb43-420015a78766/oneplus-13-review-cnet-lanxon-promo-06.jpg?auto=webp&width=300&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e61d23;">C</span>
+          <span class="news-source-name">CNET</span>
+        </div>
+        <div class="news-title">I Used Every OnePlus Phone I Could Get My Hands On. These Were My Favorites</div>
+        <div class="news-summary">Now that the company has closed in Europe and the US, I've looked back at my top</div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.npr.org/2026/07/16/nx-s1-5845818/oil-prices-windfall-tax-iran-war" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">N</span>
+          <span class="news-source-name">NPR</span>
+        </div>
+        <div class="news-title">Oil companies are making billions. In the U.S., calls to tax their windfall are growing</div>
+        <div class="news-summary">Higher oil prices since the Iran war began mean many oil companies have brought </div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theguardian.com/society/2026/jul/16/hoarders-wirral-peer-support-group-housing" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#052962;">G</span>
+          <span class="news-source-name">The Guardian</span>
+        </div>
+        <div class="news-title">‘People think you’ve got 10,000 cats’: the support group for hoarders</div>
+        <div class="news-summary">Many hoarders are scared to seek help but one UK housing association is taking a</div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.npr.org/2026/07/16/nx-s1-5893599/pennsylvania-focus-groups-trump-corruption" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">N</span>
+          <span class="news-source-name">NPR</span>
+        </div>
+        <div class="news-title">Trump earned billions last year. Some Pennsylvania swing voters say they don't care</div>
+        <div class="news-summary">Key voters in Pennsylvania are split on whether President Trump earning a big wi</div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.npr.org/2026/07/16/nx-s1-5884780/gossip-word-origins-etymology" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">N</span>
+          <span class="news-source-name">NPR</span>
+        </div>
+        <div class="news-title">'Gossip' had godly origins. Here's how it gained its sinful reputation</div>
+        <div class="news-summary">We've all engaged in a little 'gossip.' But did you know its origins were tied t</div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.npr.org/2026/07/16/nx-s1-5884732/world-cup-asian-football-confederation-korea-japan" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">N</span>
+          <span class="news-source-name">NPR</span>
+        </div>
+        <div class="news-title">No Asian team managed to go far this World Cup (again). What's holding them back?</div>
+        <div class="news-summary">For the sixth World Cup in a row, no team from the Asian Football Confederation </div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.npr.org/2026/07/16/nx-s1-5893672/dot-bike-lanes-speed-cameras-safety-measures" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">N</span>
+          <span class="news-source-name">NPR</span>
+        </div>
+        <div class="news-title">Bike lanes and speed cameras disappear from the DOT's list of proven safety measures</div>
+        <div class="news-summary">The Federal Highway Administration quietly stripped bike lanes and other safety </div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.npr.org/2026/07/16/nx-s1-5894825/body-cams-ice-shootings" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">N</span>
+          <span class="news-source-name">NPR</span>
+        </div>
+        <div class="news-title">DHS pledged body cams for all immigration agents. Months later, that hasn't happened</div>
+        <div class="news-summary">In recent days, federal immigration agents fatally shot two immigrant fathers. N</div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/tech/966404/oneplus-oppo-us-europe-withdrawal-realme" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">OnePlus officially gives up on the US and Europe</div>
+        <div class="news-summary">OnePlus has confirmed what industry observers have long expected: it's quitting </div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://techcrunch.com/2026/07/16/phone-maker-oneplus-reportedly-plans-to-wind-down-us-and-europe-operations/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0a9e01;">T</span>
+          <span class="news-source-name">TechCrunch</span>
+        </div>
+        <div class="news-title">Phone maker OnePlus says it won’t release new phones in the U.S. and Europe</div>
+        <div class="news-summary">OnePlus could also wind down its operations in India by 2027.</div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theguardian.com/business/2026/jul/16/ocado-chief-puppet-master-succession-tim-steiner" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#052962;">G</span>
+          <span class="news-source-name">The Guardian</span>
+        </div>
+        <div class="news-title">Ocado chief says he won’t be a ‘puppet master’ amid apparent succession row</div>
+        <div class="news-summary">Tim Steiner speaks as shares in the online grocer slide nearly 15% on plunge in </div>
+        <div class="news-time">14小时前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./5.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="active">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./7.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

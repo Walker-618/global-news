@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔧 科技动态 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🔧 科技动态</span>
+    </div>
+    <div class="header-date">
+      <span>2026年7月16日</span><span> · </span><span>周四</span><span> · </span><span class="lunar">农历6月3日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.theregister.com/paas-and-iaas/2026/07/16/airbus-migrating-70-critical-apps-from-aws-to-frances-scaleway-amid-digital-sovereignty-push/5272373" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://image.theregister.com/?imageId=5273664&width=800&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">R</span>
+          <span class="news-source-name">The Register</span>
+        </div>
+        <div class="news-title">Airbus migrating 70 critical apps from AWS to France's Scaleway amid digital sovereignty push</div>
+        <div class="news-summary">Total of 900 applications including ERP, CRM, and manufacturing systems going to</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.zdnet.com/article/anthropic-claude-corps-pays-early-career-professionals-apply-now/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0078d4;">Z</span>
+          <span class="news-source-name">ZDNet</span>
+        </div>
+        <div class="news-title">Anthropic's Claude Corps will pay $85,000 to 1,000 early-career professionals - apply now</div>
+        <div class="news-summary">The Claude Corps fellowship matches professionals with partner nonprofits and pa</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.npr.org/2026/07/16/g-s1-133931/hong-kong-official-warns-booksellers-on-security-risks-after-raids" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">N</span>
+          <span class="news-source-name">NPR</span>
+        </div>
+        <div class="news-title">Hong Kong official warns booksellers on security risks after raids</div>
+        <div class="news-summary">The police operation marks the third round of arrests targeting independent book</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/tech/966175/ninja-crispi-microwave-air-fryer-kitchen-appliance" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">Ninja’s microwave air fryer could be the fix for soggy reheated pizza</div>
+        <div class="news-summary">Ninja has added everything from ice cream makers to double-decker toaster ovens </div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.engadget.com/2210415/why-wireless-android-auto-uses-both-bluetooth-wifi/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.engadget.com/img/gallery/why-does-wireless-android-auto-use-both-bluetooth-and-wi-fi/l-intro-1783517059.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">E</span>
+          <span class="news-source-name">Engadget</span>
+        </div>
+        <div class="news-title">Why does wireless Android Auto use both Bluetooth and Wi-Fi?</div>
+        <div class="news-summary">Bluetooth and Wi-Fi work in tandem to power the wireless Android Auto experience</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/tech/966492/samsung-galaxy-z-flip-8-design-specs-leaked" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">Samsung&#8217;s Galaxy Z Flip 8 leaks a week before launch event</div>
+        <div class="news-summary">Samsung's next flip phone might be tough to tell apart from last year's Galaxy Z</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.bbc.co.uk/news/articles/crmrwe84rp2o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/f735/live/e65a1410-8117-11f1-b976-0b9c15b0ccfc.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#bb1919;">B</span>
+          <span class="news-source-name">BBC News</span>
+        </div>
+        <div class="news-title">MI5 court evidence based on lies, report says</div>
+        <div class="news-summary">Senior MI5 figures were criticised in the report by deputy investigatory powers </div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://techcrunch.com/2026/07/16/apple-intelligence-approved-for-launch-in-china-with-alibabas-qwen-ai/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0a9e01;">T</span>
+          <span class="news-source-name">TechCrunch</span>
+        </div>
+        <div class="news-title">Apple Intelligence approved for launch in China with Alibaba and Baidu</div>
+        <div class="news-summary">The deal, which was rumored to be in the works last year, marks an important ste</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnet.com/tech/services-and-software/roku-city-comes-alive-with-live-action-movies-tours/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.cnet.com/a/img/resize/fccb3b77abfd289b663ddf53cc6d498f8fe17c35/hub/2026/07/16/ec46a23b-0d12-4b4d-a889-b9671a0d711d/roku-isle-of-roku-2.jpg?auto=webp&width=300&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e61d23;">C</span>
+          <span class="news-source-name">CNET</span>
+        </div>
+        <div class="news-title">Roku City Comes Alive With Live-Action Short Films and Interactive Tour</div>
+        <div class="news-summary">You can tour its prime locations, such as Mount Roku, or explore odder sites, in</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.zdnet.com/article/apple-notes-alternative-for-mac-transparent-note/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0078d4;">Z</span>
+          <span class="news-source-name">ZDNet</span>
+        </div>
+        <div class="news-title">I found a stunning Apple Notes alternative for my Mac - and it's (mostly) free</div>
+        <div class="news-summary">I finally ditched Notes on my Mac for this beautiful, Liquid Glass-like alternat</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnet.com/tech/services-and-software/best-movies-on-netflix/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.cnet.com/a/img/resize/94fda61f14b0cda5839b7d4c48e4d2c5acd4e533/hub/2026/07/14/04841763-9c3e-4343-a063-9e8140187eb2/lawrence-of-arabia.jpg?auto=webp&width=300&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e61d23;">C</span>
+          <span class="news-source-name">CNET</span>
+        </div>
+        <div class="news-title">45 of the Best Movies on Netflix You Should Stream Now</div>
+        <div class="news-summary">Check out some old classics and great new releases on Netflix now.</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.zdnet.com/article/1password-claude-agentic-mode/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0078d4;">Z</span>
+          <span class="news-source-name">ZDNet</span>
+        </div>
+        <div class="news-title">1Password's new Agentic Mode lets Claude log into your accounts without seeing your credentials</div>
+        <div class="news-summary">1Password wants to solve one of AI's biggest practical problems: secure logins. </div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.engadget.com/2216405/1password-anthropic-claude-integration/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.engadget.com/img/gallery/you-can-now-grant-claude-access-to-your-1password-credentials/l-intro-1784196809.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">E</span>
+          <span class="news-source-name">Engadget</span>
+        </div>
+        <div class="news-title">You can now grant Claude access to your 1Password credentials</div>
+        <div class="news-summary">1Password lets you use Claude agents for personal chores without exposing your c</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.engadget.com/2216390/vital-signals-blood-pressure-ring/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.engadget.com/img/gallery/vital-signals-puts-continuous-blood-pressure-monitoring-into-a-ring/l-intro-1784191885.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">E</span>
+          <span class="news-source-name">Engadget</span>
+        </div>
+        <div class="news-title">Vital Signals puts continuous blood pressure monitoring into a ring</div>
+        <div class="news-summary">Vital Signals promises its algorithmic blood pressure monitoring ring will resha</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/tech/966442/1password-anthropic-claude-browser-integration" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">Claude can now use your 1Password credentials for you</div>
+        <div class="news-summary">1Password has launched a new browser integration for Claude that allows the Anth</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/tech/966274/oneplus-never-had-a-chance-in-the-us" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">OnePlus never had a chance in the US</div>
+        <div class="news-summary">After an eight-year run, OnePlus announced today that it has exited the United S</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.engadget.com/2216454/eu-demands-google-give-ai-rivals-more-access-to-android/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.engadget.com/img/gallery/eu-demands-google-give-ai-rivals-more-access-to-android/l-intro-1784206648.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">E</span>
+          <span class="news-source-name">Engadget</span>
+        </div>
+        <div class="news-title">EU demands Google give AI rivals more access to Android</div>
+        <div class="news-summary">Google has been ordered by the EU to open up key Android handset features to riv</div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theregister.com/cyber-crime/2026/07/16/brit-scattered-spider-duo-handed-tickets-to-prison-over-transport-for-london-attack/5272446" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://image.theregister.com/?imageId=245763&width=800&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">R</span>
+          <span class="news-source-name">The Register</span>
+        </div>
+        <div class="news-title">Brit Scattered Spider duo handed tickets to prison over Transport for London attack</div>
+        <div class="news-summary">Sentencing bookends the biggest cybercrime conviction in UK history</div>
+        <div class="news-time">11小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.zdnet.com/article/how-windows-11-focus-mode-helps-me-block-distractions/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0078d4;">Z</span>
+          <span class="news-source-name">ZDNet</span>
+        </div>
+        <div class="news-title">This surprisingly useful Windows 11 tool helps me block distractions - and get more done</div>
+        <div class="news-summary">It has completely replaced my Pomodoro timer and task tracker, and it's free.</div>
+        <div class="news-time">11小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://36kr.com/newsflashes/3898269495789188?f=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#06b6d4;">氪</span>
+          <span class="news-source-name">36氪</span>
+        </div>
+        <div class="news-title">英伟达发布全新人工智能模型，并扩建日本实体人工智能产业生态</div>
+        <div class="news-summary">英伟达于周三推出一款面向机器人与视觉智能体的全新AI模型，进一步加码日本实体人工智能赛道。这款全新模型名为Cosmos 3 Edge，属于世界模型，能够助力智能</div>
+        <div class="news-time">11小时前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./2.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="active">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./4.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

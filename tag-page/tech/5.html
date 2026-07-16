@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔧 科技动态 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🔧 科技动态</span>
+    </div>
+    <div class="header-date">
+      <span>2026年7月16日</span><span> · </span><span>周四</span><span> · </span><span class="lunar">农历6月3日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://techcrunch.com/2026/07/16/ultrahumans-former-hardware-vp-raises-5-5m-for-devices-that-control-ai-agents-not-just-record-you/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0a9e01;">T</span>
+          <span class="news-source-name">TechCrunch</span>
+        </div>
+        <div class="news-title">Ultrahuman’s former hardware VP raises $5.5M for devices that control AI agents, not just record you</div>
+        <div class="news-summary">Aina is going to pilot a new device in coming weeks</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.npr.org/2026/07/16/g-s1-133918/up-first-newsletter-iran-us-trump-jay-clayton-ice-use-of-force" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">N</span>
+          <span class="news-source-name">NPR</span>
+        </div>
+        <div class="news-title">The political risks from war in Iran. And, ICE's use of force is rising, report finds</div>
+        <div class="news-summary">The political implications the war in Iran is having on the GOP. And, a new repo</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theregister.com/os-platforms/2026/07/16/windows-10-refuses-to-die-and-the-security-bill-is-coming-due/5271987" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://image.theregister.com/?imageId=5247910&width=800&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">R</span>
+          <span class="news-source-name">The Register</span>
+        </div>
+        <div class="news-title">Windows 10 refuses to die, and the security bill is coming due</div>
+        <div class="news-summary">One in six machines still run the old OS as migration stalls and patch deadlines</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theguardian.com/us-news/2026/jul/16/first-thing-us-attacks-tanker-in-continuing-iran-conflict-as-tehran-releases-us-citizen" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#052962;">G</span>
+          <span class="news-source-name">The Guardian</span>
+        </div>
+        <div class="news-title">First Thing: US attacks tanker in continuing Iran conflict as Tehran releases US citizen</div>
+        <div class="news-summary">US renews blockade of Iranian ports, while Iran attacks sites in Bahrain and Kuw</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theguardian.com/us-news/live/2026/jul/16/donald-trump-darline-graham-bukele-blanche-iran-ice-2020-election-speech-latest-news-updates" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#052962;">G</span>
+          <span class="news-source-name">The Guardian</span>
+        </div>
+        <div class="news-title">Trump to meet Darline Graham at the White House today – US politics live</div>
+        <div class="news-summary">President will meet new Republican senator who has taken over the seat following</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theguardian.com/politics/live/2026/jul/16/keir-starmer-andy-burnham-labour-farage-badenoch-widdecombe-latest-news-updates" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#052962;">G</span>
+          <span class="news-source-name">The Guardian</span>
+        </div>
+        <div class="news-title">Making Mahmood chancellor shows Burnham ‘subservient to City’, claims Polanski – UK politics live</div>
+        <div class="news-summary">Green leader says expected appointment shows new PM ‘won’t challenge the power o</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theguardian.com/us-news/2026/jul/16/critics-denounce-trump-administration-replacing-slavery-exhibit-george-washington-home" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#052962;">G</span>
+          <span class="news-source-name">The Guardian</span>
+        </div>
+        <div class="news-title">‘A first step to fascism’: critics denounce Trump administration replacing slavery exhibit at George Washington’s ​home</div>
+        <div class="news-summary">Replacement of panels with version that’s sympathetic to enslavers comes amid ef</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theguardian.com/business/2026/jul/16/trump-administration-canada-gordie-howe-bridge" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#052962;">G</span>
+          <span class="news-source-name">The Guardian</span>
+        </div>
+        <div class="news-title">Democrats allege Trump administration stalled US-Canada bridge opening as a favor to billionaire donor</div>
+        <div class="news-summary">Delay seen as move to protect interests of Matthew Moroun, the owner of nearby A</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnet.com/tech/services-and-software/meta-ai-chatbot-parental-notification-distressing-chats-news/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.cnet.com/a/img/resize/0608f6c42382d2df95e415e5bf3b1c0cf24ebacb/hub/2026/07/13/d797adf7-564c-4c30-9927-434bbeac08fd/adobestock-2038864593-editorial-use-only.jpg?auto=webp&width=300&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e61d23;">C</span>
+          <span class="news-source-name">CNET</span>
+        </div>
+        <div class="news-title">Meta Adds Support and Parental Notification for AI Chats About Self-Harm</div>
+        <div class="news-summary">Amid a period of intense scrutiny over safety, Meta is beefing up its options fo</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://arstechnica.com/space/2026/07/move-over-gps-navigation-satellites-in-low-earth-orbit-are-making-a-comeback/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://cdn.arstechnica.net/wp-content/uploads/2026/07/Xona_InSitu_Orbit_03-500x500.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">A</span>
+          <span class="news-source-name">Ars Technica</span>
+        </div>
+        <div class="news-title">Move over, GPS: Navigation satellites in low-Earth orbit are making a comeback</div>
+        <div class="news-summary">Xona aims to deploy 258 satellites into low-Earth orbit as a GPS alternative.</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnet.com/home/kitchen-and-household/portable-air-conditioner-btu-ratings-are-confusing-heres-what-to-know/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.cnet.com/a/img/resize/7562896acc079ccddf5ae0567946c64eb3f3ebd8/hub/2026/06/10/fad0d11b-7949-45b4-b3d1-f04c2f255af5/dreo-ac319s.png?auto=webp&width=300&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e61d23;">C</span>
+          <span class="news-source-name">CNET</span>
+        </div>
+        <div class="news-title">Portable Air Conditioner BTU Ratings Are Confusing. Here's What to Know</div>
+        <div class="news-summary">Yes, BTU ratings matter, but when it comes to portable AC units, there's more to</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.engadget.com/2216412/meta-ai-alert-parents-if-teens-discuss-self-harm/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://www.engadget.com/img/gallery/meta-will-alert-parents-is-their-teens-discuss-self-harm/l-intro-1784199378.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#000000;">E</span>
+          <span class="news-source-name">Engadget</span>
+        </div>
+        <div class="news-title">Meta will alert parents if their teens discuss self harm</div>
+        <div class="news-summary">Meta has rolled out a new safeguard for teens' AI interactions.</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theregister.com/ai-and-ml/2026/07/16/spacex-open-sources-grok-build-after-data-retention-furore/5272333" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://image.theregister.com/?imageId=4093846&width=800&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">R</span>
+          <span class="news-source-name">The Register</span>
+        </div>
+        <div class="news-title">SpaceX open sources Grok Build in same week company was found beaming users' repos to the cloud</div>
+        <div class="news-summary">AI-and-X subsidiary now claims to offer ‘complete user privacy’ days after Elon </div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theverge.com/ai-artificial-intelligence/965066/ai-police-cops" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#10b981;">V</span>
+          <span class="news-source-name">The Verge</span>
+        </div>
+        <div class="news-title">COMPUTER COPS: Inside the big business of selling AI to the police</div>
+        <div class="news-summary">I stood before a hulking glass and brick structure in the heart of Fort Worth, T</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://techcrunch.com/2026/07/16/meta-now-alerts-parents-if-their-teen-discussed-suicide-or-self-harm-with-its-ai-chatbot/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0a9e01;">T</span>
+          <span class="news-source-name">TechCrunch</span>
+        </div>
+        <div class="news-title">Meta now alerts parents if their teen discussed suicide or self-harm with its AI chatbot</div>
+        <div class="news-summary">The updates come as Meta and other tech companies are facing scrutiny from regul</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theregister.com/off-prem/2026/07/16/aws-cloudfront-outage-serves-errors-instead-of-websites/5272421" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://image.theregister.com/?imageId=4093112&width=800&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">R</span>
+          <span class="news-source-name">The Register</span>
+        </div>
+        <div class="news-title">AWS CloudFront outage serves errors instead of websites</div>
+        <div class="news-summary">Storm sends winds whipping beyond cloud giant, knocking out services including H</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.theguardian.com/technology/2026/jul/16/hackers-2024-cyber-attack-transport-for-london-tfl-jailed" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#052962;">G</span>
+          <span class="news-source-name">The Guardian</span>
+        </div>
+        <div class="news-title">‘Keys to the kingdom’: hackers who gained access to heart of London transport network jailed</div>
+        <div class="news-summary">Thalha Jubair, 20, and Owen Flowers, 19, sentenced to five and a half years each</div>
+        <div class="news-time">12小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.bbc.co.uk/sport/football/articles/cly5we2lgq4o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/3097/live/5acbca60-809a-11f1-926f-c90d1bcfbc84.png&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#bb1919;">B</span>
+          <span class="news-source-name">BBC News</span>
+        </div>
+        <div class="news-title">Why you should care about the third-place play-off between England and France</div>
+        <div class="news-summary">It might feel like the last thing anyone wants right now - but here is why, actu</div>
+        <div class="news-time">13小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.bbc.co.uk/news/articles/c4gy5jwjvz7o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://ichef.bbci.co.uk/ace/standard/240/cpsprodpb/b420/live/67ce0830-8118-11f1-926f-c90d1bcfbc84.jpg&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#bb1919;">B</span>
+          <span class="news-source-name">BBC News</span>
+        </div>
+        <div class="news-title">Feeling gutted? Five ways to cope with England's World Cup defeat</div>
+        <div class="news-summary">After England’s loss, fans and experts share their tips for managing the disappo</div>
+        <div class="news-time">13小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://36kr.com/p/3896639942592134?f=rss" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);background-image:url(&quot;https://img.36krcdn.com/hsossms/20260716/v2_fb40b4d27f5a40048e099170409cfe6a@5930287_oswg137437oswg1384oswg674_img_jpeg?x-oss-process=image/quality,q_100/format,jpg/interlace,1&quot;);background-size:cover;background-position:center">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#06b6d4;">氪</span>
+          <span class="news-source-name">36氪</span>
+        </div>
+        <div class="news-title">大厂医疗AI战，开始“卷”减重</div>
+        <div class="news-summary">文｜胡香赟 编辑｜海若镜 互联网大厂做医疗AI，越来越偏爱“减重”场景。 近日，蚂蚁集团宣布投资薄荷健康，持股比例超28%，成为薄荷健康最大外部股东。薄荷健康成</div>
+        <div class="news-time">13小时前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./4.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="active">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./6.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

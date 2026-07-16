@@ -33,7 +33,7 @@ def load_items(cat: str, limit: int = MAX_PER_CAT) -> List[NewsItem]:
                 if len(items) >= limit: break
                 items.append(NewsItem.from_dict(d))
         except: continue
-    items.sort(key=lambda x: x.published_at, reverse=True)
+    items.sort(key=lambda x: x.published_at or "1900", reverse=True)
     return items
 
 def _norm_title(t: str) -> str:
