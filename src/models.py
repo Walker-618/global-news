@@ -66,7 +66,7 @@ class NewsItem:
         if not title or not link:
             return None
 
-        # 摘要
+        # 摘要 & 抓取原始 HTML 用于后续提图
         summary = ""
         raw_html = ""
         is_video = category == "VIDEO"
@@ -78,6 +78,9 @@ class NewsItem:
                 if val:
                     raw_html = str(val)
                     summary = _strip_html(raw_html)
+                    # 清理冗余 URL 文本 (Hacker News 等)
+                    summary = re.sub(r"(?:Article|Comments)\s*URL:\s*\S+", "", summary)
+                    summary = re.sub(r"\s+", " ", summary).strip()
                     break
         summary = summary[:200] if summary else ""
 
