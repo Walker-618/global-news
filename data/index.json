@@ -1,71 +1,6 @@
 {
   "AI": [
     {
-      "title": "Netstrings (1997)",
-      "summary": "Article URL: https://cr.yp.to/proto/netstrings.txt Comments URL: https://news.ycombinator.com/item?id=48930713 Points: 23 # Comments: 10",
-      "url": "https://cr.yp.to/proto/netstrings.txt",
-      "source_name": "Hacker News",
-      "source_icon": "Y",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-07-15T21:33:50+00:00",
-      "fetched_at": "2026-07-16T11:42:40.827371+00:00",
-      "thumbnail_url": "",
-      "id": "32e28b3a13717b50"
-    },
-    {
-      "title": "The lost joy of music piracy",
-      "summary": "Article URL: https://www.pigeonsandplanes.com/read/music-piracy-what-cd-oink-nine-inch-nails-streaming Comments URL: https://news.ycombinator.com/item?id=48930454 Points: 392 # Comments: 248",
-      "url": "https://www.pigeonsandplanes.com/read/music-piracy-what-cd-oink-nine-inch-nails-streaming",
-      "source_name": "Hacker News",
-      "source_icon": "Y",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-07-15T20:46:21+00:00",
-      "fetched_at": "2026-07-16T11:42:40.827371+00:00",
-      "thumbnail_url": "",
-      "id": "7cabad485dd4b703"
-    },
-    {
-      "title": "Reynard: A real Firefox web browser for iOS 13 or later",
-      "summary": "Article URL: https://github.com/minh-ton/reynard-browser Comments URL: https://news.ycombinator.com/item?id=48930397 Points: 67 # Comments: 20",
-      "url": "https://github.com/minh-ton/reynard-browser",
-      "source_name": "Hacker News",
-      "source_icon": "Y",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-07-15T20:36:07+00:00",
-      "fetched_at": "2026-07-16T11:42:40.827371+00:00",
-      "thumbnail_url": "",
-      "id": "488a84c1cc65a32e"
-    },
-    {
-      "title": "If you want to create a button from scratch, you must first create the universe",
-      "summary": "Article URL: https://madcampos.dev/blog/2026/07/accessibility-from-scratch/ Comments URL: https://news.ycombinator.com/item?id=48930136 Points: 159 # Comments: 76",
-      "url": "https://madcampos.dev/blog/2026/07/accessibility-from-scratch/",
-      "source_name": "Hacker News",
-      "source_icon": "Y",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-07-15T19:48:43+00:00",
-      "fetched_at": "2026-07-16T11:42:40.827371+00:00",
-      "thumbnail_url": "",
-      "id": "0f8eef59c4b9a323"
-    },
-    {
-      "title": "Making 768 servers look like 1",
-      "summary": "Article URL: https://planetscale.com/blog/making-768-servers-look-like-1 Comments URL: https://news.ycombinator.com/item?id=48930075 Points: 91 # Comments: 24",
-      "url": "https://planetscale.com/blog/making-768-servers-look-like-1",
-      "source_name": "Hacker News",
-      "source_icon": "Y",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-07-15T19:36:42+00:00",
-      "fetched_at": "2026-07-16T11:42:40.827371+00:00",
-      "thumbnail_url": "",
-      "id": "8d8fdc7a1baef1b3"
-    },
-    {
       "title": "1,300 Beautiful Wildlife Illustrations from the 19th Century Now Restored",
       "summary": "Article URL: https://www.openculture.com/2026/07/explore-1300-beautiful-wildlife-illustrations-from-the-19th-century.html Comments URL: https://news.ycombinator.com/item?id=48929945 Points: 115 # Comm",
       "url": "https://www.openculture.com/2026/07/explore-1300-beautiful-wildlife-illustrations-from-the-19th-century.html",
@@ -649,6 +584,71 @@
       "fetched_at": "2026-07-16T11:42:42.409648+00:00",
       "thumbnail_url": "",
       "id": "fdcc9a3b252bf27d"
+    },
+    {
+      "title": "STOCKTAKE: Measuring the Gap Between Perception and Action in LLM Agents with a Fair Oracle",
+      "summary": "arXiv:2607.13618v1 Announce Type: new Abstract: LLM agents are increasingly evaluated on multi-week decision tasks in which the state that drives cost is never directly observed. On such tasks the fin",
+      "url": "https://arxiv.org/abs/2607.13618",
+      "source_name": "ArXiv AI",
+      "source_icon": "X",
+      "source_color": "#e11d48",
+      "category": "AI",
+      "published_at": "2026-07-15T20:00:00+00:00",
+      "fetched_at": "2026-07-16T11:42:42.409648+00:00",
+      "thumbnail_url": "",
+      "id": "939052a7c0dd4e02"
+    },
+    {
+      "title": "UESF-Bench: Benchmarking and Probing for Unified Embodied Seeking and Following",
+      "summary": "arXiv:2607.13621v1 Announce Type: new Abstract: Language-guided human following is an important capability for embodied agents, but existing benchmarks typically assume that the target person is visib",
+      "url": "https://arxiv.org/abs/2607.13621",
+      "source_name": "ArXiv AI",
+      "source_icon": "X",
+      "source_color": "#e11d48",
+      "category": "AI",
+      "published_at": "2026-07-15T20:00:00+00:00",
+      "fetched_at": "2026-07-16T11:42:42.409648+00:00",
+      "thumbnail_url": "",
+      "id": "c8d32b34580b7268"
+    },
+    {
+      "title": "Explaining Reinforcement Learning Agents via Inductive Logic Programming",
+      "summary": "arXiv:2607.13655v1 Announce Type: new Abstract: Explainable Reinforcement Learning (XRL) seeks to make Reinforcement Learning (RL) policies more transparent and interpretable, a key requirement in saf",
+      "url": "https://arxiv.org/abs/2607.13655",
+      "source_name": "ArXiv AI",
+      "source_icon": "X",
+      "source_color": "#e11d48",
+      "category": "AI",
+      "published_at": "2026-07-15T20:00:00+00:00",
+      "fetched_at": "2026-07-16T11:42:42.409648+00:00",
+      "thumbnail_url": "",
+      "id": "645527fc994574be"
+    },
+    {
+      "title": "When Bots Join the Team: Bot Adoption and the Institutional Fabric of Open-Source Software Projects",
+      "summary": "arXiv:2607.13679v1 Announce Type: new Abstract: AI agents are joining human teams, raising a basic question: when an automated agent becomes a regular participant, does group organization strengthen o",
+      "url": "https://arxiv.org/abs/2607.13679",
+      "source_name": "ArXiv AI",
+      "source_icon": "X",
+      "source_color": "#e11d48",
+      "category": "AI",
+      "published_at": "2026-07-15T20:00:00+00:00",
+      "fetched_at": "2026-07-16T11:42:42.410648+00:00",
+      "thumbnail_url": "",
+      "id": "be23f95e1e94a4f4"
+    },
+    {
+      "title": "AgentCompass: A Unified Evaluation Infrastructure for Agent Capabilities",
+      "summary": "arXiv:2607.13705v1 Announce Type: new Abstract: As Large Language Models (LLMs) evolve into autonomous agents, the need for unified evaluation infrastructure becomes critical. However, current evaluat",
+      "url": "https://arxiv.org/abs/2607.13705",
+      "source_name": "ArXiv AI",
+      "source_icon": "X",
+      "source_color": "#e11d48",
+      "category": "AI",
+      "published_at": "2026-07-15T20:00:00+00:00",
+      "fetched_at": "2026-07-16T11:42:42.410648+00:00",
+      "thumbnail_url": "",
+      "id": "b5ad57e6db0a21e7"
     }
   ],
   "TECH": [
@@ -2270,7 +2270,7 @@
     }
   ],
   "_meta": {
-    "updated_at": "2026-07-16T12:21:11.990369+00:00",
+    "updated_at": "2026-07-16T12:30:55.729135+00:00",
     "total": 174,
     "counts": {
       "AI": 50,

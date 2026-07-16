@@ -65,13 +65,6 @@ sources:
     rss_url: "https://rsshub.app/ap/topics/technology"
     needs_proxy: true
 
-  - name: "Bloomberg"
-    icon: "B"
-    color: "#2563eb"
-    category: "FINANCE"
-    rss_url: "https://feeds.bloomberg.com/markets/news.rss"
-    needs_proxy: true
-
   - name: "Financial Times"
     icon: "F"
     color: "#f59e0b"

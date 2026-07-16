@@ -46,12 +46,20 @@ def _time_ago(iso_str: str) -> str:
 def _date_context() -> dict:
     from datetime import datetime
     now = datetime.now()
-    week_names = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
-    return {
+    week_names = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+    ctx = {
         "date_str": f"{now.year}年{now.month}月{now.day}日",
         "week_str": week_names[now.weekday()],
         "lunar_str": "",
     }
+    try:
+        from lunarcalendar import Converter, Solar
+        solar = Solar(now.year, now.month, now.day)
+        lunar = Converter.Solar2Lunar(solar)
+        ctx["lunar_str"] = f"{lunar.month}月{lunar.day}日"
+    except Exception:
+        ctx["lunar_str"] = ""
+    return ctx
 
 
 def generate_tag_pages():

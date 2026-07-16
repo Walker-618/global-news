@@ -22,6 +22,9 @@ def load_config() -> dict:
         return yaml.safe_load(f)
 
 
+MAX_ITEMS_PER_SOURCE = 5
+
+
 def run_pipeline(only_domestic: bool = False) -> dict:
     """
     执行完整采集流水线
@@ -56,6 +59,8 @@ def run_pipeline(only_domestic: bool = False) -> dict:
 
         try:
             items = fetch_source(source, proxy_config)
+            # 限流：每个源最多取 N 条，保证内容多样性
+            items = items[:MAX_ITEMS_PER_SOURCE]
             results["total_items"] += len(items)
 
             if items:

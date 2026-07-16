@@ -59,25 +59,24 @@ def _time_ago(iso_str: str) -> str:
     except Exception:
         return iso_str[:10]
 
-
 def _date_context() -> dict:
-    """生成日期上下文"""
+    """生成日期上下文（含农历）"""
+    from datetime import datetime
     now = datetime.now()
-    week_names = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
-    context = {
+    week_names = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+    ctx = {
         "date_str": f"{now.year}年{now.month}月{now.day}日",
         "week_str": week_names[now.weekday()],
         "lunar_str": "",
     }
-    # 尝试获取农历
     try:
-        fmt = __import__("datetime").datetime
-        # 使用 Intl 需要浏览器环境，但这是服务器端
-        # 简化为显示公历日期
-        pass
+        from lunarcalendar import Converter, Solar, Lunar
+        solar = Solar(now.year, now.month, now.day)
+        lunar = Converter.Solar2Lunar(solar)
+        ctx["lunar_str"] = f"{lunar.month}月{lunar.day}日"
     except Exception:
-        pass
-    return context
+        ctx["lunar_str"] = ""
+    return ctx
 
 
 def generate_index():
