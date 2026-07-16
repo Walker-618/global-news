@@ -653,58 +653,6 @@
   ],
   "TECH": [
     {
-      "title": "OPPO：realme新品将聚焦海外市场，中国市场暂停产品更新",
-      "summary": "36氪从OPPO方面获悉，为了进一步整合集团资源，实现全球产品战略的协同，未来 realme 新品将聚焦海外市场，在中国市场暂停产品更新；一加在中国市场的产品更新保持不变。realme和一加将持续在游戏和性能领域为用户提供优质的体验。",
-      "url": "https://36kr.com/newsflashes/3898089733523335?f=rss",
-      "source_name": "36氪",
-      "source_icon": "氪",
-      "source_color": "#06b6d4",
-      "category": "TECH",
-      "published_at": "2026-07-16T01:01:55+00:00",
-      "fetched_at": "2026-07-16T10:38:25.040205+00:00",
-      "thumbnail_url": "",
-      "id": "6cc4814b4d85dbf3"
-    },
-    {
-      "title": "7-Eleven母公司柒和伊拟斥资数千亿日元，入股波兰便利店巨头Żabka",
-      "summary": "据报道，7-Eleven的母公司柒和伊控股正在就投资波兰最大的便利店运营商Żabka集团进行谈判，以加速其在欧洲市场的扩张。柒和伊正考虑收购该集团两位数比例的股权，预计投资总额将达到数千亿日元。目前，相较于日本和美国两大主力市场，柒和伊在欧洲的增长相对滞后，若此次交易达成，波兰将成为继瑞典、丹麦和挪威之后，该集团在欧洲开辟的第四个市场。（财联社）",
-      "url": "https://36kr.com/newsflashes/3898086581126788?f=rss",
-      "source_name": "36氪",
-      "source_icon": "氪",
-      "source_color": "#06b6d4",
-      "category": "TECH",
-      "published_at": "2026-07-16T00:58:43+00:00",
-      "fetched_at": "2026-07-16T10:38:25.040205+00:00",
-      "thumbnail_url": "",
-      "id": "8c19bb843d837583"
-    },
-    {
-      "title": "台积电：不会因市场供应吃紧就突然大幅调价",
-      "summary": "台积电董事长魏哲家表示，台积电虽然会反映自身技术与制造价值，但不会突然大幅涨价，甚至一次提高四倍、五倍，让客户无法在市场上生存。他进一步指出，台积电的定价原则，是取得应有的价值，同时维持足以支撑长期投资及持续扩产的毛利，这对台积电及客户都有利。谈到存储芯片厂商近期惊人的获利表现，魏哲家直言很羡慕存储公司的86%毛利率，随后笑说，台积电不需要达到86%，“有68%，我就很高兴了”。魏哲家重申，台积电",
-      "url": "https://36kr.com/newsflashes/3898079041619585?f=rss",
-      "source_name": "36氪",
-      "source_icon": "氪",
-      "source_color": "#06b6d4",
-      "category": "TECH",
-      "published_at": "2026-07-16T00:51:03+00:00",
-      "fetched_at": "2026-07-16T10:38:25.040205+00:00",
-      "thumbnail_url": "",
-      "id": "2f4279ab180ac761"
-    },
-    {
-      "title": "格林美：拟1亿元—1.6亿元回购股份",
-      "summary": "36氪获悉，格林美公告，公司拟以1亿元—1.6亿元回购股份，用于实施股权激励或员工持股计划，回购股份的价格不超过10.6元/股。",
-      "url": "https://36kr.com/newsflashes/3898077285992065?f=rss",
-      "source_name": "36氪",
-      "source_icon": "氪",
-      "source_color": "#06b6d4",
-      "category": "TECH",
-      "published_at": "2026-07-16T00:49:16+00:00",
-      "fetched_at": "2026-07-16T10:38:25.040205+00:00",
-      "thumbnail_url": "",
-      "id": "c3ce564f592a7ec9"
-    },
-    {
       "title": "华为靳玉志：L3与L4规模商用预计2027年、2028年实现",
       "summary": "华为公司高级副总裁、引望公司CEO靳玉志今日表示，自动驾驶发展将迎来快速迭代、有序发展——L3部分城市试点后，预计2026年开启城区低速L4试点；预计2027年L3实现规模商用，L4 2B（Robotaxi部分城市试点）与L4 2C（低速L4部分城市商用）同年开启；2028年，Robotaxi或迎来部分城市商用，城区L4低速规模商用、城区L4全速部分城市试点及无人干线物流试点等同年开启。（财联社）",
       "url": "https://36kr.com/newsflashes/3898071474210439?f=rss",
@@ -1301,6 +1249,58 @@
       "fetched_at": "2026-07-16T10:38:25.863330+00:00",
       "thumbnail_url": "",
       "id": "bcea9461fb55034e"
+    },
+    {
+      "title": "Nebula 1.6.0 发布：跨区域桶自动路由、秒传、文本/PDF 预览一次到位",
+      "summary": "Nebula 1.6.0 最重要的改进是跨区域桶自动路由:「列举桶」是全局的,会列出你所有区域的桶,但每个桶只在一个区域——以前访问和账号默认区域不同的桶会打不开,现在每个桶都会自动路由到它自己的区域,点哪个都能开,全透明。此外带来更丰富的预览(文本 / 代码 / 配置 / 音频 / PDF)、上传与下载的秒传(内容未变的文件自动跳...",
+      "url": "https://www.oschina.net/news/471702",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-07-13T19:00:39+00:00",
+      "fetched_at": "2026-07-16T10:38:25.863330+00:00",
+      "thumbnail_url": "",
+      "id": "f47d3e3c0941f3ed"
+    },
+    {
+      "title": ":fire::fire:Skyeye 云零代码智能制造系统 - Saas 模块 - v3.19.12 发布",
+      "summary": "Skyeye 云智能制造，智能制造一体化，采用 SpringBoot+ UNI-APP + Ant Design Vue 的零代码平台开发模式。包含 100 多种电子流程，CRM、PM、ERP、MES、ADM、OA、EHR、AI、项目、商城、财务、多班次考勤、薪资、招聘、云售后、论坛、问卷、报表设计、工作流、Saas 等功能。打造全网首套零代码、功能最全的智能制造行业供应...",
+      "url": "https://www.oschina.net/news/471701/win10-skyeye-3-19-12-released",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-07-13T18:34:31+00:00",
+      "fetched_at": "2026-07-16T10:38:25.863330+00:00",
+      "thumbnail_url": "",
+      "id": "292a26c36f377b9b"
+    },
+    {
+      "title": "mica-mqtt 2.6.8 发布：集中修复重连、消息转发、会话清理与 MQTT 5.0 协议问题",
+      "summary": "稳定性，始终是 MQTT 系统最重要的基础能力之一。 从 mica-mqtt 2.6.3 发布以来，我们持续收集社区反馈，并陆续发布了 2.6.4～2.6.8。此次更新重点并不是简单增加功能，而是集中解决真实业务场景中的消息转发、断线重连、会话清理、代理接入以及 MQTT 5.0 协议兼容问题。 目前最新正式版为 2.6.8。如果你仍在使用 2.6.3 ...",
+      "url": "https://www.oschina.net/news/471700/mica-mqtt-2-6-8-released",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-07-13T18:08:49+00:00",
+      "fetched_at": "2026-07-16T10:38:25.863330+00:00",
+      "thumbnail_url": "",
+      "id": "534484d1dd9201f5"
+    },
+    {
+      "title": "openKylin 项目新增捐赠人",
+      "summary": "openKylin社区新增捐赠人 中国长城科技集团股份有限公司成为白金捐赠人 格兰菲智能科技股份有限公司成为白银捐赠人 关于openKylin OpenAtom openKylin（简称“openKylin”）是由开放原子开源基金会孵化及运营的开源项目。社区以“为世界提供与人工智能技术深度融合的开源操作系统”为愿景，旨在于开源、自愿、平等、协作...",
+      "url": "https://www.oschina.net/news/471699",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-07-13T01:53:39+00:00",
+      "fetched_at": "2026-07-16T10:38:25.863330+00:00",
+      "thumbnail_url": "",
+      "id": "57b58d886f04eafc"
     }
   ],
   "FINANCE": [
@@ -2218,7 +2218,7 @@
     }
   ],
   "_meta": {
-    "updated_at": "2026-07-16T14:18:15.158962+00:00",
+    "updated_at": "2026-07-16T14:19:27.735216+00:00",
     "total": 170,
     "counts": {
       "AI": 50,
