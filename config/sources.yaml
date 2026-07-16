@@ -1,18 +1,12 @@
-# 数据源配置
+# 数据源配置（v2 — 高质量稳定源）
 sources:
+
   # ===== 国内源（直连） =====
   - name: "36氪"
     icon: "氪"
     color: "#06b6d4"
     category: "TECH"
     rss_url: "https://36kr.com/feed"
-    needs_proxy: false
-
-  - name: "机器之心"
-    icon: "机"
-    color: "#7c3aed"
-    category: "AI"
-    rss_url: "https://www.jiqizhixin.com/rss"
     needs_proxy: false
 
   - name: "开源中国"
@@ -29,54 +23,61 @@ sources:
     rss_url: "https://www.infoq.cn/feed"
     needs_proxy: false
 
-  - name: "知乎每日精选"
-    icon: "知"
-    color: "#0078d7"
+  # ===== 国际科技 =====
+  - name: "Ars Technica"
+    icon: "A"
+    color: "#e11d48"
     category: "TECH"
-    rss_url: "https://www.zhihu.com/rss"
-    needs_proxy: false
+    rss_url: "https://feeds.arstechnica.com/arstechnica/index"
+    needs_proxy: true
 
-  - name: "华尔街见闻"
-    icon: "见"
-    color: "#ca8a04"
-    category: "FINANCE"
-    rss_url: "https://wallstreetcn.com/rss"
-    needs_proxy: false
+  - name: "CNET"
+    icon: "C"
+    color: "#e61d23"
+    category: "TECH"
+    rss_url: "https://www.cnet.com/rss/news/"
+    needs_proxy: true
 
-  # ===== 国际新闻源（需代理） =====
+  - name: "Engadget"
+    icon: "E"
+    color: "#000000"
+    category: "TECH"
+    rss_url: "https://www.engadget.com/rss.xml"
+    needs_proxy: true
+
+  - name: "The Register"
+    icon: "R"
+    color: "#e11d48"
+    category: "TECH"
+    rss_url: "https://www.theregister.com/headlines.rss"
+    needs_proxy: true
+
+  - name: "ZDNet"
+    icon: "Z"
+    color: "#0078d4"
+    category: "TECH"
+    rss_url: "https://www.zdnet.com/news/rss.xml"
+    needs_proxy: true
+
+  - name: "BBC News"
+    icon: "B"
+    color: "#bb1919"
+    category: "TECH"
+    rss_url: "https://feeds.bbci.co.uk/news/rss.xml"
+    needs_proxy: true
+
+  - name: "NPR"
+    icon: "N"
+    color: "#000000"
+    category: "TECH"
+    rss_url: "https://feeds.npr.org/1001/rss.xml"
+    needs_proxy: true
+
   - name: "The Guardian"
     icon: "G"
     color: "#052962"
     category: "TECH"
     rss_url: "https://www.theguardian.com/world/rss"
-    needs_proxy: true
-
-  - name: "Reuters"
-    icon: "R"
-    color: "#dc2626"
-    category: "FINANCE"
-    rss_url: "https://www.rss-bridge.org/bridge01/?action=display&bridge=FilterBridge&url=https%3A%2F%2Fwww.reuters.com%2Fbusiness%2F&content_filter=&content_filter_type=text&title_filter=&inverse=on&case_insensitive=on&fix_encoding=on&format=Atom"
-    needs_proxy: true
-
-  - name: "Associated Press"
-    icon: "A"
-    color: "#0057b8"
-    category: "TECH"
-    rss_url: "https://rsshub.app/ap/topics/technology"
-    needs_proxy: true
-
-  - name: "Financial Times"
-    icon: "F"
-    color: "#f59e0b"
-    category: "FINANCE"
-    rss_url: "https://www.ft.com/news-feed?format=rss"
-    needs_proxy: true
-
-  - name: "Hacker News"
-    icon: "Y"
-    color: "#f97316"
-    category: "AI"
-    rss_url: "https://hnrss.org/frontpage?count=30"
     needs_proxy: true
 
   - name: "TechCrunch"
@@ -93,14 +94,44 @@ sources:
     rss_url: "https://www.theverge.com/rss/index.xml"
     needs_proxy: true
 
-  - name: "ArXiv AI"
-    icon: "X"
-    color: "#e11d48"
+  # ===== AI / 科技评论 =====
+  - name: "MIT Tech Review"
+    icon: "M"
+    color: "#dc2626"
     category: "AI"
-    rss_url: "http://export.arxiv.org/rss/cs.AI"
+    rss_url: "https://www.technologyreview.com/feed/"
     needs_proxy: true
 
-  # ===== YouTube 视频源（使用频道 RSS，需代理） =====
+  - name: "VentureBeat"
+    icon: "V"
+    color: "#f97316"
+    category: "AI"
+    rss_url: "https://venturebeat.com/feed/"
+    needs_proxy: true
+
+  # ===== 财经 =====
+  - name: "MarketWatch"
+    icon: "M"
+    color: "#2563eb"
+    category: "FINANCE"
+    rss_url: "https://feeds.marketwatch.com/marketwatch/topstories"
+    needs_proxy: true
+
+  - name: "Yahoo Finance"
+    icon: "Y"
+    color: "#6001d2"
+    category: "FINANCE"
+    rss_url: "https://finance.yahoo.com/news/rssindex"
+    needs_proxy: true
+
+  - name: "CNBC Finance"
+    icon: "C"
+    color: "#005594"
+    category: "FINANCE"
+    rss_url: "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114"
+    needs_proxy: true
+
+  # ===== YouTube 视频 =====
   - name: "MKBHD"
     icon: "▶"
     color: "#ff0000"
