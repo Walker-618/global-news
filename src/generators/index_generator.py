@@ -94,6 +94,7 @@ def generate_index():
             featured.append({
                 "title": item.title[:50],
                 "url": item.url,
+                "thumbnail_url": item.thumbnail_url,
                 "source_name": item.source_name,
                 "source_icon": item.source_icon,
                 "source_color": item.source_color,
@@ -112,6 +113,7 @@ def generate_index():
                 "title": item.title,
                 "summary": item.summary,
                 "url": item.url,
+                "thumbnail_url": item.thumbnail_url,
                 "source_name": item.source_name,
                 "source_icon": item.source_icon,
                 "source_color": item.source_color,

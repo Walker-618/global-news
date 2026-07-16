@@ -248,7 +248,7 @@
       {% for tab in tabs %}
       <button class="tab-btn {{ 'active' if loop.first }}" data-tab="{{ tab.key }}">{{ tab.label }} <span class="tab-count">{{ tab.count }}</span></button>
       {% endfor %}
-      <a class="tab-more" href="tag-page.html?tag={{ tabs[0].key }}">查看更多</a>
+      <a class="tab-more" href="tag-page/{{ tabs[0].key }}/">查看更多</a>
     </div>
   </div>
 
@@ -258,7 +258,7 @@
     <div class="news-list">
       {% for item in tab.articles %}
       <a class="news-item" href="{{ item.url }}" target="_blank" rel="noopener">
-        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);{% if item.thumbnail_url %}background-image:url('{{ item.thumbnail_url }}');background-size:cover;background-position:center{% endif %}">
           <span class="list-tag" style="background:{{ tab.color }};">{{ tab.key }}</span>
         </div>
         <div class="news-content">
@@ -273,7 +273,7 @@
       </a>
       {% endfor %}
     </div>
-    <div class="section-footer"><a href="tag-page.html?tag={{ tab.key }}">查看全部 {{ tab.count }}+ 条{{ tab.label }}</a></div>
+    <div class="section-footer"><a href="tag-page/{{ tab.key }}/">查看全部 {{ tab.count }}+ 条{{ tab.label }}</a></div>
   </div>
   {% endfor %}
 
@@ -295,7 +295,7 @@
       document.querySelectorAll('.tab-content').forEach(function(c) {
         c.classList.toggle('active', c.id === 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1));
       });
-      more.href = 'tag-page.html?tag=' + tab;
+      more.href = 'tag-page/' + tab + '/';
       this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     });
   });

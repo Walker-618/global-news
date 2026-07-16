@@ -314,32 +314,32 @@
       <button class="tab-btn" data-tab="tech">🔧 科技动态 <span class="tab-count" id="tabCountTech"></span></button>
       <button class="tab-btn" data-tab="finance">💰 财经要闻 <span class="tab-count" id="tabCountFin"></span></button>
       <button class="tab-btn" data-tab="video">▶ 热门视频 <span class="tab-count" id="tabCountVideo"></span></button>
-      <a class="tab-more" id="tabMore" href="tag-page.html?tag=ai">查看更多</a>
+      <a class="tab-more" id="tabMore" href="tag-page/ai/">查看更多</a>
     </div>
   </div>
 
   <!-- ===== Tab Content: AI ===== -->
   <div class="tab-content active" id="tabAi">
     <div class="news-list" id="aiList"></div>
-    <div class="section-footer"><a href="tag-page.html?tag=ai">查看全部 50+ 条 AI 资讯</a></div>
+    <div class="section-footer"><a href="tag-page/ai/">查看全部 50+ 条 AI 资讯</a></div>
   </div>
 
   <!-- ===== Tab Content: Tech ===== -->
   <div class="tab-content" id="tabTech">
     <div class="news-list" id="techList"></div>
-    <div class="section-footer"><a href="tag-page.html?tag=tech">查看全部 50+ 条科技动态</a></div>
+    <div class="section-footer"><a href="tag-page/tech/">查看全部 50+ 条科技动态</a></div>
   </div>
 
   <!-- ===== Tab Content: Finance ===== -->
   <div class="tab-content" id="tabFinance">
     <div class="news-list" id="financeList"></div>
-    <div class="section-footer"><a href="tag-page.html?tag=finance">查看全部 50+ 条财经要闻</a></div>
+    <div class="section-footer"><a href="tag-page/finance/">查看全部 50+ 条财经要闻</a></div>
   </div>
 
   <!-- ===== Tab Content: Video ===== -->
   <div class="tab-content" id="tabVideo">
     <div class="news-list video-list" id="videoList"></div>
-    <div class="section-footer"><a href="tag-page.html?tag=video">查看全部 50+ 热门视频</a></div>
+    <div class="section-footer"><a href="tag-page/video/">查看全部 50+ 热门视频</a></div>
   </div>
 
 </main>
@@ -730,7 +730,7 @@ tabBtns.forEach(btn => {
       tabContents[key].classList.toggle('active', key === tab);
     });
     // Update "查看更多" link
-    tabMore.href = 'tag-page.html?tag=' + tab;
+    tabMore.href = 'tag-page/' + tab + '/';
     this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   });
 });

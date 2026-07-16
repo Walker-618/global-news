@@ -91,17 +91,30 @@ class NewsItem:
 
         # 缩略图
         thumbnail = ""
-        media_content = entry.get("media_content", [])
-        if media_content:
-            for media in media_content:
-                if str(media.get("type", "")).startswith("image"):
-                    thumbnail = str(media.get("url", ""))
-                    break
+        # 1. media:thumbnail (YouTube 等标准 RSS)
+        media_thumb = entry.get("media_thumbnail", [])
+        if media_thumb:
+            thumbnail = str(media_thumb[0].get("url", ""))
+        # 2. media:content
+        if not thumbnail:
+            media_content = entry.get("media_content", [])
+            if media_content:
+                for media in media_content:
+                    if str(media.get("type", "")).startswith("image"):
+                        thumbnail = str(media.get("url", ""))
+                        break
+        # 3. enclosure links
         if not thumbnail and "links" in entry:
             for link_item in entry["links"]:
                 if str(link_item.get("rel", "")) == "enclosure" and str(link_item.get("type", "")).startswith("image"):
                     thumbnail = str(link_item.get("href", ""))
                     break
+        # 4. YouTube URL fallback: construct thumbnail from video ID
+        if not thumbnail:
+            import re as _re
+            m = _re.search(r"(?:youtube\.com/watch\?v=|youtu\.be/|youtube\.com/embed/)([a-zA-Z0-9_-]{11})", link)
+            if m:
+                thumbnail = f"https://i.ytimg.com/vi/{m.group(1)}/hqdefault.jpg"
 
         return cls(
             title=title,

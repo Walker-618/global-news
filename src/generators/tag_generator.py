@@ -82,6 +82,7 @@ def generate_tag_pages():
                     "title": item.title,
                     "summary": item.summary,
                     "url": item.url,
+                    "thumbnail_url": item.thumbnail_url,
                     "source_name": item.source_name,
                     "source_icon": item.source_icon,
                     "source_color": item.source_color,
