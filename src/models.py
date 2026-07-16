@@ -3,6 +3,7 @@
 """
 
 import hashlib
+import re
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timezone
 from typing import Optional
@@ -41,7 +42,7 @@ class NewsItem:
     source_icon: str
     source_color: str
     category: str
-    published_at: str  # ISO格式时间字符串
+    published_at: str
     fetched_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     thumbnail_url: str = ""
     id: str = ""
@@ -67,6 +68,7 @@ class NewsItem:
 
         # 摘要
         summary = ""
+        raw_html = ""
         is_video = category == "VIDEO"
         if is_video and entry.get("author"):
             summary = str(entry.get("author", ""))
@@ -74,7 +76,8 @@ class NewsItem:
             for key in ("summary", "description", "subtitle"):
                 val = entry.get(key)
                 if val:
-                    summary = _strip_html(str(val))
+                    raw_html = str(val)
+                    summary = _strip_html(raw_html)
                     break
         summary = summary[:200] if summary else ""
 
@@ -89,12 +92,14 @@ class NewsItem:
             except Exception:
                 pub_str = str(entry.get("published", ""))
 
-        # 缩略图
+        # 缩略图 (优先级从高到低)
         thumbnail = ""
-        # 1. media:thumbnail (YouTube 等标准 RSS)
+
+        # 1. media:thumbnail (YouTube 标准 RSS)
         media_thumb = entry.get("media_thumbnail", [])
         if media_thumb:
             thumbnail = str(media_thumb[0].get("url", ""))
+
         # 2. media:content
         if not thumbnail:
             media_content = entry.get("media_content", [])
@@ -103,16 +108,23 @@ class NewsItem:
                     if str(media.get("type", "")).startswith("image"):
                         thumbnail = str(media.get("url", ""))
                         break
+
         # 3. enclosure links
         if not thumbnail and "links" in entry:
             for link_item in entry["links"]:
                 if str(link_item.get("rel", "")) == "enclosure" and str(link_item.get("type", "")).startswith("image"):
                     thumbnail = str(link_item.get("href", ""))
                     break
-        # 4. YouTube URL fallback: construct thumbnail from video ID
+
+        # 4. 从 RSS 摘要 HTML 中提取第一张图片
+        if not thumbnail and raw_html:
+            m = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', raw_html)
+            if m and m.group(1).startswith("http"):
+                thumbnail = m.group(1)
+
+        # 5. YouTube URL fallback: 从视频链接构造缩略图
         if not thumbnail:
-            import re as _re
-            m = _re.search(r"(?:youtube\.com/watch\?v=|youtu\.be/|youtube\.com/embed/)([a-zA-Z0-9_-]{11})", link)
+            m = re.search(r"(?:youtube\.com/watch\?v=|youtu\.be/|youtube\.com/embed/)([a-zA-Z0-9_-]{11})", link)
             if m:
                 thumbnail = f"https://i.ytimg.com/vi/{m.group(1)}/hqdefault.jpg"
 
@@ -131,7 +143,6 @@ class NewsItem:
 
 def _strip_html(text: str) -> str:
     """去除 HTML 标签"""
-    import re
     clean = re.sub(r"<[^>]+>", "", text)
     clean = re.sub(r"\s+", " ", clean).strip()
     return clean

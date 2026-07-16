@@ -129,25 +129,32 @@ sources:
     rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCrp_UI8XtuYfpiqluWLD7Lw"
     needs_proxy: true
 
-  - name: "Bloomberg Markets"
+  - name: "Fireship"
     icon: "▶"
     color: "#ff0000"
     category: "VIDEO"
-    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCUMZ7gohGI8Hc_UoR9GqKpA"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA"
     needs_proxy: true
 
-  - name: "Reuters Video"
+  - name: "BBC News"
     icon: "▶"
     color: "#ff0000"
     category: "VIDEO"
-    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCtvlN2xwlRfHHFf2T8J5wiA"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UC16_9neA5eP4b4Cx0rOBZzA"
     needs_proxy: true
 
-  - name: "AI Explained"
+  - name: "Wall Street Journal"
     icon: "▶"
     color: "#ff0000"
     category: "VIDEO"
-    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCZNMx0R-4C7s3QRxPiBwNhA"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCK7tptUDHh-RYDsdxO1-5QQ"
+    needs_proxy: true
+
+  - name: "Android Authority"
+    icon: "▶"
+    color: "#ff0000"
+    category: "VIDEO"
+    rss_url: "https://www.youtube.com/feeds/videos.xml?channel_id=UCpoO5x7k4sxHR_V5U9Bw_Jg"
     needs_proxy: true
 
 # 代理配置
