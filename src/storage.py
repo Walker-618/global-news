@@ -2,7 +2,7 @@
 
 import json, os, re
 from datetime import datetime, timezone
-from typing import List, Set
+from typing import List
 
 from src.models import NewsItem, ALL_CATEGORIES
 
@@ -19,8 +19,11 @@ def _today(cat: str) -> str:
 def _idx() -> str:
     return os.path.join(DATA_DIR, "index.json")
 
+def _valid_date(s: str) -> bool:
+    try: datetime.fromisoformat(s); return True
+    except: return False
+
 def load_items(cat: str, limit: int = MAX_PER_CAT) -> List[NewsItem]:
-    """加载指定分类的最新 N 条 (按入库逆序 = 最新在前)"""
     cd = _cat_dir(cat)
     if not os.path.isdir(cd): return []
     items = []
@@ -29,17 +32,16 @@ def load_items(cat: str, limit: int = MAX_PER_CAT) -> List[NewsItem]:
         try:
             with open(os.path.join(cd, fname), encoding="utf-8") as f:
                 data = json.load(f)
-            for d in reversed(data):  # 文件末尾 = 最新入库
+            for d in reversed(data):
                 if len(items) >= limit: break
                 items.append(NewsItem.from_dict(d))
         except: continue
-    items.sort(key=lambda x: x.published_at or "1900", reverse=True)
+    # 有效日期优先（1），无效日期排到底（0）
+    items.sort(key=lambda x: (1, x.published_at or "") if x.published_at and _valid_date(x.published_at) else (0, x.published_at or ""), reverse=True)
     return items
 
 def _norm_title(t: str) -> str:
-    t = t.lower()
-    t = re.sub(r"[^a-z0-9\u4e00-\u9fff]", "", t)
-    return t[:60]
+    t = t.lower(); t = re.sub(r"[^a-z0-9\u4e00-\u9fff]", "", t); return t[:60]
 
 def save_items(cat: str, items: List[NewsItem]) -> int:
     fp = _today(cat)
