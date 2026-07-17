@@ -2,11 +2,8 @@ name: 采集 + 部署
 
 on:
   schedule:
-    # 每2小时运行一次（GitHub Actions 最短间隔）
     - cron: '0 */2 * * *'
-  push:
-    branches: [main]
-  workflow_dispatch:  # 可以手动触发
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -29,7 +26,7 @@ jobs:
 
       - name: 安装依赖
         run: |
-          pip install feedparser httpx pyyaml jinja2 lunarcalendar
+          pip install feedparser httpx pyyaml jinja2 lunarcalendar ddgs
 
       - name: 采集新闻
         run: python scripts/fetch_once.py

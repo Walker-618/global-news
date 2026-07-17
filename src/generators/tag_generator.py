@@ -33,7 +33,7 @@ def _time_ago(iso_str: str) -> str:
         if hours < 24: return f"{hours}小时前"
         days = int(hours / 24)
         if days < 7: return f"{days}天前"
-        return pub.strftime("%m月%d日")
+        return pub.strftime("%m月%d日 %H:%M")
     except:
         return iso_str[:10]
 
