@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>
+var params = new URLSearchParams(location.search);
+var tag = params.get('tag') || 'ai';
+location.href = 'tag-page/' + tag + '/';
+</script>
+</head><body>
+<p>跳转中... <a href="tag-page/ai/">AI资讯</a></p>
+</body></html>

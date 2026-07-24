@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>▶ 热门视频 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">▶ 热门视频</span>
+    </div>
+    <div class="header-date">
+      <span>2026年7月24日</span><span> · </span><span>周五</span><span> · </span><span class="lunar">农历6月11日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.investmentnews.com/goria/technology/thursday-story-on-ai/261945" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Advisors explain how they separate the AI reality from the hype</div>
+        <div class="news-summary">With AI being attached to seemingly every company and product today, how can wea</div>
+        <div class="news-time">09月04日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.geeky-gadgets.com/recall-ai-explained/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Recall AI Explained: How This Ultimate Tool Transforms Bookmarking & Note-Taking</div>
+        <div class="news-summary">Recall is an advanced AI-powered tool designed to transform how you save, organi</div>
+        <div class="news-time">07月03日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.geeky-gadgets.com/recall-ai-explained/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Recall AI Explained: How This Ultimate Tool Transforms Bookmarking & Note-Taking</div>
+        <div class="news-summary">Recall is an advanced AI-powered tool designed to transform how you save, organi</div>
+        <div class="news-time">07月03日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.geeky-gadgets.com/recall-ai-explained/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Recall AI Explained: How This Ultimate Tool Transforms Bookmarking & Note-Taking</div>
+        <div class="news-summary">Recall is an advanced AI-powered tool designed to transform how you save, organi</div>
+        <div class="news-time">07月03日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.businessinsider.com/tech-memo-meta-scale-ai-investment-mark-zuckerberg-2025-6" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">The controversy swirling around Scale AI, explained</div>
+        <div class="news-summary">You're currently following this author! Want to unfollow? Unsubscribe via the li</div>
+        <div class="news-time">06月27日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.extremetech.com/computing/gemini-ai-explained-a-deep-dive-into-googles-multimodal-assistant" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Gemini AI Explained: A Deep Dive Into Google’s Multimodal Assistant</div>
+        <div class="news-summary">Generative AI has rapidly moved from science fiction to everyday utility, transf</div>
+        <div class="news-time">06月24日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.extremetech.com/computing/gemini-ai-explained-a-deep-dive-into-googles-multimodal-assistant" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Gemini AI Explained: A Deep Dive Into Google’s Multimodal Assistant</div>
+        <div class="news-summary">Generative AI has rapidly moved from science fiction to everyday utility, transf</div>
+        <div class="news-time">06月24日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.extremetech.com/computing/gemini-ai-explained-a-deep-dive-into-googles-multimodal-assistant" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Gemini AI Explained: A Deep Dive Into Google’s Multimodal Assistant</div>
+        <div class="news-summary">Generative AI has rapidly moved from science fiction to everyday utility, transf</div>
+        <div class="news-time">06月24日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.extremetech.com/computing/gemini-ai-explained-a-deep-dive-into-googles-multimodal-assistant" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Gemini AI Explained: A Deep Dive Into Google’s Multimodal Assistant</div>
+        <div class="news-summary">Generative AI has rapidly moved from science fiction to everyday utility, transf</div>
+        <div class="news-time">06月24日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.extremetech.com/computing/gemini-ai-explained-a-deep-dive-into-googles-multimodal-assistant" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Gemini AI Explained: A Deep Dive Into Google’s Multimodal Assistant</div>
+        <div class="news-summary">Generative AI has rapidly moved from science fiction to everyday utility, transf</div>
+        <div class="news-time">06月24日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/councils/forbestechcouncil/2026/07/13/when-ai-writes-your-code-who-owns-the-why/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">When AI Writes Your Code, Who Owns The ‘Why’?</div>
+        <div class="news-summary">In the age of AI-assisted development, code may increasingly be written by machi</div>
+        <div class="news-time">Opinion8 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/councils/forbestechcouncil/2026/07/13/when-ai-writes-your-code-who-owns-the-why/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">When AI Writes Your Code, Who Owns The ‘Why’?</div>
+        <div class="news-summary">In the age of AI-assisted development, code may increasingly be written by machi</div>
+        <div class="news-time">Opinion7 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-au/news/techandscience/i-ve-spoken-to-over-1-000-boys-about-ai-here-s-what-every-parent-needs-to-know/ar-AA27NkJA?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">I've spoken to over 1,000 boys about AI. Here's what every parent needs to know</div>
+        <div class="news-summary">Here are four conversation starters parents can use when talking about AI with t</div>
+        <div class="news-time">Opinion6 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.businessinsider.com/im-an-enterprise-consultant-heres-the-truth-about-ai-layoffs-2026-7" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">I'm an enterprise consultant: Here's what you don't know about AI-related layoffs.</div>
+        <div class="news-summary">Max Votek, an enterprise consultant on AI adoption, said that AI layoffs are not</div>
+        <div class="news-time">Opinion3 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/technology/ai-explained-using-artificial-intelligence-to-translate-languages-worldwide/vi-AA285oFS?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">AI explained: Using artificial intelligence to translate languages worldwide</div>
+        <div class="news-summary">You can watch AI Explained Thursday at 7 p.m. and at midnight on the WPRI 12+ fr</div>
+        <div class="news-time">Opinion3 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-gb/money/technology/the-rise-of-comprehension-debt-in-the-age-of-ai-coding/ar-AA282PWS?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">The rise of comprehension debt in the age of AI coding</div>
+        <div class="news-summary">As AI speeds development, teams risk building systems they no longer fully under</div>
+        <div class="news-time">Opinion3 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/technology/artificial-intelligence/i-m-an-enterprise-consultant-here-s-what-you-don-t-know-about-ai-related-layoffs/ar-AA28awqS?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">I'm an enterprise consultant: Here's what you don't know about AI-related layoffs</div>
+        <div class="news-summary">Max Votek, an enterprise consultant on AI adoption, said that AI layoffs are not</div>
+        <div class="news-time">Opinion2 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQuzb6_GBqiwIAzGHQtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzYEdnRpZAMEc2VjA3Ny/RV=2/RE=1785950714/RO=10/RU=https://www.techradar.com/audio/spotify/spotify-just-launched-its-first-ever-music-video-charts-bringing-mtvs-classic-format-into-the-streaming-era-but-i-think-itll-be-a-long-time-before-youtube-users-make-the-switch/RK=2/RS=JDkheiF72SE_XiuUlPZ37kzRTFw-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">‘I still don’t think it’s enough to entice loyal YouTube viewers’: Spotify is tr...</div>
+        <div class="news-summary">Music videos in Spotify are becoming one of the most popular ways to engage in d</div>
+        <div class="news-time">4 hours ag</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRLmN_7GFqwwIAjW3QtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzkEdnRpZAMEc2VjA3Ny/RV=2/RE=1786012032/RO=10/RU=https://www.techradar.com/audio/spotify/spotify-just-launched-its-first-ever-music-video-charts-bringing-mtvs-classic-format-into-the-streaming-era-but-i-think-itll-be-a-long-time-before-youtube-users-make-the-switch/RK=2/RS=6XvzRqVI8TNxxaoxMVFX1lOFXUY-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">‘I still don’t think it’s enough to entice loyal YouTube viewers’: Spotify is tr...</div>
+        <div class="news-summary">Music videos in Spotify are becoming one of the most popular ways to engage in d</div>
+        <div class="news-time">21 hours a</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQuzb6_GBqiwIA2GHQtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzEwBHZ0aWQDBHNlYwNzcg--/RV=2/RE=1785950714/RO=10/RU=https://www.tomsguide.com/ai/tech-giants-are-spending-billions-on-ai-just-to-give-it-away-heres-why/RK=2/RS=IPdijPwMXovEwn3JkW1J_HGhQOU-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Tech giants are spending billions on AI just to give it away — here's why</div>
+        <div class="news-summary">Although it may seem like a buzzword or phrase, there's more to it than big tech</div>
+        <div class="news-time">10 hours a</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./9.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="active">10</a>
+    
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
