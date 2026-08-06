@@ -674,5 +674,70 @@
     "fetched_at": "2026-08-06T10:43:20.313405+00:00",
     "thumbnail_url": "",
     "id": "242b54bc11ce4928"
+  },
+  {
+    "title": "张一鸣的三次否决：字节跳动为什么不蒸馏",
+    "summary": "2026年7月，张一鸣在字节Seed团队全员会上做了一个决定：禁止蒸馏任何外部模型，无论闭源还是开放权重。 The Information 8月5日报道了这个消息，并将其动机归结为对TikTok命运的担忧——担心蒸馏美国前沿模型会引发华盛顿报复。但据知情人士了解，TikTok在这个决策中的权重&quot;几乎为零&quot;。 张一鸣的解释是：&quot;为了实现长远目...",
+    "url": "https://www.oschina.net/news/489199/bytedances-founder-rules-distillation-ai-models",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-06T11:32:50+00:00",
+    "fetched_at": "2026-08-06T14:22:03.279727+00:00",
+    "thumbnail_url": "",
+    "id": "4061f5ce061b7215"
+  },
+  {
+    "title": "Cherry Studio V2.0 发布，从聊天客户端到全能 AI 工作站",
+    "summary": "Cherry Studio V2.0 发布了。这不是一次常规的功能更新。 V2 把产品形态从「AI 聊天客户端」直接拉到了 Agent 自主执行的一站式「全能 AI 工作站」。底层数据底座全面重构，V1 用户的聊天记录、助手、知识库、笔记等数据自动迁移，同时支持本地、WebDAV 和 S3 兼容存储的完整备份与恢复。 Agent 自主执行是这次升级的核心...",
+    "url": "https://www.oschina.net/news/489186/cherry-studio-2-0",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-06T11:17:49+00:00",
+    "fetched_at": "2026-08-06T14:22:03.279795+00:00",
+    "thumbnail_url": "",
+    "id": "4198318864acb788"
+  },
+  {
+    "title": "让非法状态不可表示：一篇关于 ADT 的帖子在 Reddit 火了",
+    "summary": "有一种东西，一旦用过就回不去了。Alex Fedoseev 管它叫&quot;软件设计的基石&quot;。 他说的东西不新鲜——代数数据类型（ADT），尤其是和类型（sum type）。但他说清楚了一件事：这不是类型系统的学术体操，是日常编码的思维方式。 文章从一个简单的例子切入。一个网站的深色主题设置，如果用布尔值 + 可空字段来表示——boolean...",
+    "url": "https://www.oschina.net/news/489175/the-bedrock-of-software-design",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-06T11:05:28+00:00",
+    "fetched_at": "2026-08-06T14:22:03.279831+00:00",
+    "thumbnail_url": "",
+    "id": "8e3cdcdce0e7bc2d"
+  },
+  {
+    "title": "A ‘recession’ is arriving for people who want jobs in technology",
+    "summary": "Newly released jobs market data paints a murky picture ahead for the tech industry, which continues to slash workers. The unemployment rate for tech jobs has been steadily rising since May, ticking up",
+    "url": "https://www.washingtonpost.com/business/2025/12/17/tech-jobs-unemployment/",
+    "source_name": "DuckDuckGo Tech",
+    "source_icon": "D",
+    "source_color": "#0891b2",
+    "category": "TECH",
+    "published_at": "2025-12-17T00:00:00+00:00",
+    "fetched_at": "2026-08-06T14:22:08.504772+00:00",
+    "thumbnail_url": "",
+    "id": "ef417e1418d3d968"
+  },
+  {
+    "title": "The Tech Industry Is Forcing Employees to Choose a Side",
+    "summary": "“No. I’m not leaving tech. I’m just not playing by their rules anymore.” That’s the sound of someone who just chose a side. The tech industry can’t exist in its current form for much longer. The ...",
+    "url": "https://www.inc.com/joe-procopio/the-tech-industry-is-forcing-employees-to-choose-a-side/91276412",
+    "source_name": "DuckDuckGo Tech",
+    "source_icon": "D",
+    "source_color": "#0891b2",
+    "category": "TECH",
+    "published_at": "2025-12-10T00:00:00+00:00",
+    "fetched_at": "2026-08-06T14:22:08.504842+00:00",
+    "thumbnail_url": "",
+    "id": "9150c35d50d13cd4"
   }
 ]
