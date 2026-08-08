@@ -14,30 +14,17 @@
       "id": "bb332dddf8e45722"
     },
     {
-      "title": "AWS Lambda 取消代码存储配额，别误会：函数大小限制没变",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/OG03ezJaBkdOd1G3rc1b?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
+      "title": "Not Skynet — yet: Four AI firms, multiple escape routes, and a debate about how close human intelligence is",
+      "summary": "From OpenAI to Kimi K3, frontier AI models keep breaking free. Here's how they escaped, what it means & how governments are trying to catch up",
+      "url": "https://www.hindustantimes.com/ht-explainers/rogue-ai-kimi-k3-moonshot-openai-chatgpt-anthropic-claude-artificial-intelligence-human-agi-development-what-it-means-101786185716204.html",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
       "category": "AI",
-      "published_at": "2026-08-08T08:37:00+00:00",
-      "fetched_at": "2026-08-08T01:54:00.860724+00:00",
+      "published_at": "2026-08-08T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:13.406077+00:00",
       "thumbnail_url": "",
-      "id": "708989518ac0a513"
-    },
-    {
-      "title": "MiniMax H3 团队 Reddit 被问爆：2K 要开源，图像模型在路上，Apache-2.0 也在考虑了",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/9C3eK9tJqDXbabbBy3aj?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-08-08T08:00:00+00:00",
-      "fetched_at": "2026-08-08T01:54:00.860765+00:00",
-      "thumbnail_url": "",
-      "id": "5c005a34562bdff4"
+      "id": "3c0d688253cb073a"
     },
     {
       "title": "Silicon Motion Technology (SIMO) After MonTitan Launch Is The AI Storage Story Already Priced In",
@@ -417,6 +404,19 @@
       "id": "8d9e972ca840bba0"
     },
     {
+      "title": "'Journey from pitch to screen': How AI brings Fifa World Cup matches to homes, cafes",
+      "summary": "Today's sporting events rely on broadcasters, internet providers, and cloud platforms to move huge amounts of information ...",
+      "url": "https://www.khaleejtimes.com/sports/fifa-world-cup/ai-data-centre-cybersecurity-power-live-match",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-07-29T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:13.406099+00:00",
+      "thumbnail_url": "",
+      "id": "6f656065076686d3"
+    },
+    {
       "title": "Dallas mayor says AI could shrink city workforce as budget rollout nears",
       "summary": "Dallas Mayor Eric Johnson says artificial intelligence can help “right‑size” city operations by taking over certain data‑heavy tasks, reducing the number of employees needed, and saving taxpayer ...",
       "url": "https://www.yahoo.com/news/videos/dallas-mayor-says-ai-could-223400482.html",
@@ -679,45 +679,6 @@
       "id": "8fb3b7a909c6ae27"
     },
     {
-      "title": "红帽在2026年Gartner云原生应用平台魔力象限中被评为领导者",
-      "summary": "凭借混合云应用平台红帽OpenShift，红帽连续第三年获评领导者 2026 年 8 月 7 日，红帽凭借基于Kubernetes打造的混合应用平台红帽OpenShift，在《2026年Gartner云原生应用平台魔力象限》报告中荣膺“领导者”称号。依托在“愿景完整性”与“执行能力”上的卓越表现，这已是红帽连续第三年稳居该魔力象限的领导者地位。 ...",
-      "url": "https://www.oschina.net/news/489935",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-08-07T07:53:21+00:00",
-      "fetched_at": "2026-08-08T01:53:59.446117+00:00",
-      "thumbnail_url": "",
-      "id": "470c7fb9eb6a9001"
-    },
-    {
-      "title": "IBM与红帽扩展Lightwell服务方案，构建适配AI时代开源生态的可信基础设施",
-      "summary": "全新Lightwell产品组合联合全球的领先金融机构共同开发，并依托不断壮大的合作伙伴生态系统支持，帮助企业降低开源风险，且无需进行破坏性升级。 2026年7月15日，IBM 与 红帽近日宣布Lightwell正式商用发布。通过Lightwell Network和Lightwell Clearinghouse Premier两项产品组合，提供大规模自动化漏洞修复。Lightwell...",
-      "url": "https://www.oschina.net/news/489932",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-08-07T07:48:49+00:00",
-      "fetched_at": "2026-08-08T01:53:59.446154+00:00",
-      "thumbnail_url": "",
-      "id": "a517d7b08ce7ca6c"
-    },
-    {
-      "title": "GitHub 再次爆发大规模服务降级",
-      "summary": "8 月 6 日，GitHub Actions 和 Pages 再次大规模服务降级，Actions 完全不可用超过 5 小时，webhook 停发，连自托管 runner 也因调度层故障无法工作。Pages、Copilot code review、Copilot coding agent 全部受影响。从检测到完全恢复，大约 12 小时。 这是 2026 年 8 月的第六起事故，其中四起与 AI/Co",
-      "url": "https://www.oschina.net/news/489898",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-08-07T07:30:47+00:00",
-      "fetched_at": "2026-08-08T01:53:59.446199+00:00",
-      "thumbnail_url": "",
-      "id": "95b81e57d319b261"
-    },
-    {
       "title": "Prime Agent 开源发布：一个能自我改进的编程 Agent，ARC-AGI 3 超越人类专家基线",
       "summary": "Prime Intellect 发布了 Prime Agent，一个开源的编程 Agent Harness，核心设计围绕两个抽象：Recursive Language Model（RLM）和 Continual Harness。在 ARC-AGI 3 基准测试上，Prime Agent + Opus 5 的组合达到了 95.5% RHAE Best@1，超过了 ARC 报告的人类专家基线 95.4",
       "url": "https://www.oschina.net/news/489878/primeintellect-prime-agent",
@@ -742,6 +703,32 @@
       "fetched_at": "2026-08-08T01:53:59.446279+00:00",
       "thumbnail_url": "",
       "id": "4356cf05d38939c6"
+    },
+    {
+      "title": "Micron Technology stock is gaining Friday: What's going on?",
+      "summary": "Micron Technology Inc. MU stock rose more than 1% in Friday’s premarket session as investor sentiment improved across the ...",
+      "url": "https://www.msn.com/en-us/money/news/micron-technology-stock-is-gaining-friday-what-s-going-on/ar-AA29BqmB?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:16.127600+00:00",
+      "thumbnail_url": "",
+      "id": "e030d8348a513e1f"
+    },
+    {
+      "title": "Stellantis says it has eliminated turbo lag with this new technology",
+      "summary": "Stellantis engineers developed eBoost Air technology that could virtually eliminate turbo lag in gas engines.",
+      "url": "https://www.msn.com/en-us/autos/general/stellantis-says-it-has-eliminated-turbo-lag-with-this-new-technology/ar-AA29yiqG?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:16.127565+00:00",
+      "thumbnail_url": "",
+      "id": "69f5429bb15cf9bb"
     },
     {
       "title": "Lemonade to Present at the Oppenheimer 29th Annual Technology, Internet &...",
@@ -1082,6 +1069,19 @@
       "id": "af05e307d499ee39"
     },
     {
+      "title": "Waymo's CEO say this is why he ignores Silicon Valley's most famous mantra",
+      "summary": "Dmitri Dolgov says Mark Zuckerberg's original mantra to \"move fast and break things\" has far-reaching consequences for ...",
+      "url": "https://www.msn.com/en-us/autos/news/waymos-ceo-say-this-is-why-he-ignores-silicon-valleys-most-famous-mantra/ar-AA29lEMg?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-04T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:17.702197+00:00",
+      "thumbnail_url": "",
+      "id": "11289438a2792db0"
+    },
+    {
       "title": "Micron Technology stock is falling Monday: What's going on?",
       "summary": "Micron Technology Inc. MU stock fell about 3% in Monday’s premarket session as investors took profits after the stock’s ...",
       "url": "https://www.msn.com/en-us/money/news/micron-technology-stock-is-falling-monday-what-s-going-on/ar-AA29iPUx?ocid=BingNewsVerp",
@@ -1305,6 +1305,19 @@
   ],
   "FINANCE": [
     {
+      "title": "New tariffs have shrunk Illinois’ economy and cost households $2,200 per year",
+      "summary": "The definition of insanity is doing the same thing over and over again and expecting different...",
+      "url": "https://www.dailyherald.com/20260808/business/new-tariffs-have-shrunk-illinois-economy-and-cost-households-2200-per-year/",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-08T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:20.717871+00:00",
+      "thumbnail_url": "",
+      "id": "c47da0ed471418e6"
+    },
+    {
       "title": "The Memo: Weak jobs report clouds economy as Trump barrels toward midterms",
       "summary": "New clouds darkened the economic landscape on Friday, as the latest employment report showed the nat...",
       "url": "https://thehill.com/homenews/administration/6017947-trump-economy-jobs-report-inflation/",
@@ -1433,6 +1446,58 @@
       "fetched_at": "2026-08-08T03:37:05.009196+00:00",
       "thumbnail_url": "",
       "id": "e8b4f1ab3b2205ab"
+    },
+    {
+      "title": "Stock market today: Dow, S&P 500 futures gain even as July nonfarm payrolls unexpectedly contract—Atlassian, Trade Desk, Cloudflare in focus (updated)",
+      "summary": "(Editor’s note: The headline, lede and ETFs data was updated; economic data was added.) U.S. stock futures were higher on ...",
+      "url": "https://www.msn.com/en-us/money/news/stock-market-today-dow-s-p-500-futures-gain-even-as-july-nonfarm-payrolls-unexpectedly-contract-atlassian-trade-desk-cloudflare-in-focus-updated/ar-AA29Bnq8?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:20.138997+00:00",
+      "thumbnail_url": "",
+      "id": "d7b5d3c09b872dc6"
+    },
+    {
+      "title": "Stock market today: Major indexes close lower; Dow snaps 5-session winning streak; oil rises as investors await Strait of Hormuz news",
+      "summary": "Stocks pointed to a mixed open Thursday, with Dow Jones Industrial Average futures ticking higher after three consecutive ...",
+      "url": "https://www.msn.com/en-us/money/top-stocks/stock-market-today-futures-mixed-after-dow-closes-at-record-high-for-3rd-straight-day-memory-chipmakers-drop/ar-AA29wGgM?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:20.138957+00:00",
+      "thumbnail_url": "",
+      "id": "ac3f8d9843ec7376"
+    },
+    {
+      "title": "When good news becomes bad news for markets | FXStreet",
+      "summary": "Financial markets have spent much of this year searching for the perfect combination: enough...",
+      "url": "https://www.fxstreet.com/analysis/when-good-news-becomes-bad-news-for-markets-202608070641",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:19.839929+00:00",
+      "thumbnail_url": "",
+      "id": "d3c8b3281e39f7b6"
+    },
+    {
+      "title": "Indian Markets Have A Strong Shield, But SEBI Flags 3 Risks That Could Shake Them In 2026-27",
+      "summary": "SEBI sees Indian markets supported by strong domestic fundamentals, but warns that oil prices, geopolitics and volatile FPI ...",
+      "url": "https://www.msn.com/en-in/news/other/indian-markets-have-a-strong-shield-but-sebi-flags-3-risks-that-could-shake-them-in-2026-27/ar-AA29EtnI?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:19.839870+00:00",
+      "thumbnail_url": "",
+      "id": "f60a98204163bf5a"
     },
     {
       "title": "The US economy unexpectedly lost 23,000 jobs last month",
@@ -1565,58 +1630,6 @@
       "id": "22f65c9e151b07be"
     },
     {
-      "title": "Market Today: US Jobs Data Lifts Stocks; Meta Fined; Celsius Sur",
-      "summary": "Prefer to listen? Hear this as a ~5-minute audio briefing on The GuruFocus Brief.Guru Stock...",
-      "url": "https://www.gurufocus.com/news/9018455/market-today-us-jobs-data-lifts-stocks-meta-fined-celsius-surges",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-07T00:00:00+00:00",
-      "fetched_at": "2026-08-07T22:40:33.877658+00:00",
-      "thumbnail_url": "",
-      "id": "b4d7e4c2551830e6"
-    },
-    {
-      "title": "The deportation economy is backfiring on American workers, top economist warns |...",
-      "summary": "Diane Swonk says July's bizarre jobs report is the first data from the deportation economy:...",
-      "url": "https://fortune.com/2026/08/07/deportation-economy-july-jobs-report-immigrants-ice-raids/",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-07T00:00:00+00:00",
-      "fetched_at": "2026-08-07T20:46:03.162993+00:00",
-      "thumbnail_url": "",
-      "id": "485302b482de7b20"
-    },
-    {
-      "title": "WHAT THE WEAK JOBS REPORT MEANS FOR THE ECONOMY (330pET) - SouthGATV",
-      "summary": "A summer hiring slump dogged the U.S. labor market in July as the economy unexpectedly lost 23,000...",
-      "url": "https://www.southgatv.com/i/what-the-weak-jobs-report-means-for-the-economy-330pet/",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-07T00:00:00+00:00",
-      "fetched_at": "2026-08-07T20:46:03.162962+00:00",
-      "thumbnail_url": "",
-      "id": "da476fcf909e7c91"
-    },
-    {
-      "title": "The U.S. Economy Just Experienced Its 5th Largest Month of Job Losses Since...",
-      "summary": "While a weaker labor market suggests potential cracks in the U.S. economy, it also could keep the...",
-      "url": "https://finance.yahoo.com/economy/articles/u-economy-just-experienced-5th-170901750.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-07T00:00:00+00:00",
-      "fetched_at": "2026-08-07T20:46:03.162930+00:00",
-      "thumbnail_url": "",
-      "id": "a3e9a01ae7b6c441"
-    },
-    {
       "title": "Low water on Germany's Rhine river threatens new blow to economy",
       "summary": "Dwindling water levels on Germany's big rivers, worsened by heat and drought, are raising fears that...",
       "url": "https://finance.yahoo.com/economy/articles/low-water-germanys-rhine-river-024444606.html",
@@ -1706,19 +1719,6 @@
       "fetched_at": "2026-08-08T01:54:06.747404+00:00",
       "thumbnail_url": "",
       "id": "af4690bb1b8f5d59"
-    },
-    {
-      "title": "US suffers unexpected job losses in July, markets dial back rate hike expectations",
-      "summary": "By Lucia Mutikani WASHINGTON, Aug 7 (Reuters) - The U.S. economy unexpectedly shed jobs in July and previously reported job ...",
-      "url": "https://www.msn.com/en-us/money/markets/us-suffers-unexpected-job-losses-in-july-markets-dial-back-rate-hike-expectations/ar-AA29D9q8?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-05T00:00:00+00:00",
-      "fetched_at": "2026-08-08T01:54:06.492371+00:00",
-      "thumbnail_url": "",
-      "id": "e44069026dd71ba2"
     },
     {
       "title": "Americans think Dems can handle economy better than GOP, new poll says",
@@ -1812,6 +1812,19 @@
       "id": "e5834fb6381c381d"
     },
     {
+      "title": "Stock market today: Nasdaq leaps as Fed rate-hike odds sink; biotech jumps 20%, Sezzle fizzles out",
+      "summary": "Stock Market Today: The Dow Jones index falls Friday on a surprise reading in the July jobs report. AI name Cloudflare stock soars on earnings.",
+      "url": "https://www.msn.com/en-us/money/top-stocks/stock-market-today-nasdaq-rallies-after-surprise-july-jobs-reading-spacex-soars-live-coverage/ar-AA29BIHO?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-07-20T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:20.139016+00:00",
+      "thumbnail_url": "",
+      "id": "d4e2007a9eb13b8d"
+    },
+    {
       "title": "四大证券报头版头条内容精华摘要_2026年7月20日_财经新闻",
       "summary": "7月19日晚间，中国国新控股有限责任公司（简称“中国国新”）、中国诚通控股集团有限公司（简称“中国诚通”）发布公告称，坚定看好中国经济和中国资本市场前景，坚决维护资本市场平稳 ...",
       "url": "https://finance.sina.com.cn/stock/y/2026-07-20/doc-iniikxup3101607.shtml",
@@ -1836,19 +1849,6 @@
       "fetched_at": "2026-08-08T10:37:41.449993+00:00",
       "thumbnail_url": "",
       "id": "edfcf77f3681393b"
-    },
-    {
-      "title": "Europe's getting hotter, markets are taking note",
-      "summary": "By Sophie Kiderlin, Samuel Indyk and Stefano Rebaudo LONDON, Aug 7 (Reuters) - Record temperatures across Europe are piling ...",
-      "url": "https://www.msn.com/en-us/money/economy/europe-s-getting-hotter-markets-are-taking-note/ar-AA29ze5t?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-07-18T00:00:00+00:00",
-      "fetched_at": "2026-08-08T01:54:06.492414+00:00",
-      "thumbnail_url": "",
-      "id": "20872a1cbee202c7"
     },
     {
       "title": "四大证券报头版头条内容精华摘要_2026年7月17日_财经新闻",
@@ -1956,6 +1956,32 @@
     }
   ],
   "VIDEO": [
+    {
+      "title": "Armenia's new AI factory is a US export licence made physical",
+      "summary": "Firebird opened the CIS region's largest AI factory in Armenia. The GPU count matters less than the...",
+      "url": "https://thenextweb.com/news/firebird-armenia-ai-factory-export-licence-compute-diplomacy",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-08-08T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:23.209040+00:00",
+      "thumbnail_url": "",
+      "id": "700a794263d6f5e2"
+    },
+    {
+      "title": "AI avatars are showing up in job interviews as candidates",
+      "summary": "A Sydney recruiter disqualified three applicants who appeared as AI avatars. Gartner expects one in...",
+      "url": "https://thenextweb.com/news/ai-avatars-job-interviews-candidates-recruiters",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-08-08T00:00:00+00:00",
+      "fetched_at": "2026-08-08T12:56:23.209032+00:00",
+      "thumbnail_url": "",
+      "id": "24229a492c58a296"
+    },
     {
       "title": "Fact Check: FAKE Video REPLACED African Migrant's Original Words -- He Did NOT...",
       "summary": "Does a viral video actually show that an African migrant from a group rescued from the English...",
@@ -2555,19 +2581,6 @@
       "id": "41db6dea54d3e35f"
     },
     {
-      "title": "AI Fundamentals : AI Hallucinations, Agents, Privacy and Open Source",
-      "summary": "What happens when a technology designed to transform industries also raises profound questions about ethics, privacy, and trust? Artificial intelligence (AI) sits at the heart of this paradox. While .",
-      "url": "https://www.geeky-gadgets.com/ai-fundamentals-explained/",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2025-06-23T00:00:00+00:00",
-      "fetched_at": "2026-08-07T13:12:56.885823+00:00",
-      "thumbnail_url": "",
-      "id": "41db6dea54d3e35f"
-    },
-    {
       "title": "Anthropic destroys rare and valuable books to feed the machine - the latest AI controversy explained",
       "summary": "Anthropic has come under public scrutiny for destroying rare and valuable books to train its AI bot. Here's what's happening ...",
       "url": "https://www.msn.com/en-us/news/technology/anthropic-destroys-rare-and-valuable-books-to-feed-the-machine-the-latest-ai-controversy-explained/ar-AA299jWA?ocid=BingNewsVerp",
@@ -2579,19 +2592,6 @@
       "fetched_at": "2026-08-08T10:37:43.521683+00:00",
       "thumbnail_url": "",
       "id": "1e06e9f97c449a36"
-    },
-    {
-      "title": "Anthropic destroys rare and valuable books to feed the machine - the latest AI controversy explained",
-      "summary": "Anthropic has come under public scrutiny for destroying rare and valuable books to train its AI bot. Here's what's happening ...",
-      "url": "https://www.msn.com/en-us/technology/artificial-intelligence/anthropic-destroys-rare-and-valuable-books-to-feed-the-machine-the-latest-ai-controversy-explained/ar-AA299jWA?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "Opinion7 days ago",
-      "fetched_at": "2026-08-07T14:56:37.587732+00:00",
-      "thumbnail_url": "",
-      "id": "8787d98f541cc7f7"
     },
     {
       "title": "iPhone Ultra vs Galaxy Z Fold 8 — here's 3 big ways Apple could win",
@@ -2608,7 +2608,7 @@
     }
   ],
   "_meta": {
-    "updated_at": "2026-08-08T10:37:43.527728+00:00",
+    "updated_at": "2026-08-08T12:56:23.213487+00:00",
     "total": 200,
     "counts": {
       "AI": 50,
