@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 财经要闻 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">💰 财经要闻</span>
+    </div>
+    <div class="header-date">
+      <span>2026年8月8日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历6月26日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-07-21/doc-iniiphzm2632288.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年7月21日_财经新闻</div>
+        <div class="news-summary">7月20日，多家险资巨头集体发声，表示看好资本市场发展前景，以实际行动体现耐心资本的应有担当；同时，为股东创造长期可持续回报，积极优化分红政策，提升股东回报水平</div>
+        <div class="news-time">07月21日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/markets/these-5-warnings-hint-that-one-of-the-longest-winning-streaks-in-stock-market-history-is-coming-to-an-end/ar-AA29xF81?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">These 5 warnings hint that one of the longest winning streaks in stock market history is coming to an end</div>
+        <div class="news-summary">The secular bull market that's been running since 2009 is the second-longest in </div>
+        <div class="news-time">07月21日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/stock-market-today-nasdaq-rallies-after-surprise-july-jobs-reading-spacex-soars-live-coverage/ar-AA29BIHO?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock market today: Nasdaq leaps as Fed rate-hike odds sink; biotech jumps 20%, Sezzle fizzles out</div>
+        <div class="news-summary">Stock Market Today: The Dow Jones index falls Friday on a surprise reading in th</div>
+        <div class="news-time">07月20日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-07-20/doc-iniikxup3101607.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年7月20日_财经新闻</div>
+        <div class="news-summary">7月19日晚间，中国国新控股有限责任公司（简称“中国国新”）、中国诚通控股集团有限公司（简称“中国诚通”）发布公告称，坚定看好中国经济和中国资本市场前景，坚决维</div>
+        <div class="news-time">07月20日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/savingandinvesting/stock-market-today-dow-rises-nasdaq-slides-as-tech-stocks-come-under-pressure-uber-dives-live-coverage/ar-AA29rypc?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock market today: Dow scores record as SpaceX craters; SharkNinja soars</div>
+        <div class="news-summary">Stock Market Today: The Dow Jones index rises Wednesday with word on a Strait of</div>
+        <div class="news-time">07月20日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/markets/stock-market-today-dow-posts-record-on-hopes-for-iran-deal-s-p-500-and-nasdaq-snap-4-day-rally/ar-AA29t92j?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock market today: Dow, S&P 500 climb as Trump says Hormuz deal is close, Nasdaq gives up gains</div>
+        <div class="news-summary">Growing hopes that the Strait of Hormuz could soon reopen uplifted markets as ea</div>
+        <div class="news-time">07月20日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.wsj.com/buyside/personal-finance/financial-advisors/what-is-a-mixed-economy" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">What Is a Mixed Economy?</div>
+        <div class="news-summary">A mixed economy combines features of market and command economies ...</div>
+        <div class="news-time">07月20日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/crypto/articles/mobile-banking-market-hit-usd-151200945.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Mobile Banking Market to Hit USD 58.02 Trillion by 2031 with Asia-Pacific Holding 46.6% Market Share in 2025, Says Mordor Intelligence</div>
+        <div class="news-summary">According to Mordor Intelligence, the mobile banking market size is projected to</div>
+        <div class="news-time">07月19日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/markets/us-rate-futures-cut-chances-of-september-rate-hike-after-jobs-data/ar-AA29BDSO?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">US rate futures cut chances of September rate hike after jobs data</div>
+        <div class="news-summary">NEW YORK, Aug 7 (Reuters) - U.S. interest rate futures on Friday reduced the cha</div>
+        <div class="news-time">07月18日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/economy/europe-s-getting-hotter-markets-are-taking-note/ar-AA29ze5t?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Europe's getting hotter, markets are taking note</div>
+        <div class="news-summary">By Sophie Kiderlin, Samuel Indyk and Stefano Rebaudo LONDON, Aug 7 (Reuters) - R</div>
+        <div class="news-time">07月18日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/stock-market-today-dow-slips-nasdaq-and-s-p-500-waver-as-earnings-roll-on/ar-AA29wj3s?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock market today: Dow slips from record, S&P 500 and Nasdaq drop as oil gains, Treasury yields rise</div>
+        <div class="news-summary">Investors absorbed a wall of earnings reports, prospects of an imminent Strait o</div>
+        <div class="news-time">07月18日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/economy/articles/market-perspectives-richard-lim-singapores-112000909.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Market Perspectives: Richard Lim - Singapore's Financial Hub Position Continues to Draw Global Attention Amid Changing Capital Landscape</div>
+        <div class="news-summary">Financial researcher shares views on Asian financial markets, capital flows and </div>
+        <div class="news-time">07月18日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-07-17/doc-iniiahrk4156335.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年7月17日_财经新闻</div>
+        <div class="news-summary">近1700家A股公司披露上半年业绩预告 三大高景气赛道上市公司描绘增长新曲线 A股上市公司半年报业绩预告迎来密集披露期。截至7月16日19时，已有1697家A股</div>
+        <div class="news-time">07月17日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-07-17/doc-iniiahrk4156335.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年7月17日_财经新闻</div>
+        <div class="news-summary">近1700家A股公司披露上半年业绩预告 三大高景气赛道上市公司描绘增长新曲线 A股上市公司半年报业绩预告迎来密集披露期。截至7月16日19时，已有1697家A股</div>
+        <div class="news-time">07月17日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/technology/crypto-markets-steady-as-cyberattacks-hit-major-wall-street-hedge-funds/ar-AA29vqoI?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Crypto markets steady as cyberattacks hit major Wall Street hedge funds</div>
+        <div class="news-summary">This week, several of the largest hedge funds on Wall Street were targeted in a </div>
+        <div class="news-time">07月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/markets/situational-awareness-hedge-fund-meltdown-was-a-warning-shot-for-leveraged-markets-bofa-ceo-says/ar-AA29sfJ8?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Situational awareness hedge fund meltdown was a warning shot for leveraged markets, BofA CEO says</div>
+        <div class="news-summary">Bank of America was among the prime brokers for the hedge fund, which is run by </div>
+        <div class="news-time">07月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-07-15/doc-inihvumr7845713.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年7月15日_财经新闻</div>
+        <div class="news-summary">近期，多家上市券商获证监会批准发行大额公司债，部分券商已发债券迎来一波评级上调。Wind数据显示，截至7月14日中国证券报记者发稿时，今年以来券商境内发债规模已</div>
+        <div class="news-time">07月15日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-07-15/doc-inihvumr7845713.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年7月15日_财经新闻</div>
+        <div class="news-summary">近期，多家上市券商获证监会批准发行大额公司债，部分券商已发债券迎来一波评级上调。Wind数据显示，截至7月14日中国证券报记者发稿时，今年以来券商境内发债规模已</div>
+        <div class="news-time">07月15日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-xl/news/other/tech-giants-ai-debt-surge-threatens-global-markets/ar-AA29tmps?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Big Tech's $194B AI bond binge risks financial shock</div>
+        <div class="news-summary">Artificial intelligence (AI) data centers are increasingly seen as a potential t</div>
+        <div class="news-time">07月15日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-07-14/doc-inihtmen8592830.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年7月14日_财经新闻</div>
+        <div class="news-summary">国务院批复同意《扩大消费“十五五”规划》 持续巩固资本市场稳中向好发展态势 支持金融机构扩大消费领域信贷投放 中国政府网7月13日消息，国务院印发关于《扩大消费</div>
+        <div class="news-time">07月14日 00:00</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./8.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="active">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./10.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
