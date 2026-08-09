@@ -365,6 +365,19 @@
       "id": "9f1d6faf7ecd57a2"
     },
     {
+      "title": "A report highlights how AI technology can address the healthcare disparities in India",
+      "summary": "India's healthcare system faces increasing strain due to an ageing demographic, escalating chronic disease prevalence, and a ...",
+      "url": "https://www.msn.com/en-in/technology/artificial-intelligence/a-report-highlights-how-ai-technology-can-address-the-healthcare-disparities-in-india/ar-AA29HiOq?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:52.813866+00:00",
+      "thumbnail_url": "",
+      "id": "e36346b88f5086b0"
+    },
+    {
       "title": "Cloud was a technology transformation. AI is a business one.",
       "summary": "However, these \"shiny objects\" are stalling inside real corporate engagements. AI models are getting trapped in an endless loop of proofs-of-concept that never make it to live production. The truth is",
       "url": "https://www.fastcompany.com/91585650/cloud-was-a-technology-transformation-ai-is-a-business-one",
@@ -441,19 +454,6 @@
       "fetched_at": "2026-08-09T02:01:25.414056+00:00",
       "thumbnail_url": "",
       "id": "e8ce2c26c8832b99"
-    },
-    {
-      "title": "Where Will Dell Technologies Stock Be in 3 Years?",
-      "summary": "Its move into the artificial intelligence space has breathed new life into the iconic-but-aging technology outfit.",
-      "url": "https://www.aol.com/articles/where-dell-technologies-stock-3-202000000.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-06T00:00:00+00:00",
-      "fetched_at": "2026-08-08T22:33:33.622003+00:00",
-      "thumbnail_url": "",
-      "id": "ef687b0dec2860ff"
     },
     {
       "title": "Samsung Electronics launches next-generation AI memory technology",
@@ -653,6 +653,19 @@
   ],
   "TECH": [
     {
+      "title": "HeteroFlow 异构算力调度平台于 2026 年 8 月 8 日推理服务正式发布",
+      "summary": "HeteroFlow v2 推理服务的解决方案正式上线 HeteroFlow v2 是一款开源的异构算力调度平台，本次发布的推理服务功能针对上述三大痛点提供完整解决方案： **&gt; 一句话总结：**用一套 OpenAI 兼容 API，统一调度 9 种厂商 GPU × 5 种推理引擎，原生支持多租户、计费、扩缩容、热加载。 三、核心能力详解1. OpenAI API 100% ...",
+      "url": "https://www.oschina.net/news/491395",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-08-09T08:57:12+00:00",
+      "fetched_at": "2026-08-09T10:38:50.009979+00:00",
+      "thumbnail_url": "",
+      "id": "db1073f6f8bdd984"
+    },
+    {
       "title": "开源终端 uniTerm v1.7.0 发布：补齐最后一块拼图，新增 X11 支持，覆盖 27 种协议",
       "summary": "uniTerm 是一款轻量级一站式终端软件，Windows 版本安装包仅 14MB。整合终端、文件传输、远程桌面、数据库客户端、容器等 5 大类协议于一身；内置可自主执行的 AI Agent，能规划并执行多轮 Shell 命令。 本次 v1.7.0 补齐了 uniTerm 终端软件的最后一块拼图——内置 X11 Server 支持，累积支持协议达到 27 种。从此，你可...",
       "url": "https://www.oschina.net/news/491248",
@@ -677,6 +690,19 @@
       "fetched_at": "2026-08-09T05:10:03.625698+00:00",
       "thumbnail_url": "",
       "id": "784d5c8659fb4d11"
+    },
+    {
+      "title": "USA Today Q2 Earnings Call Highlights",
+      "summary": "USA Today (NYSE:TDAY) reported second-quarter 2026 revenue of $536.3 million, down 8.3% from a year earlier, as lower digital advertising revenue and...",
+      "url": "https://finance.yahoo.com/media-advertising/articles/usa-today-q2-earnings-call-090354910.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-09T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:54.355349+00:00",
+      "thumbnail_url": "",
+      "id": "427f28174b1839b2"
     },
     {
       "title": "Is the Worst Finally Over for Palantir Stock?",
@@ -716,32 +742,6 @@
       "fetched_at": "2026-08-09T07:02:23.822377+00:00",
       "thumbnail_url": "",
       "id": "759326a20c174d7b"
-    },
-    {
-      "title": "任意网页划词 AI 问答：不用切换标签页的效率秘诀",
-      "summary": "看英文技术文档的时候，你是怎么查生词的？ 我猜大多数人的流程是：选中单词 → Ctrl+C → 切到翻译标签页 → Ctrl+V → 看翻译 → 切回原文。遇到不懂的代码片段，再切到 ChatGPT 问一下。来回切换几次，思路早断了。 今天介绍的开源 Chrome 扩展 AI Helper，有一个划词浮动工具栏功能，能让你在任意网页选中文本就直接...",
-      "url": "https://www.oschina.net/news/490842",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-08-08T12:03:58+00:00",
-      "fetched_at": "2026-08-09T02:01:21.981310+00:00",
-      "thumbnail_url": "",
-      "id": "08d9546810517f54"
-    },
-    {
-      "title": "为什么要开发又一个 AI 浏览器插件",
-      "summary": "说实话，每次有人问我&quot;市面上已经有 Monica、Sider、Copilot for Chrome 这些 AI 浏览器插件了，你为什么还要再做一个&quot;，我都觉得这个问题问得好。 因为我自己也是从用户变成开发者的。 现有产品的天花板 我用过不少 AI 浏览器插件。刚开始觉得都挺好——选中一段文字，弹出解释；写邮件时帮你润色；看英文网页给你翻译摘...",
-      "url": "https://www.oschina.net/news/490838",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-08-08T11:56:38+00:00",
-      "fetched_at": "2026-08-09T02:01:21.981378+00:00",
-      "thumbnail_url": "",
-      "id": "de9ef1aa31faf1d0"
     },
     {
       "title": ":fire: Hot-Plug 实战：运行期管理 Solon 插件",
@@ -952,6 +952,19 @@
       "id": "a517d7b08ce7ca6c"
     },
     {
+      "title": "Florida enclave dethroned as Silicon Valley AI boom lifts California ZIP code to...",
+      "summary": "Atherton, California, reclaims America's priciest ZIP code from Fisher Island as tech buyers trade...",
+      "url": "https://finance.yahoo.com/real-estate/articles/florida-enclave-dethroned-silicon-valley-143336704.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:54.885685+00:00",
+      "thumbnail_url": "",
+      "id": "09aadbabfe28c235"
+    },
+    {
       "title": "Half of Silicon Valley owns less than 1% of the wealth as shocking poverty gap...",
       "summary": "New report reveals Silicon Valley’s shocking wealth gap.",
       "url": "https://www.yahoo.com/news/us/articles/half-silicon-valley-owns-less-130000213.html",
@@ -1030,19 +1043,6 @@
       "id": "ccc9b57c6ae9c084"
     },
     {
-      "title": "Europe's largest technology company SAP stops all travel and hiring; tells employees: We need to be disciplined in how we spend",
-      "summary": "SAP, Europe's largest tech firm, has paused most travel and hiring. This move supports significant investments in artificial ...",
-      "url": "https://www.msn.com/en-in/news/other/europe-s-largest-technology-company-sap-stops-all-travel-and-hiring-tells-employees-we-need-to-be-disciplined-in-how-we-spend/ar-AA29Au2Y?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-07T00:00:00+00:00",
-      "fetched_at": "2026-08-08T18:42:57.233824+00:00",
-      "thumbnail_url": "",
-      "id": "1c6c3befab7ed86f"
-    },
-    {
       "title": "Silicon Valley's latest meme obsession: A years-old picture of Chamath...",
       "summary": "Chamath Palihapitiya's enormous sweater has become Silicon Valley's meme of the summer, and Elon...",
       "url": "https://www.yahoo.com/entertainment/celebrity/articles/silicon-valleys-latest-meme-obsession-142815984.html",
@@ -1054,6 +1054,19 @@
       "fetched_at": "2026-08-09T08:48:59.189437+00:00",
       "thumbnail_url": "",
       "id": "f033b82546fe8fd1"
+    },
+    {
+      "title": "Silicon Valley leaders seek to block ICE detention centers",
+      "summary": "City and county officials in the affluent region are banding together to propose moratoriums to...",
+      "url": "https://www.yahoo.com/news/politics/articles/silicon-valley-leaders-seek-block-191601176.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-05T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:54.885670+00:00",
+      "thumbnail_url": "",
+      "id": "f5e4fa1d47fb25b3"
     },
     {
       "title": "Silicon Valley",
@@ -1173,32 +1186,6 @@
       "id": "7e9777f61aaf7e9e"
     },
     {
-      "title": "Waymo's CEO says this is why he ignores Silicon Valley's most famous mantra",
-      "summary": "Dmitri Dolgov says Mark Zuckerberg's original mantra to \"move fast and break things\" has far-reaching consequences for ...",
-      "url": "https://www.msn.com/en-us/autos/news/waymos-ceo-says-this-is-why-he-ignores-silicon-valleys-most-famous-mantra/ar-AA29lEMg?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-04T00:00:00+00:00",
-      "fetched_at": "2026-08-08T20:34:29.134760+00:00",
-      "thumbnail_url": "",
-      "id": "db18963a7ca557bc"
-    },
-    {
-      "title": "I'm a therapist for tech workers in Silicon Valley. There's a specific type of person who burns out — here's how I treat them.",
-      "summary": "A Silicon Valley therapist says AI burnout is common among his high-performing clients. He shares the exposure therapy ...",
-      "url": "https://www.msn.com/en-us/health/other/im-a-therapist-for-tech-workers-in-silicon-valley-theres-a-specific-type-of-person-who-burns-out-heres-how-i-treat-them/ar-AA29i3tB?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-03T00:00:00+00:00",
-      "fetched_at": "2026-08-08T16:38:30.920764+00:00",
-      "thumbnail_url": "",
-      "id": "86d62643163ab967"
-    },
-    {
       "title": "Industry Life Cycle Explained: Introduction, Growth, Maturity, and Decline",
       "summary": "Learn the stages of the industry life cycle: introduction, growth, maturity, and decline. Understand each phase’s ...",
       "url": "https://www.investopedia.com/terms/i/industrylifecycle.asp",
@@ -1277,6 +1264,19 @@
       "id": "5d10e50b2744b18d"
     },
     {
+      "title": "The tech industry can’t afford to ignore diversity",
+      "summary": "Anna Moghaddam is vice president of people at Pipe, a fintech company. The tech industry has long positioned itself as a driver of innovation, yet recent rollbacks of diversity initiatives raise ...",
+      "url": "https://www.hrdive.com/news/tech-industry-DEI/741446/",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2025-03-12T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:54.612647+00:00",
+      "thumbnail_url": "",
+      "id": "2796bcf0afee47a7"
+    },
+    {
       "title": "The Wall Street and Silicon Valley investors who got burned by situational awareness",
       "summary": "Plus, Iran stakes everything on controlling the Strait of Hormuz, and our travel columnist explains basic economy’s changing ...",
       "url": "https://www.msn.com/en-us/money/investment/the-wall-street-and-silicon-valley-investors-who-got-burned-by-situational-awareness/ar-AA29rsgv?ocid=BingNewsVerp",
@@ -1304,6 +1304,45 @@
     }
   ],
   "FINANCE": [
+    {
+      "title": "Tutor Perini (TPC) Following Strong Results And A Bigger Dividend Still Looks...",
+      "summary": "Tutor Perini (TPC) just delivered a busy early August, reporting stronger second quarter results,...",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/tutor-perini-tpc-following-strong-101023406.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-09T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:56.069650+00:00",
+      "thumbnail_url": "",
+      "id": "63d6344e595bd831"
+    },
+    {
+      "title": "Why Twilio (TWLO) Is Up 22.3% After Raising 2026 Guidance And Completing $1.2B...",
+      "summary": "In the past week, Twilio Inc. reported second‑quarter 2026 results with revenue of US$1,499.09 milli...",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/why-twilio-twlo-22-3-101146402.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-09T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:56.069637+00:00",
+      "thumbnail_url": "",
+      "id": "666e676634d73fe3"
+    },
+    {
+      "title": "Here's the 1 Crypto I'd Buy If I Could Pick Only One",
+      "summary": "In 2026, getting exposure to the crypto market starts and ends with Bitcoin.",
+      "url": "https://finance.yahoo.com/markets/crypto/articles/heres-1-crypto-id-buy-101200952.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-09T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:56.069622+00:00",
+      "thumbnail_url": "",
+      "id": "8c91527362f3b705"
+    },
     {
       "title": "Micron's Stock Price Has Corrected 30% From Its All-Time High. Is It Time to...",
       "summary": "The real question isn't how far the stock has dropped -- it's whether the company's long-term...",
@@ -1539,17 +1578,30 @@
       "id": "1ebbe2813c6dfad7"
     },
     {
-      "title": "Innodata (INOD) Stock Looks Fully Valued With AI Hopes Priced In",
-      "summary": "Innodata stock has delivered very strong returns over the past five years, yet the broader valuation...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/innodata-inod-stock-looks-fully-221311772.html",
+      "title": "Stock market today: Major indexes close lower; Dow snaps 5-session winning streak; oil rises as investors await Strait of Hormuz news",
+      "summary": "Major U.S. stock indexes were little changed in early trading Thursday, as investors digested a flurry of corporate earnings ...",
+      "url": "https://www.msn.com/en-us/money/top-stocks/stock-market-today-futures-mixed-after-dow-closes-at-record-high-for-3rd-straight-session-memory-chipmakers-drop/ar-AA29wGgM?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "2026-08-08T00:00:00+00:00",
-      "fetched_at": "2026-08-08T22:33:37.362716+00:00",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:56.297610+00:00",
       "thumbnail_url": "",
-      "id": "d75b90f58c8b3239"
+      "id": "df5de925eda168d3"
+    },
+    {
+      "title": "These 5 warnings hint that one of the longest winning streaks in stock market history is coming to an end",
+      "summary": "The secular bull market that's been running since 2009 is the second-longest in history, but signs point to a tougher path ...",
+      "url": "https://www.msn.com/en-us/money/markets/these-5-warnings-hint-that-one-of-the-longest-winning-streaks-in-stock-market-history-is-coming-to-an-end/ar-AA29xF81?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-07T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:56.297584+00:00",
+      "thumbnail_url": "",
+      "id": "22f65c9e151b07be"
     },
     {
       "title": "Low water on Germany's Rhine river threatens new blow to economy",
@@ -1643,32 +1695,6 @@
       "id": "41215d0af805d9e4"
     },
     {
-      "title": "NFP preview: Will markets get the weak print they would like? | FXStreet",
-      "summary": "The July labour market report will be released today at 1330 BST. The market expects a reading of...",
-      "url": "https://www.fxstreet.com/analysis/nfp-preview-will-markets-get-the-weak-print-they-would-like-202608070755",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-07T00:00:00+00:00",
-      "fetched_at": "2026-08-08T18:42:59.841327+00:00",
-      "thumbnail_url": "",
-      "id": "22ae0a258e65af90"
-    },
-    {
-      "title": "AdvanSix Announces Second Quarter 2026 Financial Results",
-      "summary": "AdvanSix (NYSE: ASIX), a vertically integrated chemistry company serving diverse end markets, today...",
-      "url": "https://www.gurufocus.com/news/9016848/advansix-announces-second-quarter-2026-financial-results",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-07T00:00:00+00:00",
-      "fetched_at": "2026-08-08T18:42:59.841314+00:00",
-      "thumbnail_url": "",
-      "id": "dfbd0d55daafd587"
-    },
-    {
       "title": "Is the Options Market Predicting a Spike in Ally Financial Stock?",
       "summary": "Investors need to pay close attention to ALLY stock based on the movements in the options market...",
       "url": "https://finance.yahoo.com/markets/options/articles/options-market-predicting-spike-ally-125000797.html",
@@ -1706,19 +1732,6 @@
       "fetched_at": "2026-08-09T02:01:28.449053+00:00",
       "thumbnail_url": "",
       "id": "5e8954b4448d90c8"
-    },
-    {
-      "title": "Trump lashes out at ‘fake polls’ showing him underwater on the economy: ‘Greatest economy we’ve ever had by far!’",
-      "summary": "President Donald Trump erupted over recent polling showing his approval rating on the economy slipping on Wednesday, going so ...",
-      "url": "https://www.msn.com/en-us/news/other/trump-lashes-out-at-fake-polls-showing-him-underwater-on-the-economy-greatest-economy-we-ve-ever-had-by-far/ar-AA29ukiT?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-06T00:00:00+00:00",
-      "fetched_at": "2026-08-08T16:38:33.279163+00:00",
-      "thumbnail_url": "",
-      "id": "32572d7e9cbc617f"
     },
     {
       "title": "Capital Markets Stock News",
@@ -1773,6 +1786,19 @@
       "id": "903ea0063740f369"
     },
     {
+      "title": "Indian stock market: How are Sensex and Nifty 50 likely to perform next week amid ongoing US-Iran war?",
+      "summary": "Indian stock market: For the week, the Sensex rose 0.52% to end at 78,499.17, while the Nifty gained 0.77% to settle at ...",
+      "url": "https://www.msn.com/en-in/news/other/indian-stock-market-how-are-sensex-and-nifty-50-likely-to-perform-next-week-amid-ongoing-us-iran-war/ar-AA29H5nL?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-04T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:56.297639+00:00",
+      "thumbnail_url": "",
+      "id": "3eb082687e13396e"
+    },
+    {
       "title": "Japan Economy Minister Kiuchi: Pass-through of rising costs has been limited so...",
       "summary": "Japan Economy Minister Minoru Kiuchi said during the European trading session on Tuesday that the...",
       "url": "https://www.fxstreet.com/news/japan-economy-minister-kiuch-pass-through-of-rising-costs-has-been-limited-so-far-202608040244",
@@ -1799,32 +1825,6 @@
       "id": "239d13a48250e0a7"
     },
     {
-      "title": "Bessent’s reported $5 billion yen buy spooks markets",
-      "summary": "Treasury Secretary Scott Bessent’s reported plan to buy up to $10 billion in Japanese yen was meant to support Japan’s ...",
-      "url": "https://www.msn.com/en-us/money/markets/bessent-s-reported-5-billion-yen-buy-spooks-markets/ar-AA29FK7l?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-04T00:00:00+00:00",
-      "fetched_at": "2026-08-08T20:34:31.121539+00:00",
-      "thumbnail_url": "",
-      "id": "eeb4cefd7269063a"
-    },
-    {
-      "title": "Stock market week ahead: Bullish signals amid 'dirty' volume",
-      "summary": "The market rides some bullish signals into the coming week, but sorting the signals required some careful detective work.",
-      "url": "https://www.msn.com/en-us/money/top-stocks/stock-market-week-ahead-bullish-signals-amid-dirty-volume/ar-AA29FpSM?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-02T00:00:00+00:00",
-      "fetched_at": "2026-08-08T20:34:31.457536+00:00",
-      "thumbnail_url": "",
-      "id": "3404d433798f0661"
-    },
-    {
       "title": "The economy grew a sluggish 1.5% in the second quarter, with inflation remaining stubbornly high",
       "summary": "The U.S. economy expanded at a sluggish 1.5% pace from April through June as rising imports weighed on growth ...",
       "url": "https://www.msn.com/en-us/money/markets/the-economy-grew-a-sluggish-15-in-the-second-quarter-with-inflation-remaining-stubbornly-high/ar-AA294cll?ocid=BingNewsVerp",
@@ -1834,19 +1834,6 @@
       "category": "FINANCE",
       "published_at": "2026-07-31T00:00:00+00:00",
       "fetched_at": "2026-08-09T05:10:13.381836+00:00",
-      "thumbnail_url": "",
-      "id": "83200eebeb3b88d0"
-    },
-    {
-      "title": "The economy grew a sluggish 1.5% in the second quarter, with inflation remaining stubbornly high",
-      "summary": "The U.S. economy expanded at a sluggish 1.5% pace from April through June as rising imports weighed on growth ...",
-      "url": "https://www.msn.com/en-us/money/markets/the-economy-grew-a-sluggish-15-in-the-second-quarter-with-inflation-remaining-stubbornly-high/ar-AA294cll?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-07-30T00:00:00+00:00",
-      "fetched_at": "2026-08-08T16:38:33.279132+00:00",
       "thumbnail_url": "",
       "id": "83200eebeb3b88d0"
     },
@@ -1862,6 +1849,19 @@
       "fetched_at": "2026-08-09T05:10:14.108909+00:00",
       "thumbnail_url": "",
       "id": "cec891c8a9276cc1"
+    },
+    {
+      "title": "3 market lessons parents should teach their kids early, according to the CFO of Acorns",
+      "summary": "Acorns CFO Seth Wunder said early education can help alleviate the fear that comes with getting started with investing in ...",
+      "url": "https://www.businessinsider.com/investing-lessons-for-kids-markets-personal-finance-stocks-education-money-2026-7",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-07-22T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:56.069606+00:00",
+      "thumbnail_url": "",
+      "id": "7ee53b933c638295"
     },
     {
       "title": "四大证券报头版头条内容精华摘要_2026年7月22日_财经新闻",
@@ -1929,17 +1929,17 @@
       "id": "8845b4512d9ee286"
     },
     {
-      "title": "Scott Bessent's economy claim is raising eyebrows on Wall Street",
-      "summary": "Treasury Secretary Scott Bessent declared the K-shaped economy over. Economists say wage data, spending numbers, and gas ...",
-      "url": "https://www.msn.com/en-us/money/economy/scott-bessent-s-economy-claim-is-raising-eyebrows-on-wall-street/ar-AA29FSmb?ocid=BingNewsVerp",
+      "title": "To make Malaysia’s circular economy work, effective coordination is key",
+      "summary": "History is littered with circular economy pilots that crashed on takeoff.",
+      "url": "https://www.msn.com/en-my/money/economy/to-make-malaysia-s-circular-economy-work-effective-coordination-is-key/ar-AA29H7Ib?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "Opinion3 hours ago",
-      "fetched_at": "2026-08-08T18:43:00.473508+00:00",
+      "published_at": "Opinion6 hours ago",
+      "fetched_at": "2026-08-09T10:38:56.533516+00:00",
       "thumbnail_url": "",
-      "id": "26aaeddc2be0f2fb"
+      "id": "5e925975f502ce1f"
     },
     {
       "title": "US economy loses 23,000 jobs in July, as Trump-era economy continues to struggle",
@@ -2217,32 +2217,6 @@
       "id": "2205c28a27abe461"
     },
     {
-      "title": "New Mexico attorney general hopes Meta ruling leads to Big Tech review. Here's...",
-      "summary": "New Mexico's attorney general hopes a state court ruling ordering Facebook parent company Meta to...",
-      "url": "https://www.yahoo.com/news/politics/articles/mexico-attorney-general-hopes-meta-201136091.html",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2026-08-07T00:00:00+00:00",
-      "fetched_at": "2026-08-08T05:01:26.419953+00:00",
-      "thumbnail_url": "",
-      "id": "a22928cd24077657"
-    },
-    {
-      "title": "CMS parent group is pushing for K-2 student device ban and 5 other tech changes",
-      "summary": "Among the changes: Blocking YouTube on student devices. This wouldn’t include teacher devices in cas...",
-      "url": "https://www.yahoo.com/news/articles/cms-parent-group-pushing-k-090000310.html",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2026-08-07T00:00:00+00:00",
-      "fetched_at": "2026-08-08T05:01:26.419937+00:00",
-      "thumbnail_url": "",
-      "id": "7b07ed1d9eebdab5"
-    },
-    {
       "title": "Gen Z Trusts Online Reviews Over Hotel Brand Names by More Than Four to One When...",
       "summary": "/PRNewswire/ -- Online reviews have become a much stronger influence on Gen Z hotel bookings than...",
       "url": "https://www.prnewswire.com/news-releases/gen-z-trusts-online-reviews-over-hotel-brand-names-by-more-than-four-to-one-when-choosing-where-to-stay-rival-technologies-study-shows-302844556.html",
@@ -2267,6 +2241,19 @@
       "fetched_at": "2026-08-08T05:01:26.739503+00:00",
       "thumbnail_url": "",
       "id": "9ac848c22d0b102a"
+    },
+    {
+      "title": "Volition Reports Publication of First Peer Reviewed Paper on New Capture-Seq™ Li...",
+      "summary": "Targets $36 Billion TAM in Early Cancer Detection and MRD. Company in active discussions with global...",
+      "url": "https://pr.valdostadailytimes.com/article/Volition-Reports-Publication-of-First-Peer-Reviewed-Paper-on-New-Capture-Seqtm-Liquid-Biopsy-Technology/6a732a209ca6f9e041dc827a",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-08-05T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:57.603181+00:00",
+      "thumbnail_url": "",
+      "id": "a2489bfe4b22af35"
     },
     {
       "title": "The Anti-AI Backlash Against Hank Green, Explained",
@@ -2436,6 +2423,19 @@
       "fetched_at": "2026-08-09T05:10:16.465747+00:00",
       "thumbnail_url": "",
       "id": "115f6f3c0c82e357"
+    },
+    {
+      "title": "Kimi K3 explained: Inside Moonshot’s biggest AI bet yet",
+      "summary": "Chinese artificial intelligence startup Moonshot has introduced Kimi K3, describing it as the world's largest open-weight AI ...",
+      "url": "https://www.msn.com/en-us/technology/artificial-intelligence/kimi-k3-explained-inside-moonshot-s-biggest-ai-bet-yet/ar-AA28ak0D?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-07-17T00:00:00+00:00",
+      "fetched_at": "2026-08-09T10:38:57.828044+00:00",
+      "thumbnail_url": "",
+      "id": "70eff0b1de00612c"
     },
     {
       "title": "AI explained: Using artificial intelligence to translate languages worldwide",
@@ -2608,7 +2608,7 @@
     }
   ],
   "_meta": {
-    "updated_at": "2026-08-09T08:49:03.918855+00:00",
+    "updated_at": "2026-08-09T10:38:57.833891+00:00",
     "total": 200,
     "counts": {
       "AI": 50,
