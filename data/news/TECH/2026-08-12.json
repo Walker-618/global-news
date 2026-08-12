@@ -726,5 +726,70 @@
     "fetched_at": "2026-08-12T07:38:52.538175+00:00",
     "thumbnail_url": "",
     "id": "6b88dedabcc82864"
+  },
+  {
+    "title": "Gitee CLI 开源，无需离开终端，即可完成 Gitee 日常工作。",
+    "summary": "但当任务走到「把这个分支提个 PR」「顺手建个仓库」「把这批 issue 归档」时，它们往往就卡住了，网页界面点不动，裸调 REST API 又要记住一堆端点、鉴权和分页规则。 Gitee CLI 正在补上这「最后一公里」：它是一个同时服务于「人」和「AI Agent」的命令行工具；而主仓库内置的 Agent Skills，则把「如何正确、安全地使...",
+    "url": "https://gitee.com/oschina/gitee-cli",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-12T08:48:39+00:00",
+    "fetched_at": "2026-08-12T09:15:18.088408+00:00",
+    "thumbnail_url": "",
+    "id": "5483a9ca025ad094"
+  },
+  {
+    "title": "在 Windows 上管理多个 Claude Code / Codex 终端：Termexo 的 PTY、会话恢复与模型切换设计",
+    "summary": "当 Windows 上同时跑着几个 Claude Code、Codex 终端时，“窗口能不能并排” 其实只是第一层问题。更难的是知道哪个 Agent 正在等待输入、哪个需要授权、哪个已经结束，以及怎样可靠地回到原来的原生会话。",
+    "url": "https://my.oschina.net/gemron/blog/19737026",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-12T07:45:21+00:00",
+    "fetched_at": "2026-08-12T09:15:18.088481+00:00",
+    "thumbnail_url": "",
+    "id": "d7da5097908727d6"
+  },
+  {
+    "title": "林俊旸官宣创业公司“Pragmatik Labs”",
+    "summary": "前阿里通义千问（Qwen）团队核心成员林俊旸官宣了其创业公司：语用科技（Pragmatik Labs）。 今日凌晨，他在 X 上发布了这条消息。&quot;a life update&quot;，措辞轻描淡写，但内容不轻：新公司叫 Pragmatik（p7k）Labs，中文名&quot;语用科技&quot;，方向是数字世界和物理世界的下一代 Agent。种子轮由高榕创投和红杉中国联合领投，腾讯和上",
+    "url": "https://www.oschina.net/news/501902",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-12T07:41:42+00:00",
+    "fetched_at": "2026-08-12T09:15:18.088536+00:00",
+    "thumbnail_url": "",
+    "id": "681581b141596319"
+  },
+  {
+    "title": "\"A Direct Proportion Between the Quality of Technology and the Scale of the Business\": Rx2Go's CTO on How Logistics Works for the Largest Hospitals in the US",
+    "summary": "Dmitry Chistyakov, creator of the CPLOM architecture, explains why a well-built IT system matters more than fleet size, and ...",
+    "url": "https://www.thestreet.com/crypto/newsroom/how-logistics-works-for-the-largest-hospitals-in-the-us",
+    "source_name": "DuckDuckGo Tech",
+    "source_icon": "D",
+    "source_color": "#0891b2",
+    "category": "TECH",
+    "published_at": "2026-08-09T00:00:00+00:00",
+    "fetched_at": "2026-08-12T09:15:22.516614+00:00",
+    "thumbnail_url": "",
+    "id": "8412c7d80c5fdddf"
+  },
+  {
+    "title": "New $15M Butler Tech Aviation Center hosts Ohio Chamber of Commerce, aviation...",
+    "summary": "Officials from Ohio’s Chamber of Commerce recently joined dozens of representatives from airports an...",
+    "url": "https://www.journal-news.com/tncms/asset/editorial/54d02cb0-4779-5dd6-bc20-b896a570f73c",
+    "source_name": "DuckDuckGo Tech",
+    "source_icon": "D",
+    "source_color": "#0891b2",
+    "category": "TECH",
+    "published_at": "2026-08-11T00:00:00+00:00",
+    "fetched_at": "2026-08-12T09:15:22.842697+00:00",
+    "thumbnail_url": "",
+    "id": "1b29485428cf5598"
   }
 ]
