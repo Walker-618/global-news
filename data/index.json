@@ -1,6 +1,84 @@
 {
   "AI": [
     {
+      "title": "甲骨文企业AI战略曝光：Agent进数据库、GPU跑满、多云砍掉流量费",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/7wuQJXJqFVR3rZb8Usyg?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-08-17T10:57:26+00:00",
+      "fetched_at": "2026-08-17T03:03:30.377635+00:00",
+      "thumbnail_url": "",
+      "id": "f0db69109591a775"
+    },
+    {
+      "title": "Dropbox 集成 MCP 与 Dash，将安全设计与代码审查连接起来",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/JEaC9PfmAENVHbijfm05?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-08-17T10:48:00+00:00",
+      "fetched_at": "2026-08-17T03:03:30.377675+00:00",
+      "thumbnail_url": "",
+      "id": "ee72f0288a7b5bd9"
+    },
+    {
+      "title": "盘古训练与推理通信优化实践：亲和昇腾平台的性能探索｜AICon深圳",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/jOPScUAQrlfpNwDAhaOL?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-08-17T10:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:30.377698+00:00",
+      "thumbnail_url": "",
+      "id": "e10208b454cc42b3"
+    },
+    {
+      "title": "Netflix详述其基于Triton与vLLM的内部LLM服务平台",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/J9Zi9LELcpxFRe23PHdY?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-08-17T09:56:24+00:00",
+      "fetched_at": "2026-08-17T03:03:30.377719+00:00",
+      "thumbnail_url": "",
+      "id": "4f337a91bca260af"
+    },
+    {
+      "title": "中行回应“Token贷”：已投放3户800万元；头部AI大厂员工：90小时工作制成常态；宇树科技中签者不敢发朋友圈：怕被嫉妒｜AI 周报",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/GzEYHpjhJafhihcYc58x?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-08-17T09:46:59+00:00",
+      "fetched_at": "2026-08-17T03:03:30.377738+00:00",
+      "thumbnail_url": "",
+      "id": "45d9c085dd526f3c"
+    },
+    {
+      "title": "编程能力提高50%！GLM-5.3 满分通过了GPT-5.6给的Coding 测试",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/xWyWwu4ZNptlhpb15tia?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-08-17T09:44:16+00:00",
+      "fetched_at": "2026-08-17T03:03:30.377759+00:00",
+      "thumbnail_url": "",
+      "id": "c25c9c4ff5b8141d"
+    },
+    {
       "title": "AI unexpectedly revealed hidden historical twist in Raphael's famous masterpiece",
       "summary": "AI had unexpectedly revealed a hidden historical twist within Raphael's famous masterpiece,...",
       "url": "https://www.neowin.net/science/ai-unexpectedly-revealed-hidden-historical-twist-in-raphaels-famous-masterpiece/",
@@ -64,6 +142,19 @@
       "fetched_at": "2026-08-17T01:35:24.449716+00:00",
       "thumbnail_url": "",
       "id": "0180f6dd612f0628"
+    },
+    {
+      "title": "How Investors Are Reacting To Tyson Foods (TSN) Beef Plant Closures Amid...",
+      "summary": "In early August 2026, Tyson Foods announced it would close its Joslin, Illinois, and Eagle Mountain,...",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/investors-reacting-tyson-foods-tsn-120831419.html",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-08-16T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:32.162123+00:00",
+      "thumbnail_url": "",
+      "id": "ec8b7064905439b4"
     },
     {
       "title": "Automation is Optimizing US Logistics",
@@ -196,110 +287,6 @@
       "id": "7d60e9ea917f1e80"
     },
     {
-      "title": "How AI Models From OpenAI and Anthropic Went Rogue",
-      "summary": "Watch to learn how an AI agent escaped \"sandboxed\" environments and hacked a separate company—leading to calls for regulation.",
-      "url": "https://www.wsj.com/tech/ai/how-ai-models-from-openai-and-anthropic-went-rogue-a28e29ee",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T18:34:34.986264+00:00",
-      "thumbnail_url": "",
-      "id": "3acb88675bec35cc"
-    },
-    {
-      "title": "From coding to AI, Melaleuca tech camp prepares students for the future",
-      "summary": "Melaleuca is helping Idaho high school students prepare for careers in technology by giving them hands-on experience with coding, software development and artificial intelligence. The 2026 AI + IT Tec",
-      "url": "https://www.aol.com/articles/coding-ai-melaleuca-tech-camp-150016000.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T18:34:34.986246+00:00",
-      "thumbnail_url": "",
-      "id": "2fb1e64c6069c557"
-    },
-    {
-      "title": "Sundar Pichai Raised Alphabet's Capex Guidance to $205 Billion the Same Quarter...",
-      "summary": "Alphabet recently raised its artificial intelligence (AI) infrastructure budget for the year.",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/sundar-pichai-raised-alphabets-capex-154300838.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T16:30:19.206098+00:00",
-      "thumbnail_url": "",
-      "id": "8e44b940687ca9e9"
-    },
-    {
-      "title": "Meet Chivas Femenil's squad HERE for Atlético San Luis clash",
-      "summary": "Today we have a date with Chivas Femenil, Nación Rojiblanca. El Rebaño hosts Atlético San Luis at...",
-      "url": "https://sports.yahoo.com/articles/meet-chivas-femenils-squad-atl-160800477.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T16:30:19.206045+00:00",
-      "thumbnail_url": "",
-      "id": "5dcc726b76284dae"
-    },
-    {
-      "title": "At AI-Fueled Market Party, Wall Street Eyes the Rates Punch Bowl",
-      "summary": "Enthusiasm for Big Tech and its huge investments in artificial intelligence is powering the stock ma...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/ai-fueled-market-party-wall-123000539.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T14:27:09.094207+00:00",
-      "thumbnail_url": "",
-      "id": "079eef530debc0ec"
-    },
-    {
-      "title": "The Age of Bad CGI Movies Is Over",
-      "summary": "Today’s hit movies suggest authenticity trumps CGI",
-      "url": "https://screenrant.com/movies-bad-cgi-over/",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T14:27:09.094192+00:00",
-      "thumbnail_url": "",
-      "id": "fe42064939ac1b2d"
-    },
-    {
-      "title": "Jim Cramer Backs NVIDIA (NVDA) Compute Bonds",
-      "summary": "A massive structural shift is on the way in financial markets, where artificial intelligence hardware could increasingly become collateral for securitized credit.",
-      "url": "https://www.insidermonkey.com/blog/jim-cramer-backs-nvidia-nvda-compute-bonds-1810107/",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T12:46:26.045052+00:00",
-      "thumbnail_url": "",
-      "id": "1ea8cb0b71d043b5"
-    },
-    {
-      "title": "AI could give us 100 years of medical progress in just 5-10 years, says Anthropic CEO",
-      "summary": "The rapid advancement of artificial intelligence is highlighted by Anthropic's CEO, Dario Amodei, who believes this is just the beginning of AI's potential. He envisions that within the next decade, A",
-      "url": "https://www.msn.com/en-in/technology/artificial-intelligence/ai-could-give-us-100-years-of-medical-progress-in-just-5-10-years-says-anthropic-ceo/ar-AA2aeEkt",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T12:46:26.045037+00:00",
-      "thumbnail_url": "",
-      "id": "c1a27c3371767511"
-    },
-    {
       "title": "Cloudflare Computer 发布：让 AI 智能体拥有持久化运行环境",
       "summary": "点击查看原文>",
       "url": "https://www.infoq.cn/article/RaKIH7E4lA9uQ4Iasltb?utm_source=rss&utm_medium=article",
@@ -404,6 +391,19 @@
       "id": "ad7cb3af7d4445e9"
     },
     {
+      "title": "FRC tasks auditors, regulators on responsible AI use",
+      "summary": "The Financial Reporting Council of Nigeria has urged auditors, regulators, and corporate boards to ensure that artificial intelligence strengthens audit integrity rather than undermining public trust ",
+      "url": "https://www.msn.com/en-xl/technology/artificial-intelligence/frc-tasks-auditors-regulators-on-responsible-ai-use/ar-AA2afNJT?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-08-14T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:31.577497+00:00",
+      "thumbnail_url": "",
+      "id": "acd2b7a4e8582233"
+    },
+    {
       "title": "USA Today taps Palantir to turn reader data into 'actionable intelligence'",
       "summary": "\"Every visit, every session, and every moment of attention creates a signal.\"",
       "url": "https://finance.yahoo.com/technology/ai/articles/usa-today-taps-palantir-turn-071800862.html",
@@ -467,6 +467,19 @@
       "fetched_at": "2026-08-16T20:27:12.297205+00:00",
       "thumbnail_url": "",
       "id": "b615ea710b5b4036"
+    },
+    {
+      "title": "Employers start paying a premium for skills AI still cannot fake",
+      "summary": "Artificial intelligence has become fast, cheap and confident at tasks that once defined a career. It can write reports, ...",
+      "url": "https://www.msn.com/en-gb/technology/artificial-intelligence/employers-start-paying-a-premium-for-skills-ai-still-cannot-fake/ar-AA2afHu9?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-08-12T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:31.577482+00:00",
+      "thumbnail_url": "",
+      "id": "12242d6a24b1130e"
     },
     {
       "title": "Bullen Ultrasonics Receives $23,100 Ohio Smart Manufacturing Grant to Advance...",
@@ -547,19 +560,6 @@
       "id": "447d9852b72322fe"
     },
     {
-      "title": "Machine learning predicts forest soil fungal diversity from drone images",
-      "summary": "Combining drone data and machine learning can help cover more ground in monitoring forest soil health, University of Alberta ...",
-      "url": "https://www.msn.com/en-us/money/other/machine-learning-predicts-forest-soil-fungal-diversity-from-drone-images/ar-AA29OoDs?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-11T00:00:00+00:00",
-      "fetched_at": "2026-08-16T14:27:09.727331+00:00",
-      "thumbnail_url": "",
-      "id": "fad50d211e63c910"
-    },
-    {
       "title": "Exchange Traded Concepts and ARIAM Global launch ARIA an Actively Managed ETF...",
       "summary": "ARIA Opportunities ETF (NYSE Arca: ARIA) pairs proprietary machine-learning analytics with...",
       "url": "https://www.wowktv.com/business/press-releases/cision/20260810DA22124/exchange-traded-concepts-and-ariam-global-launch-aria-an-actively-managed-etf-led-by-a-portfolio-manager-with-a-ph-d-in-ai-and-computer-science",
@@ -573,30 +573,17 @@
       "id": "391f1dbb017fce0c"
     },
     {
-      "title": "Heath City Schools adds AI technology designed to detect guns on campus",
-      "summary": "Heath City Schools is adding AI-assisted technology to detect visible firearms on district cameras and to alert school officials and law enforcement.",
-      "url": "https://www.msn.com/en-us/money/general/heath-city-schools-adds-ai-technology-designed-to-detect-guns-on-campus/ar-AA29Obtq",
+      "title": "Elon Musk’s xAI sues Minnesota over first-of-its-kind law banning AI ‘nudification’ technology",
+      "summary": "Elon Musk’s xAI has filed a federal lawsuit against Minnesota over its first-in-the-nation state law that seeks to ban AI “nudification” technology on apps and websites, thus challenging states’ ...",
+      "url": "https://www.msn.com/en-us/technology/artificial-intelligence/elon-musk-s-xai-sues-minnesota-over-first-of-its-kind-law-banning-ai-nudification-technology/ar-AA29fjNY?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo AI",
       "source_icon": "D",
       "source_color": "#f97316",
       "category": "AI",
-      "published_at": "2026-08-10T00:00:00+00:00",
-      "fetched_at": "2026-08-16T14:27:09.509202+00:00",
+      "published_at": "2026-08-02T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:31.945350+00:00",
       "thumbnail_url": "",
-      "id": "79c51ca1784cf9ea"
-    },
-    {
-      "title": "New Orleans uses AI technology to triage incoming 911 emergency calls",
-      "summary": "New Orleans deploys AI to assist 911 dispatchers with call triage during high-volume periods, not replace human operators.",
-      "url": "https://www.msn.com/en-us/technology/artificial-intelligence/new-orleans-uses-ai-technology-to-triage-incoming-911-emergency-calls/ar-AA29LUnf?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-10T00:00:00+00:00",
-      "fetched_at": "2026-08-16T12:46:26.770132+00:00",
-      "thumbnail_url": "",
-      "id": "229b54fb3d83774a"
+      "id": "ce06c2b58f84109e"
     },
     {
       "title": "AI-powered solar technology aims to make energy independence more accessible to Filipino households",
@@ -649,6 +636,19 @@
       "fetched_at": "2026-08-17T01:35:25.901180+00:00",
       "thumbnail_url": "",
       "id": "c027c685949d37f5"
+    },
+    {
+      "title": "Anthropic CEO says AI backlash is 'fundamentally a crisis of trust'",
+      "summary": "Dario Amodei is pushing back against the idea that he's been painting an overly pessimistic picture of AI.",
+      "url": "https://www.msn.com/en-us/technology/artificial-intelligence/anthropic-ceo-says-ai-backlash-is-fundamentally-a-crisis-of-trust/ar-AA2aeE2t?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "Opinion10 hours ago",
+      "fetched_at": "2026-08-17T03:03:31.577508+00:00",
+      "thumbnail_url": "",
+      "id": "c0f4b2075f9cbdd1"
     }
   ],
   "TECH": [
@@ -664,6 +664,32 @@
       "fetched_at": "2026-08-17T01:35:23.028326+00:00",
       "thumbnail_url": "",
       "id": "cd57b1655564ec85"
+    },
+    {
+      "title": "Vermin Shuts Down Eataly Silicon Valley's Rooftop Restaurant Terra in San Jose",
+      "summary": "Terra, the rooftop Italian restaurant atop Eataly Silicon Valley, just got shut down over vermin....",
+      "url": "https://hoodline.com/2026/08/vermin-shuts-down-eataly-silicon-valley-s-rooftop-restaurant-terra-in-san-jose/",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-16T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.547575+00:00",
+      "thumbnail_url": "",
+      "id": "7e03420e54cdbc22"
+    },
+    {
+      "title": "Flock founder says technology would have helped find Nancy Guthrie",
+      "summary": "Flock Safety’s CEO says the company’s camera technology would have solved Nancy Guthrie’s disappearance as debate over ...",
+      "url": "https://www.msn.com/en-us/news/other/flock-founder-says-technology-would-have-helped-find-nancy-guthrie/ar-AA2abkbZ?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-16T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.064479+00:00",
+      "thumbnail_url": "",
+      "id": "65b6c81e0b403054"
     },
     {
       "title": "Is there a NASCAR race today? Date, start time, TV schedule for next Cup Series...",
@@ -809,6 +835,19 @@
       "id": "ae012a59496bed01"
     },
     {
+      "title": "Airbnb CEO Brian Chesky Urges Silicon Valley to Build Consumer AI That Improves...",
+      "summary": "Airbnb Inc. CEO Brian Chesky says Silicon Valley needs to build more AI products for ordinary...",
+      "url": "https://finance.yahoo.com/technology/ai/articles/airbnb-ceo-brian-chesky-urges-193024868.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-15T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.547628+00:00",
+      "thumbnail_url": "",
+      "id": "53e92a736b94a838"
+    },
+    {
       "title": "$70 million sale: How AI boom is pushing Silicon Valley luxury housing to new heights",
       "summary": "A stunning estate in Silicon Valley has shattered records with its sale at an astonishing seventy million dollars, purchased ...",
       "url": "https://www.msn.com/en-in/money/general/70-million-sale-how-ai-boom-is-pushing-silicon-valley-luxury-housing-to-new-heights/ar-AA2a8eY8?ocid=BingNewsVerp",
@@ -859,71 +898,6 @@
       "fetched_at": "2026-08-16T16:30:23.107164+00:00",
       "thumbnail_url": "",
       "id": "527fd551f11041ac"
-    },
-    {
-      "title": "CrowdStrike vs. IonQ: Which Technology Stock Is a Better Buy in 2026?",
-      "summary": "One company is a profitable, growing leader in cybersecurity. The other is an early-stage quantum computing bet with enormous ...",
-      "url": "https://www.fool.com/coverage/better-buy/2026/08/14/crowdstrike-vs-ionq-which-technology-stock-is-a-better-buy-in-2026/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-15T00:00:00+00:00",
-      "fetched_at": "2026-08-16T08:33:49.099563+00:00",
-      "thumbnail_url": "",
-      "id": "673ace9918bb818a"
-    },
-    {
-      "title": "Airbnb CEO Brian Chesky Urges Silicon Valley to Build Consumer AI That Improves...",
-      "summary": "Airbnb Inc. CEO Brian Chesky says Silicon Valley needs to build more AI products for ordinary...",
-      "url": "https://finance.yahoo.com/technology/ai/articles/airbnb-ceo-brian-chesky-urges-193024868.html",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-15T00:00:00+00:00",
-      "fetched_at": "2026-08-16T06:45:43.954960+00:00",
-      "thumbnail_url": "",
-      "id": "53e92a736b94a838"
-    },
-    {
-      "title": "Vermin Shuts Down Eataly Silicon Valley's Rooftop Restaurant Terra in San Jose",
-      "summary": "Terra, the rooftop Italian restaurant atop Eataly Silicon Valley, just got shut down over vermin....",
-      "url": "https://hoodline.com/2026/08/vermin-shuts-down-eataly-silicon-valley-s-rooftop-restaurant-terra-in-san-jose/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-15T00:00:00+00:00",
-      "fetched_at": "2026-08-16T06:45:43.954945+00:00",
-      "thumbnail_url": "",
-      "id": "7e03420e54cdbc22"
-    },
-    {
-      "title": "Eataly Silicon Valley vendor shut down due to vermin",
-      "summary": "(KRON) — One of the restaurants in San Jose’s bustling Eataly Silicon Valley food facility has been shut down due to vermin. Terra Restaurant and Bar on ...",
-      "url": "https://www.aol.com/articles/eataly-silicon-valley-vendor-shut-222106244.html",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-15T00:00:00+00:00",
-      "fetched_at": "2026-08-16T06:45:43.954914+00:00",
-      "thumbnail_url": "",
-      "id": "b7e4f8233bdda3ec"
-    },
-    {
-      "title": "The CISO's Biggest Challenge Has Nothing To Do With Technology",
-      "summary": "CISOs face the challenge of leading enterprise-wide transformation in organizations whose structures, incentives and culture ...",
-      "url": "https://www.forbes.com/councils/forbesbusinesscouncil/2026/08/14/the-cisos-biggest-challenge-has-nothing-to-do-with-technology/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-15T00:00:00+00:00",
-      "fetched_at": "2026-08-16T06:45:43.449761+00:00",
-      "thumbnail_url": "",
-      "id": "78180dc99762575f"
     },
     {
       "title": "【AI 智能运维平台】本周更新：AI 知识库支持多资料的同知识冲突审批",
@@ -1004,6 +978,19 @@
       "id": "62124fe808e40f12"
     },
     {
+      "title": "Quebec man receives North America’s 1st transplant using regenerated liver technology",
+      "summary": "A 64-year-old Quebec man has become the first patient in North America to receive a regenerated liver thanks to a ...",
+      "url": "https://www.msn.com/en-ca/technology/biotechnology/quebec-man-receives-north-america-s-1st-transplant-using-regenerated-liver-technology/ar-AA29ZWZH?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-14T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.064519+00:00",
+      "thumbnail_url": "",
+      "id": "73b9bfa8bf12927d"
+    },
+    {
       "title": "Silicon Valley’s AI boom is remaking American charity",
       "summary": "The boom in AI is making a lot of tech types in Silicon Valley very rich. The initial public offerings ( IPO s) of shares in Anthropic and Open AI, which could happen as early as this year, could ...",
       "url": "https://www.economist.com/international/2026/08/13/silicon-valleys-ai-boom-is-remaking-american-charity",
@@ -1069,30 +1056,43 @@
       "id": "f698b3090d17ea33"
     },
     {
-      "title": "HCL at 50: From Rs 1.87 lakh and a Delhi barsati to a global technology giant",
-      "summary": "HCL's journey has also translated into significant value creation for shareholders. Since its listing in January 2000, HCL ...",
-      "url": "https://www.msn.com/en-in/news/other/hcl-at-50-from-rs-1-87-lakh-and-a-delhi-barsati-to-a-global-technology-giant/ar-AA2a0Atq?ocid=BingNewsVerp",
+      "title": "Complicity grief, liquidity anxiety: Silicon Valley therapists are confronting a...",
+      "summary": "Complicity grief, liquidity anxiety: Silicon Valley therapists are confronting a lot of new neuroses...",
+      "url": "https://www.yahoo.com/lifestyle/articles/complicity-grief-liquidity-anxiety-silicon-081101753.html",
       "source_name": "DuckDuckGo Tech",
       "source_icon": "D",
       "source_color": "#0891b2",
       "category": "TECH",
-      "published_at": "2026-08-14T00:00:00+00:00",
-      "fetched_at": "2026-08-16T08:33:49.099573+00:00",
+      "published_at": "2026-08-13T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.547612+00:00",
       "thumbnail_url": "",
-      "id": "29e3c59c403bdc3a"
+      "id": "8791e162763fbb82"
     },
     {
-      "title": "Harvey, Illinois adding Flock Safety drones amid growing concerns over surveillance technology and police misuse of data",
-      "summary": "Police in south suburban Harvey are expanding their surveillance technology with new Flock Safety drones, even as some other ...",
-      "url": "https://www.msn.com/en-us/news/us/harvey-illinois-adding-flock-safety-drones-amid-growing-concerns-over-surveillance-technology-and-police-misuse-of-data/ar-AA2a4473?ocid=BingNewsVerp",
+      "title": "Oklo just made big progress with small modular nuclear reactor technology. That's great news for these 2 ETFs",
+      "summary": "A nuclear energy company made a big breakthrough. Will it lead to bigger profits for these nuclear energy ETFs?",
+      "url": "https://www.msn.com/en-us/money/savingandinvesting/oklo-just-made-big-progress-with-small-modular-nuclear-reactor-technology-that-s-great-news-for-these-2-etfs/ar-AA29YQDY?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Tech",
       "source_icon": "D",
       "source_color": "#0891b2",
       "category": "TECH",
-      "published_at": "2026-08-14T00:00:00+00:00",
-      "fetched_at": "2026-08-16T08:33:49.099511+00:00",
+      "published_at": "2026-08-13T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.064494+00:00",
       "thumbnail_url": "",
-      "id": "9e21180127b18156"
+      "id": "68333f0e2ac8ae35"
+    },
+    {
+      "title": "South Korea unveils future technology projects, targets moon landing by 2030",
+      "summary": "SEOUL, Aug 12 (Reuters) - South Korea unveiled on Wednesday an ambitious technology strategy centred on seven projects ...",
+      "url": "https://www.msn.com/en-us/news/other/south-korea-unveils-future-technology-projects-targets-moon-landing-by-2030/ar-AA29TEUt?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-13T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.064442+00:00",
+      "thumbnail_url": "",
+      "id": "9d333aae5f25bb5b"
     },
     {
       "title": "Montana Tech represented at rare White House mining industry event",
@@ -1121,30 +1121,17 @@
       "id": "73b9bfa8bf12927d"
     },
     {
-      "title": "Complicity grief, liquidity anxiety: Silicon Valley therapists are confronting a...",
-      "summary": "Complicity grief, liquidity anxiety: Silicon Valley therapists are confronting a lot of new neuroses...",
-      "url": "https://www.yahoo.com/lifestyle/articles/complicity-grief-liquidity-anxiety-silicon-081101753.html",
+      "title": "Zuckerberg manifesto sketches out Meta's ambitions for world-changing AI technology",
+      "summary": "Meta Platforms CEO Mark Zuckerberg laid out a vision Monday of what he said artificial intelligence can do for the world, ...",
+      "url": "https://www.msn.com/en-us/technology/artificial-intelligence/zuckerberg-manifesto-sketches-out-meta-s-ambitions-for-world-changing-ai-technology/ar-AA29M3zC?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Tech",
       "source_icon": "D",
       "source_color": "#0891b2",
       "category": "TECH",
-      "published_at": "2026-08-13T00:00:00+00:00",
-      "fetched_at": "2026-08-16T06:45:43.954973+00:00",
+      "published_at": "2026-08-11T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.064507+00:00",
       "thumbnail_url": "",
-      "id": "8791e162763fbb82"
-    },
-    {
-      "title": "Adobe vs. BigBear.ai: Which Technology Stock Is a Better Buy in 2026?",
-      "summary": "Adobe generates nearly $10 billion in free cash flow with a 30% net margin, while BigBear.ai posted a $294 million loss on declining revenue.",
-      "url": "https://www.fool.com/coverage/better-buy/2026/08/12/adobe-vs-bigbearai-which-technology-stock-is-a-better-buy-in-2026/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-13T00:00:00+00:00",
-      "fetched_at": "2026-08-16T06:45:43.449816+00:00",
-      "thumbnail_url": "",
-      "id": "8eec43c619b94315"
+      "id": "bea8842ceaba665a"
     },
     {
       "title": "25-Year-Old Lost $35 Billion of His Investors’ Money. 2 Weeks Later, Silicon Valley Insiders Are Lining Up to Give Him More Cash.",
@@ -1199,6 +1186,19 @@
       "id": "cb095ddf97a6e7f4"
     },
     {
+      "title": "...35 Billion of His Investors’ Money. 2 Weeks Later, Silicon Valley Insiders Ar...",
+      "summary": "Leopold Aschenbrenner watched tens of billions evaporate in days, then got married, and now some of...",
+      "url": "https://www.aol.com/articles/25-old-lost-35-billion-105057596.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-10T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.547653+00:00",
+      "thumbnail_url": "",
+      "id": "b74dc63c956fbd35"
+    },
+    {
       "title": "Even Silicon Valley's original garage start-up has quit California",
       "summary": "The company that helped transform Silicon Valley into the global tech hub it is - or once was - is just one of the many ...",
       "url": "https://www.msn.com/en-us/money/companies/even-silicon-valleys-original-garage-start-up-has-quit-california/ar-AA29Gy07?ocid=BingNewsVerp",
@@ -1210,6 +1210,19 @@
       "fetched_at": "2026-08-17T01:35:28.530191+00:00",
       "thumbnail_url": "",
       "id": "8f8c20aa13dc4457"
+    },
+    {
+      "title": "Scheme to help boost women in the tech industry",
+      "summary": "The new task force will focus on four priorities: increasing the number of women starting and scaling up tech firms; ...",
+      "url": "https://www.aol.com/articles/scheme-help-boost-women-tech-061706000.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-07-28T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:33.343439+00:00",
+      "thumbnail_url": "",
+      "id": "bea143c9ef47c517"
     },
     {
       "title": "3 Best Tech Stocks to Buy in 2026 and How to Invest",
@@ -1260,19 +1273,6 @@
       "category": "TECH",
       "published_at": "2025-03-12T00:00:00+00:00",
       "fetched_at": "2026-08-17T01:35:28.134821+00:00",
-      "thumbnail_url": "",
-      "id": "2796bcf0afee47a7"
-    },
-    {
-      "title": "The tech industry can’t afford to ignore diversity",
-      "summary": "Anna Moghaddam is vice president of people at Pipe, a fintech company. The tech industry has long positioned itself as a driver of innovation, yet recent rollbacks of diversity initiatives raise ...",
-      "url": "https://www.hrdive.com/news/tech-industry-DEI/741446/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2025-03-12T00:00:00+00:00",
-      "fetched_at": "2026-08-16T06:45:43.614980+00:00",
       "thumbnail_url": "",
       "id": "2796bcf0afee47a7"
     },
@@ -1329,6 +1329,32 @@
       "fetched_at": "2026-08-17T01:35:30.216967+00:00",
       "thumbnail_url": "",
       "id": "d30b5d52b71123fc"
+    },
+    {
+      "title": "Jefferies Financial Group (JEF) Issues New Notes, Is The Stock Fully Valued?",
+      "summary": "Details of the new fixed income offerings Jefferies Financial Group (JEF) has launched and completed...",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/jefferies-financial-group-jef-issues-220919951.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-16T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:34.354291+00:00",
+      "thumbnail_url": "",
+      "id": "b3cb803dd86ba25c"
+    },
+    {
+      "title": "Beacon Financial (BBT) Stock Trades At A Discount To Fair Value But A Premium On...",
+      "summary": "Beacon Financial stock has returned 32.7% over the past year, yet the valuation work gives a mixed...",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/beacon-financial-bbt-stock-trades-170856464.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-16T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:34.354278+00:00",
+      "thumbnail_url": "",
+      "id": "bf56135af873f477"
     },
     {
       "title": "Micron Is Worth $1.1 Trillion and Sits 23% Below Its 52-Week High. Is the Stock...",
@@ -1578,43 +1604,43 @@
       "id": "e9b8730ecb69e0a0"
     },
     {
-      "title": "Is Silicon Laboratories (SLAB) Undervalued Following Earnings And Its BG2B...",
-      "summary": "Why Silicon Laboratories stock is in focus after fresh earnings and product news Silicon Laboratorie...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/silicon-laboratories-slab-undervalued-following-100816794.html",
+      "title": "Economist Justin Wolfers challenges Scott Bessent on K-shaped economy: 'Be a little more honest' (updated)",
+      "summary": "Editor’s Note: The story has been refreshed with the latest market price action and a revised headline. Prominent economist ...",
+      "url": "https://www.msn.com/en-us/money/economy/economist-justin-wolfers-challenges-scott-bessent-on-k-shaped-economy-be-a-little-more-honest-updated/ar-AA2a5DW8?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T10:27:11.764163+00:00",
+      "published_at": "2026-08-15T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:34.878318+00:00",
       "thumbnail_url": "",
-      "id": "1363bd2ded0759f2"
+      "id": "a2c21f6c3c75d552"
     },
     {
-      "title": "Meet the Roundhill ETF With 26% of Its Assets Parked in Micron Technology Stock",
-      "summary": "This ETF has already soared by 80% since launching in April.",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/meet-roundhill-etf-26-assets-095900695.html",
+      "title": "Wall Street slips from its record following the latest weak update on the US economy",
+      "summary": "The U.S. stock market hit all-time highs Thursday on new data that showed inflation cooled in July , as well as a decline in ...",
+      "url": "https://www.washingtonpost.com/business/2026/08/14/stocks-markets-rates-oil-inflation-futures/c70150e8-97a5-11f1-9ef9-1be722184483_story.html",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T10:27:11.764146+00:00",
+      "published_at": "2026-08-15T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:34.878292+00:00",
       "thumbnail_url": "",
-      "id": "96ade363bdf19ace"
+      "id": "512177bd5be345a5"
     },
     {
-      "title": "StandardAero (SARO) Stock Trades Below Fair Value While Earnings Look About...",
-      "summary": "StandardAero stock is slightly down year to date while a fresh Discounted Cash Flow (DCF) intrinsic...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/standardaero-saro-stock-trades-below-091209108.html",
+      "title": "Stock market leaders often reset their base counts. Here's how it happens.",
+      "summary": "When a leading growth stock resets its base count, it tends to wipe the slate clean of sellers, improving the chance for a ...",
+      "url": "https://www.msn.com/en-us/money/topstocks/stock-market-leaders-often-reset-their-base-counts-heres-how-it-happens/ar-AA2a82Nd?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-16T10:27:11.764071+00:00",
+      "published_at": "2026-08-15T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:34.667564+00:00",
       "thumbnail_url": "",
-      "id": "6cd4b6a8940862fe"
+      "id": "fb9a85260db9eca7"
     },
     {
       "title": "Tech Giants’ Profits Reveal Potential Vulnerability in the Stock Market",
@@ -1760,32 +1786,6 @@
       "id": "c4c5f2fd10306741"
     },
     {
-      "title": "Ministry of Finance and Economy: Recovery strengthens amid persistent burdens",
-      "summary": "The Ministry of Finance and Economy positively assessed the current economic situation, stating, “The flow of economic ...",
-      "url": "https://www.msn.com/en-xl/money/economy/ministry-of-finance-and-economy-recovery-strengthens-amid-persistent-burdens/ar-AA2a4cTD?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-14T00:00:00+00:00",
-      "fetched_at": "2026-08-16T10:27:12.431781+00:00",
-      "thumbnail_url": "",
-      "id": "639c2b35811e07f7"
-    },
-    {
-      "title": "Charting the global economy: US CPI softens, UK economy expands",
-      "summary": "US inflation showed little acceleration in July, reinforcing the Federal Reserve's pause on rate hikes. European economies ...",
-      "url": "https://www.msn.com/en-in/money/economy/charting-the-global-economy-us-cpi-softens-uk-economy-expands/ar-AA2adk8F?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-11T00:00:00+00:00",
-      "fetched_at": "2026-08-16T10:27:12.431798+00:00",
-      "thumbnail_url": "",
-      "id": "67a1d4d8ebdbbb6c"
-    },
-    {
       "title": "US economy’s growth was weaker than expected in the second quarter",
       "summary": "The world’s largest economy lost steam heading into summer as red-hot demand for AI infrastructure widened the trade deficit, ...",
       "url": "https://www.msn.com/en-us/money/markets/us-economy-s-growth-was-weaker-than-expected-in-the-second-quarter/ar-AA294gKG?ocid=BingNewsVerp",
@@ -1812,17 +1812,17 @@
       "id": "cc2834372731fbfb"
     },
     {
-      "title": "四大证券报头版头条内容精华摘要_2026年7月27日_财经新闻",
-      "summary": "临近7月底，中东地缘冲突再起波澜，国际原油价格反弹，全球权益资产尤其是科技板块迎来宽幅震荡。在业内机构看来，近期中东地缘冲突引发的原油冲击不是第一轮冲击的再度上演，8月市场 ...",
-      "url": "https://finance.sina.com.cn/stock/y/2026-07-27/doc-inikevrt0765520.shtml",
+      "title": "Charting the global economy: US CPI softens, UK economy expands",
+      "summary": "US inflation showed little acceleration in July, reinforcing the Federal Reserve's pause on rate hikes. European economies ...",
+      "url": "https://www.msn.com/en-in/news/other/charting-the-global-economy-us-cpi-softens-uk-economy-expands/ar-AA2adk8F?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "2026-07-27T00:00:00+00:00",
-      "fetched_at": "2026-08-16T08:33:52.642431+00:00",
+      "published_at": "2026-07-26T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:34.878306+00:00",
       "thumbnail_url": "",
-      "id": "a3836ddf6f7d5a9e"
+      "id": "50ac0148114dd61e"
     },
     {
       "title": "Americans’ evaluations of the economy remain negative",
@@ -1849,19 +1849,6 @@
       "fetched_at": "2026-08-17T01:35:30.916578+00:00",
       "thumbnail_url": "",
       "id": "dbda8f8d1820c316"
-    },
-    {
-      "title": "Consumer spending pushes U.S. economy up 4.4% in third quarter, fastest in two years",
-      "summary": "WASHINGTON (AP) — Powered by strong consumer spending, the U.S. economy grew at the fastest pace in two years from July through September, the government said Thursday in a slight upgrade of its first",
-      "url": "https://www.pbs.org/newshour/economy/consumer-spending-pushes-u-s-economy-up-4-4-in-third-quarter-fastest-in-two-years",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-01-22T00:00:00+00:00",
-      "fetched_at": "2026-08-16T08:33:52.367828+00:00",
-      "thumbnail_url": "",
-      "id": "34f388d53b65c2d6"
     },
     {
       "title": "What’s in Store for the Economy in 2026?",
@@ -1942,6 +1929,19 @@
       "id": "09a675848eeccfdf"
     },
     {
+      "title": "Economy Bounced Back in 2Q, Posting 3% Growth",
+      "summary": "The U.S. economy expanded at a 3% annual pace in the second quarter, bouncing back strongly from a contraction in the first ...",
+      "url": "https://money.usnews.com/money/personal-finance/articles/economy-bounced-back-in-2q-posting-3-growth",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2025-07-30T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:34.878278+00:00",
+      "thumbnail_url": "",
+      "id": "4b107f2fd808c156"
+    },
+    {
       "title": "'This is Trump's economy': Nobel winner butchers president's claims",
       "summary": "Nobel Laureate Paul Krugman left no room for U.S. Secretary of the Treasury Scott Bessent to hide in a blistering Friday ...",
       "url": "https://www.msn.com/en-ca/news/politics/this-is-trump-s-economy-nobel-winner-butchers-president-s-claims/ar-AA2a9dW3?ocid=BingNewsVerp",
@@ -1956,6 +1956,19 @@
     }
   ],
   "VIDEO": [
+    {
+      "title": "Review: Sublime, Wildly Entertaining \"Coyote vs. Acme\" May Be Warner's Ticking...",
+      "summary": "If you're just joining this story in progress, Looney Tunes cartoons have been the bedrock of Warner...",
+      "url": "https://www.showbiz411.com/2026/08/16/review-sublime-wildly-entertaining-coyote-vs-acme-may-be-warners-ticking-time-bomb-as-its-fate-is-decided-why-did-they-drop-it",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-08-17T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:36.100954+00:00",
+      "thumbnail_url": "",
+      "id": "ac1a9b560c197edf"
+    },
     {
       "title": "Flock Safety tightens safeguards as states, cities question surveillance network...",
       "summary": "Flock Safety is tightening privacy and oversight controls for its nationwide network of automated...",
@@ -2334,6 +2347,19 @@
       "id": "2d4ffbe1832412cb"
     },
     {
+      "title": "Tech Firms to Face Thousands of Lawsuits Over Social Media Addiction",
+      "summary": "A federal appeals court ruled that more than 3,000 cases against Meta, TikTok, Google, Snap and...",
+      "url": "https://www.yahoo.com/news/us/articles/tech-firms-face-thousands-lawsuits-093000076.html",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-08-11T00:00:00+00:00",
+      "fetched_at": "2026-08-17T03:03:35.663682+00:00",
+      "thumbnail_url": "",
+      "id": "d05b7d4b8d98cd9c"
+    },
+    {
       "title": "Senstar Technologies to Report Second Quarter of 2026 Results on Tuesday August...",
       "summary": "/PRNewswire/ -- Senstar Technologies Corporation (NASDAQ: SNT), a leading international provider of...",
       "url": "https://www.prnewswire.com/news-releases/senstar-technologies-to-report-second-quarter-of-2026-results-on-tuesday-august-25-2026-302848287.html",
@@ -2542,19 +2568,6 @@
       "id": "f400dff286ebdcbf"
     },
     {
-      "title": "Mark Cuban Explained Why AI Is Going to Make Your Healthcare More Expensive",
-      "summary": "Mark Cuban offered a scorching rebuttal to tech optimists who claim AI is about to streamline healthcare and bring down drug prices.",
-      "url": "https://www.inc.com/jessica-stillman/mark-cuban-explained-why-ai-is-going-to-make-your-healthcare-more-expensive/91373766",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2026-07-17T00:00:00+00:00",
-      "fetched_at": "2026-08-16T01:37:25.796374+00:00",
-      "thumbnail_url": "",
-      "id": "d3a82d7e66e1c6ea"
-    },
-    {
       "title": "OpenAI’s Upcoming Device Explained: Everything We Know About the Screenless AI Speaker",
       "summary": "OpenAI is reportedly developing a portable screenless AI speaker with cameras, sensors, GPT-Live, and moving parts.",
       "url": "https://www.techrepublic.com/article/news-openai-screenless-ai-speaker-hardware-2026/",
@@ -2592,23 +2605,10 @@
       "fetched_at": "2026-08-16T08:33:54.248494+00:00",
       "thumbnail_url": "",
       "id": "84154f75dc63286b"
-    },
-    {
-      "title": "AI Explained: Dor Brothers’ AI movies going viral",
-      "summary": "EAST PROVIDENCE, R.I. (WPRI) — The use of artificial intelligence in filmmaking may be controversial, but there’s no denying that the technology is making waves in the industry. AI Explained host Kait",
-      "url": "https://www.aol.com/articles/ai-explained-dor-brothers-ai-012214000.html",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2026-05-05T00:00:00+00:00",
-      "fetched_at": "2026-08-16T01:37:25.796336+00:00",
-      "thumbnail_url": "",
-      "id": "3f52aedf624fddb9"
     }
   ],
   "_meta": {
-    "updated_at": "2026-08-17T01:35:32.938864+00:00",
+    "updated_at": "2026-08-17T03:03:36.329439+00:00",
     "total": 200,
     "counts": {
       "AI": 50,
