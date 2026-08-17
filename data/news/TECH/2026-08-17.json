@@ -583,5 +583,70 @@
     "fetched_at": "2026-08-17T04:47:12.013243+00:00",
     "thumbnail_url": "",
     "id": "374ba60ef559fb95"
+  },
+  {
+    "title": "「选择无聊的技术」这篇 2015 年的文章，AI 时代突然又火了",
+    "summary": "一篇 2015 年的博客文章，最近突然爆火了。 Dan McKinley 在 Etsy 做工程师时写的《Choose Boring Technology》。核心思想很简单：每家公司只有大约三个「创新积分」。每选一个新技术（Node.js、MongoDB、自己写数据库），就花掉一个。积分用完了就没有了——直到你达到稳定和成熟状态之前不会再补充。 「无聊」不是说技...",
+    "url": "https://www.oschina.net/news/501954",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-17T06:50:29+00:00",
+    "fetched_at": "2026-08-17T07:02:37.203662+00:00",
+    "thumbnail_url": "",
+    "id": "b978685409648154"
+  },
+  {
+    "title": "RedisME：新时代的轻量跨平台 Redis 可视化工具",
+    "summary": "极度轻量：基于 Webview，无内嵌浏览器，安装包小于 10M；支持 Windows/Mac/Linux；支持信息、键值、终端、内存分析、慢日志、命令监控、发布订阅等",
+    "url": "https://my.oschina.net/u/3387224/blog/19739946",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-17T06:32:53+00:00",
+    "fetched_at": "2026-08-17T07:02:37.203724+00:00",
+    "thumbnail_url": "",
+    "id": "d6e98d0a47f7982d"
+  },
+  {
+    "title": "Stripe 以超过 70 亿美元收购 AI 模型路由平台 OpenRouter",
+    "summary": "据 Fortune 与 TechCrunch 援引知情人士消息，Stripe 已敲定协议，将以超过 70 亿美元的价格收购 AI 网关公司 OpenRouter。这笔交易的金额还未最终敲定，但有一个细节足够扎眼：仅仅三个月前，OpenRouter 才在一轮融资里拿到了 1.3 亿美元的估值。 从 1.3 亿美元到 70 亿美元，中间只隔了不到一个季度。 一家支付公司，为...",
+    "url": "https://www.oschina.net/news/501951/stripe-nears-deal-to-buy-ai-firm-openrouter-for-over-7-billion",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-17T06:12:33+00:00",
+    "fetched_at": "2026-08-17T07:02:37.203778+00:00",
+    "thumbnail_url": "",
+    "id": "d222f4ea5c4e7531"
+  },
+  {
+    "title": "Proxy-Go v15.3 发布，强化融合代理 + 内网穿透！",
+    "summary": "Proxy 是 golang 实现的高性能 http、https、websocket、tcp、udp、socks5 代理服务器，支持正向代理、反向代理、透明代理、内网穿透、TCP/UDP 端口映射、SSH 中转、TLS 加密传输、协议转换、DNS 防污染智能代理、前置 CDN/Nginx 反代、代理连接重定向、API 动态调用上级代理、限速限连接数。提供全平台的命令行版本，友...",
+    "url": "https://www.oschina.net/news/501950",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-17T05:47:01+00:00",
+    "fetched_at": "2026-08-17T07:02:37.203825+00:00",
+    "thumbnail_url": "",
+    "id": "6b349b8e2cd39cf1"
+  },
+  {
+    "title": "Oddity Tech (ODD) Stock Gets Fair Value Bump After Cautious Analyst Revisions",
+    "summary": "Oddity Tech’s modeled fair value has shifted from US$10.25 to about US$11.07, signaling a modest rec...",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/oddity-tech-odd-stock-gets-061002141.html",
+    "source_name": "DuckDuckGo Tech",
+    "source_icon": "D",
+    "source_color": "#0891b2",
+    "category": "TECH",
+    "published_at": "2026-08-16T00:00:00+00:00",
+    "fetched_at": "2026-08-17T07:02:41.277127+00:00",
+    "thumbnail_url": "",
+    "id": "451312c109174747"
   }
 ]
