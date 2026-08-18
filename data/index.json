@@ -339,19 +339,6 @@
       "id": "83d5c0a8b15a6969"
     },
     {
-      "title": "Trump Wanted Advanced Tech Made in America, Tim Cook Brought Mac Mini Production...",
-      "summary": "On Thursday, Apple Inc. CEO Tim Cook was joined by U.S. Commerce Secretary Howard Lutnick and others...",
-      "url": "https://finance.yahoo.com/technology/articles/trump-wanted-advanced-tech-made-033053059.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-08-18T00:00:00+00:00",
-      "fetched_at": "2026-08-18T06:50:02.881014+00:00",
-      "thumbnail_url": "",
-      "id": "dcb570eb5eb9b60a"
-    },
-    {
       "title": "Koozee Launches an All-in-One AI Visual Production Platform for Apparel...",
       "summary": "News Source: STARII TECHNOLOGY PTY LTD KOOZEE LAUNCHES AN ALL-IN-ONE AI VISUAL PRODUCTION PLATFORM...",
       "url": "https://pr.newsaegis.com/article/Koozee-Launches-an-All-in-One-AI-Visual-Production-Platform-for-Apparel-E-Commerce/6a847ebc16053400020b21bd",
@@ -417,17 +404,17 @@
       "id": "63fe79f1cd73a6af"
     },
     {
-      "title": "The Most Photographed Dog Breed in the World Is No. 1 for a Reason, and We...",
-      "summary": "Your camera roll probably has plenty of dog photos—but does it have the world's most photographed br...",
-      "url": "https://www.yahoo.com/lifestyle/articles/most-photographed-dog-breed-world-002000470.html",
+      "title": "Machine Learning COFFIES “Hears” Sunspots Before We Can See Them",
+      "summary": "In this age of neural net “AI”, even the most skeptical of Butlerians have to agree that these machine learning models can be ...",
+      "url": "https://hackaday.com/2026/08/15/machine-learning-coffies-hears-sunspots-before-we-can-see-them/",
       "source_name": "DuckDuckGo AI",
       "source_icon": "D",
       "source_color": "#f97316",
       "category": "AI",
-      "published_at": "2026-08-17T00:00:00+00:00",
-      "fetched_at": "2026-08-18T06:50:02.881031+00:00",
+      "published_at": "2026-08-16T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:37.328837+00:00",
       "thumbnail_url": "",
-      "id": "7359c5aa67760598"
+      "id": "9d32fe7b29cca6d7"
     },
     {
       "title": "DFRobot VP Speaks at TAMYZ FORUM 2026 on AI Education and Global Developer Ecosystem",
@@ -532,6 +519,19 @@
       "fetched_at": "2026-08-18T08:41:20.202576+00:00",
       "thumbnail_url": "",
       "id": "04047d18df96d88d"
+    },
+    {
+      "title": "From selling manpower to selling intelligence: How AI is changing Indian IT",
+      "summary": "AI is pushing Indian IT away from selling human effort towards intelligence and outcomes, opening a huge opportunity for companies that can successfully make the transition.",
+      "url": "https://www.cnbctv18.com/technology/from-selling-manpower-to-selling-intelligence-how-ai-is-changing-indian-it-19972061.htm",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-08-11T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:36.596160+00:00",
+      "thumbnail_url": "",
+      "id": "8c4b1dd892d45cbd"
     },
     {
       "title": "Apple-Hosted Healthcare Roundtable Explores the Next Leap: From Digital Hospitals to On-Premise AI Intelligence",
@@ -731,19 +731,6 @@
       "id": "e6061daa2b3e6ebd"
     },
     {
-      "title": "DuckDB 异步 I/O 让远程查询加速 20 倍",
-      "summary": "DuckDB 做了一个关键的架构变更。 从 v2.0（2026 年秋季）开始，DuckDB 将支持 Parquet 和 CSV 文件的异步读取。核心设计是双线程池：REGULAR 线程池负责解码、连接、聚合等计算任务，数量等于 CPU 核心数；ASYNC 线程池专为异步 I/O 设计，数量默认为系统线程数的 4 倍，上限 256 个。 配合预读队列，工作线程在需要数据...",
-      "url": "https://www.oschina.net/news/501982/duckdb-asynchronous-io",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-08-18T06:38:34+00:00",
-      "fetched_at": "2026-08-18T06:49:59.339205+00:00",
-      "thumbnail_url": "",
-      "id": "38eeb4abafbbc2a6"
-    },
-    {
       "title": "StreamSQL v1.2.0 发布：边缘 SQL 流处理引擎，补齐 CEP 与分析函数能力",
       "summary": "这是 v1.0.0 之后一次比较完整的能力升级。 这一版补上了 CEP 模式识别、分析函数、资源边界和可观测性相关能力，让 StreamSQL 不只是能做实时聚合，也能处理更复杂的连续事件和状态判断。 一、本次升级最值得关注的三件事 1. CEP：边缘事件序列检测终于有了原生 SQL 表达 CEP（Complex Event Processing，复杂事件处理）...",
       "url": "https://www.oschina.net/news/501980",
@@ -755,6 +742,97 @@
       "fetched_at": "2026-08-18T10:32:31.481580+00:00",
       "thumbnail_url": "",
       "id": "c263d0eb9d7468ed"
+    },
+    {
+      "title": "AI boom pushes worldwide tech layoffs above last year's total, with months left...",
+      "summary": "The effects reach household budgets, local job markets, and industry stability.",
+      "url": "https://finance.yahoo.com/technology/ai/articles/ai-boom-pushes-worldwide-tech-183400449.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:38.654577+00:00",
+      "thumbnail_url": "",
+      "id": "fa3e00f68e37ed21"
+    },
+    {
+      "title": "Info-Tech LIVE 2026 in Toronto to Feature IT Playbook Sessions Designed to...",
+      "summary": "Info-Tech Research Group will spotlight its seven interconnected IT Playbooks at Info-Tech LIVE 2026...",
+      "url": "https://www.wowktv.com/business/press-releases/cision/20260818TO28820/info-tech-live-2026-in-toronto-to-feature-it-playbook-sessions-designed-to-advance-it-excellence",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:38.654511+00:00",
+      "thumbnail_url": "",
+      "id": "01506f760fe05283"
+    },
+    {
+      "title": "Navy keeps Tanner as permanent chief information officer | Federal News Network",
+      "summary": "Tanner will manage the Navy and Marine Corps’ information technology portfolio of more than $12 bill...",
+      "url": "https://federalnewsnetwork.com/navy/2026/08/navy-keeps-tanner-as-permanent-chief-information-officer/",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:38.287773+00:00",
+      "thumbnail_url": "",
+      "id": "250c1b33282320e9"
+    },
+    {
+      "title": "Evolv Technology Strengthens Position in Houston Market with Con",
+      "summary": "Evolv Technologies Holdings, Inc. (NASDAQ: EVLV), a leading security technology company pioneering...",
+      "url": "https://www.gurufocus.com/news/9040897/evolv-technology-strengthens-position-in-houston-market-with-continued-system-deployment-and-renewal-of-partnership-with-houston-texans",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:38.287759+00:00",
+      "thumbnail_url": "",
+      "id": "8ff4328d6e78df26"
+    },
+    {
+      "title": "PAR Technology Releases Industry Report on AI in Restaurants",
+      "summary": "PAR Technology Corporation, a leading technology provider powering multi‑unit operations across rest...",
+      "url": "https://tech.yahoo.com/ai/deals/articles/par-technology-releases-industry-report-192835279.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:38.287739+00:00",
+      "thumbnail_url": "",
+      "id": "418d554c2b36a04d"
+    },
+    {
+      "title": "US News ranks top high schools in Mississippi. See the 2026 list",
+      "summary": "U.S. News released 2026-27 rankings for the best high schools in the country. See which Mississippi...",
+      "url": "https://www.yahoo.com/news/us/articles/us-news-ranks-top-high-144618369.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:38.287684+00:00",
+      "thumbnail_url": "",
+      "id": "3df88768a4cd08b3"
+    },
+    {
+      "title": "US News says these are the 5 best high schools in Louisiana in 2026",
+      "summary": "U.S. News & World Report ranked the best high schools in Louisiana. These are the top 5 for...",
+      "url": "https://www.aol.com/articles/us-news-says-5-best-183500223.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:38.287659+00:00",
+      "thumbnail_url": "",
+      "id": "1dd8f75f1822f492"
     },
     {
       "title": "Is Silicon Valley in the Justice Dept.’s Sights?",
@@ -991,45 +1069,6 @@
       "id": "cc99c2447c575e5d"
     },
     {
-      "title": "Why MACOM (MTSI) Stock Is Trading Up Today",
-      "summary": "Shares of network chips maker MACOM Technology Solutions (NASDAQ: MTSI) jumped 3% in the afternoon session after Benchmark reinstated coverage of the...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/why-macom-mtsi-stock-trading-011820351.html",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-18T00:00:00+00:00",
-      "fetched_at": "2026-08-18T06:50:03.906502+00:00",
-      "thumbnail_url": "",
-      "id": "72139a3e7d680be6"
-    },
-    {
-      "title": "U.S. News Reveals 2026-2027 Best High Schools Rankings",
-      "summary": "/PRNewswire/ -- U.S. News & World Report, the global authority in education rankings, announced the...",
-      "url": "https://www.prnewswire.com/news-releases/us-news-reveals-2026-2027-best-high-schools-rankings-302853368.html",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-18T00:00:00+00:00",
-      "fetched_at": "2026-08-18T06:50:03.906474+00:00",
-      "thumbnail_url": "",
-      "id": "6c1d69a79de9465a"
-    },
-    {
-      "title": "See Pittsburgh high school rankings on US News list of top schools",
-      "summary": "A US News and World Report ranking put some Pittsburgh-area schools among the top schools in the...",
-      "url": "https://www.yahoo.com/news/us/articles/see-pittsburgh-high-school-rankings-060016275.html",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-18T00:00:00+00:00",
-      "fetched_at": "2026-08-18T06:50:03.906444+00:00",
-      "thumbnail_url": "",
-      "id": "f58e25335cf82554"
-    },
-    {
       "title": "Cloom Tech Expands Wire Harness Sourcing Coordination Through Philippine...",
       "summary": "Cloom Tech Expands Wire Harness Sourcing Coordination Through Philippine Facilities",
       "url": "https://pr.newsaegis.com/article/Cloom-Tech-Expands-Wire-Harness-Sourcing-Coordination-Through-Philippine-Facilities/6a844d9aebec5f000224de44",
@@ -1082,19 +1121,6 @@
       "id": "c390d54ece2364b1"
     },
     {
-      "title": "Robbins LLP Urges ALAR Stockholders Who Lost Money Investing in Alarum...",
-      "summary": "SAN DIEGO, Aug. 17, 2026 /PRNewswire/ -- Robbins LLP reminds investors that a securities class...",
-      "url": "https://www.nwahomepage.com/business/press-releases/cision/20260817LA28024/robbins-llp-urges-alar-stockholders-who-lost-money-investing-in-alarum-technologies-ltd-to-contact-the-firm-for-information-about-recovering-their-losses",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-17T00:00:00+00:00",
-      "fetched_at": "2026-08-18T06:50:03.906515+00:00",
-      "thumbnail_url": "",
-      "id": "07f2df960c74cff9"
-    },
-    {
       "title": "ShengShu Technology explores Hong Kong IPO for over $500 million",
       "summary": "ShengShu Technology, an artificial intelligence video platform backed by Alibaba Group Holding Ltd., is exploring a Hong Kong initial public offering that could raise more than $500 million, Bloomberg",
       "url": "https://finance.yahoo.com/technology/ai/articles/shengshu-technology-explores-hong-kong-123003542.html",
@@ -1121,19 +1147,6 @@
       "id": "53e92a736b94a838"
     },
     {
-      "title": "Eataly Silicon Valley vendor temporarily shut down due to vermin",
-      "summary": "(KRON) — One of the restaurants in San Jose’s bustling Eataly Silicon Valley food facility was tempo...",
-      "url": "https://www.yahoo.com/news/us/articles/eataly-silicon-valley-vendor-shut-222106582.html",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-15T00:00:00+00:00",
-      "fetched_at": "2026-08-18T06:50:04.606984+00:00",
-      "thumbnail_url": "",
-      "id": "774a714158533243"
-    },
-    {
       "title": "DTI students showcase innovations in art, technology and sustainable design at capstone exhibition",
       "summary": "Accra, Aug. 18, GNA – Students of the Design and Technology Institute (DTI) have showcased innovative capstone projects ranging from robotics and assistive technology to sustainable housing models, ..",
       "url": "https://www.msn.com/en-xl/entertainment/general/dti-students-showcase-innovations-in-art-technology-and-sustainable-design-at-capstone-exhibition/ar-AA2aoOtT?ocid=BingNewsVerp",
@@ -1158,19 +1171,6 @@
       "fetched_at": "2026-08-18T10:32:36.092965+00:00",
       "thumbnail_url": "",
       "id": "88e9cd535e49fe79"
-    },
-    {
-      "title": "Trane Technologies PLC (TT) Stock Price Today - WSJ",
-      "summary": "View the latest Trane Technologies PLC (TT) stock price, news, historical charts, analyst ratings and financial information from WSJ.",
-      "url": "https://www.wsj.com/market-data/quotes/TT",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-14T00:00:00+00:00",
-      "fetched_at": "2026-08-18T06:50:03.906489+00:00",
-      "thumbnail_url": "",
-      "id": "71d54331aef36314"
     },
     {
       "title": "Uplift Investors Announces Acquisition of Technology Consultancy Engage fi",
@@ -1304,6 +1304,32 @@
     }
   ],
   "FINANCE": [
+    {
+      "title": "Capital Markets Stock News",
+      "summary": "Global Capital Markets Stock News",
+      "url": "https://www.gurufocus.com/latest-news/all/capital-markets",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:40.515245+00:00",
+      "thumbnail_url": "",
+      "id": "ac9f113a80ab9d93"
+    },
+    {
+      "title": "Kennametal, Proto Labs, and Johnson Controls Stocks Trade Down, What You Need To...",
+      "summary": "A number of stocks fell in the morning session after the latest industrial production report showed...",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/kennametal-proto-labs-johnson-controls-221333932.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:40.515163+00:00",
+      "thumbnail_url": "",
+      "id": "f39a20ed3aaafcc3"
+    },
     {
       "title": "Stock Market Today (Aug. 18, 2026): Dow, S&P 500 slips on higher oil prices,...",
       "summary": "Investors are concerned after President Trump said he would not try to revive a stalled truce with...",
@@ -1695,19 +1721,6 @@
       "id": "9fd24ff791fdb0a1"
     },
     {
-      "title": "Stock Market Today: Dow, S&P 500 and Nasdaq set to decline as bond sell-off deepens; yield on U.S. 30-year Treasury hits highest in 19 years; Home Depot results on tap",
-      "summary": "Follow all the latest U.S. market action for Tuesday here.",
-      "url": "https://www.marketwatch.com/livecoverage/stock-market-today-dow-s-p-500-nasdaq-bond-sell-off-yield-us-30-year-treasury-home-depot-results",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-16T00:00:00+00:00",
-      "fetched_at": "2026-08-18T10:32:38.515774+00:00",
-      "thumbnail_url": "",
-      "id": "06fbe9cacebf2819"
-    },
-    {
       "title": "C is for C-shaped economy",
       "summary": "C or K? We examine the arguments for both and why there’s so much disagreement over who’s faring best in today’s economy. ...",
       "url": "https://www.npr.org/2026/08/13/nx-s1-5929491/c-is-for-c-shaped-economy",
@@ -1799,17 +1812,17 @@
       "id": "e1aeac7f02b05b8c"
     },
     {
-      "title": "Dow Jones futures: Trump comments spark stock market losses; Elon Musk-led SpaceX rallies",
-      "summary": "Dow Jones Futures: President Trump's U.S.-Iran comments sparked market losses Monday as oil prices jumped. Elon Musk-led SpaceX rallied.",
-      "url": "https://www.msn.com/en-us/money/topstocks/dow-jones-futures-trump-comments-spark-stock-market-losses-elon-musk-led-spacex-rallies/ar-AA2akfcm?ocid=BingNewsVerp",
+      "title": "Questflow Unveils Brand Evolution as AI Finance Agent, Advancing “Financial Intelligence for All\"",
+      "summary": "Questflow today announced a major brand evolution, repositioning the company as a platform for AI Finance Agents and ...",
+      "url": "https://www.reuters.com/press-releases/questflow-ai-finance-agent-financial-intelligence-2026-08-18/",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "2026-08-10T00:00:00+00:00",
-      "fetched_at": "2026-08-18T10:32:38.515728+00:00",
+      "published_at": "2026-08-09T00:00:00+00:00",
+      "fetched_at": "2026-08-18T22:27:40.180911+00:00",
       "thumbnail_url": "",
-      "id": "506d049d9f09f748"
+      "id": "cb5af411f50b02fc"
     },
     {
       "title": "US economy’s growth was weaker than expected in the second quarter",
@@ -1914,19 +1927,6 @@
       "fetched_at": "2026-08-18T20:28:43.389895+00:00",
       "thumbnail_url": "",
       "id": "d4353f025bd96679"
-    },
-    {
-      "title": "Stock Market Highlights, Sensex Today: Sensex Drops 492 Points As Oil Tops $90 Amid US-Iran War",
-      "summary": "Our view remains positive on the business, but investors should avoid chasing the stock at current levels. Hold with a ...",
-      "url": "https://www.ndtv.com/business-news/stock-market-sensex-share-market-nifty-live-updates-today-18-august-us-iran-war-oil-prices-11923639",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "Opinion2 minutes ago",
-      "fetched_at": "2026-08-18T10:32:38.515787+00:00",
-      "thumbnail_url": "",
-      "id": "64ae9b43284ba16b"
     },
     {
       "title": "Bessent’s upbeat economy pitch is meeting hard pushback",
@@ -2608,7 +2608,7 @@
     }
   ],
   "_meta": {
-    "updated_at": "2026-08-18T20:28:46.316851+00:00",
+    "updated_at": "2026-08-18T22:27:43.338478+00:00",
     "total": 200,
     "counts": {
       "AI": 50,
