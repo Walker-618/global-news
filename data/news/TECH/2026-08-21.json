@@ -583,5 +583,83 @@
     "fetched_at": "2026-08-21T08:45:42.840648+00:00",
     "thumbnail_url": "",
     "id": "b3621634901152fe"
+  },
+  {
+    "title": ":fire: SolonCode 是不是国产化替代 ClaudeCode 的优选？",
+    "summary": "安全审计、代码脱敏、数据本地化，是国内企业换掉 ClaudeCode（或任何海外 AI 编码助手）的三条真实理由。但「能换」和「换得舒服」之间，还隔着很多具体细节——安装、配置、模型选择、代码理解能力、与既有工程线的兼容性，一项项都比较清楚，才能判断谁才是「最优」。 本文不喊口号，逐条对照，结论在最后。 二、Sol...",
+    "url": "https://www.oschina.net/news/502066",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-21T09:58:12+00:00",
+    "fetched_at": "2026-08-21T10:34:19.775311+00:00",
+    "thumbnail_url": "",
+    "id": "52496509783066cf"
+  },
+  {
+    "title": "DeepSeek V4-Flash 补上视觉能力，多模态 Agent 接近 Opus 4.8",
+    "summary": "DeepSeek 今天给 V4-Flash 补上了视觉能力。 新模型叫 DeepSeek-V4-Flash-Vision-Exp，一个实验性质的版本，已通过 deepseek-v4-flash-vision-exp 这个 model id 在 DeepSeek API 平台上开放调用。 纯文本不降级，视觉大幅跃升 最关键的指标：在纯文本能力（Agent、推理、世界知识等）上，Vision-Exp ",
+    "url": "https://www.oschina.net/news/502065",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-21T09:49:00+00:00",
+    "fetched_at": "2026-08-21T10:34:19.775363+00:00",
+    "thumbnail_url": "",
+    "id": "180380cdb043b42d"
+  },
+  {
+    "title": "Hikyuu 2.8.2 发布，超高速开源量化交易框架",
+    "summary": "Hikyuu Quant Framework 基于 C++/Python 的超高速量化交易框架，同时可基于策略部件进行资产重用，快速累积策略资产 2.8.2 版本主要更新 :rocket: 新增特性 新增指标：RSRS_BETA、RSRS_BULL、ADX、ADX2 feat(indicator): 添加origin-id用于缓存身份标识，提升指标计算缓存准确性 feat(draw): 更新热力图",
+    "url": "https://www.oschina.net/news/502063",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-21T09:04:18+00:00",
+    "fetched_at": "2026-08-21T10:34:19.775389+00:00",
+    "thumbnail_url": "",
+    "id": "becb3f61f5948806"
+  },
+  {
+    "title": "Java Web 服务器 wastnet 上传和下载实战",
+    "summary": "文件上传与下载是 Web 服务最基础也最高频的能力，从网盘、CMS 到 OSS 网关几乎无处不在。实现逻辑无非两件事：把 multipart/form-data 里的文件流式存到磁盘；再把磁盘上的文件送回客户端。 本文用同一个&quot;上传文件到服务器、再把它下载回去&quot;的小服务为例，展示 wastnet 在上传与下载场景下的 API 设计。 场景 一个文件服...",
+    "url": "https://www.oschina.net/news/502060",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-21T08:04:15+00:00",
+    "fetched_at": "2026-08-21T10:34:19.775439+00:00",
+    "thumbnail_url": "",
+    "id": "f91d685aa02e0272"
+  },
+  {
+    "title": "开源语义切片利器 Pragmatic Chunker 发布：一条命令打通 RAG 检索全链路",
+    "summary": "面向 RAG 场景的语义化文件切片与向量入库工具，Java 17 构建，从切片到检索一气呵成。 一、背景：RAG 落地的第一道门槛 检索增强生成（RAG，Retrieval-Augmented Generation）已经成为企业把私有文档、代码库接入大模型的标配方案。但真正动手落地时，开发者往往要自己拼接一条并不轻松的流水线：切分 → 向量化 → 入库...",
+    "url": "https://www.oschina.net/news/502058",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-21T07:08:59+00:00",
+    "fetched_at": "2026-08-21T10:34:19.775488+00:00",
+    "thumbnail_url": "",
+    "id": "f9f86d89a023f51c"
+  },
+  {
+    "title": "iForge V0.0.1 首个版本正式发布｜自托管一体化研发协作平台",
+    "summary": "历经迭代打磨，iForge V0.0.1 首个正式版本现已全新发布！这是项目对外公开的第一个可用版本，聚焦团队研发流程痛点，打造任务、代码、评审、CI/CD、交付全链路一体化的自托管研发协作平台，彻底打通需求到上线的研发闭环，适配中小团队私有化部署、自主管控的研发场景。 区别于传统拆分式的项目管理、代码托管工具，iFo...",
+    "url": "https://www.oschina.net/news/502056",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-21T06:48:36+00:00",
+    "fetched_at": "2026-08-21T10:34:19.775506+00:00",
+    "thumbnail_url": "",
+    "id": "dafca1278788e1f1"
   }
 ]
