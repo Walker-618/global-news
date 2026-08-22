@@ -921,5 +921,57 @@
     "fetched_at": "2026-08-22T16:29:10.730534+00:00",
     "thumbnail_url": "",
     "id": "03d5bfe7e61f4982"
+  },
+  {
+    "title": ":clap: 日志审计系统 WGLOG v2.2 正式发布",
+    "summary": "WGLOG 日志审计系统是私有化部署的 B/S 系统，只需要在本地搭建好 WGLOG 后，所有用户都通过浏览器来访问使用即可，不需要在安装任何组件和客户端 WGLOG 是一款轻量级的日志审计系统，主要用于实时收集服务器、主机、网络设备、防火墙、数据库、API 接口等设备的日志文件，也支持离线日志文件导入 采集日志完成后统一进行...",
+    "url": "https://www.oschina.net/news/502073",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-22T07:10:02+00:00",
+    "fetched_at": "2026-08-22T18:35:38.261533+00:00",
+    "thumbnail_url": "",
+    "id": "1b87387105e501f3"
+  },
+  {
+    "title": "ModStartBlog v11.1.0 越用越快，功能全面，体验更流畅",
+    "summary": "ModStart 是一个基于 Laravel 模块化极速开发框架。模块市场拥有丰富的功能应用，支持后台一键快速安装，让开发者能快的实现业务功能开发。 系统完全开源，基于 Apache 2.0 开源协议。 功能特性 丰富的模块市场，后台一键快速安装 会员模块通用且完整，支持完整的API调用 大文件分片上传，进度条显示，已上传文件管理 强...",
+    "url": "https://www.oschina.net/news/502072",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-22T05:15:58+00:00",
+    "fetched_at": "2026-08-22T18:35:38.261573+00:00",
+    "thumbnail_url": "",
+    "id": "f642949275e9e902"
+  },
+  {
+    "title": ":fire: SolonCode 的两个\"后悔药\"：重新运行 vs 继续运行",
+    "summary": "在 SolonCode Web 聊天界面底部，工具栏有三个按钮（从左到右）： Cop — 复制上一条回复内容 Re-run（重新运行） — 删除旧回答，重新跑一轮 Continue（继续运行） — 保留旧回答，继续追加内容 这两个按钮看起来很像，但行为完全不同。今天深入拆解它们的实现。 重新运行（Re-run） 行为： 删除旧的气泡，用同样的输入...",
+    "url": "https://www.oschina.net/news/502070",
+    "source_name": "开源中国",
+    "source_icon": "源",
+    "source_color": "#22c55e",
+    "category": "TECH",
+    "published_at": "2026-08-21T23:40:39+00:00",
+    "fetched_at": "2026-08-22T18:35:38.261653+00:00",
+    "thumbnail_url": "",
+    "id": "fc5375be755c6217"
+  },
+  {
+    "title": "U.S. National Security Science & Technology Strategy",
+    "summary": "The following is the White House National Security Science and Technology Strategy released earlier this week. From the ...",
+    "url": "https://news.usni.org/2026/08/20/u-s-national-security-science-technology-strategy",
+    "source_name": "DuckDuckGo Tech",
+    "source_icon": "D",
+    "source_color": "#0891b2",
+    "category": "TECH",
+    "published_at": "2026-08-20T00:00:00+00:00",
+    "fetched_at": "2026-08-22T18:35:43.672887+00:00",
+    "thumbnail_url": "",
+    "id": "6687f5be770b821e"
   }
 ]
