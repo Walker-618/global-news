@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 资讯 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🤖 AI 资讯</span>
+    </div>
+    <div class="header-date">
+      <span>2026年8月22日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历7月10日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/billionaire-stanley-druckenmiller-sold-broadcom-202000780.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Billionaire Stanley Druckenmiller Sold Broadcom and Bought the Same Artificial...</div>
+        <div class="news-summary">Stanley Druckenmiller's investment firm just swapped out Broadcom for a member o</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.prnewswire.com/news-releases/sharon-ai-successfully-delivers-ai-cloud-deployment-for-global-technology-customer-302856338.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Sharon AI Successfully Delivers AI Cloud Deployment for Global Technology...</div>
+        <div class="news-summary">/PRNewswire/ -- SharonAI Holdings Inc. (NASDAQ: SHAZ) and its subsidiaries ("Sha</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/politics/articles/usa-today-co-staffers-stage-133031143.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">USA Today Co. staffers stage walkout to protest AI usage</div>
+        <div class="news-summary">Artificial intelligence is increasing in capacity and usage at an astounding rat</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-in/technology/artificial-intelligence/comsia-2026-best-paper-award-to-three-us-based-technology-leaders-for-their-research-on-ai-based-project-management/ar-AA2as0p8?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">ComSIA 2026 best paper award to three US-based technology leaders for their research on AI-based project management</div>
+        <div class="news-summary">Samrat Mukherjee, Selvaraj Durairaj and Asadullah Saif Mohammed talk about how a</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/kraneshares-launches-asia-ai-technology-130000453.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">KraneShares Launches Asia AI Technology ETF (NYSE: KAIT)</div>
+        <div class="news-summary">KraneShares, a leading provider of exchange-traded funds (ETFs) delivering acces</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/alphabet-googl-signaling-ai-chip-231221134.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">What Is Alphabet (GOOGL) Signaling With Its New AI Chip Stake Option?</div>
+        <div class="news-summary">Alphabet (NasdaqGS:GOOGL) has expanded its AI chip partnership with Marvell Tech</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/trane-technologies-plc-tt-eaton-225548421.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Can Trane Technologies plc (TT) and Eaton Corporation, PLC (ETN) Become Major...</div>
+        <div class="news-summary">Trane Technologies plc (NYSE:TT) and Eaton Corporation, PLC (NYSE:ETN) announced</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.fox9.com/video/fmc-3z9o8fg025fb2owc" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Do workers actually use Artificial Intelligence on the job?</div>
+        <div class="news-summary">Fears of job replacement due to artificial intelligence are growing, but the rea</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/transportation/articles/alphabets-waymo-just-unveiled-house-173420447.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Alphabet's Waymo Just Unveiled An In-House Chip – A Look At Some Key Highlights</div>
+        <div class="news-summary">Waymo’s five-nanometer application-specific integrated circuit was built to proc</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://science.nasa.gov/centers-and-facilities/goddard/nasa-river-forecasts-snow-drought/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">NASA Data Feeds River Forecasts as Snow Drought Effects Linger - NASA Science</div>
+        <div class="news-summary">NASA Earth science data is supporting machine-learning forecasts that inform dec</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/technology/singularity-future-technology-signs-framework-agreement-for-potential-900-acre-ai-data-center-campus/ar-AA2azpqa" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Singularity Future Technology signs framework agreement for potential 900-acre AI data center campus</div>
+        <div class="news-summary">Singularity Future Technology (NASDAQ:SGLY) has entered into a non-binding strat</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/billionaire-stanley-druckenmiller-sells-micron-173500718.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">... Sells Micron and Is Piling Into This Other Unstoppable Artificial...</div>
+        <div class="news-summary">Druckenmiller's Duquesne Family Office just dumped its entire position in Micron</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/dxc-technology-dxc-launched-ai-051115855.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">DXC Technology (DXC) Launched AI Native Workplace And Security Services</div>
+        <div class="news-summary">DXC Technology (NYSE:DXC) introduced DXC Workplace Services, an AI native manage</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://wtop.com/world/2026/08/alibaba-quarterly-profit-drops-75-as-ai-investment-spending-grows/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Alibaba quarterly profit drops 75% as AI investment spending grows - WTOP News</div>
+        <div class="news-summary">HONG KONG (AP) — China’s technology giant Alibaba on Thursday reported a 75% dro</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/why-fastly-fsly-shares-falling-222715884.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Why Fastly (FSLY) Shares Are Falling Today</div>
+        <div class="news-summary">Shares of edge cloud platform Fastly (NASDAQ:FSLY) fell 5.6% in the afternoon se</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/politics/articles/usa-today-co-staffers-stage-133031143.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">USA Today Co. staffers stage walkout to protest AI usage</div>
+        <div class="news-summary">Artificial intelligence is increasing in capacity and usage at an astounding rat</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.wowktv.com/business/press-releases/cision/20260820LA30796/lereta-names-new-chief-technology-officer-to-lead-platform-modernization" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">LERETA Names New Chief Technology Officer to Lead Platform Modernization</div>
+        <div class="news-summary">In this role, Khurram will lead LERETA's technology organization, with responsib</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/artificial-intelligence-ai-robots-market-151500556.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Artificial Intelligence (AI) Robots Market to Reach USD 33.39 Billion by 2030, Growing at 40.4% CAGR, Says MarketsandMarkets™</div>
+        <div class="news-summary">The global Artificial Intelligence (AI) Robots Market is projected to grow from </div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/chronoscale-plans-50-mw-ai-144707254.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">ChronoScale plans 50 MW AI deployment under two-year Microsoft partnership</div>
+        <div class="news-summary">The NVIDIA GB300 deployment is targeted for early 2027, but financing remains ou</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://science.nasa.gov/centers-and-facilities/goddard/nasa-river-forecasts-snow-drought/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">NASA Data Feeds River Forecasts as Snow Drought Effects Linger - NASA Science</div>
+        <div class="news-summary">NASA Earth science data is supporting machine-learning forecasts that inform dec</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./4.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="active">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./6.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 资讯 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🤖 AI 资讯</span>
+    </div>
+    <div class="header-date">
+      <span>2026年8月22日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历7月10日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.msn.com/en-us/technology/artificial-intelligence/warning-signs-point-to-artificial-intelligence-market-crash/vi-AA2aH8jL?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Warning signs point to artificial intelligence market crash</div>
+        <div class="news-summary">Warning signs point to artificial intelligence market crash ...</div>
+        <div class="news-time">08月15日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.azcentral.com/press-release/story/110315/voiso-highlights-the-growing-need-for-ai-powered-contact-center-technology-built-for-modern-bpo-growth/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Voiso Highlights the Growing Need for AI-Powered Contact Center Technology Built for Modern BPO Growth</div>
+        <div class="news-summary">SINGAPORE, SG - August 14, 2026 - PRESSADVANTAGE - As the BPO industry evolves b</div>
+        <div class="news-time">08月15日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/usa-today-taps-palantir-turn-071800862.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">USA Today taps Palantir to turn reader data into 'actionable intelligence'</div>
+        <div class="news-summary">"Every visit, every session, and every moment of attention creates a signal."</div>
+        <div class="news-time">08月14日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/other/billionaire-stanley-druckenmiller-sells-micron-and-is-piling-into-this-other-unstoppable-artificial-intelligence-ai-chip-stock-instead/ar-AA2aAt6T?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Billionaire Stanley Druckenmiller sells Micron and is piling into this other unstoppable artificial intelligence (AI) chip stock instead</div>
+        <div class="news-summary">Druckenmiller's Duquesne Family Office just dumped its entire position in Micron</div>
+        <div class="news-time">08月14日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/industrial-ai-activity-jumps-more-120000436.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Industrial AI Activity Jumps More Than 218% as Partnerships, Gen AI, and Physical AI Redefine Manufacturing</div>
+        <div class="news-summary">Sharp growth in industrial AI dealmaking reflects a market shift from experiment</div>
+        <div class="news-time">08月14日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/zh-cn/weather/通用/追踪白海豚用上ai气象大模型-外媒-中国已成为气象预报领先者/ar-AA2a0TZc?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">追踪白海豚用上AI气象大模型，外媒：中国已成为气象预报领先者</div>
+        <div class="news-summary">据外媒路透社报道，近日，气象学家们在追踪今年第13号台风白海豚路径怎么走的时候，除了运用传统预报系统以外，还用上了新一代人工智能（AI）气象大模型，充分体现了中</div>
+        <div class="news-time">08月13日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.manilatimes.net/2026/08/13/tmt-newswire/plentisoft/xiangtian-hui-examines-machine-learning-and-data-engineering-methods-for-healthcare-data-systems-and-cancer-informatics/2404256" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Xiangtian Hui Examines Machine Learning and Data Engineering Methods for Healthcare Data Systems and Cancer Informatics</div>
+        <div class="news-summary">A body of healthcare AI research connects data infrastructure, machine learning,</div>
+        <div class="news-time">08月13日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-au/news/other/inside-the-lifesaving-ai-technology-that-has-already-saved-two-australians-as-it-rolls-out-nationwide/ar-AA29TaZC?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Inside the lifesaving AI technology that has already saved two Australians as it rolls out nationwide</div>
+        <div class="news-summary">AI-powered cameras designed to detect swimmers in distress and alert lifeguards </div>
+        <div class="news-time">08月12日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-in/news/other/14-year-old-combines-machine-learning-and-crispr-to-make-cleaner-biofuel/ar-AA29Q8NX?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">14-year-old combines machine learning and CRISPR to make cleaner biofuel</div>
+        <div class="news-summary">A 14-year-old in the United States is combining machine learning and CRISPR to t</div>
+        <div class="news-time">08月12日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-in/news/other/14-year-old-combines-machine-learning-and-crispr-to-make-cleaner-biofuel/ar-AA29Q8NX?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">14-year-old combines machine learning and CRISPR to make cleaner biofuel</div>
+        <div class="news-summary">A 14-year-old in the United States is combining machine learning and CRISPR to t</div>
+        <div class="news-time">08月12日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.fool.com/coverage/better-buy/2026/08/12/adobe-vs-bigbearai-which-technology-stock-is-a-better-buy-in-2026/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Adobe vs. BigBear.ai: Which Technology Stock Is a Better Buy in 2026?</div>
+        <div class="news-summary">Adobe generates nearly $10 billion in free cash flow with a 30% net margin, whil</div>
+        <div class="news-time">08月12日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/other/machine-learning-predicts-forest-soil-fungal-diversity-from-drone-images/ar-AA29OoDs?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine learning predicts forest soil fungal diversity from drone images</div>
+        <div class="news-summary">Combining drone data and machine learning can help cover more ground in monitori</div>
+        <div class="news-time">08月11日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-in/news/other/mark-zuckerberg-manifesto-sketches-out-meta-s-ambitions-for-world-changing-ai-technology/ar-AA29O7Hs?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Mark Zuckerberg manifesto sketches out Meta's ambitions for world-changing AI technology</div>
+        <div class="news-summary">In a document derided by critics as fantastical, Zuckerberg said his company is </div>
+        <div class="news-time">08月11日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/other/machine-learning-predicts-forest-soil-fungal-diversity-from-drone-images/ar-AA29OoDs?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine learning predicts forest soil fungal diversity from drone images</div>
+        <div class="news-summary">Combining drone data and machine learning can help cover more ground in monitori</div>
+        <div class="news-time">08月11日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/technology/artificial-intelligence/zuckerberg-manifesto-pushes-an-open-source-approach-on-ai-as-meta-releases-its-latest-model/ar-AA29MxNN?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Zuckerberg manifesto sketches out Meta's ambitions for world-changing AI technology</div>
+        <div class="news-summary">Meta Platforms CEO Mark Zuckerberg laid out a vision Monday of what he said arti</div>
+        <div class="news-time">08月11日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/technology/artificial-intelligence/zuckerberg-manifesto-pushes-an-open-source-approach-on-ai-as-meta-releases-its-latest-model/ar-AA29MxNN?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Zuckerberg manifesto sketches out Meta's ambitions for world-changing AI technology</div>
+        <div class="news-summary">Meta Platforms CEO Mark Zuckerberg laid out a vision Monday of what he said arti</div>
+        <div class="news-time">08月11日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/sharonai-holdings-delivers-initial-ai-113607876.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">SharonAI Holdings Delivers Initial AI Cloud Deployment for Global Tech Customer</div>
+        <div class="news-summary">SharonAI Holdings (SHAZ) has delivered an initial artificial intelligence cloud </div>
+        <div class="news-time">08月10日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.kqed.org/arts/13993030/who-profits-from-ai-music-suno-udio-lawsuit-music-artists-coalition" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">The Grueling Fight Over Who Profits From AI Music</div>
+        <div class="news-summary">As songwriter PJ Frantz put it to me, the future of AI music may depend less on </div>
+        <div class="news-time">08月10日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-xl/technology/hardware-and-devices/lg-uplus-verifies-ai-router-self-repair-technology/ar-AA29GSSq?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">LG Uplus verifies AI router self-repair technology</div>
+        <div class="news-summary">LG Uplus has verified an intelligent home network technology in which AI (artifi</div>
+        <div class="news-time">08月09日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/technology/meta-artificial-intelligence-is-the-latest-ai-technology-to-hack-another-company-during-testing/ar-AA29zk8p?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Meta Artificial Intelligence Is the Latest AI Technology to Hack Another Company During Testing</div>
+        <div class="news-summary">“We are currently investigating and will issue a full retrospective once we have</div>
+        <div class="news-time">08月07日 00:00</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./7.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="active">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./9.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

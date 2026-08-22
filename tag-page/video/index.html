@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>▶ 热门视频 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">▶ 热门视频</span>
+    </div>
+    <div class="header-date">
+      <span>2026年8月22日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历7月10日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/tv/articles/short-lived-cartoon-gave-gods-151200606.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">This Short-Lived Cartoon Gave The Gods Of Greek Mythology An X-Men-Style Spin</div>
+        <div class="news-summary">Greek mythology is full of heroes and gods who are basically ancient superheroes</div>
+        <div class="news-time">20小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.thestreet.com/travel/delta-air-lines-ai-pricing-cheaper-tickets" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Delta Air Lines CEO signals major shift in what travelers pay</div>
+        <div class="news-summary">Delta is trying to better discern which travelers need a lower fare and which do</div>
+        <div class="news-time">20小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/tempus-ai-tem-stock-looks-100946808.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Tempus AI (TEM) Stock Looks Fully Valued After Its 55% Jump</div>
+        <div class="news-summary">Tempus AI stock has surged over the past month, yet the valuation picture is spl</div>
+        <div class="news-time">20小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://techxplore.com/news/2026-08-ai-agents-consensus-scale-humans.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">AI agents can build consensus on a scale humans can't</div>
+        <div class="news-summary">Everyone is familiar with the situation: A larger group of people plans to visit</div>
+        <div class="news-time">20小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://sports.yahoo.com/articles/mlb-still-t-replay-reviews-122500701.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">MLB still can’t get it right with replay reviews & the problem is bigger than on...</div>
+        <div class="news-summary">Rob Manfred and MLB need to get this right.</div>
+        <div class="news-time">20小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.leadertelegram.com/news/nation-world/ap-technology-summarybrief-at-3-22-a-m-edt/article_bb5842fd-ffb1-5127-8b09-98fce161e8db.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">AP Technology SummaryBrief at 3:22 a.m. EDT</div>
+        <div class="news-summary">TikTok reaches $400 million settlement with US Justice Department over children'</div>
+        <div class="news-time">20小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9048033/q2-2026-aguas-andinas-sa-earnings-call-transcript" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Q2 2026 Aguas Andinas SA Earnings Call Transcript</div>
+        <div class="news-summary">Aug 21, 2026 / 02:00PM GMTDenisse Labarca Aguas Andinas SA-Head of Investor Rela</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/peterbendorsamuel/2026/08/21/the-ai-reality-check-why-enterprise-transformation-will-take-years-not-months/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">The AI Reality Check: Why Enterprise Transformation Will Take Years, Not Months</div>
+        <div class="news-summary">If you only followed the latest announcements from OpenAI, Anthropic, Google, an</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://fortune.com/2026/08/21/asia-ai-boom-southeast-asia-economic-geopolitical-divide-short-term-blip/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">The AI boom is lifting economies across Asia. But for Southeast Asia, it might j...</div>
+        <div class="news-summary">Economists studying the region are worried that AI’s gains won’t be evenly share</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/ray-fernandez/2026/08/21/how-businesses-navigate-ai-energy-bottlenecks-bypassing-costly-delays/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">How Businesses Navigate AI Energy Bottlenecks Bypassing Costly Delays</div>
+        <div class="news-summary">Whether you are seeing your AI cloud cost rise, or trying to get your project on</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/ai/copilot/articles/80-developers-ai-coding-more-193022151.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">80% of developers find AI coding more addictive than helpful</div>
+        <div class="news-summary">A new Coddy Developer Survey found that four in five developers, 80%, say their </div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/celebrity/articles/inside-jason-kelce-potty-humor-222231997.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Inside Jason Kelce’s Potty Humor Marketing Ploy Against AI Data Centers</div>
+        <div class="news-summary">Big Tech's water guzzling to cool AI servers is serious, even if this viral ad i</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://seekingalpha.com/symbol/SPOT" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Spotify Technology S.A. (SPOT) Stock Price, Quote, News & Analysis | Seeking...</div>
+        <div class="news-summary">A high-level overview of Spotify Technology S.A. (SPOT) stock. View (SPOT) real-</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.wilx.com/2026/08/21/what-tech-fake-ai-reviews/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">What the Tech: Fake AI Reviews</div>
+        <div class="news-summary">Before booking an Airbnb, trying a new restaurant or hiring someone to work on y</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-ca/technology/tech-companies/openai-s-zero-data-retention-explained-what-it-means-for-your-data/ar-AA2aylnZ?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">OpenAI’s zero data retention explained: What it means for your data</div>
+        <div class="news-summary">OpenAI hopes to win back the trust of businesses in handling their highly confid</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/meet-petra-ai-runs-pe-192622263.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Meet Petra, the AI that runs a PE firm</div>
+        <div class="news-summary">Jenna O’Malley/PitchBook News Talk of AI adoption is pervasive in PE, but would </div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/ai-explained-how-does-google-pixel-use-ai/ar-AA2aAFbG?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">AI Explained: How does Google Pixel use AI?</div>
+        <div class="news-summary">Alex Moriconi, communications manager for Pixel at Google, joins us to discuss h</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/movies/articles/magic-faraway-tree-review-slight-202031252.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">‘The Magic Faraway Tree’ Review: A Slight, Sensitive, Inexpensive Ode to Childli...</div>
+        <div class="news-summary">Andrew Garfield and Claire Foy star in a refreshingly relaxed, playful fantasy f</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.newschannel5.com/news/tbi-defends-use-of-license-plate-readers-amid-privacy-concerns" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">TBI backs responsible use of license plate recognition technology</div>
+        <div class="news-summary">The Tennessee Bureau of Investigation says automated license plate readers have </div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.newstimes.com/sports/article/does-baseball-need-even-more-technology-for-plays-22397351.php" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Does baseball need even more technology for plays like Pete Alonso's disputed...</div>
+        <div class="news-summary">Pete Alonso’s deep fly was ruled foul, and the call stood after a review in Balt</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    
+    <a href="./index.html" class="active">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./2.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
