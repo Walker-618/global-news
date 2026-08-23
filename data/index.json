@@ -144,19 +144,6 @@
       "id": "d4addfce880a119d"
     },
     {
-      "title": "JetBrains详细阐述了控制AI支出快速增长的首批举措",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/CQhb4TOREpEZshtqWZMy?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-08-22T09:05:00+00:00",
-      "fetched_at": "2026-08-23T01:39:28.213360+00:00",
-      "thumbnail_url": "",
-      "id": "8ecea9f3550118a5"
-    },
-    {
       "title": "AI is changing what fleet managers can build & 849,000 vehicles recalled | AF...",
       "summary": "Fleet managers are learning how to build their own AI-powered tools, Stellantis is recalling nearly ...",
       "url": "https://www.automotive-fleet.com/videos/ai-is-changing-what-fleet-managers-can-build-849000-vehicles-recalled-af-news-recap",
@@ -259,19 +246,6 @@
       "fetched_at": "2026-08-23T03:06:35.563753+00:00",
       "thumbnail_url": "",
       "id": "a9e52c61dccfd968"
-    },
-    {
-      "title": "神秘“Ox Alpha”突袭 OpenRouter，性能超过 Fable 5？全网盲猜智谱 or 小米",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/3MNJh5F34GSsRQJJWJzY?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-08-21T19:41:49+00:00",
-      "fetched_at": "2026-08-23T01:39:28.213384+00:00",
-      "thumbnail_url": "",
-      "id": "5dba484bd726c67b"
     },
     {
       "title": "DeepSeek 发布多模态模型，“小鲸鱼”长出了眼睛",
@@ -417,6 +391,19 @@
       "id": "3872981e8691dd7d"
     },
     {
+      "title": "New framework cuts errors by 80%, helps scientists predict fusion machine’s hardware changes",
+      "summary": "Inside a fusion machine, the plasma can reach temperatures hotter than the Sun’s core ...",
+      "url": "https://www.msn.com/en-us/science/physics/new-framework-cuts-errors-by-80-helps-scientists-predict-fusion-machine-s-hardware-changes/ar-AA2af79w?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-08-17T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:48.257338+00:00",
+      "thumbnail_url": "",
+      "id": "ca0a9a29fb1d686f"
+    },
+    {
       "title": "CNCF Announces Kubeflow's Graduation, Solidifying the Standard for Cloud Native...",
       "summary": "Milestone marks widespread enterprise adoption for automating end-to-end AI and machine learning...",
       "url": "https://www.wowktv.com/business/press-releases/cision/20260817DC26247/cncf-announces-kubeflows-graduation-solidifying-the-standard-for-cloud-native-ai-operations",
@@ -532,6 +519,19 @@
       "fetched_at": "2026-08-23T01:39:29.632424+00:00",
       "thumbnail_url": "",
       "id": "6e98b2ca8c477049"
+    },
+    {
+      "title": "Mark Zuckerberg manifesto sketches out Meta's ambitions for world-changing AI technology",
+      "summary": "In a document derided by critics as fantastical, Zuckerberg said his company is working toward an era where everyone will ...",
+      "url": "https://www.msn.com/en-in/news/other/mark-zuckerberg-manifesto-sketches-out-meta-s-ambitions-for-world-changing-ai-technology/ar-AA29O7Hs?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-08-11T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:47.660642+00:00",
+      "thumbnail_url": "",
+      "id": "447d9852b72322fe"
     },
     {
       "title": "Connecticut man hid an AI prompt in a court filing. A judge found it.",
@@ -653,32 +653,6 @@
   ],
   "TECH": [
     {
-      "title": "2026科学智能大会圆满闭幕，近50位院士凝聚共识推进AI4S赋能科学研究",
-      "summary": "2026科学智能大会成功举办 ——以“智能驱动”重塑科研范式，推进人工智能赋能科学研究 8月21-22日，2026科学智能大会在北京成功举办。作为我国人工智能赋能科学研究（AI for Science，简称AI4S）领域最高规格的学术盛会，本次大会由“学术科协”科学智能专家委员会提供学术指导，以“人工智能变革科研范式”为主题，通过...",
-      "url": "https://www.oschina.net/news/502074",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-08-22T11:23:02+00:00",
-      "fetched_at": "2026-08-23T01:39:27.092750+00:00",
-      "thumbnail_url": "",
-      "id": "1a5fb04501e64cc7"
-    },
-    {
-      "title": ":clap: 日志审计系统 WGLOG v2.2 正式发布",
-      "summary": "WGLOG 日志审计系统是私有化部署的 B/S 系统，只需要在本地搭建好 WGLOG 后，所有用户都通过浏览器来访问使用即可，不需要在安装任何组件和客户端 WGLOG 是一款轻量级的日志审计系统，主要用于实时收集服务器、主机、网络设备、防火墙、数据库、API 接口等设备的日志文件，也支持离线日志文件导入 采集日志完成后统一进行...",
-      "url": "https://www.oschina.net/news/502073",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-08-22T07:10:02+00:00",
-      "fetched_at": "2026-08-23T01:39:27.092821+00:00",
-      "thumbnail_url": "",
-      "id": "1b87387105e501f3"
-    },
-    {
       "title": "ModStartBlog v11.1.0 越用越快，功能全面，体验更流畅",
       "summary": "ModStart 是一个基于 Laravel 模块化极速开发框架。模块市场拥有丰富的功能应用，支持后台一键快速安装，让开发者能快的实现业务功能开发。 系统完全开源，基于 Apache 2.0 开源协议。 功能特性 丰富的模块市场，后台一键快速安装 会员模块通用且完整，支持完整的API调用 大文件分片上传，进度条显示，已上传文件管理 强...",
       "url": "https://www.oschina.net/news/502072",
@@ -781,19 +755,6 @@
       "fetched_at": "2026-08-23T01:39:32.564635+00:00",
       "thumbnail_url": "",
       "id": "2f7cbafb4a2aaf58"
-    },
-    {
-      "title": "NASA taps Georgia Tech to lead statewide effort to expand aerospace workforce",
-      "summary": "Georgia Tech reached a multi-million dollar deal with NASA to train the next generation of skilled...",
-      "url": "https://www.wrdw.com/2026/08/22/nasa-taps-georgia-tech-lead-statewide-effort-expand-aerospace-workforce/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-22T00:00:00+00:00",
-      "fetched_at": "2026-08-22T20:27:17.675521+00:00",
-      "thumbnail_url": "",
-      "id": "5f057a575d014949"
     },
     {
       "title": ":fire: SolonCode 的两个\"后悔药\"：重新运行 vs 继续运行",
@@ -965,30 +926,17 @@
       "id": "6687f5be770b821e"
     },
     {
-      "title": "New York Just Beat San Francisco in Tech Talent Attraction. Wall Street and AI...",
-      "summary": "New York now has 394,300 tech talent jobs, surpassing the San Francisco Bay Area's 375,730,...",
-      "url": "https://www.ibtimes.com/new-york-just-beat-san-francisco-tech-talent-attraction-wall-street-ai-are-fueling-rise-3806668",
+      "title": "XRP News: Ripple’s Buyback Boosts Its Valuation, Not Its Holders",
+      "summary": "In XRP news today, Ripple has agreed to buy back $750M in shares from employees and early investors,...",
+      "url": "https://finance.yahoo.com/markets/crypto/articles/xrp-news-ripple-buyback-boosts-141903427.html",
       "source_name": "DuckDuckGo Tech",
       "source_icon": "D",
       "source_color": "#0891b2",
       "category": "TECH",
-      "published_at": "2026-08-21T00:00:00+00:00",
-      "fetched_at": "2026-08-22T20:27:17.675596+00:00",
+      "published_at": "2026-08-20T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:49.270763+00:00",
       "thumbnail_url": "",
-      "id": "5960bb382841dfa4"
-    },
-    {
-      "title": "What's going on with Marvell Technology stock Friday?",
-      "summary": "Marvell Technology Inc. MRVL stock traded lower by about 2% Friday, bucking a modestly positive broader market. The Nasdaq ...",
-      "url": "https://www.msn.com/en-us/money/news/what-s-going-on-with-marvell-technology-stock-friday/ar-AA2aEXXL?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-08-21T00:00:00+00:00",
-      "fetched_at": "2026-08-22T20:27:17.448109+00:00",
-      "thumbnail_url": "",
-      "id": "f057b3ad67d632f0"
+      "id": "ac432fcd81de934c"
     },
     {
       "title": "GridAI Technologies (GRDX) Stock Price, Quote, News & History | Benzinga",
@@ -1043,17 +991,30 @@
       "id": "d0d9b5f27b159316"
     },
     {
-      "title": "Silicon Valley Losing Data Center Battle To Public Opinion And China - KTRH News...",
-      "summary": "NewsRadio 740 KTRH is Houston's Local and National News, Weather and Traffic station. This channel...",
-      "url": "https://www.iheart.com/podcast/960-ktrh-news-29197307/episode/silicon-valley-losing-data-center-battle-341863210/",
+      "title": "Houston's Silicon Cowboys altered tech industry forever",
+      "summary": "Houston-based Compaq Computers altered tech industry forever; 1980s startup racked up record sales,...",
+      "url": "https://tech.yahoo.com/computing/articles/houstons-silicon-cowboys-altered-tech-121800035.html",
       "source_name": "DuckDuckGo Tech",
       "source_icon": "D",
       "source_color": "#0891b2",
       "category": "TECH",
-      "published_at": "2026-08-20T00:00:00+00:00",
-      "fetched_at": "2026-08-22T20:27:17.946215+00:00",
+      "published_at": "2026-08-19T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:49.634415+00:00",
       "thumbnail_url": "",
-      "id": "9df12535eee146ab"
+      "id": "b9ccd27363b8d1b1"
+    },
+    {
+      "title": "Inside Job: How Identity Fraud is Infiltrating the Tech Industry",
+      "summary": "As remote hiring becomes the norm in tech, a new challenge is quietly emerging: identity fraud...",
+      "url": "https://benefitspro-resources.benefitspro.com/c/pubRD.mpl",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-19T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:49.634405+00:00",
+      "thumbnail_url": "",
+      "id": "3001667004a49b15"
     },
     {
       "title": "Indiana spent over $320 million on classroom technology. Some want a reversal",
@@ -1121,6 +1082,32 @@
       "id": "0307c684565d7b24"
     },
     {
+      "title": "IQVIA Ranked No. 1 Pharmaceutical Technology Provider by Everest Group",
+      "summary": "The ranking recognizes IQVIA’s broad technology coverage across the pharmaceutical value chain and i...",
+      "url": "https://www.morningstar.com/news/business-wire/20260817167837/iqvia-ranked-no-1-pharmaceutical-technology-provider-by-everest-group",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:49.270743+00:00",
+      "thumbnail_url": "",
+      "id": "3a1b9b6f8589cd30"
+    },
+    {
+      "title": "Evolv Technology Strengthens Position in Houston Market with Continued System...",
+      "summary": "(NASDAQ: EVLV), a leading security technology company pioneering AI-powered solutions designed to...",
+      "url": "https://www.morningstar.com/news/business-wire/20260818431951/evolv-technology-strengthens-position-in-houston-market-with-continued-system-deployment-and-renewal-of-partnership-with-houston-texans",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-18T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:49.270730+00:00",
+      "thumbnail_url": "",
+      "id": "02c82c43490942e4"
+    },
+    {
       "title": "Scheme to help boost women in the tech industry",
       "summary": "The new task force will focus on four priorities: increasing the number of women starting and scaling up tech firms; ...",
       "url": "https://www.aol.com/articles/scheme-help-boost-women-tech-061706000.html",
@@ -1132,6 +1119,19 @@
       "fetched_at": "2026-08-23T06:48:01.322256+00:00",
       "thumbnail_url": "",
       "id": "bea143c9ef47c517"
+    },
+    {
+      "title": "Silicon Valley's latest meme obsession: A years-old picture of Chamath Palihapitiya in a chunky turtleneck",
+      "summary": "Chamath Palihapitiya's enormous sweater has become Silicon Valley's meme of the summer, and Elon Musk has weighed in.",
+      "url": "https://www.msn.com/en-us/money/other/silicon-valleys-latest-meme-obsession-a-years-old-picture-of-chamath-palihapitiya-in-a-chunky-turtleneck/ar-AA29xmE0?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-08-06T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:49.977034+00:00",
+      "thumbnail_url": "",
+      "id": "cd4999553b3dc58d"
     },
     {
       "title": "Silicon Valley is richer than ever. Fewer residents are sharing in it.",
@@ -1304,6 +1304,19 @@
     }
   ],
   "FINANCE": [
+    {
+      "title": "I drove the Jeep Cherokee and Kia Sportage Hybrid for a week — here’s the $40K c...",
+      "summary": "I put the Jeep Cherokee and Kia Sportage Hybrid to the test by driving them for a week each to see...",
+      "url": "https://autos.yahoo.com/new-vehicles-and-reviews/articles/drove-jeep-cherokee-kia-sportage-060000011.html;_ylt=A2RRIj2rsIpqewMAHc_QtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzEEdnRpZAMEc2VjA3Ny",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-23T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:51.344172+00:00",
+      "thumbnail_url": "",
+      "id": "741a579ca3710ef6"
+    },
     {
       "title": "EDITORIAL: Why the Democratic Socialists of America’s ‘Tax the Rich’ won’t work",
       "summary": "Cratering the economy",
@@ -1565,43 +1578,17 @@
       "id": "6de9f0d9394e6382"
     },
     {
-      "title": "It’s never been easier to grow your wealth using the stock market",
-      "summary": "You don’t need to be Nostradamus, or Einstein, or the luckiest stock-picker in history to build weal...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/never-easier-grow-wealth-using-100000402.html",
+      "title": "The AI bond bonanza could be a big problem for the stock market",
+      "summary": "As U.S. companies raise billions of dollars to fund their AI dreams, they’re primarily tapping debt markets. But the burden ...",
+      "url": "https://www.msn.com/en-us/money/top-stocks/the-ai-bond-bonanza-could-be-a-big-problem-for-the-stock-market/ar-AA2ayO3L?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "2026-08-22T00:00:00+00:00",
-      "fetched_at": "2026-08-22T22:26:04.552718+00:00",
+      "published_at": "2026-08-21T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:51.006397+00:00",
       "thumbnail_url": "",
-      "id": "05fc6cce7b639ed7"
-    },
-    {
-      "title": "Utz (UTZ) Stock Looks Fairly Valued Following Take Private Financing News",
-      "summary": "Utz Brands stock has rallied strongly year to date, yet the current checks suggest pricing that...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/utz-utz-stock-looks-fairly-200812630.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-22T00:00:00+00:00",
-      "fetched_at": "2026-08-22T22:26:04.552683+00:00",
-      "thumbnail_url": "",
-      "id": "21ede6c4a5123dd7"
-    },
-    {
-      "title": "TDAY (USA Today Co) PE Ratio without NRI | GuruFocus",
-      "summary": "TDAY (USA Today Co) PE Ratio without NRI is At Loss (Aug. 22, 2026). GF Score™: 47/100 with 3 warning signs.",
-      "url": "https://www.gurufocus.com/term/penri/TDAY",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-22T00:00:00+00:00",
-      "fetched_at": "2026-08-22T20:27:19.253429+00:00",
-      "thumbnail_url": "",
-      "id": "7cfb55f44fab3aa4"
+      "id": "1a3a91baab25e84c"
     },
     {
       "title": "Bond markets rattle economy, sparking controversial buyback",
@@ -1682,19 +1669,6 @@
       "id": "c686f2ef73d66756"
     },
     {
-      "title": "The airlines where premium economy is the smarter buy than business class in 2026",
-      "summary": "Premium economy is getting much closer to what a business class product offers. Here are some of the airlines offering the ...",
-      "url": "https://www.msn.com/en-us/money/economy/the-airlines-where-premium-economy-is-the-smarter-buy-than-business-class-in-2026/ar-AA2aCIrh?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-21T00:00:00+00:00",
-      "fetched_at": "2026-08-22T18:35:46.530259+00:00",
-      "thumbnail_url": "",
-      "id": "75507555da19d191"
-    },
-    {
       "title": "ArrowMark Financial Corp. Releases Month End Estimated Net Asset Value as of...",
       "summary": "DENVER, Aug. 20, 2026 (GLOBE NEWSWIRE) -- ArrowMark Financial Corp., (NASDAQ: BANX) (\"ArrowMark Fina...",
       "url": "https://pr.newsaegis.com/article/ArrowMark-Financial-Corp-Releases-Month-End-Estimated-Net-Asset-Value-as-of-July-2026/6a876babe2557832e1110469",
@@ -1721,19 +1695,6 @@
       "id": "9b3569e6b4b7d0f8"
     },
     {
-      "title": "Forget AI, debt has become the main character on Wall Street as markets just now decided that it’s gotten out of control after years of warnings",
-      "summary": "\"When does debt become unsustainable? When the global financial markets say it is. That appears to be happening.\" ...",
-      "url": "https://www.msn.com/en-us/money/markets/forget-ai-debt-has-become-the-main-character-on-wall-street-as-markets-just-now-decided-that-it-s-gotten-out-of-control-after-years-of-warnings/ar-AA2aJ7y2?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-19T00:00:00+00:00",
-      "fetched_at": "2026-08-22T22:26:04.294251+00:00",
-      "thumbnail_url": "",
-      "id": "9cecdc7901355b7d"
-    },
-    {
       "title": "Stock Market News for Aug 18, 2026",
       "summary": "Wall Street closed lower on Monday, dragged down by retail and communications stocks.",
       "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-aug-18-132600845.html",
@@ -1743,19 +1704,6 @@
       "category": "FINANCE",
       "published_at": "2026-08-18T00:00:00+00:00",
       "fetched_at": "2026-08-23T04:41:23.343071+00:00",
-      "thumbnail_url": "",
-      "id": "ce7428cb7bf163f0"
-    },
-    {
-      "title": "Stock Market News for Aug 18, 2026",
-      "summary": "Wall Street closed lower on Monday, dragged down by retail and communications stocks.",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-aug-18-132600845.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-08-18T00:00:00+00:00",
-      "fetched_at": "2026-08-22T22:26:04.552702+00:00",
       "thumbnail_url": "",
       "id": "ce7428cb7bf163f0"
     },
@@ -1825,17 +1773,30 @@
       "id": "74da8dc7ae31b515"
     },
     {
-      "title": "四大证券报头版头条内容精华摘要_2026年7月24日_财经新闻",
-      "summary": "7月23日，在国新办举行的新闻发布会上，商务部副部长鄢东表示，上半年新设外资企业数增长5.3%，引资额4021.4亿元；引资结构 ...",
-      "url": "https://finance.sina.com.cn/stock/y/2026-07-24/doc-iniivyeq4471652.shtml",
+      "title": "四大证券报头版头条内容精华摘要_2026年7月23日_财经新闻",
+      "summary": "“相关系统开发已基本完成，平台接口验收已进入尾声。”“销售文件修订还在内部征求意见，系统正在开发阶段，预计8月上线试运行。” 进一步深化国资国企改革 国资委最新明确 7月21日至22 ...",
+      "url": "https://finance.sina.com.cn/stock/y/2026-07-23/doc-iniitvfi1583554.shtml",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "2026-07-24T00:00:00+00:00",
-      "fetched_at": "2026-08-22T18:35:46.814699+00:00",
+      "published_at": "2026-07-23T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:51.552918+00:00",
       "thumbnail_url": "",
-      "id": "9444a4018ab010e6"
+      "id": "38f410bce9fae270"
+    },
+    {
+      "title": "今日国际国内财经新闻精华摘要｜2026年7月20日",
+      "summary": "国际能源市场方面，地缘政治冲突持续推升油价，布伦特原油期货价格突破每桶90美元，为6月11日以来首次，随后进一步升至91 ...",
+      "url": "https://finance.sina.com.cn/headline/2026-07-20/doc-iniimkkq4994718.shtml",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-07-20T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:51.552949+00:00",
+      "thumbnail_url": "",
+      "id": "f8497cc3bbec6a75"
     },
     {
       "title": "四大证券报头版头条内容精华摘要_2026年7月20日_财经新闻",
@@ -1940,6 +1901,45 @@
       "fetched_at": "2026-08-23T04:41:23.715752+00:00",
       "thumbnail_url": "",
       "id": "127d1efcb0f72423"
+    },
+    {
+      "title": "Iran condemns US plans to announce new sanctions",
+      "summary": "CAIRO/WASHINGTON, Aug 22 (Reuters) - Iran on Saturday denounced U. plans to announce new sanctions that could put further strain on the Islamic...",
+      "url": "https://r.search.yahoo.com/_ylt=A2RRIj2rsIpqewMAJs_QtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzQEdnRpZAMEc2VjA3Ny/RV=2/RE=1788683691/RO=10/RU=https://www.yahoo.com/news/politics/articles/us-iran-keep-hostile-rhetoric-031513792.html?fr=sycsrp_catchall/RK=2/RS=vwH9v4obPx45aZw9ZqZ6cpcifTA-",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "6 hours ago ·",
+      "fetched_at": "2026-08-23T08:34:51.344187+00:00",
+      "thumbnail_url": "",
+      "id": "bb2f6b8578b8f112"
+    },
+    {
+      "title": "Troubled Trump Economy Puts GOP Control of Senate at Risk",
+      "summary": "Troubled Trump Economy Puts GOP Control of Senate at Risk",
+      "url": "https://r.search.yahoo.com/_ylt=A2RRIj2rsIpqewMANc_QtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzkEdnRpZAMEc2VjA3Ny/RV=2/RE=1788683691/RO=10/RU=https://www.yahoo.com/news/politics/articles/troubled-trump-economy-puts-gop-144453479.html?fr=sycsrp_catchall/RK=2/RS=rrBATuhvG0FQKu0VaWcN.yO3o.E-",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "4 days ago ·",
+      "fetched_at": "2026-08-23T08:34:51.344108+00:00",
+      "thumbnail_url": "",
+      "id": "a561f910d8aaebc2"
+    },
+    {
+      "title": "Iran’s president says US memorandum is best path out of stalled war, and other M...",
+      "summary": "Iran's president has defended a memorandum of understanding with the U.S. as the best way to end a...",
+      "url": "https://r.search.yahoo.com/_ylt=A2RRIj2rsIpqewMAIM_QtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzIEdnRpZAMEc2VjA3Ny/RV=2/RE=1788683691/RO=10/RU=https://apnews.com/article/middle-east-iran-israel-west-bank-august-23-2026-a3fff9eba47a5510060e8014b82d794f/RK=2/RS=oNDvFRrrOWjK4umtCBHGho6R3Bk-",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "28 minutes ago ·",
+      "fetched_at": "2026-08-23T08:34:51.344180+00:00",
+      "thumbnail_url": "",
+      "id": "84e564cc1371b426"
     },
     {
       "title": "E‑Shaped Economy in 2026 Shows How Wealth and Money Struggles Have Changed",
@@ -2269,32 +2269,6 @@
       "id": "fa91a10526cce599"
     },
     {
-      "title": "How Businesses Navigate AI Energy Bottlenecks Bypassing Costly Delays",
-      "summary": "Whether you are seeing your AI cloud cost rise, or trying to get your project online, experts break...",
-      "url": "https://www.forbes.com/sites/ray-fernandez/2026/08/21/how-businesses-navigate-ai-energy-bottlenecks-bypassing-costly-delays/",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2026-08-21T00:00:00+00:00",
-      "fetched_at": "2026-08-22T10:27:38.270096+00:00",
-      "thumbnail_url": "",
-      "id": "71bdb5b02a46f8a3"
-    },
-    {
-      "title": "80% of developers find AI coding more addictive than helpful",
-      "summary": "A new Coddy Developer Survey found that four in five developers, 80%, say their use of AI has felt...",
-      "url": "https://tech.yahoo.com/ai/copilot/articles/80-developers-ai-coding-more-193022151.html",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2026-08-21T00:00:00+00:00",
-      "fetched_at": "2026-08-22T10:27:38.270078+00:00",
-      "thumbnail_url": "",
-      "id": "a250ea98e4f2ff9f"
-    },
-    {
       "title": "Why is Marvell stock surging? Google’s $12.2 billion AI chip deal explained",
       "summary": "MRVL stock jumps as Marvell partners with Google on custom AI chips and gets a potential $12.2 billion investment option tied ...",
       "url": "https://www.msn.com/en-in/technology/tech-companies/why-is-marvell-stock-surging-google-s-12-2-billion-ai-chip-deal-explained/ar-AA2at20f?ocid=BingNewsVerp",
@@ -2332,6 +2306,19 @@
       "fetched_at": "2026-08-23T01:39:35.897208+00:00",
       "thumbnail_url": "",
       "id": "bd60e2cd9637fa30"
+    },
+    {
+      "title": "Sacramento Sheriff's Office surveillance cameras face new commission review",
+      "summary": "A Sacramento County commission has launched a review of surveillance technology used by the Sheriff’...",
+      "url": "https://www.yahoo.com/news/politics/articles/sacramento-sheriffs-office-surveillance-cameras-051836567.html",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-08-19T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:52.545443+00:00",
+      "thumbnail_url": "",
+      "id": "b5694a0f788a9a3c"
     },
     {
       "title": "The Best Walmart Back-to-School Deals Right Now: Save Big on Top Tech Before...",
@@ -2477,6 +2464,19 @@
       "id": "a45189e0b6770594"
     },
     {
+      "title": "In just 3 words, Mark Zuckerberg explained how America could lose the AI race",
+      "summary": "The Meta CEO has thoughts about what powerful U.S. artificial intelligence companies are doing wrong.",
+      "url": "https://www.msn.com/en-us/money/other/in-just-3-words-mark-zuckerberg-explained-how-america-could-lose-the-ai-race/ar-AA295F7V?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-07-25T00:00:00+00:00",
+      "fetched_at": "2026-08-23T08:34:53.008230+00:00",
+      "thumbnail_url": "",
+      "id": "f400dff286ebdcbf"
+    },
+    {
       "title": "OpenAI’s Upcoming Device Explained: Everything We Know About the Screenless AI Speaker",
       "summary": "OpenAI is reportedly developing a portable screenless AI speaker with cameras, sensors, GPT-Live, and moving parts.",
       "url": "https://www.techrepublic.com/article/news-openai-screenless-ai-speaker-hardware-2026/",
@@ -2608,7 +2608,7 @@
     }
   ],
   "_meta": {
-    "updated_at": "2026-08-23T06:48:04.122550+00:00",
+    "updated_at": "2026-08-23T08:34:53.014063+00:00",
     "total": 200,
     "counts": {
       "AI": 50,
