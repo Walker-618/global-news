@@ -1,0 +1,3426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球AI·科技·财经动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  :root {
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
+    --color-accent: #0071e3;
+    --color-border: #e5e5ea;
+    --color-text: #1d1d1f;
+    --color-muted: #86868b;
+    --color-bg: #f5f5f7;
+    --color-surface: #ffffff;
+    --color-tag-ai: #7c3aed;
+    --color-tag-tech: #0891b2;
+    --color-tag-finance: #059669;
+    --color-tag-video: #e11d48;
+    --max-width: 1440px;
+    --header-h: 52px;
+  }
+
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 8px; color: #fff;
+    font-weight: 700; font-size: 15px; white-space: nowrap;
+    letter-spacing: -0.2px;
+  }
+  .logo-icon {
+    width: 26px; height: 26px; border-radius: 6px;
+    background: linear-gradient(135deg, #0071e3, #7c3aed);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; color: #fff; flex-shrink: 0;
+  }
+  .header-date {
+    display: flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+  .header-date .dot { opacity: 0.3; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+
+  /* Featured */
+  .featured-section { margin-bottom: 20px; }
+  .featured-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+  .featured-card {
+    background: var(--color-surface); border-radius: var(--radius-md);
+    overflow: hidden; cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .featured-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+  .featured-card-thumb {
+    width: 100%; aspect-ratio: 16/12;
+    display: flex; align-items: flex-end; padding: 12px;
+    position: relative;
+  }
+  .featured-card-thumb::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 50%);
+  }
+  .featured-card-tag {
+    position: relative; z-index: 1;
+    padding: 3px 10px; border-radius: 10px; font-size: 10px; font-weight: 600;
+    color: #fff; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px);
+  }
+  .featured-card-body { padding: 10px 12px 12px; }
+  .featured-card-title {
+    font-size: 13px; font-weight: 600; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; color: var(--color-text);
+  }
+  .featured-card-meta {
+    font-size: 11px; color: var(--color-muted); margin-top: 5px;
+    display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+  }
+  .featured-card-src-icon {
+    width: 13px; height: 13px; border-radius: 2px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 7px; color: #fff; flex-shrink: 0;
+  }
+
+  /* Tab bar */
+  .tab-bar-wrap {
+    position: sticky; top: var(--header-h); z-index: 50;
+    background: #f5f5f7; padding: 10px 0 0; margin-bottom: 0;
+  }
+  .tab-bar {
+    display: flex; gap: 6px; align-items: center;
+    overflow-x: auto; white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex-shrink: 0; padding: 8px 20px; border-radius: 20px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface); font-size: 14px; font-weight: 500;
+    color: var(--color-muted); cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px; user-select: none;
+  }
+  .tab-btn.active { background: #1d1d1f; border-color: #1d1d1f; color: #fff; }
+  .tab-btn .tab-count { font-size: 11px; font-weight: 400; opacity: 0.6; }
+  .tab-more {
+    flex-shrink: 0; margin-left: auto; padding: 8px 16px;
+    font-size: 13px; font-weight: 500; color: var(--color-accent);
+    cursor: pointer; display: flex; align-items: center; gap: 4px;
+    transition: gap 0.2s; white-space: nowrap;
+  }
+  .tab-more:hover { gap: 8px; }
+  .tab-more::after { content: "→"; }
+
+  /* Tab Content */
+  .tab-content { display: none; margin-top: 12px; }
+  .tab-content.active { display: block; }
+
+  /* News List */
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 12px; padding: 12px 14px;
+    background: var(--color-surface); border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source {
+    display: flex; align-items: center; gap: 5px; margin-bottom: 3px;
+  }
+  .news-source-icon {
+    width: 14px; height: 14px; border-radius: 3px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 7px; color: #fff; flex-shrink: 0;
+  }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title {
+    font-size: 14px; font-weight: 600; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+    overflow: hidden; color: var(--color-text); margin-bottom: 2px;
+  }
+  .news-summary {
+    font-size: 12px; color: var(--color-muted); line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+
+  .section-footer {
+    text-align: center; padding: 20px 0 8px; grid-column: 1 / -1;
+  }
+  .section-footer a {
+    font-size: 13px; color: var(--color-accent); font-weight: 500;
+    display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s;
+  }
+  .section-footer a:hover { gap: 8px; }
+  .section-footer a::after { content: "→"; }
+
+  .footer {
+    background: #1d1d1f; color: rgba(255,255,255,0.4);
+    padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .featured-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 20px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; gap: 4px; }
+    .header-date .lunar { display: none; }
+    .featured-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+    .tab-btn { font-size: 13px; padding: 6px 14px; }
+    .tab-bar { gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <div class="logo-icon">🌐</div>
+      <span>全球动态</span>
+    </a>
+    <div class="header-date">
+      <span>2026年9月5日</span>
+      <span class="dot">·</span>
+      <span>周六</span>
+      <span class="dot">·</span>
+      <span class="lunar">农历7月24日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Featured -->
+  <section class="featured-section">
+    <div class="featured-grid">
+      
+      <a class="featured-card" href="https://www.masslive.com/betting/2026/09/patriots-vs-seahawks-week-1-expert-predictions.html" target="_blank" rel="noopener">
+        <div class="featured-card-thumb" style="background:linear-gradient(135deg,#0f172a,#1e3a5f);">
+          <span class="featured-card-tag">🤖 AI</span>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">Experts release latest Patriots vs. Seahawks Week </div>
+          <div class="featured-card-meta">
+            <span class="featured-card-src-icon" style="background:#f97316;">D</span>
+            DuckDuckGo AI · 16小时前
+          </div>
+        </div>
+      </a>
+      
+      <a class="featured-card" href="https://finance.yahoo.com/technology/ai/articles/pureprofile-heads-3-australian-ai-161540650.html" target="_blank" rel="noopener">
+        <div class="featured-card-thumb" style="background:linear-gradient(135deg,#1e293b,#312e81);">
+          <span class="featured-card-tag">🤖 AI</span>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">Pureprofile Heads These 3 Australian AI Stocks To </div>
+          <div class="featured-card-meta">
+            <span class="featured-card-src-icon" style="background:#f97316;">D</span>
+            DuckDuckGo AI · 16小时前
+          </div>
+        </div>
+      </a>
+      
+      <a class="featured-card" href="https://www.msn.com/en-us/news/other/trump-s-lake-ontario-push-forces-tech-to-pick-a-side/ar-AA2bsiB0?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="featured-card-thumb" style="background:linear-gradient(135deg,#1e293b,#4f46e5);">
+          <span class="featured-card-tag">🔧 科技</span>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">Trump’s Lake Ontario push forces tech to pick a si</div>
+          <div class="featured-card-meta">
+            <span class="featured-card-src-icon" style="background:#0891b2;">D</span>
+            DuckDuckGo Tech · 2天前
+          </div>
+        </div>
+      </a>
+      
+      <a class="featured-card" href="https://finance.yahoo.com/technology/articles/zacks-industry-outlook-highlights-macom-125000923.html" target="_blank" rel="noopener">
+        <div class="featured-card-thumb" style="background:linear-gradient(135deg,#1e293b,#3730a3);">
+          <span class="featured-card-tag">🔧 科技</span>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">Zacks Industry Outlook Highlights MACOM Technology</div>
+          <div class="featured-card-meta">
+            <span class="featured-card-src-icon" style="background:#0891b2;">D</span>
+            DuckDuckGo Tech · 3天前
+          </div>
+        </div>
+      </a>
+      
+      <a class="featured-card" href="https://finance.yahoo.com/markets/stocks/articles/quanta-services-pwr-stock-trades-161449085.html" target="_blank" rel="noopener">
+        <div class="featured-card-thumb" style="background:linear-gradient(135deg,#1e293b,#0891b2);">
+          <span class="featured-card-tag">💰 财经</span>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">Quanta Services (PWR) Stock Trades At A Premium To</div>
+          <div class="featured-card-meta">
+            <span class="featured-card-src-icon" style="background:#059669;">D</span>
+            DuckDuckGo Finance · 16小时前
+          </div>
+        </div>
+      </a>
+      
+      <a class="featured-card" href="https://finance.yahoo.com/markets/stocks/articles/powell-industries-powl-stock-looks-161400623.html" target="_blank" rel="noopener">
+        <div class="featured-card-thumb" style="background:linear-gradient(135deg,#1e293b,#0e7490);">
+          <span class="featured-card-tag">💰 财经</span>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">Powell Industries (POWL) Stock Looks Expensive Rel</div>
+          <div class="featured-card-meta">
+            <span class="featured-card-src-icon" style="background:#059669;">D</span>
+            DuckDuckGo Finance · 16小时前
+          </div>
+        </div>
+      </a>
+      
+      <a class="featured-card" href="https://finance.yahoo.com/technology/ai/articles/ringcentral-rng-expands-ai-communications-150631433.html" target="_blank" rel="noopener">
+        <div class="featured-card-thumb" style="background:linear-gradient(135deg,#1e293b,#059669);">
+          <span class="featured-card-tag">▶ 视频</span>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">RingCentral (RNG) Expands AI Communications Reach </div>
+          <div class="featured-card-meta">
+            <span class="featured-card-src-icon" style="background:#e11d48;">D</span>
+            DuckDuckGo Video · 16小时前
+          </div>
+        </div>
+      </a>
+      
+      <a class="featured-card" href="https://www.yahoo.com/entertainment/celebrity/articles/dolly-partons-sister-stella-slams-143137184.html" target="_blank" rel="noopener">
+        <div class="featured-card-thumb" style="background:linear-gradient(135deg,#1e293b,#065f46);">
+          <span class="featured-card-tag">▶ 视频</span>
+        </div>
+        <div class="featured-card-body">
+          <div class="featured-card-title">Dolly Parton's Sister Stella Slams "Insensitivity"</div>
+          <div class="featured-card-meta">
+            <span class="featured-card-src-icon" style="background:#e11d48;">D</span>
+            DuckDuckGo Video · 16小时前
+          </div>
+        </div>
+      </a>
+      
+    </div>
+  </section>
+
+  <!-- Tab bar -->
+  <div class="tab-bar-wrap">
+    <div class="tab-bar">
+      
+      <button class="tab-btn active" data-tab="ai">🤖 AI 资讯 <span class="tab-count">50</span></button>
+      
+      <button class="tab-btn " data-tab="tech">🔧 科技动态 <span class="tab-count">50</span></button>
+      
+      <button class="tab-btn " data-tab="finance">💰 财经要闻 <span class="tab-count">50</span></button>
+      
+      <button class="tab-btn " data-tab="video">▶ 热门视频 <span class="tab-count">50</span></button>
+      
+      <a class="tab-more" href="tag-page/ai/">查看更多</a>
+    </div>
+  </div>
+
+  <!-- Tab Contents -->
+  
+  <div class="tab-content active" id="tabAi">
+    <div class="news-list">
+      
+      <a class="news-item" href="https://www.infoq.cn/article/tij5T0vJ1Yk0s7Uov7SE?utm_source=rss&utm_medium=article" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f59e0b;">Q</span>
+            <span class="news-source-name">InfoQ</span>
+          </div>
+          <div class="news-title">RTX 4060 跑 35B 模型，每秒 39 Token？伯克利、MIT 联手开源 FreeToken</div>
+          <div class="news-summary">点击查看原文></div>
+          <div class="news-time">刚刚</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.masslive.com/betting/2026/09/patriots-vs-seahawks-week-1-expert-predictions.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Experts release latest Patriots vs. Seahawks Week 1 predictions after 53-man...</div>
+          <div class="news-summary">Get expert picks and score predictions for the Patriots vs. Seahawks Week 1 open</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/pureprofile-heads-3-australian-ai-161540650.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Pureprofile Heads These 3 Australian AI Stocks To Watch</div>
+          <div class="news-summary">Global central banks are still talking about keeping interest rates higher for l</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.morningstar.com/news/pr-newswire/20260905cn40965/dreame-showcases-three-physical-ai-technology-foundations-across-100-products-at-ifa-2026" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Dreame Showcases Three Physical AI Technology Foundations Across 100+ Products...</div>
+          <div class="news-summary">Products incorporating perception, algorithmic and control capabilities provide </div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/recent-news-nvidia-sk-hynix-120500853.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Recent News From Nvidia and SK Hynix Reveals Exactly What the Market Expects for...</div>
+          <div class="news-summary">Two big AI companies shared positive news; here's what Micron stock did.</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.morningstar.com/news/accesswire/1217326msn/opaida-opens-office-at-plug-and-play-unveiling-ai-strategy-across-the-life-sciences-value-chain" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">OpAIda Opens Office at Plug and Play, Unveiling AI Strategy Across the Life...</div>
+          <div class="news-summary">SUNNYVALE, CA / ACCESS Newswire / September 5, 2026 / opAIda, an enterprise arti</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://slate.com/transcripts/bnVIUDBxMXh2NVJoU2VBc1lSZHFnTERWcTFEbUhmQ1V0clM2ckV3U0drbz0=" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Transcript - SCOTUS Rewrites the Rules for One Special Boy</div>
+          <div class="news-summary">Transcript of SCOTUS Rewrites the Rules for One Special Boy</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/pagaya-posted-record-45-million-060006555.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Pagaya Posted a Record $45 Million Profit. Is AI Lending Finally Working?</div>
+          <div class="news-summary">On July 30, Pagaya Technologies reported a record $45 million of GAAP net income</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://sports.yahoo.com/articles/o-paulo-v-atl-tico-121000141.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">São Paulo v Atlético: Galo are in action today!</div>
+          <div class="news-summary">São Paulo vs Atlético – September 5 (Saturday) – 6:30 PM Tournament: 26th round </div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/news/politics/articles/huge-invasion-privacy-louisiana-parish-074900446.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">'A huge invasion of privacy': Louisiana parish disputes private camera ban in...</div>
+          <div class="news-summary">At the center of the discussion were competing concerns about privacy, property </div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/vertiv-holdings-co-vrt-agrees-021312498.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Vertiv Holdings Co (VRT) Agrees Utility Deal To Deepen AI Data Center Power...</div>
+          <div class="news-summary">Vertiv Holdings Co (NYSE:VRT) agreed to acquire Utility Innovation Holdings to e</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://seekingalpha.com/article/4943293-blackrock-business-becoming-much-more-than-asset-manager" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">BlackRock Stock: The Business Is Becoming Much More Than An Asset Manager...</div>
+          <div class="news-summary">BlackRock's strategic diversification into private markets, technology, and AI i</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.wowktv.com/business/press-releases/cision/20260905CN40078/chiq-wins-ai-home-ecosystem-brand-award-exploring-new-smart-living-experiences-through-ai-innovation" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">CHiQ Wins AI Home Ecosystem Brand Award, Exploring New Smart Living Experiences...</div>
+          <div class="news-summary">BERLIN, Sept. 5, 2026 /PRNewswire/ -- CHiQ, a global smart home brand, received </div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/why-uipath-stock-plunged-today-022731353.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Why UiPath Stock Plunged Today</div>
+          <div class="news-summary">AI-powered challengers could slow the business software provider's growth.</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.infoq.cn/article/m9DBSRgv8grSQ9NkY6rS?utm_source=rss&utm_medium=article" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f59e0b;">Q</span>
+            <span class="news-source-name">InfoQ</span>
+          </div>
+          <div class="news-title">让测试更加绿色可持续</div>
+          <div class="news-summary">点击查看原文></div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.infoq.cn/article/s1MDWGIV7yoxkCXmWJx8?utm_source=rss&utm_medium=article" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f59e0b;">Q</span>
+            <span class="news-source-name">InfoQ</span>
+          </div>
+          <div class="news-title">Astro 推出 Sätteri：Rust 驱动的 Markdown 与 MDX 处理器，构建速度最高提升 60%</div>
+          <div class="news-summary">点击查看原文></div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.infoq.cn/article/6EYVBX5UD2Cb0PWYsPCq?utm_source=rss&utm_medium=article" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f59e0b;">Q</span>
+            <span class="news-source-name">InfoQ</span>
+          </div>
+          <div class="news-title">AI 浪潮里，听见一线的声音｜AICon 深圳 2026 优秀出品人 & 明星讲师名单揭晓</div>
+          <div class="news-summary">点击查看原文></div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.infoq.cn/article/6Jc130IN2OaXqsPDIzmJ?utm_source=rss&utm_medium=article" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f59e0b;">Q</span>
+            <span class="news-source-name">InfoQ</span>
+          </div>
+          <div class="news-title">人人都能整个“自己的DeepSeek Harness”，那我们为啥还在给Claude Code们充会员？</div>
+          <div class="news-summary">点击查看原文></div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/zh-cn/技术/通用/海外三大ai模型接连宕机近4小时-openai忙预热gpt6-国内大模型岿然不动/ar-AA2bxFWf?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">海外三大AI模型接连宕机近4小时：OpenAI忙预热GPT6，国内大模型岿然不动</div>
+          <div class="news-summary">格隆汇9月4日｜据澎湃，海外三大AI模型突发“集体宕机”。9月3日晚间，美国所有头部AI服务集体出现故障，ChatGPT、Claude、Grok宣布服务出现异常</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://tech.yahoo.com/ai/chatgpt/articles/ai-chatbots-answering-voting-questions-230022998.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">How are AI chatbots answering voting questions?</div>
+          <div class="news-summary">{beacon} Technology Technology The Big Story Nearly a third of AI chatbot replie</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.nytimes.com/2026/09/04/technology/open-source-ai-anthropic-openai.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Corporate America Is Getting Hooked on Open-Source A.I.</div>
+          <div class="news-summary">Companies like AT&T are increasingly using cheap, freely available artificial in</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/why-gartner-shares-sliding-today-235010728.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Why Gartner (IT) Shares Are Sliding Today</div>
+          <div class="news-summary">Shares of research and advisory firm Gartner (NYSE:IT) fell 4% in the afternoon </div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.moneycontrol.com/technology/openai-launches-gpt-6-astra-claims-new-ai-capabilities-bring-it-closer-to-human-level-intelligence-article-14022507.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">OpenAI launches GPT-6 Astra, claims new AI capabilities bring it closer to human-level intelligence</div>
+          <div class="news-summary">OpenAI has unveiled GPT-6 Astra, calling it its most intelligent and aligned AI </div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/technology/artificial-intelligence/yes-we-re-entering-the-era-of-artificial-general-intelligence/ar-AA2bzjRc" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Yes, we're entering the era of artificial general intelligence</div>
+          <div class="news-summary">Plus, AI and axing the 'micro-team' boss.</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.ncregister.com/cna/u-s-bishops-focus-on-young-people-artificial-intelligence-in-labor-day-message" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">U.S. Bishops Focus On Young People, Artificial Intelligence in Labor Day Message</div>
+          <div class="news-summary">The Labor Day message echoed Pope Leo XIV’s encyclical Magnifica Humanitas on ar</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-sg/money/technology/singapore-business-review-technology-enterprise-summit-2026-turning-ai-ambition-into-enterprise-value/ar-AA2bvTJi" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Singapore Business Review Technology Enterprise Summit 2026: Turning AI ambition into enterprise value</div>
+          <div class="news-summary">Case studies on enterprise AI ROI take centre stage on 12 November in Singapore.</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://semiengineering.com/how-many-design-experiments-does-a-machine-learning-predictor-actually-need/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">How Many Design Experiments Does A Machine Learning Predictor Actually Need?</div>
+          <div class="news-summary">Required dataset size and achievable accuracy track how smooth the response is, </div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.aol.com/articles/troy-university-dothan-host-symposium-183726000.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Troy University Dothan to host symposium on AI and technology</div>
+          <div class="news-summary">Troy University’s Dothan campus will host its second annual symposium on emergin</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/caterpillar-collaborates-fieldai-industrial-robotics-141025009.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Caterpillar Collaborates With FieldAI on Industrial Robotics and AI Technology</div>
+          <div class="news-summary">Caterpillar Inc. (NYSE:CAT) announced a collaboration with FieldAI focused on de</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.wyomingnews.com/opinion/guest_column/reeves-wyoming-must-lead-in-the-ai-revolution/article_f67f5438-c285-41c4-8e9d-839296e99f37.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Reeves: Wyoming must lead in the AI revolution</div>
+          <div class="news-summary">Artificial intelligence is no longer a future possibility. It is already transfo</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.newswise.com/articles/can-ai-models-identify-parkinson-s-patients-at-risk-for-faster-decline" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Can AI models identify Parkinson’s patients at risk for faster decline? | Newswi...</div>
+          <div class="news-summary">Machine-learning models developed by University of Miami researchers used clinic</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.broadwayworld.com/off-broadway/article/Douglas-Smith-and-Emma-Ramos-Will-Lead-MACHINE-LEARNING-at-Little-Engine-Theater-20260902" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Douglas Smith and Emma Ramos Will Lead MACHINE LEARNING at Little Engine Theater</div>
+          <div class="news-summary">Kate Vozella's world premiere dark comedy will run at Manhattan Neighborhood Net</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://hbr.org/topic/subject/ai-and-machine-learning" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">AI and Machine Learning</div>
+          <div class="news-summary">Find new ideas and classic advice on strategy, innovation and leadership, for gl</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/news/other/dyson-launches-499-toothbrush-with-built-in-camera-ai-technology/ar-AA2bm95A?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Dyson launches $499 toothbrush with built-in camera, AI technology</div>
+          <div class="news-summary">Dyson is entering premium oral care with the $499 CameraJet, combining an electr</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/baosheng-bvi-directbooking-technology-entered-130000711.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Baosheng BVI and DirectBooking Technology Entered into AI Business Cooperation Framework Agreement</div>
+          <div class="news-summary">Leveraging Dual Strengths in AI Marketing and Technology Platforms to Capture Ne</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.benzinga.com/markets/private-markets/26/09/61561429/ai-is-speeding-up-private-credit-jpmorgan-expert-wonders-wholl-spot-its-mistakes" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">AI Is Speeding Up Private Credit — But Who'll Spot Its Mistakes? - JPMorgan Chas...</div>
+          <div class="news-summary">Artificial intelligence could give private credit investors an earlier warning w</div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.forbes.com/councils/forbesbusinesscouncil/2026/09/01/ai-is-the-next-wave-how-the-technology-is-shaping-travel/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">AI Is The Next Wave: How The Technology Is Shaping Travel</div>
+          <div class="news-summary">Every previous wave of travel technology rewarded the companies that leaned in e</div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.psychiatrictimes.com/view/is-artificial-intelligence-turning-athletes-into-robots-and-robots-into-athletes" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Is Artificial Intelligence Turning Athletes Into Robots and Robots Into...</div>
+          <div class="news-summary">Artificial intelligence revolutionizes sports, enhancing performance and officia</div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.sciencedaily.com/releases/2026/07/260701205006.htm" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">AI just supercharged the race to find room temperature superconductors</div>
+          <div class="news-summary">Scientists have combined machine learning with quantum physics to discover two n</div>
+          <div class="news-time">5天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/cbts-names-mark-giles-chief-130000968.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">CBTS Names Mark Giles Chief Technology Officer as Company Unifies AI and Technology Strategy</div>
+          <div class="news-summary">CBTS, a leading North American technology services company, today named Mark Gil</div>
+          <div class="news-time">5天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/zh-cn/money/通用/中国ai大模型调用量连续十八周领跑-智谱-牛来-大模型冲上榜首-deepseek-v4-pro跌出榜单/ar-AA2beYp8?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">中国AI大模型调用量连续十八周领跑：智谱“牛来”大模型冲上榜首，DeepSeek-V4-Pro跌出榜单</div>
+          <div class="news-summary">其中，上榜的AI大模型中，中国AI大模型周调用量达55.16万亿Token，环比增长36.26%；同期美国AI大模型周调用量为17.07万亿Token，环比增长</div>
+          <div class="news-time">5天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/forget-industry-labels-chevron-caterpillar-213500446.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Forget the Industry Labels: Chevron and Caterpillar Are Both Betting on the AI...</div>
+          <div class="news-summary">Artificial intelligence can't live without electricity, and a broad group of com</div>
+          <div class="news-time">6天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.aip.org/scilights/algorithm-optimizes-machine-learning-techniques-that-use-linear-tunable-resistor-networks" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Algorithm optimizes machine learning techniques that use linear, tunable resistor networks</div>
+          <div class="news-summary">Framework applying Kirchoff’s laws of current flow and voltage changes across ci</div>
+          <div class="news-time">08月28日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-in/news/other/dedeepya-yarra-and-the-rise-of-trustworthy-ai-where-machine-learning-meets-cybersecurity/ar-AA2aTYWf?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Dedeepya Yarra and the rise of trustworthy AI: Where machine learning meets cybersecurity</div>
+          <div class="news-summary">Dedeepya Yarra's interdisciplinary research interest is the intersection of mach</div>
+          <div class="news-time">08月26日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.manilatimes.net/2026/09/04/tmt-newswire/globenewswire/koinvex-announces-development-of-ai-powered-technology-designed-to-support-smarter-digital-decision-making/2418678" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Koinvex Announces Development of AI-Powered Technology Designed to Support Smarter Digital Decision-Making</div>
+          <div class="news-summary">Koinvex has announced the development of an AI-powered technology platform focus</div>
+          <div class="news-time">08月20日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-xl/technology/artificial-intelligence/openai-unveils-astra-ai-with-evasion-capabilities/ar-AA2bA1DT?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">OpenAI unveils Astra AI with evasion capabilities</div>
+          <div class="news-summary">OpenAI unveiled its next-generation high-performance artificial intelligence (AI</div>
+          <div class="news-time">08月15日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.usnews.com/news/technology/articles/2026-07-23/openai-says-rogue-ai-models-broke-free-from-human-control-some-see-it-as-a-warning-shot" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">AI Models' Breakout From Human Control Brings a Told-You-So Moment for Technology Researchers</div>
+          <div class="news-summary">It is the kind of development once seen only in science fiction: An artificial i</div>
+          <div class="news-time">07月23日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.forbes.com/sites/dileeprao/2026/07/21/who-will-really-win-the-ai-race-why-technology-alone-wont-decide/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Who Will Really Win The AI Race? Here's Why Technology Alone Won't Decide</div>
+          <div class="news-summary">The intense AI race, marked by massive investments, raises the question of who w</div>
+          <div class="news-time">07月21日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.techtarget.com/searchenterpriseai/feature/Top-12-machine-learning-use-cases-and-business-applications" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Top 12 machine learning use cases and business applications</div>
+          <div class="news-summary">Executives across all business sectors have been making substantial investments </div>
+          <div class="news-time">06月11日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.nature.com/collections/gcijejjahe" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#7c3aed;">ai</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#f97316;">D</span>
+            <span class="news-source-name">DuckDuckGo AI</span>
+          </div>
+          <div class="news-title">Computation and Machine Learning for Chemistry</div>
+          <div class="news-summary">The authors devise an efficient quantum approach to address the van der Waals in</div>
+          <div class="news-time">04月11日 00:00</div>
+        </div>
+      </a>
+      
+    </div>
+    <div class="section-footer"><a href="tag-page/ai/">查看全部 50+ 条🤖 AI 资讯</a></div>
+  </div>
+  
+  <div class="tab-content " id="tabTech">
+    <div class="news-list">
+      
+      <a class="news-item" href="https://finance.yahoo.com/media-advertising/articles/news-corp-digital-driven-earnings-110940965.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">How News Corp’s Digital-driven Earnings Beat Could Reshape the Investment Thesis...</div>
+          <div class="news-summary">In its latest reported quarter, News Corp posted a 10.8% year-on-year revenue in</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/lifestyle/articles/errors-using-technology-arent-always-100152584.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Errors when using technology aren't always the user's fault | Ask Jean</div>
+          <div class="news-summary">Goodness gracious, technology has a way of making smart people feel foolish.</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.wowktv.com/business/press-releases/cision/20260905CN40965/dreame-showcases-three-physical-ai-technology-foundations-across-100-products-at-ifa-2026" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Dreame Showcases Three Physical AI Technology Foundations Across 100+ Products...</div>
+          <div class="news-summary">BERLIN, Sept. 5, 2026 /PRNewswire/ -- Dreame Technology today showcased over 100</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/recent-news-nvidia-sk-hynix-120500853.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Recent News From Nvidia and SK Hynix Reveals Exactly What the Market Expects for...</div>
+          <div class="news-summary">Two big AI companies shared positive news; here's what Micron stock did.</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/news/articles/black-tech-week-2027-coming-005446920.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Black Tech Week 2027 coming to Columbus</div>
+          <div class="news-summary">COLUMBUS, Ohio (WCMH) – A renowned minority-focused business event is moving to </div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/formfactor-entegris-penguin-solutions-teradyne-021410145.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">FormFactor, Entegris, Penguin Solutions, Teradyne, and Marvell Technology Stocks...</div>
+          <div class="news-summary">A number of stocks jumped in the afternoon session after investors shrugged off </div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502325" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">Open Flow 开源：面向 AI Agent 的工作流自动化平台</div>
+          <div class="news-summary">Open Flow 一个面向 AI Agent 的工作流自动化平台 OOMOL Lab 近日开源了 Open Flow，一个面向 AI Agent 的工作流自动</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502322" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">🔥 优化及缺陷修复：开源 AI 无代码平台 NocoBase</div>
+          <div class="news-summary">汇总一周产品更新日志，最新发布可前往我们的博客查看。 NocoBase 目前更新包括三个分支： main、next 和 develop。 main： 截至目前最</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502321" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">抢占AI时代战略制高点 开源平台成为资本追逐焦点</div>
+          <div class="news-summary">近日，英伟达宣布用129亿美元收购全球最大开源AI模型社区之一Hugging Face。数据显示，Hugging Face最近的月收入年化后约为1.5 亿美元，</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502318/libreoffice-26-8-first-week-download-record" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">LibreOffice 26.8 首周下载量 103 万次创造新纪录，最大亮点是“没有一个 AI 功能”</div>
+          <div class="news-summary">1,031,162。这是 LibreOffice 26.8 发布第一周的官网下载量。 The Document Foundation 说这是 LibreOffi</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502316" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">编码、办公、设计都擅长的 covo-agent v0.1.1 发布，优化终端交互体验</div>
+          <div class="news-summary">covo-agent 是一款面向终端、使用 Go 编写、采用 AGPL-3.0 协议开源的通用型 AI Agent，覆盖日常工作、软件开发、自动化以及与外部系统</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502314" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">WorkBuddy上架openKylin：能“听懂指令”的 AI 智能体来了！</div>
+          <div class="news-summary">OpenAtom openKylin（以下简称“openKylin”）软件商店上架WorkBuddy了！openKylin 2.0及以上版本用户现在打开软件商店</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502313" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">高性能跨平台网络通信框架 HP-Socket v6.0.9 发布</div>
+          <div class="news-summary">项目主页 : http://www.oschina.net/p/hp-socket 开发文档 : https://www.docin.com/p-4592706</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502312/chatgpt-grok-claude-outage-down" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">ChatGPT、Claude、Grok 同时宕机，没人解释为什么</div>
+          <div class="news-summary">9 月 3 日，ChatGPT、Claude 和 Grok 同时宕机了。 不是先后，是几乎完全重叠。Grok 在美东时间上午 9:30 开始出问题。ChatGP</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502310/nvidia-to-acquire-hugging-face" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">NVIDIA 129 亿美元收购 Hugging Face，承诺保持开放平台</div>
+          <div class="news-summary">NVIDIA 将以 129.3 亿美元收购 Hugging Face。CEO Jensen Huang（黄仁勋）亲自在 NVIDIA 官方博客上发了这篇文章。他</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.oschina.net/news/502309/audacity-4-0-0" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#22c55e;">源</span>
+            <span class="news-source-name">开源中国</span>
+          </div>
+          <div class="news-title">Audacity 4.0.0 发布：界面迁移 Qt，Clip 编辑模型重做</div>
+          <div class="news-summary">Audacity 4.0.0 发布了。这个版本花了两年多时间，把整个应用界面从 wxWidgets 迁移到了 Qt。 界面重写是这次更新的主线。Qt 带来了原生</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-in/news/other/this-new-ai-engineer-job-is-booming-in-silicon-valley-offers-nearly-rs-16-crore-median-salary/ar-AA2by0Ar?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">This new AI engineer job is booming in Silicon Valley, offers nearly Rs 1.6 crore median salary</div>
+          <div class="news-summary">Highest paying AI jobs: Forward-deployed engineer jobs are booming in Silicon Va</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/technology/tech-companies/nvidia-acquires-hugging-face-in-push-for-open-source-technology/ar-AA2buQMA?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Nvidia acquires Hugging Face in push for open-source technology</div>
+          <div class="news-summary">The technology giant Nvidia will acquire the open-source platform Hugging Face f</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.mercurynews.com/2026/09/04/tech-economy-jobs-paypal-amazon-layoff-ai-internet-bay-area-san-jose/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Bay Area tech layoffs already top last year as more job cuts surface</div>
+          <div class="news-summary">The number of tech industry job cuts in the Bay Area has already topped the numb</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/corning-leads-3-oversold-tech-230002933.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Corning Leads 3 Oversold Tech Stocks That Also Pay Dividends. This Chip Stock...</div>
+          <div class="news-summary">Three tech stocks all trading near recent lows despite strong AI-adjacent busine</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.benzinga.com/money/best-tech-stocks" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Best Tech Stocks Right Now • Updated Daily • Benzinga</div>
+          <div class="news-summary">Benzinga brings you the best tech stocks to invest in right now. We update our i</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.fox44news.com/business/press-releases/cision/20260904FL41082/eightpoint-technologies-joins-enterprise-cayman-and-dmz-as-programme-partner-for-launch-labs-incubator" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Eightpoint Technologies Joins Enterprise Cayman and DMZ as Programme Partner for...</div>
+          <div class="news-summary">SEZC today announced that it has joined Enterprise Cayman and global startup inc</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://federalnewsnetwork.com/financial-management/2026/09/federal-leaders-guide-to-the-cfo-sdfms-rich-brady-on-evolution-of-defense-financial-management-and-managers/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Federal Leader’s Guide to the CFO: SDFM’s Rich Brady on evolution of Defense fin...</div>
+          <div class="news-summary">As technology automates routine tasks, the SDFM CEO says defense financial manag</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.manilatimes.net/2026/09/03/tmt-newswire/plentisoft/the-28th-china-hi-tech-fair-asia-aerospace-industry-expo-takes-off-connecting-innovation-industry-and-opportunity/2417867" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">The 28th CHINA HI-TECH FAIR Asia Aerospace Industry Expo Takes Off: Connecting Innovation, Industry, and Opportunity</div>
+          <div class="news-summary">As global climate change converges with a new wave of technological revolution, </div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/media-advertising/articles/q2-earnings-review-consumer-discretionary-172610642.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Q2 Earnings Review: Consumer Discretionary - Media Stocks Led by News Corp...</div>
+          <div class="news-summary">Quarterly earnings results are a good time to check in on a company’s progress, </div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.morningstar.com/news/pr-newswire/20260904ny40692/omnicom-to-present-at-the-goldman-sachs-communacopia-technology-conference" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">OMNICOM TO PRESENT AT THE GOLDMAN SACHS COMMUNACOPIA + TECHNOLOGY CONFERENCE</div>
+          <div class="news-summary">Home News PR Newswire OMNICOM TO PRESENT AT THE GOLDMAN SACHS COMMUNACOPIA + TEC</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/figure-technology-solutions-figr-stock-121326744.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Figure Technology Solutions (FIGR) Stock Looks Fully Priced Despite Its 31% Run</div>
+          <div class="news-summary">Figure Technology Solutions stock has rallied strongly over the past month, yet </div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://pr.newsaegis.com/article/Phaos-Technology-Holdings-Cayman-Limited-Announces-Results-of-Extraordinary-General-Meeting/6a9b39315c73a7935efd2cf0" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Phaos Technology Holdings (Cayman) Limited Announces Results of Extraordinary...</div>
+          <div class="news-summary">SINGAPORE, Sept. 04, 2026 (GLOBE NEWSWIRE) -- Phaos Technology Holdings (Cayman)</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/aecoms-200-gpm-silicon-valley-140300322.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Can AECOM's 200-GPM Silicon Valley Project Boost Water Growth?</div>
+          <div class="news-summary">ACM's 200-GPM Silicon Valley water-reuse project adds to a U.S. water pipeline t</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/news/other/trump-s-lake-ontario-push-forces-tech-to-pick-a-side/ar-AA2bsiB0?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Trump’s Lake Ontario push forces tech to pick a side</div>
+          <div class="news-summary">Google and Apple quickly complied with Trump’s renaming campaign, while MapQuest</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.politico.com/news/2026/09/02/tech-lake-ontario-01062631" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Trump’s Lake America push forces tech to pick a side</div>
+          <div class="news-summary">Trump unveiled the name change for Lake Ontario on Thursday, amid a trade and ta</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://technode.com/2026/09/03/from-wild-growth-to-tech-driven-growth-in-chinas-ai-short-drama-industry/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">From wild growth to tech-driven growth in China’s AI short drama industry</div>
+          <div class="news-summary">In September, China’s first dedicated departmental regulation for micro-dramas, </div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/articles/zacks-industry-outlook-highlights-macom-125000923.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Zacks Industry Outlook Highlights MACOM Technology, Monolithic Power and Semtech</div>
+          <div class="news-summary">MACOM Technology, Monolithic Power and Semtech benefit from AI demand, semicondu</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/technology/tech-companies/china-s-euv-technology-at-a-similar-stage-to-asml-in-2004-analyst-claims/ar-AA2bqalD?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">China's EUV technology 'at a similar stage to ASML in 2004,' analyst claims</div>
+          <div class="news-summary">Despite rumors, there is no evidence that Chinese makers of lithography tools ca</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/articles/credo-technology-group-holding-crdo-140949592.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Credo Technology Group Holding (CRDO) Achieved PCIe 6.x Compliance For Its Toucan Retimer</div>
+          <div class="news-summary">Credo Technology Group Holding (NasdaqGS:CRDO) reported that its Toucan Gen6x16 </div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.morningstar.com/news/business-wire/20260902533597/everspin-technologies-and-teledyne-hirel-semiconductors-partner-to-accelerate-mram-adoption-in-aerospace-and-defense-applications" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Everspin Technologies and Teledyne HiRel Semiconductors Partner to Accelerate...</div>
+          <div class="news-summary">View the full release here: https://www.businesswire.com/news/home/2026090253359</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.foxnews.com/video/6404514494112" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Why a Silicon Valley billionaire got a root canal without a painkiller</div>
+          <div class="news-summary">The Five’ co-hosts analyze how Silicon Valley billionaire Douglas Leone underwen</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://247wallst.com/investing/2026/08/31/this-thesis-for-marvell-technology-keeps-me-accumulating-amid-tailwinds/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">This Thesis for Marvell Technology Keeps Me Accumulating Amid Tailwinds</div>
+          <div class="news-summary">A post-earnings drop handed one investor a reason to buy more Marvell Technology</div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-au/technology/artificial-intelligence/facial-recognition-technology-scope-creep-is-upon-us-experts-warn/ar-AA2biGTk?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Facial recognition technology 'scope creep' is upon us, experts warn</div>
+          <div class="news-summary">Industry groups say the move to facial scans in supermarkets is about safety, bu</div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/news/other/trump-administration-fires-back-at-silicon-valley-over-dei-claims/vi-AA2bgFqP?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Trump administration fires back at Silicon Valley over DEI claims</div>
+          <div class="news-summary">A major dispute erupts between the Trump administration and Silicon Valley over </div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/companies/fdic-defeats-171-billion-claim-over-silicon-valley-bank-collapse-us-judge-rules/ar-AA2bh5Ge?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">FDIC defeats $1.71 billion claim over Silicon Valley Bank collapse, US judge rules</div>
+          <div class="news-summary">By Jonathan Stempel Aug 31 (Reuters) - A U.S. judge said the former parent of Si</div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/general/as-maryland-counties-block-data-centers-tech-industry-warns-of-ai-wall/ar-AA2bgjDO?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Tech industry’s warning as Maryland counties block data centers</div>
+          <div class="news-summary">Charles Degliomini worries Maryland is racing toward a wall of its own making. T</div>
+          <div class="news-time">5天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.fox44news.com/business/press-releases/cision/20260831CL37214/demotech-inc-summarizes-impact-of-tech-enabled-litigation-instigation-on-trucking-industry" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Demotech, Inc. Summarizes Impact of Tech-enabled Litigation Instigation on...</div>
+          <div class="news-summary">ET. According to Petrelli, the webinar will expose how emerging technologies hav</div>
+          <div class="news-time">5天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.mercurynews.com/2026/08/30/photos-thousands-turn-out-for-the-silicon-valley-pride-parade-in-san-jose/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Photos: Thousands turn out for the Silicon Valley PRIDE Parade in San Jose</div>
+          <div class="news-summary">Hundreds of Silicon Valley Pride Parade participants marched, danced and skated </div>
+          <div class="news-time">5天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://futurism.com/future-society/tech-labor-layoffs-ai" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Tech Workers Are in Deep, Deep Trouble</div>
+          <div class="news-summary">Add Futurism (opens in a new tab) More information Adding us as a Preferred Sour</div>
+          <div class="news-time">11月08日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://techcrunch.com/2025/03/16/european-tech-industry-coalition-calls-for-radical-action-on-digital-sovereignty-starting-with-buying-local/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">European tech industry coalition calls for ‘radical action’ on digital sovereignty — starting with buying local</div>
+          <div class="news-summary">A broad coalition drawn from across the ranks of Europe’s tech industry is calli</div>
+          <div class="news-time">03月17日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://deloitte.wsj.com/cfo/2025-technology-industry-outlook-f0ca87dd" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">2025 Technology Industry Outlook</div>
+          <div class="news-summary">At mid-decade, the technology sector appears positioned for growth. Some analyst</div>
+          <div class="news-time">03月12日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/gaming/general/as-if-gaming-isn-t-pricy-enough-the-us-government-is-reportedly-once-again-considering-more-tech-industry-tariffs/ar-AA2b3vwK?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">As if gaming isn’t pricy enough, the US government is reportedly once again considering more tech industry tariffs</div>
+          <div class="news-summary">Make it stop. Please. The post As if gaming isn’t pricy enough, the US governmen</div>
+          <div class="news-time">Opinion8 d</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/general/bill-gates-warns-ai-risks-outweigh-tech-industry-warnings-urges-new-taxes-and-limits/ar-AA2b2oFH?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">Bill Gates warns AI risks outweigh tech industry warnings, urges new taxes and limits</div>
+          <div class="news-summary">Microsoft co-founder Bill Gates warned Wednesday that artificial intelligence po</div>
+          <div class="news-time">Opinion8 d</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.nytimes.com/2026/08/30/opinion/silicon-valley-theater-improv.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#0891b2;">tech</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#0891b2;">D</span>
+            <span class="news-source-name">DuckDuckGo Tech</span>
+          </div>
+          <div class="news-title">How a ’70s Improv Book Became Silicon Valley’s Required Reading</div>
+          <div class="news-summary">Theatrical play is having a moment in Silicon Valley. Artificial intelligence co</div>
+          <div class="news-time">Opinion5 d</div>
+        </div>
+      </a>
+      
+    </div>
+    <div class="section-footer"><a href="tag-page/tech/">查看全部 50+ 条🔧 科技动态</a></div>
+  </div>
+  
+  <div class="tab-content " id="tabFinance">
+    <div class="news-list">
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/quanta-services-pwr-stock-trades-161449085.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Quanta Services (PWR) Stock Trades At A Premium To Fair Value</div>
+          <div class="news-summary">Quanta Services stock has delivered very strong multi year returns, yet the curr</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/powell-industries-powl-stock-looks-161400623.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Powell Industries (POWL) Stock Looks Expensive Relative To Fair Value</div>
+          <div class="news-summary">Powell Industries has produced very strong long term returns over the past five </div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://ugawire.usatoday.com/story/sports/college/bulldogs/football/2026/09/05/georgia-football-tennessee-state-tv-channel-today/91611833007/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">What channel is Georgia's season opener on today? Time, TV schedule</div>
+          <div class="news-summary">Georgia football opens its 2026 season against Tennessee State. Find the kickoff</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://247wallst.com/companies/wbs/price-prediction/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">WBS Stock Price Prediction 2026-2027 | Webster Financial Forecast | 24/7 Wall...</div>
+          <div class="news-summary">Webster Financial (WBS) target price: $86.10 (11.0% upside). Current price: $77.</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/investors-may-respond-principal-financial-050636577.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">How Investors May Respond To Principal Financial Group (PFG) Acquiring Beam’s Di...</div>
+          <div class="news-summary">In recent weeks, Principal Financial Group completed its acquisition of Beam Ben</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.palmbeachpost.com/story/sports/college/gators/2026/09/05/florida-fau-tv-channel-today-time/91578652007/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">What channel is Florida football vs FAU on today? Time, TV schedule</div>
+          <div class="news-summary">What channel is Florida Gators football vs Florida Atlantic game on today? How t</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/general/apple-possessed-the-ultimate-stock-market-superpower-under-tim-cook-can-its-new-ceo-step-up/ar-AA2byfwn?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Apple possessed the ultimate stock-market superpower under Tim Cook. Can its new CEO step up?</div>
+          <div class="news-summary">Leadership matters more than visionary ideas.</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.forbes.com/sites/greatspeculations/2026/09/03/is-the-market-falling-out-of-love-with-marvell-stock/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Is The Market Falling Out Of Love With Marvell Stock?</div>
+          <div class="news-summary">Marvell’s core risk is not that its AI-fueled growth will end, but that the chan</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/us-stock-market-today-p-081915564.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">US Stock Market Today: S&P 500 Futures Edge Higher As Yields Ease Before Jobs</div>
+          <div class="news-summary">The Morning Bull - US Market Morning Update Friday, Sep, 4 2026 US stock futures</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-4-133716564.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Stock Market Today (Sept. 4, 2026): Yields jump, stocks fall after jobs report...</div>
+          <div class="news-summary">The U.S. added 162,000 jobs in August, decisively beating consensus estimates.</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/ia-financial-tsx-iag-trade-210739510.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Can iA Financial (TSX:IAG) Trade At A Discount After Its 233% Run?</div>
+          <div class="news-summary">iA Financial has delivered a very strong 5 year share price run, yet today the s</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/video/other/deloitte-projects-moon-economy-as-large-as-566b-by-2050/vi-AA2bwwQ9?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Deloitte projects 'moon economy' as large as $566B by 2050</div>
+          <div class="news-summary">Deloitte projects 'moon economy' as large as $566B by 2050 ...</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/news/us/articles/journal-poll-mexicans-not-enthusiastic-030200313.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Journal Poll: New Mexicans not enthusiastic about state economy</div>
+          <div class="news-summary">Few New Mexicans think the state economy is good or excellent, according to resu</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/economy/articles/companies-confront-trade-down-economy-164750050.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Companies confront ‘trade down’ economy</div>
+          <div class="news-summary">Consumer companies like Nespresso say they’ve had to try harder to convince shop</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/economy/german-growth-prospects-brighten-as-economy-defies-mideast-turmoil/ar-AA2btob5?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">German growth prospects brighten as economy defies Mideast turmoil</div>
+          <div class="news-summary">German growth this year is set to come in stronger than previously estimated, le</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/how-to-invest-in-a-booming-stock-market-that-s-way-cheaper-than-the-s-p-500/ar-AA2bv3Cx?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">How to invest in a booming stock market that’s way cheaper than the S&P 500</div>
+          <div class="news-summary">Poland’s reclassification as a developed economy from an emerging market opens i</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.gurufocus.com/news/9068654/tetragon-financial-group-limited-announcement-of-final-results-of-tender-offer-to-purchase-tetragon-nonvoting-shares" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Tetragon Financial Group Limited Announcement of Final Results o</div>
+          <div class="news-summary">Tetragon Financial Group Limited Announcement of Final Results of Tender Offer t</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/ia-financial-tsx-iag-trade-210739510.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Can iA Financial (TSX:IAG) Trade At A Discount After Its 233% Run?</div>
+          <div class="news-summary">iA Financial has delivered a very strong 5 year share price run, yet today the s</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-friday-september-4-2026-up-to-435-apy-return-available-with-18-month-cd-100000753.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Best CD rates today, Friday, September 4, 2026: Up to 4.35% APY return available...</div>
+          <div class="news-summary">CD rates are the highest they've been in a long time. Here's where you can find </div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-sept-4-133716564.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Stock Market Today (Sept. 4, 2026): Dow falls 300 points after key jobs report</div>
+          <div class="news-summary">The U.S. added 162,000 jobs in August, decisively beating consensus estimates.</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.wowktv.com/business/press-releases/cision/20260904NY41060/tetragon-financial-group-limited-announcement-of-final-results-of-tender-offer-to-purchase-tetragon-non-voting-shares" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Tetragon Financial Group Limited Announcement of Final Results of Tender Offer...</div>
+          <div class="news-summary">LONDON, Sept. 4, 2026 /PRNewswire/ -- Tetragon today announces the final results</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/real-estate/articles/todays-mortgage-mortgage-refinance-interest-140026257.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">What are today's mortgage and mortgage refinance interest rates?</div>
+          <div class="news-summary">Knowing today's mortgage rates can help new homebuyers and homeowners looking to</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.cnbc.com/2026/09/02/dell-is-now-the-most-important-stock-in-the-market-heres-why-.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Dell is now the most important stock in the market. Here's why</div>
+          <div class="news-summary">Dell is the stock to watch in Wednesday's market. The AI trade depends on it. Sh</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/stock-market-today-sept-2-2026-dow-edges-higher-as-oil-prices-rise-and-bond-yields-climb/ar-AA2bqNdB?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Stock market today (Sept. 2, 2026): Dow edges higher as oil prices rise and bond yields climb</div>
+          <div class="news-summary">Investors are monitoring renewed hostilities between the U.S. and Iran.</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/5-things-to-know-before-the-stock-market-opens-on-wednesday/ar-AA2bpEnb?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">5 things to know before the stock market opens on Wednesday</div>
+          <div class="news-summary">News of the day for Sept. 2, 2026 ...</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/economy/us-economy-increasingly-revolves-around-data-centers-new-report-shows/ar-AA2brpMZ?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">US economy increasingly revolves around data centers, new report shows</div>
+          <div class="news-summary">Key Takeaways The U.S. economy increasingly depends on the buildout of data cent</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.marketwatch.com/livecoverage/stock-market-today-dow-s-p-500-nasdaq-oil-prices-bond-yields-adp-jobs-data-broadcom-results/card/this-corn-etf-is-outperforming-the-stock-market-s54d7ZnJU6dF8mPugrmS" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">This corn ETF is outperforming the stock market</div>
+          <div class="news-summary">Investors on betting on higher corn prices. Uncertainty about this year's harves</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/stock-market-today-futures-point-lower-after-indexes-fall-for-3rd-straight-session-10-year-treasury-yield-hits-highest-level-since-2023/ar-AA2bpAB7?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Stock market today: Major indexes snap 3-session skids despite elevated oil prices, bond yields; Nvidia, Dell among leading stock gainers</div>
+          <div class="news-summary">Major U.S. stock indexes rose Wednesday, a day after posting their third consecu</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/economy/articles/companies-confront-trade-down-economy-164750050.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Companies confront ‘trade down’ economy</div>
+          <div class="news-summary">Consumer companies like Nespresso say they’ve had to try harder to convince shop</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.cnbc.com/2026/09/02/dell-is-now-the-most-important-stock-in-the-market-heres-why-.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Dell is now the most important stock in the market. Here's why</div>
+          <div class="news-summary">Dell is the stock to watch in Wednesday's market. The AI trade depends on it. Sh</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/stock-market-today-futures-point-lower-after-indexes-fall-for-3rd-straight-session-10-year-treasury-yield-hits-highest-level-since-2023/ar-AA2bpAB7?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Stock market today: Major indexes snap 3-session skids despite elevated oil prices, bond yields; Nvidia, Dell among leading stock gainers</div>
+          <div class="news-summary">Major U.S. stock indexes rose Wednesday, a day after posting their third consecu</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.cnbc.com/2026/09/04/here-are-our-top-10-things-to-watch-in-the-stock-market-friday.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Here are our top 10 things to watch in the stock market Friday</div>
+          <div class="news-summary">Club portfolio director Jeff Marks wrote today's newsletter. 1. Bond yields jump</div>
+          <div class="news-time">6天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/5-things-to-know-before-the-stock-market-opens-on-friday/ar-AA2byPug?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">5 things to know before the stock market opens on Friday</div>
+          <div class="news-summary">News of the day for Sept. 4, 2026 ...</div>
+          <div class="news-time">08月29日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/news/money/stock-market-today-sept-4-2026-s-p-500-futures-edge-higher-after-key-jobs-report/ar-AA2bz09q?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Stock market today (Sept. 4, 2026): S&P 500 futures edge higher after key jobs report</div>
+          <div class="news-summary">The U.S. added 162,000 jobs in August, decisively beating consensus estimates.</div>
+          <div class="news-time">08月24日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.sina.com.cn/headline/2026-08-22/doc-inipcwvt6155053.shtml" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">今日国际国内财经新闻精华摘要｜2026年8月22日</div>
+          <div class="news-summary">当地时间8月21日，美国总统特朗普在南卡罗来纳州的助选演讲中重申必须阻止伊朗发展核武器，称伊朗非常渴望达成协议，但他不确定自己是否真想达成协议，同时公开表示“霍</div>
+          <div class="news-time">08月23日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://thehill.com/newsletters/business-economy/6072471-us-economy-adds-162000-jobs-in-august/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">US economy adds 162,000 jobs in August</div>
+          <div class="news-summary">Welcome to The Hill’s Business & Economy newsletter{beacon} Business & Economy B</div>
+          <div class="news-time">08月21日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/5-things-to-know-before-the-stock-market-opens-on-friday/ar-AA2byPug?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">5 things to know before the stock market opens on Friday</div>
+          <div class="news-summary">News of the day for Sept. 4, 2026 ...</div>
+          <div class="news-time">08月21日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/news/money/stock-market-today-sept-4-2026-s-p-500-futures-edge-higher-after-key-jobs-report/ar-AA2bz09q?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Stock market today (Sept. 4, 2026): S&P 500 futures edge higher after key jobs report</div>
+          <div class="news-summary">The U.S. added 162,000 jobs in August, decisively beating consensus estimates.</div>
+          <div class="news-time">08月19日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/economy/roblox-creator-economy-paid-444m-to-non-tech-communities-bookings-now-falling/ar-AA2bAPmd?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Roblox creator economy paid $444M to non-tech communities; bookings now falling</div>
+          <div class="news-summary">Roblox creator economy paid out a record $1.5 billion to creators in 2025, with </div>
+          <div class="news-time">08月18日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.sina.com.cn/headline/2026-08-09/doc-inimsnkv3616929.shtml" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">今日国际国内财经新闻精华摘要｜2026年8月9日</div>
+          <div class="news-summary">美国“爱国者”导弹库存因与伊朗战事消耗已不足1700枚，美军在战事中消耗了1500多枚该类型导弹，尽管特朗普政府已与军工企业合作加快扩大生产，但仍需两年多时间才</div>
+          <div class="news-time">08月09日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-08-07/doc-inimmtwt3397528.shtml" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">四大证券报头版头条内容精华摘要_2026年8月7日_财经新闻</div>
+          <div class="news-summary">两份超出市场预期的季度报告，并未为美股存储巨头闪迪与西部数据的股价带来提振。季度报告发布后，两家存储巨头盘后股价双双重挫。全球资本市场联动明显，截至8月6日，A</div>
+          <div class="news-time">08月07日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-08-06/doc-inimiqxt4019954.shtml" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">四大证券报头版头条内容精华摘要_2026年8月6日_财经新闻</div>
+          <div class="news-summary">8月5日，N江农转上市首日大涨57.30%，三鑫转债公布网上中签率情况。今年以来，可转债市场供给显著放量，发行数量及规模较去年同期大幅增长，网上打新中签率走低。</div>
+          <div class="news-time">08月06日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-08-04/doc-inimawmr4267367.shtml" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">四大证券报头版头条内容精华摘要_2026年8月4日_财经新闻</div>
+          <div class="news-summary">8月3日，一品红、科源制药、立方制药、联环药业等近30家医药上市公司相继发布公告称，旗下多款药品拟中选第12批国家药品集采。上述企业表示，若公司拟中选产品后续签</div>
+          <div class="news-time">08月04日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.sina.com.cn/roll/2026-07-26/doc-inikcpwc3623591.shtml" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">股市调整不慌！这15只医药龙头被严重低估值得关注，不涨停但就是涨个不停！或是下只百元恒瑞医药</div>
+          <div class="news-summary">5年前买入5万恒瑞医药，持有到现在赚多少? 恒瑞医药近十三年每年净资产收益率年在20%以上，负债率在10%左右，都是一些流动 ...</div>
+          <div class="news-time">07月26日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Everyone’s Talking About The K-Shaped Economy. Here’s What It Means</div>
+          <div class="news-summary">The K-shaped economy is an ongoing economic bifurcation; its upper branch compri</div>
+          <div class="news-time">07月24日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Everyone’s Talking About The K-Shaped Economy. Here’s What It Means</div>
+          <div class="news-summary">The K-shaped economy is an ongoing economic bifurcation; its upper branch compri</div>
+          <div class="news-time">07月24日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.businessinsider.com/us-state-economies-ranked-study-2026-6" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Every US state's economy, ranked from worst to best</div>
+          <div class="news-summary">A recent WalletHub study ranked all US states and Washington, DC, based on econo</div>
+          <div class="news-time">06月04日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://money.usnews.com/money/personal-finance/articles/economy-bounced-back-in-2q-posting-3-growth" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">Economy Bounced Back in 2Q, Posting 3% Growth</div>
+          <div class="news-summary">The U.S. economy expanded at a 3% annual pace in the second quarter, bouncing ba</div>
+          <div class="news-time">07月30日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/an-old-stock-market-adage-applies-this-month-how-you-should-play-it/ar-AA2bvWuC?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">An old stock-market adage applies this month — how you should play it</div>
+          <div class="news-summary">How to profit from the adage “sell Rosh Hashanah, buy Yom Kippur.” ...</div>
+          <div class="news-time">Opinion1 d</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-us/news/other/as-the-rest-of-the-economy-crumbles-the-amount-of-money-flooding-into-data-centers-is-simply-astounding/ar-AA2buQty?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#059669;">finance</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#059669;">D</span>
+            <span class="news-source-name">DuckDuckGo Finance</span>
+          </div>
+          <div class="news-title">As the Rest of the Economy Crumbles, the Amount of Money Flooding Into Data Centers Is Simply Astounding</div>
+          <div class="news-summary">"An enormous amount of funding is required to meet mounting compute needs." The </div>
+          <div class="news-time">Opinion1 d</div>
+        </div>
+      </a>
+      
+    </div>
+    <div class="section-footer"><a href="tag-page/finance/">查看全部 50+ 条💰 财经要闻</a></div>
+  </div>
+  
+  <div class="tab-content " id="tabVideo">
+    <div class="news-list">
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/ringcentral-rng-expands-ai-communications-150631433.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">RingCentral (RNG) Expands AI Communications Reach Through Two New Partnerships</div>
+          <div class="news-summary">The company also entered a new alliance with Digital Island in New Zealand to of</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/entertainment/celebrity/articles/dolly-partons-sister-stella-slams-143137184.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Dolly Parton's Sister Stella Slams "Insensitivity" After Her Death</div>
+          <div class="news-summary">Dolly Parton's sister Stella Parton addressed negativity that her family has rec</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/pureprofile-heads-3-australian-ai-161540650.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Pureprofile Heads These 3 Australian AI Stocks To Watch</div>
+          <div class="news-summary">Global central banks are still talking about keeping interest rates higher for l</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://whig.com/2026/09/05/illinois-gaming-board-approves-changes-to-problem-gambling-program/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Illinois Gaming Board approves changes to problem gambling program - whig</div>
+          <div class="news-summary">CHICAGO — The Illinois Gaming Board (IGB) adopted several changes to modernize i</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.theverge.com/tech/990624/lenovo-project-aeroblade-fans" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">This is Project Aeroblade.</div>
+          <div class="news-summary">Remember Frore and its fan-replacing AirJet cooling tech? Sure looks like Lenovo</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://tech.yahoo.com/ai/claude/articles/ai-just-solved-350-old-130103863.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">AI Just Solved a 350-Year-Old Math Problem By Writing the Longest Proof Ever</div>
+          <div class="news-summary">Anthropic says Claude spent 11 days turning Fermat's Last Theorem into 13 millio</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/news/politics/articles/prepare-uniquely-cursed-week-american-120000049.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Prepare for a Uniquely Cursed Week in American Politics</div>
+          <div class="news-summary">Then they’ll embark on their “America: Love It or Leave It” tour of college camp</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://tech.yahoo.com/ai/chatgpt/articles/c-suite-lessons-ai-outage-121500018.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">C-Suite Lessons From The AI Outage That Hit ChatGPT, Claude And Grok</div>
+          <div class="news-summary">AI outage lessons for the C-suite after ChatGPT, Claude and Grok went down toget</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.cnet.com/tech/home-entertainment/best-tvs-of-2026-expert-tested-compared-and-reviewed/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Best TVs of 2026: Expert Tested, Compared and Reviewed - CNET</div>
+          <div class="news-summary">I’ve reviewed the best TVs for every budget side-by-side , including top brands </div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/news/us/articles/2-joliet-pd-members-leave-021841756.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">2 Joliet PD members on leave for alleged misuse of Flock Safety Technology</div>
+          <div class="news-summary">Two members of the Joliet Police Department have been placed on paid administrat</div>
+          <div class="news-time">16小时前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://tech.yahoo.com/cybersecurity/articles/high-gravity-risks-large-companies-200631698.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">High-Gravity Risks: How Large Companies Build Zero Trust For AI Agents</div>
+          <div class="news-summary">Large enterprises are rapidly deploying agentic AI, but their autonomy poses sig</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/entertainment/tv/articles/silo-season-3-ending-explained-130000688.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Silo Season 3 Ending Explained: What Really Happened to Daniel?</div>
+          <div class="news-summary">This article contains spoilers for “Troy,” the season 3 finale of Silo “How long</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.fox19.com/2026/09/04/unusual-trend-state-testing-results-sparks-investigation-into-52-ohio-schools/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Unusual trend in state testing results sparks investigation into 52 Ohio schools</div>
+          <div class="news-summary">At least eight Greater Cincinnati schools are being investigated by the Ohio Dep</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://fox56news.com/news/local/lexington/lexington-mayor-to-appoint-panel-to-review-license-plate-reader-technology/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Lexington mayor to appoint panel to review license plate reader technology</div>
+          <div class="news-summary">A new independent panel will examine Lexington’s license plate reader technology</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/media-advertising/articles/google-just-won-keep-ad-001201602.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Google Just Won the Right to Keep Its Ad Tech Tools. They Live in the One...</div>
+          <div class="news-summary">The courtroom win preserves a corner of the ad empire that was already in declin</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.theverge.com/gadgets/990206/gopro-mission-1-pro-ils-review-niche-a-bit-clumsy-but-welcome" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">GoPro Mission 1 Pro ILS Review: Niche, a bit clumsy, but welcome</div>
+          <div class="news-summary">I thought the Mission 1 Pro ILS would be the thing to generate some buzz for GoP</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.fox19.com/2026/09/04/unusual-trend-state-testing-results-sparks-investigation-into-52-ohio-schools/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Unusual trend in state testing results sparks investigation into 52 Ohio schools</div>
+          <div class="news-summary">At least eight Greater Cincinnati schools are being investigated by the Ohio Dep</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://fox56news.com/news/local/lexington/lexington-mayor-to-appoint-panel-to-review-license-plate-reader-technology/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Lexington mayor to appoint panel to review license plate reader technology</div>
+          <div class="news-summary">A new independent panel will examine Lexington’s license plate reader technology</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.theverge.com/gadgets/990206/gopro-mission-1-pro-ils-review-niche-a-bit-clumsy-but-welcome" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">GoPro Mission 1 Pro ILS Review: Niche, a bit clumsy, but welcome</div>
+          <div class="news-summary">I thought the Mission 1 Pro ILS would be the thing to generate some buzz for GoP</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.digitaltrends.com/brc/how-birdfy-is-turning-a-million-backyards-into-a-new-window-on-nature/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">How Birdfy is turning everyday backyards into a new window on nature</div>
+          <div class="news-summary">For most people, birdwatching starts with a glance through a window. A flash of </div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/news/politics/articles/trump-attempts-fix-reflecting-pool-120754734.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Trump’s Attempts to Fix Reflecting Pool Continue as Administration Pays $2.65M M...</div>
+          <div class="news-summary">Trump’s $14 million Lincoln Memorial Reflecting Pool beautification project bega</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://sports.yahoo.com/articles/illinois-fans-stunned-blinding-20-113841103.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Illinois fans stunned by ‘blinding’ $20.9 million college football record-breake...</div>
+          <div class="news-summary">Illinois finally unveiled its record-setting $20.9 million videoboard, and fans </div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.thearabtribune.com/classifieds/sale/prosperabuilder-review-smart-choice-for-online-businesses/ad_9c093d00-143d-4c8d-b177-7721354f9f1b.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">ProsperaBuilder Review Smart Choice for Online Businesses</div>
+          <div class="news-summary">Introduction</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.prnewswire.com/news-releases/fujifilm-xf-400mm-f4-5-r-lm-ois-wr-super-telephoto-lens-youtube-first-look-video-and-more-info-at-bh-302869587.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">FUJIFILM XF 400mm F4.5 R LM OIS WR Super-Telephoto Lens; YouTube First Look...</div>
+          <div class="news-summary">/PRNewswire/ -- B&H is excited to announce a new lens from Fujifilm. The manufac</div>
+          <div class="news-time">1天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/lifestyle/articles/appalling-ai-menu-pictures-keep-230029667.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Appalling AI menu pictures keep going viral. But what makes them so revolting?</div>
+          <div class="news-summary">AI is frequently being used to advertise food, but “menu slop” isn’t typically s</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/lifestyle/articles/why-ai-food-slop-making-183840810.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Why 'AI food slop' is making people so uncomfortable and upset</div>
+          <div class="news-summary">People have taken to social media to recoil at pictures of "AI food slop" on res</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/news/science/articles/ai-explained-finding-success-human-201728841.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">AI Explained: Finding success with human–AI collaboration</div>
+          <div class="news-summary">Patrick Lynch penned a book called "How to Outsmart AI and Thrive" to help peopl</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.ksla.com/2026/09/03/attorney-says-state-rep-melerine-was-dehydrated-not-intoxicated-crash-scene/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Attorney says state Rep. Melerine was dehydrated, not intoxicated, at crash...</div>
+          <div class="news-summary">State Representative Michael Melerine’s attorney said Melerine had just come fro</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://tech.yahoo.com/phones/article/is-a-foldable-phone-finally-practical-tech-experts-explain-the-trade-offs-before-you-upgrade-120000109.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Is a foldable phone finally practical? Tech experts explain the trade-offs...</div>
+          <div class="news-summary">Chances are, Apple will announce a foldable iPhone next week. Here's what to con</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.ksla.com/2026/09/03/attorney-says-state-rep-melerine-was-dehydrated-not-intoxicated-crash-scene/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Attorney says state Rep. Melerine was dehydrated, not intoxicated, at crash...</div>
+          <div class="news-summary">State Representative Michael Melerine’s attorney said Melerine had just come fro</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.gurufocus.com/news/9066371/mchp-looks-112-overvalued-on-gf-value-amid-dividend-sustainability-concerns" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">MCHP Looks 11.2% Overvalued on GF Value™ Amid Dividend Sustainab</div>
+          <div class="news-summary">On September 03, 2026, Microchip Technology Inc (NASDAQ: MCHP) announced a strat</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://pezcyclingnews.com/technspec-cycling-gear-reviews/povec-c1-electrochromic-cycling-sunglasses-review/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">POVEC C1 Cycling Sunglasses Review: Instant Tint at Your Fingertips</div>
+          <div class="news-summary">POVEC C1 cycling sunglasses switch from light to dark tint in about one second. </div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/news/science/articles/mercy-breast-center-incorporates-ai-121002121.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Mercy Breast Center incorporates AI technology to detect breast cancer earlier</div>
+          <div class="news-summary">Radiologists at the Chub O'Reilly Cancer Center in Springfield are using new art</div>
+          <div class="news-time">2天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/lifestyle/articles/early-access-watch-review-cannondale-171500219.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Early access: Watch our review of the Cannondale CAAD14 review before it goes...</div>
+          <div class="news-summary">Cyclingnews subscribers get a first look at our in-depth bike video reviews</div>
+          <div class="news-time">3天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.yahoo.com/news/articles/video-shows-deputies-rush-fight-224115833.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Video shows deputies rush to fight at East Coweta High game</div>
+          <div class="news-summary">Video captured police detaining multiple people within 30 seconds after a fight </div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.krgv.com/news/brownsville-isd-football-teams-gain-edge-with-new-video-review-system/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Brownsville ISD football teams gain edge with new video review system</div>
+          <div class="news-summary">Brownsville ISD football programs implement the new ANSRS video technology syste</div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://finance.yahoo.com/media-advertising/articles/youtube-inks-amazon-partnership-boost-110000754.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">YouTube Inks Amazon Partnership to Boost Online Shopping Bet</div>
+          <div class="news-summary">YouTube has tapped Amazon.com Inc. as its newest affiliate partner in YouTube Sh</div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.krgv.com/news/brownsville-isd-football-teams-gain-edge-with-new-video-review-system/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Brownsville ISD football teams gain edge with new video review system</div>
+          <div class="news-summary">Brownsville ISD football programs implement the new ANSRS video technology syste</div>
+          <div class="news-time">4天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://tech.yahoo.com/phones/articles/smartphone-innovation-lets-users-design-173000531.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">New smartphone innovation lets users design their own device — boasting longer l...</div>
+          <div class="news-summary">Look out, iPhone fans — some new tech is in town that costs less and has a longe</div>
+          <div class="news-time">6天前</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.msn.com/en-in/technology/tech-companies/why-is-marvell-stock-surging-google-s-12-2-billion-ai-chip-deal-explained/ar-AA2at20f?ocid=BingNewsVerp" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Why is Marvell stock surging? Google’s $12.2 billion AI chip deal explained</div>
+          <div class="news-summary">MRVL stock jumps as Marvell partners with Google on custom AI chips and gets a p</div>
+          <div class="news-time">08月19日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.aol.com/articles/ai-explained-dor-brothers-ai-012214000.html" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">AI Explained: Dor Brothers’ AI movies going viral</div>
+          <div class="news-summary">EAST PROVIDENCE, R.I. (WPRI) — The use of artificial intelligence in filmmaking </div>
+          <div class="news-time">05月05日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.geeky-gadgets.com/recall-ai-explained/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Recall AI Explained: How This Ultimate Tool Transforms Bookmarking & Note-Taking</div>
+          <div class="news-summary">Recall is an advanced AI-powered tool designed to transform how you save, organi</div>
+          <div class="news-time">07月03日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.businessinsider.com/tech-memo-meta-scale-ai-investment-mark-zuckerberg-2025-6" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">The controversy swirling around Scale AI, explained</div>
+          <div class="news-summary">You're currently following this author! Want to unfollow? Unsubscribe via the li</div>
+          <div class="news-time">06月27日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.geeky-gadgets.com/ai-fundamentals-explained/" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">AI Fundamentals : AI Hallucinations, Agents, Privacy and Open Source</div>
+          <div class="news-summary">What happens when a technology designed to transform industries also raises prof</div>
+          <div class="news-time">06月23日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.techtarget.com/ai/tip/Advantages-and-disadvantages-of-AI-explained" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Advantages and disadvantages of AI explained</div>
+          <div class="news-summary">AI touches nearly all organizations and an increasing number of individuals in t</div>
+          <div class="news-time">03月27日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.techtarget.com/ai/definition/What-is-GenAI-Generative-AI-explained" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">What is GenAI? Generative AI explained</div>
+          <div class="news-summary">Generative artificial intelligence, or GenAI, uses sophisticated algorithms to o</div>
+          <div class="news-time">03月13日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.techtarget.com/ai/definition/What-is-GenAI-Generative-AI-explained" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">What is GenAI? Generative AI explained</div>
+          <div class="news-summary">Generative artificial intelligence, or GenAI, uses sophisticated algorithms to o</div>
+          <div class="news-time">03月13日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.techtarget.com/ai/tip/The-different-types-of-AI-explained" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">The different types of AI explained</div>
+          <div class="news-summary">Superintelligent AI could be humanity's last invention. Developing a type of AI </div>
+          <div class="news-time">12月23日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://www.techtarget.com/ai/feature/Attributes-of-open-vs-closed-AI-explained" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Attributes of open vs. closed AI explained</div>
+          <div class="news-summary">The practice of open AI entails openly sharing AI models, the provenance of trai</div>
+          <div class="news-time">07月08日 00:00</div>
+        </div>
+      </a>
+      
+      <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQIfYYz5tqfQIAMH3QtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzEwBHZ0aWQDBHNlYwNzcg--/RV=2/RE=1789805592/RO=10/RU=https://www.techtarget.com/it-strategy/feature/Slopsquatting-explained-When-AI-code-turns-malicious/RK=2/RS=PPFObESi1HRe3QpC97syufLJmJ0-" target="_blank" rel="noopener">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+          <span class="list-tag" style="background:#e11d48;">video</span>
+        </div>
+        <div class="news-content">
+          <div class="news-source">
+            <span class="news-source-icon" style="background:#e11d48;">D</span>
+            <span class="news-source-name">DuckDuckGo Video</span>
+          </div>
+          <div class="news-title">Slopsquatting explained: When AI code turns malicious | TechTarget</div>
+          <div class="news-summary">Discover how slopsquatting exploits AI coding tools to inject malicious packages</div>
+          <div class="news-time">21 hours a</div>
+        </div>
+      </a>
+      
+    </div>
+    <div class="section-footer"><a href="tag-page/video/">查看全部 50+ 条▶ 热门视频</a></div>
+  </div>
+  
+
+</main>
+
+<footer class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+  <p style="margin-top:2px;">数据来源：36氪 · InfoQ · 开源中国 · Bloomberg · Reuters · YouTube · 及更多</p>
+  <p style="margin-top:10px;font-size:11px;color:rgba(255,255,255,0.2);">内容仅供学习参考 · 点击跳转至原始来源</p>
+</footer>
+
+<script>
+// Tab switching
+(function() {
+  var btns = document.querySelectorAll('.tab-btn');
+  var more = document.querySelector('.tab-more');
+  var tabKeys = ['ai','tech','finance','video'];
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      var tab = this.dataset.tab;
+      document.querySelectorAll('.tab-content').forEach(function(c) {
+        c.classList.toggle('active', c.id === 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1));
+      });
+      more.href = 'tag-page/' + tab + '/';
+      this.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>▶ 热门视频 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">▶ 热门视频</span>
+    </div>
+    <div class="header-date">
+      <span>2026年9月5日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历7月24日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.radiotimes.com/tv/drama/maxton-hall-season-3-release-date-confirmed-newsupdate/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Maxton Hall season 3 release date confirmed for final episodes</div>
+        <div class="news-summary">Prime Video has confirmed when the third and final season of Maxton Hall arrives</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://sports.yahoo.com/articles/us-open-admits-protocol-error-040721012.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">US Open Admits Protocol Error After Electronic Line-Call Blunder During Anna Kal...</div>
+        <div class="news-summary">Technology was supposed to take human error out of tennis. Instead, it created o</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/articles/video-shows-deputies-rush-fight-224115833.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Video shows deputies rush to fight at East Coweta High game</div>
+        <div class="news-summary">Video captured police detaining multiple people within 30 seconds after a fight </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.krgv.com/news/brownsville-isd-football-teams-gain-edge-with-new-video-review-system/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Brownsville ISD football teams gain edge with new video review system</div>
+        <div class="news-summary">Brownsville ISD football programs implement the new ANSRS video technology syste</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.usatoday.com/story/shopping/trending/drops/2026/09/01/dyson-launches-camerajet-toothbrush-with-camera-water-jet/91561253007/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Dyson just launched a $499 toothbrush (no, really)</div>
+        <div class="news-summary">Dyson is bringing camera technology to oral care with the CameraJet toothbrush, </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.fox5atlanta.com/news/video-shows-deputies-rush-fight-east-coweta-high-game" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Video shows deputies rush to fight at East Coweta High game</div>
+        <div class="news-summary">Video captured police detaining multiple people within 30 seconds after a fight </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/audio/articles/steelseries-arctis-nova-pro-omni-185655216.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">SteelSeries Arctis Nova Pro Omni Review: The High End Of Gaming Audio</div>
+        <div class="news-summary">SteelSeries Arctis Nova Pro Omni delivers Bluetooth audio in a headset so premiu</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/lifestyle/articles/early-access-watch-review-cannondale-171500219.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Early access: Watch our review of the Cannondale CAAD14 review before it goes...</div>
+        <div class="news-summary">Cyclingnews subscribers get a first look at our in-depth bike video reviews</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/nebius-vs-coreweave-better-artificial-143501686.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Nebius vs. CoreWeave: Which Is the Better Artificial Intelligence (AI)...</div>
+        <div class="news-summary">The booming demand for dedicated AI data centers is fueling tremendous growth fo</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/ai/deals/articles/fambot-introduces-ai-chief-staff-151058961.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Fambot introduces an ‘AI chief of staff’ for families</div>
+        <div class="news-summary">Fambot is building an AI “chief of staff” to help families manage the emails, ca</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/movies/articles/gal-gadot-defends-her-bitcoin-113000173.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Gal Gadot Defends Her Bitcoin Movie After AI Controversy: ‘It’s Crazy’</div>
+        <div class="news-summary">Gal Gadot revealed the extreme lengths she took to protect herself from AI on he</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/oracle-falls-4-bond-selloff-161344174.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Oracle Falls 4% as Bond Selloff Tests Its Debt-Funded AI Buildout, Nebius Slips</div>
+        <div class="news-summary">A global bond selloff that lifted the 10-year Treasury yield to a recent high is</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/media-advertising/articles/youtube-inks-amazon-partnership-boost-110000754.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">YouTube Inks Amazon Partnership to Boost Online Shopping Bet</div>
+        <div class="news-summary">YouTube has tapped Amazon.com Inc. as its newest affiliate partner in YouTube Sh</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.wowktv.com/business/press-releases/cision/20260901LN38044/secondsidemedia-launches-digital-platform-to-address-inaccurate-and-misleading-ai-generated-information" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">SecondSideMedia Launches Digital Platform to Address Inaccurate and Misleading...</div>
+        <div class="news-summary">The platform's records are designed primarily for machine readability, and its p</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/bill-gates-warns-ai-cause-111100325.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Bill Gates Warns That AI Will Cause "Many Jobs to Disappear Forever." Is He...</div>
+        <div class="news-summary">Gates' note touches on a core fear that many have about the technology.</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/us/articles/missouri-wants-ai-data-centers-104512035.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Missouri wants AI data centers. Communities want answers</div>
+        <div class="news-summary">Missouri has good reasons to want a share of the artificial intelligence boom. B</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.radiotimes.com/tv/drama/maxton-hall-season-3-release-date-confirmed-newsupdate/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Maxton Hall season 3 release date confirmed for final episodes</div>
+        <div class="news-summary">Prime Video has confirmed when the third and final season of Maxton Hall arrives</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://sports.yahoo.com/articles/us-open-admits-protocol-error-040721012.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">US Open Admits Protocol Error After Electronic Line-Call Blunder During Anna Kal...</div>
+        <div class="news-summary">Technology was supposed to take human error out of tennis. Instead, it created o</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/articles/south-allegheny-school-district-implement-015501794.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">South Allegheny School District to implement changes at football games after...</div>
+        <div class="news-summary">Liberty Borough police said a 17-year-old, who does not attend either school, fi</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gizbot.com/artificial-intelligence/openclaw-2-explained-how-its-new-ai-agents-can-automate-your-work-128221.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">OpenClaw 2.0 Explained: How Its New AI Agents Can Automate Your Work</div>
+        <div class="news-summary">OpenClaw 2.0 brings easier setup, a redesigned browser, shared AI sessions and i</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./4.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="active">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./6.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
