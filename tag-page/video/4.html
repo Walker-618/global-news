@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>▶ 热门视频 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">▶ 热门视频</span>
+    </div>
+    <div class="header-date">
+      <span>2026年9月12日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历8月2日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.yahoo.com/news/politics/articles/james-talaricos-chances-against-ken-153829558.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">James Talarico's chances against Ken Paxton after latest AI attack ad</div>
+        <div class="news-summary">Republican and Democratic rivals remain closely matched as AI attack ads intensi</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/celebrity/articles/dolly-parton-sister-reveals-lot-143159106.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Dolly Parton’s Sister Reveals a ‘Lot of the Family’ Didn’t Know About Cancer, Sh...</div>
+        <div class="news-summary">Stella Parton explained Dolly’s intentional decision to keep her cancer diagnosi</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/amazon-ceo-andy-jassy-explained-105400261.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Amazon CEO Andy Jassy Explained Why Semiconductor Sales Could...Come. Here's My...</div>
+        <div class="news-summary">This chipmaker is poised to benefit from the long-term trend.</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.wjcl.com/article/bryan-county-sheriff-flock-access-safeguards/73653802" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Bryan County Sheriff limits Flock access, adds safeguards after audit review</div>
+        <div class="news-summary">The Bryan County Sheriff’s Office has tightened access to its automated license </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://loyolaphoenix.com/2026/09/loyola-reconsiders-71-academic-programs-in-review-process/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Loyola Reconsiders 71 Academic Programs in Review Process | The Loyola Phoenix</div>
+        <div class="news-summary">The review helps the university determine where energy should be focused with a </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/movies/articles/musk-review-world-richest-man-120500549.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">‘Musk’ Review: World’s Richest Man, And His Digital Avatar, Thrashed In Damning ...</div>
+        <div class="news-summary">What sort of billionaire criticizes another billionaire for giving tons of money</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/celebrity/articles/musk-review-alex-gibney-definitive-120522042.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">‘Musk’ Review: Alex Gibney’s Definitive Documentary Puts the Pieces of Elon Musk...</div>
+        <div class="news-summary">What makes "Musk" such a lacerating and important watch, grounded in Alex Gibney</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/movies/articles/first-reviews-reveal-musk-film-161446825.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">New ‘Musk’ Film Exposes Elon’s Terrifying Descent</div>
+        <div class="news-summary">Reviews for Musk are out, and they commend the documentary’s investigation into </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.radiotimes.com/movies/our-fault-london-first-look-prime-video-newsupdate/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Our Fault: London unveils first look at dramatic conclusion to Prime Video...</div>
+        <div class="news-summary">The third and final film in the Culpable trilogy is set to come out on Prime Vid</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/celebrity/articles/musk-review-alex-gibney-definitive-120522042.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">‘Musk’ Review: Alex Gibney’s Definitive Documentary Puts the Pieces of Elon Musk...</div>
+        <div class="news-summary">What makes "Musk" such a lacerating and important watch, grounded in Alex Gibney</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.si.com/college-football/forde-yard-dash-if-sec-kicks-out-lsu-where-do-tigers-go" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Forde-Yard Dash: If the SEC Kicks Out LSU, Where Do the Tigers Go?</div>
+        <div class="news-summary">First Quarter: All the Problems With the Bail Mary in the Big House. Second Quar</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/phones/articles/just-beginning-review-first-iphone-120000541.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">'This Is Just the Beginning': Our Review of the First iPhone in 2007 Was...</div>
+        <div class="news-summary">Looking back at PCMag's review of the first iPhone, it's amazing to see how pres</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://seekingalpha.com/symbol/STX" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Seagate Technology Holdings plc (STX) Stock Price, Quote, News & Analysis |...</div>
+        <div class="news-summary">A high-level overview of Seagate Technology Holdings plc (STX) stock. View (STX)</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.freep.com/story/sports/college/2026/09/08/college-rankings-football-top-25-ap-coaches-poll-big-ten-week-1/91644047007/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">College football rankings after Week 1: Updated Coaches Poll, AP Top 25 for Big...</div>
+        <div class="news-summary">How will the Big Ten's showing in Week 1 be reflected in the updated Week 2 Coac</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/police-used-flock-ai-cameras-153000492.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Police used Flock AI cameras to accuse Denver woman of stealing a $25 package....</div>
+        <div class="news-summary">Law enforcement officials may be leaning too heavily on Flock technology and not</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/celebrity/articles/musk-review-alex-gibney-definitive-120522042.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">‘Musk’ Review: Alex Gibney’s Definitive Documentary Puts the Pieces of Elon Musk...</div>
+        <div class="news-summary">What makes "Musk" such a lacerating and important watch, grounded in Alex Gibney</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/us/articles/waupaca-county-law-enforcement-suspend-225410004.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Waupaca County law enforcement suspend use of Flock technology, citing privacy...</div>
+        <div class="news-summary">WAUPACA COUNTY, Wis. (WFRV) – Multiple law enforcement agencies in Waupaca Count</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.radiotimes.com/movies/our-fault-london-first-look-prime-video-newsupdate/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Our Fault: London unveils first look at dramatic conclusion to Prime Video...</div>
+        <div class="news-summary">The third and final film in the Culpable trilogy is set to come out on Prime Vid</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/entertainment/movies/articles/first-reviews-reveal-musk-film-161446825.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">New ‘Musk’ Film Exposes Elon’s Terrifying Descent</div>
+        <div class="news-summary">Reviews for Musk are out, and they commend the documentary’s investigation into </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.worktruckonline.com/videos/where-ai-is-actually-saving-fleet-managers-time" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Where AI Is Actually Saving Fleet Managers Time</div>
+        <div class="news-summary">AI is moving past the buzzword stage and into the daily fleet workflow. Fleetio’</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./3.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="active">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./5.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
