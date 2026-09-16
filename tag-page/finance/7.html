@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 财经要闻 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">💰 财经要闻</span>
+    </div>
+    <div class="header-date">
+      <span>2026年9月16日</span><span> · </span><span>周三</span><span> · </span><span class="lunar">农历8月6日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-09-09-2026" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock Market News, Sept. 9, 2026: 10-Year Yield Jumps as Treasury Buyback Plan Disappoints Investors</div>
+        <div class="news-summary">Live updates on markets and the top finance, economics and business stories. Plu</div>
+        <div class="news-time">09月09日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://news.sina.com.cn/zx/gj/2026-09-13/doc-inirrxsk5784692.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">2026年服贸会探新：金融服务迈向“精不精”</div>
+        <div class="news-summary">展区工作人员向观众介绍数字人民币。服贸会金融服务专题供图金融既是服务贸易的重要组成，又具有“独立业态+基础设施”的双重属性，如何通过金融“水利工程”涵养宜业“雨</div>
+        <div class="news-time">09月09日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.rasmussenreports.com/public_content/business/economic_stimulus_package/september_2026/more_now_see_u_s_economy_as_unfair" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">More Now See U.S. Economy as Unfair</div>
+        <div class="news-summary">Fewer voters see the American economy as fair than they did a year ago, and espe</div>
+        <div class="news-time">09月09日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-09-09-2026" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock Market News, Sept. 9, 2026: 10-Year Yield Jumps as Treasury Buyback Plan Disappoints Investors</div>
+        <div class="news-summary">Live updates on markets and the top finance, economics and business stories. Plu</div>
+        <div class="news-time">09月09日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/the-stock-market-s-breezy-summer-is-over-investors-beware/ar-AA2bLuoE?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">The stock market’s breezy summer is over. Investors beware.</div>
+        <div class="news-summary">The Fed and inflation are back in focus as investors face down an often bumpy st</div>
+        <div class="news-time">09月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/3-financial-stocks-could-buy-115000573.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">3 Financial Stocks You Could Buy Today and Not Think About Until 2030</div>
+        <div class="news-summary">Buying and forgetting is a little easier with these promising financial stocks.</div>
+        <div class="news-time">09月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.zacks.com/stock/news/2986777/stock-market-news-for-sep-9-2026" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock Market News for Sep 9, 2026</div>
+        <div class="news-summary">Wall Street ended lower as market participants weighed inflation concerns, risin</div>
+        <div class="news-time">09月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/stock-market-today-dow-s-p-500-nasdaq-pare-losses-after-ai-warning-spooks-tech-traders-10-year-yield-hits-5/ar-AA2canGW?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock market today: Dow, S&P 500, Nasdaq slip as chip stocks fall on AI warning</div>
+        <div class="news-summary">The CEOs of Anthropic and OpenAI spooked markets, while investors monitored risi</div>
+        <div class="news-time">09月07日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.marketwatch.com/livecoverage/stock-market-today-dow-s-p-500-nasdaq-10-year-treasury-yield-5-fed-begins-two-day-meeting/card/stock-market-s-drop-broadens-as-declining-stocks-outnumber-gainers-cUXu8hMhDVBnjscBUEYu" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock market's drop broadens as declining stocks outnumber gainers</div>
+        <div class="news-summary">The broad market indexes aren't down a lot, but there are a lot more declining s</div>
+        <div class="news-time">09月06日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/money/stock-market-today-sept-14-2026-s-p-500-falls-on-rising-oil-prices-sagging-ai-stocks/ar-AA2cbTlw?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock market today (Sept. 14, 2026): S&P 500 falls on rising oil prices, sagging AI stocks</div>
+        <div class="news-summary">Markets struggle as Wall Street weighs surging oil prices, Middle East tensions </div>
+        <div class="news-time">09月06日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/usstock/notice/2026-09-05/doc-iniqtnfy3786735.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">内部人交易｜罗宾汉披露一笔股票增持，金额约46.88万美元</div>
+        <div class="news-summary">美股上市公司罗宾汉（HOOD）披露一笔内部人股票交易。文件显示，公司内部人Bazzano (Dara A)（Officer）2026-09-01增持公司股票，交</div>
+        <div class="news-time">09月05日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/economy/citi-says-fed-rate-hike-could-deliver-stock-market-shock/ar-AA2ccwYb?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Citi says Fed rate hike could deliver stock market shock</div>
+        <div class="news-summary">Citi’s Scott Chronert says a bigger Fed rate hike could reassure stock market in</div>
+        <div class="news-time">09月03日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://markets.businessinsider.com/news/stocks/nasdaq-verafin-and-stablecore-partner-to-unify-fiat-and-digital-asset-financial-crime-detection-1036546365" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Nasdaq Verafin and Stablecore Partner to Unify Fiat and Digital Asset Financial Crime Detection</div>
+        <div class="news-summary">Nasdaq Verafin and Stablecore today announced a partnership that unifies digital</div>
+        <div class="news-time">09月02日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/economy/china-s-economy-hits-a-weak-spot-consumers-aren-t-spending/ar-AA2cf1Sb?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">China’s economy hits a weak spot: consumers aren’t spending</div>
+        <div class="news-summary">China’s local economic indicators are declining, and policymakers are under the </div>
+        <div class="news-time">08月31日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/money/stock-market-today-sept-14-2026-s-p-500-falls-on-rising-oil-prices-sagging-ai-stocks/ar-AA2cbTlw?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock Market Today (Sept. 14, 2026): S&P 500 falls on rising oil prices, sagging AI stocks</div>
+        <div class="news-summary">Markets struggle as Wall Street weighs surging oil prices, Middle East tensions </div>
+        <div class="news-time">08月29日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-08-28/doc-inipvmmz8892579.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年8月28日_财经新闻</div>
+        <div class="news-summary">国家统计局8月27日发布的数据显示，1至7月份，全国规模以上工业企业实现利润总额45820.6亿元，同比增长17.6%。从行业看，以算力芯片、存储芯片为代表的集</div>
+        <div class="news-time">08月28日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-08-27/doc-iniptaff5800294.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年8月27日_财经新闻</div>
+        <div class="news-summary">8月26日晚，A股“股王”联讯仪器发布2026年半年报。上半年，公司实现营业收入15.31亿元，同比增长208.71%；归属于上市公司 ...</div>
+        <div class="news-time">08月27日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/articles/investors-showing-complacency-even-geopolitical-104504886.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Investors Showing 'Complacency' Even as Geopolitical, Economic Risks On the Rise, Says UBS CEO:</div>
+        <div class="news-summary">UBS CEO Sergio Ermotti said Wednesday that investors may be underestimating the </div>
+        <div class="news-time">08月27日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/roll/2026-08-26/doc-inipqxha2138088.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">纽约股市三大股指25日上涨</div>
+        <div class="news-summary">新华社纽约8月25日电 纽约股市三大股指25日上涨。 截至当天收盘，道琼斯工业平均指数比前一交易日上涨160.24点，收于53577.4点，涨幅为0.30%；标</div>
+        <div class="news-time">08月26日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/headline/2026-08-26/doc-inipqxfy5393158.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">今日国际国内财经新闻精华摘要｜2026年8月26日</div>
+        <div class="news-summary">国际大宗商品市场方面，贵金属价格持续上行，现货黄金先后突破4660美元/盎司、4670美元/盎司关口，日内涨幅分别为0.03%、0.25 ...</div>
+        <div class="news-time">08月26日 00:00</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./6.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="active">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./8.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
