@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 资讯 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🤖 AI 资讯</span>
+    </div>
+    <div class="header-date">
+      <span>2026年9月19日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历8月9日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.infoq.cn/article/ZFk50FZmqsgY7uShA2Gw?utm_source=rss&utm_medium=article" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f59e0b;">Q</span>
+          <span class="news-source-name">InfoQ</span>
+        </div>
+        <div class="news-title">在线蒸馏灵活却太慢，离线缓存高效却不够灵活，LinkedIn 如何取舍？</div>
+        <div class="news-summary">点击查看原文></div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/general/articles/oxbos-autoharvest-brings-machine-learning-145830704.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Oxbo's AutoHarvest Brings Machine Learning to Blueberries</div>
+        <div class="news-summary">Oxbo's AutoHarvest is a system that reads field conditions in real time and adju</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/king-charles-warns-of-ai-s-darker-capacities-as-technology-executives-convene-at-dumfries-house/ar-AA2crRVW" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">King Charles warns of AI's 'darker capacities' as technology executives convene at Dumfries House</div>
+        <div class="news-summary">The King has warned of the "existential dangers" AI technology poses while hosti</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/fusemachines-unveils-ai-twin-technology-131400839.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Fusemachines Unveils AI Twin Technology, Showcasing a New Vision for the Future of Work</div>
+        <div class="news-summary">The Future Monday Morning Meeting" demonstrates humans and AI Twins working side</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://cryptobriefing.com/affirm-transformer-ml-underwriting/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Affirm launches transformer-based machine learning model for real-time underwriting</div>
+        <div class="news-summary">Affirm unveiled a transformer-based machine learning model for real-time underwr</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/marvell-technology-mrvl-faces-ai-032022856.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Marvell Technology (MRVL) Faces AI Volatility, Is It 58% Overvalued?</div>
+        <div class="news-summary">Marvell Technology (MRVL) is back in focus after an AI driven sell-off hit semic</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/technology/artificial-intelligence/how-a-false-ai-report-nearly-sparked-a-us-china-conflict-during-iran-war/ar-AA2cxbDX?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">How a false AI report nearly sparked a US-China conflict during Iran war</div>
+        <div class="news-summary">A false AI-assisted intelligence report led the US military to prepare to interc</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/why-usa-rare-earth-usar-131059113.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Why Is USA Rare Earth (USAR) Betting On Quantum Machine Learning Now?</div>
+        <div class="news-summary">USA Rare Earth (NasdaqGM:USAR) announced a new collaboration with Pasqal and Riv</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/general/articles/oxbos-autoharvest-brings-machine-learning-145830704.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Oxbo's AutoHarvest Brings Machine Learning to Blueberries</div>
+        <div class="news-summary">Oxbo's AutoHarvest is a system that reads field conditions in real time and adju</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/pltr-ceo-alex-karp-calls-170816097.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">PLTR CEO Alex Karp Calls For AI Accountability — ‘First Line Of Defense Is You’r...</div>
+        <div class="news-summary">Palantir Technologies’ CEO called for “reasonable guidelines” on AI and said dev</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.nbcnews.com/video/king-charles-meets-with-artificial-intelligence-leaders-over-safety-risks-270032965980" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">King Charles meets with artificial intelligence leaders over safety risks</div>
+        <div class="news-summary">King Charles convened a meeting of artificial intelligence industry leaders to d</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.miamiherald.com/news/local/education/article317279025.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">State board approves artificial intelligence guidelines for K-12 schools, colleges</div>
+        <div class="news-summary">Artificial intelligence is already in the classroom, and the rules before you to</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.aol.com/articles/navigating-concerns-over-artificial-intelligence-234925000.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Navigating concerns over artificial intelligence</div>
+        <div class="news-summary">News and information on artificial intelligence changes every day, seemingly by </div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.analyticsinsight.net/artificial-intelligence/deep-learning-cheat-sheet-for-beginners-professionals" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Deep Learning Cheat Sheet for Beginners & Professionals</div>
+        <div class="news-summary">Overview: Deep learning uses multi-layer neural networks to learn patterns from </div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/general/your-ai-interviewer-will-see-you-now-how-job-seekers-should-navigate-the-jarring-new-hiring-technology/ar-AA2clHpi?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Your AI interviewer will see you now: How job seekers should navigate the 'jarring' new hiring technology</div>
+        <div class="news-summary">Employers are hoping that AI interviewers will streamline the hiring process. So</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.csmonitor.com/USA/Society/2026/0917/artificial-intelligence-human-choice-history" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Technology has posed threats before. AI can be managed, too, historian says.</div>
+        <div class="news-summary">Margaret O'Mara has studied similar points in American history and says that the</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/king-charles-warns-of-ai-s-darker-capacities-as-technology-executives-convene-at-dumfries-house/ar-AA2crRVW" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">King Charles warns of AI's 'darker capacities' as technology executives convene at Dumfries House</div>
+        <div class="news-summary">The King has warned of the "existential dangers" AI technology poses while hosti</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/politics/articles/senator-john-kennedy-plan-protect-175133825.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Senator John Kennedy has plan to protect humanity from AI 'Terminator'</div>
+        <div class="news-summary">Louisiana Senator John Kennedy said artificial intelligence models need a 'kill </div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/politics/articles/trust-ai-oligarchs-wedding-gift-184714155.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">'Trust me on AI,' oligarch's wedding gift, Jolly: Florida politics</div>
+        <div class="news-summary">President Donald Trump says nothing to see here in a scary artificial intelligen</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/science/articles/king-charles-call-tech-giants-091947729.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">King Charles warns tech bosses of 'existential dangers' of AI</div>
+        <div class="news-summary">King Charles III warned tech giants of the "existential dangers" posed by artifi</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./4.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="active">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./6.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

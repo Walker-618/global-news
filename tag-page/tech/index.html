@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔧 科技动态 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🔧 科技动态</span>
+    </div>
+    <div class="header-date">
+      <span>2026年9月19日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历8月9日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.oschina.net/news/502593" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">ColorOS 17 新技术解读，渲染、调度与 AI 升级</div>
+        <div class="news-summary">2026 年 9 月 17 日，2026 OPPO 开发者大会（ODC26）在珠海举行，ColorOS 17 正式发布。新系统将率先搭载在即将上市的 OPPO </div>
+        <div class="news-time">10小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502592" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">InfoSphere 迎来一次大更新：这次把国际化、书评、成就和编辑器都补上了</div>
+        <div class="news-summary">最近一段时间，我们对 InfoSphere 进行了一次比较大规模的更新。 这次并不是简单增加几个功能，而是围绕 内容创作、阅读体验、国际化、用户成长、SEO 与</div>
+        <div class="news-time">11小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://fortune.com/2026/09/19/pat-gelsinger-naveen-rao-silicon-valley-move-fast-break-things/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Pat Gelsinger and Naveen Rao: we've seen Silicon Valley move fast and break thin...</div>
+        <div class="news-summary">We work in AI and we’ve seen it eliminate jobs. We’ve also seen it create more j</div>
+        <div class="news-time">15小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/us/articles/wake-tech-weaving-ai-classroom-223219408.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Wake Tech weaving AI into the classroom as students search for jobs</div>
+        <div class="news-summary">Artificial intelligence is reshaping workplaces across industries, and at Wake T</div>
+        <div class="news-time">15小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/ai/apple-intelligence/articles/5-tech-brands-trying-compete-024500789.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">5 Tech Brands Trying To Compete With Apple's MacBook Neo</div>
+        <div class="news-summary">The MacBook Neo caused a bit of a stir around the tech industry. Naturally, othe</div>
+        <div class="news-time">15小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502591" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">别再让 Agent 裸连数据库了：如何用 MCP + 语义网关解决 NL2SQL 幻觉与权限失控</div>
+        <div class="news-summary">在 2026 年，给 AI Agent（Cursor、Claude Desktop、Dify、Coze 等）外挂一个数据库连接，已经成为很多开发者的标配操作。从</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502590" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">灵界 OS 5.0 稳定版 · 桌面按钮可以隐藏了</div>
+        <div class="news-summary">这次更新，加了一个很小的开关，但解决了困扰我很久的问题。 之前桌面右上角一直挂着两个按钮： · 系统介绍 · 添加小组件 我自己看着觉得太丑了，但这两个功能又不</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502590" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">灵界 OS 5.0 稳定版 · 桌面按钮可以隐藏了</div>
+        <div class="news-summary">这次更新，加了一个很小的开关，但解决了困扰我很久的问题。 之前桌面右上角一直挂着两个按钮： · 系统介绍 · 添加小组件 我自己看着觉得太丑了，但这两个功能又不</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502589" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">智谱旗下 AI 编程工具 ZCode 被扒静默上传完整 Git 历史</div>
+        <div class="news-summary">智谱的 AI 编程桌面端 ZCode，今天被扒出一个大问题。开发者 ferstar 发了一篇取证博客，说只要登录了账号，ZCode 会在后台静默把整个工作区——</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502589" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">智谱旗下 AI 编程工具 ZCode 被扒静默上传完整 Git 历史</div>
+        <div class="news-summary">智谱的 AI 编程桌面端 ZCode，今天被扒出一个大问题。开发者 ferstar 发了一篇取证博客，说只要登录了账号，ZCode 会在后台静默把整个工作区——</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502588" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">用 SQL 操作 Milvus：从检索到 ORM</div>
+        <div class="news-summary">Java 应用通常通过 Milvus SDK 写入数据和检索向量。对关系型数据库开发者来说，SQL 和 JDBC 更熟悉。jdbc-milvus 让这套使用方式</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502588" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">用 SQL 操作 Milvus：从检索到 ORM</div>
+        <div class="news-summary">Java 应用通常通过 Milvus SDK 写入数据和检索向量。对关系型数据库开发者来说，SQL 和 JDBC 更熟悉。jdbc-milvus 让这套使用方式</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502587/huawei-new-computing-architecture-peerium" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">华为发布“Peerium 计算架构”，让百万处理器成为一台计算机</div>
+        <div class="news-summary">华为发布AI时代的全新计算架构 – Peerium计算架构。该架构能实现百万级处理器成为一台计算机，以满足不断发展的AI算力需求。 Peerium计算架构是基于</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502587/huawei-new-computing-architecture-peerium" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">华为发布“Peerium 计算架构”，让百万处理器成为一台计算机</div>
+        <div class="news-summary">华为发布AI时代的全新计算架构 – Peerium计算架构。该架构能实现百万级处理器成为一台计算机，以满足不断发展的AI算力需求。 Peerium计算架构是基于</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502586/hc-agentic-infra-industry-ai" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">华为云 All in Agentic Cloud，灵衢昇腾 950 智算集群全球上线</div>
+        <div class="news-summary">华为云这届全联接大会的调子，是&quot;Agentic Cloud&quot;。华为云 CEO 周跃峰演讲里那句被反复引用的判断是：智能体时代基础设施的核心，</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502586/hc-agentic-infra-industry-ai" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">华为云 All in Agentic Cloud，灵衢昇腾 950 智算集群全球上线</div>
+        <div class="news-summary">华为云这届全联接大会的调子，是&quot;Agentic Cloud&quot;。华为云 CEO 周跃峰演讲里那句被反复引用的判断是：智能体时代基础设施的核心，</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502585" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">【AI 智能运维平台】本周更新：打通各应用关键信息，实现深度联动与统一查看，告别跨 APP 反复切换</div>
+        <div class="news-summary">Blueking Lite 是一个 AI First 的轻量版运维产品，具有部署资源要求低、使用成本低、渐进式体验等特点，为运维管理员提供日常运维中的必备工具。</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502585" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">【AI 智能运维平台】本周更新：打通各应用关键信息，实现深度联动与统一查看，告别跨 APP 反复切换</div>
+        <div class="news-summary">Blueking Lite 是一个 AI First 的轻量版运维产品，具有部署资源要求低、使用成本低、渐进式体验等特点，为运维管理员提供日常运维中的必备工具。</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502584" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">Levyra：一个不上传数据、也不会放错歌的开源音乐播放器</div>
+        <div class="news-summary">Levyra 是一款面向 Android 和 Windows 的开源音乐播放器，由意大利开发者 Luca 独立开发维护，GitHub ID 为 LUC4N3X，</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/502584" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">Levyra：一个不上传数据、也不会放错歌的开源音乐播放器</div>
+        <div class="news-summary">Levyra 是一款面向 Android 和 Windows 的开源音乐播放器，由意大利开发者 Luca 独立开发维护，GitHub ID 为 LUC4N3X，</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    
+    <a href="./index.html" class="active">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./2.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

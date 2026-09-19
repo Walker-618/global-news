@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 财经要闻 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">💰 财经要闻</span>
+    </div>
+    <div class="header-date">
+      <span>2026年9月19日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历8月9日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.wxxv25.com/southern-miss-expanding-scholarship-aimed-at-growing-states-blue-economy/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Southern Miss expanding scholarship aimed at growing state's blue economy - WXXV...</div>
+        <div class="news-summary">Southern Miss is extending a unique scholarship program aimed at growing the sta</div>
+        <div class="news-time">15小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/economy/articles/why-economy-looks-great-boomers-103000056.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Why The Economy Looks Great To Boomers, But Miserable To Gen Z</div>
+        <div class="news-summary">From jobs to housing, these five numbers show how the American economy can look </div>
+        <div class="news-time">15小时前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://abcnews.com/Business/important-ai-stock-market-warnings-bring-new-scrutiny/story?id=136526558" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">How important is AI to the stock market? Warnings bring new scrutiny</div>
+        <div class="news-summary">A possible measure could curtail some AI growth and dial back benefits for the w</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/general/stock-market-today-tech-shares-power-indexes-higher-as-treasury-yields-oil-prices-drop/ar-AA2cqdnk?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock market today: Tech stocks power indexes higher as bond yields, oil prices drop</div>
+        <div class="news-summary">Major U.S. stock indexes surged in early trading Thursday, a day after the Feder</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/general/canada-online-the-digital-industries-powering-a-connected-economy/ar-AA2cpVHR?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Canada online: The digital industries powering a connected economy</div>
+        <div class="news-summary">From e-commerce and fintech to digital health, education and remote work, Canada</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/humanoid-economy-modar-alaoui-published-130000187.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">The Humanoid Economy by Modar Alaoui, Published by Wiley, Explores the Emerging Economy Behind Physical AI</div>
+        <div class="news-summary">Available for preorder now, the book explores how humanoid robotics is giving ri</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.benzinga.com/trading-ideas/movers/26/09/61882606/12-industrials-stocks-moving-friday-s-after-market-session" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">12 Industrials Stocks Moving In Friday's After-Market Session - Eastern...</div>
+        <div class="news-summary">Gainers Eastern International (NASDAQ:ELOG) shares rose 54.1% to $0.81 during Fr</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/sprinklr-fastly-stocks-trade-down-233640835.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Sprinklr and Fastly Stocks Trade Down, What You Need To Know</div>
+        <div class="news-summary">A number of stocks fell in the afternoon session after markets remained volatile</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/latest-news/AUS/capital-markets" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Australia Capital Markets Stock News</div>
+        <div class="news-summary">Australia Capital Markets Stock News</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stock-market-news-sep-18-133000178.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock Market News for Sep 18, 2026</div>
+        <div class="news-summary">Wall Street closed sharply higher on Thursday, pulled up by tech and discretiona</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stocks-rally-mixed-close-volatile-201537614.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stocks Rally for Mixed Close to Volatile Week: Stock Market Today</div>
+        <div class="news-summary">Buyers stepped in late, but it was only enough to lift two of three main equity </div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/articles/financial-planners-5-retirement-habits-144440186.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Financial Planners: 5 Retirement Habits I'd Start in My 20s If I Had To Do It...</div>
+        <div class="news-summary">Financial planners share the retirement habits they wish they'd started sooner—a</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/politics/articles/poll-kansas-senate-race-tightens-100000715.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Poll: Kansas Senate race tightens as economy drives voters</div>
+        <div class="news-summary">A new poll suggests the U.S. Senate race in Kansas is tightening during an elect</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/economy/policy/articles/russia-targets-ukraine-economy-keeping-143332648.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">As Russia targets Ukraine’s economy, keeping businesses alive takes priority</div>
+        <div class="news-summary">As Russian attacks on Ukraine's businesses escalate, the government's push to at</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/economy/articles/russias-wartime-economy-faces-long-040915473.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Russia's wartime economy faces long-term erosion from debt and military spending</div>
+        <div class="news-summary">The frictions in Russia’s wartime economy are growing, as massive military spend</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.staradvertiser.com/2026/09/18/breaking-news/global-economy-is-running-out-of-wiggle-room/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Global economy is running out of wiggle room | Honolulu Star-Advertiser</div>
+        <div class="news-summary">LONDON >> For a while now, the global economy has been beating the odds.</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://mises.org/mises-wire/k-shaped-economy-not-your-imagination" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">The K-Shaped Economy Is Not in Your Imagination | Mises Institute</div>
+        <div class="news-summary">The US economy these days seems to have a distinctive “K” shape, with asset owne</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.marketwatch.com/livecoverage/stock-market-today-dow-s-p-500-nasdaq-climb-after-selloff-federal-reserve-rate-hike/card/equal-weight-s-p-500-is-up-as-u-s-stock-market-broadly-advances-VTAqS6ctvock1EQKevUi" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Equal Weight S&P 500 is up as U.S. stock market broadly advances</div>
+        <div class="news-summary">In a sign of the U.S. stock market's broad rise on Thursday, a measure of the S&</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/fear-driving-stock-market-now-112000274.html?fr=sycsrp_catchall" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Fear Is Driving the Stock Market Right Now. Warren Buffett Has 6 Encouraging Words for Moments Like This.</div>
+        <div class="news-summary">Fear Is Driving the Stock Market Right Now. Warren Buffett Has 6 Encouraging Wor</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stock-market-midday-sept-17-171030258.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock Market Midday, Sept. 17: Stocks Rebound From Post Fed Sell-off, Generac soars 20%</div>
+        <div class="news-summary">Falling oil prices and hopes that Fed rate cuts will help curb inflation boosted</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    
+    <a href="./index.html" class="active">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./2.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

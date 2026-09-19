@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 财经要闻 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">💰 财经要闻</span>
+    </div>
+    <div class="header-date">
+      <span>2026年9月19日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历8月9日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Everyone’s Talking About The K-Shaped Economy. Here’s What It Means</div>
+        <div class="news-summary">The K-shaped economy is an ongoing economic bifurcation; its upper branch compri</div>
+        <div class="news-time">07月24日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Everyone’s Talking About The K-Shaped Economy. Here’s What It Means</div>
+        <div class="news-summary">The K-shaped economy is an ongoing economic bifurcation; its upper branch compri</div>
+        <div class="news-time">07月24日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Everyone’s Talking About The K-Shaped Economy. Here’s What It Means</div>
+        <div class="news-summary">The K-shaped economy is an ongoing economic bifurcation; its upper branch compri</div>
+        <div class="news-time">07月24日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.pewresearch.org/politics/2026/07/23/americans-evaluations-of-the-economy-remain-negative/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Americans’ evaluations of the economy remain negative</div>
+        <div class="news-summary">Americans remain in a sour mood about the economy – roughly a quarter (24%) rate</div>
+        <div class="news-time">07月23日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/economy/articles/c-shaped-economy-wall-streets-173144457.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">What Is A 'C-Shaped' Economy? Wall Street's New Buzzword Explained</div>
+        <div class="news-summary">When Hilton Worldwide CEO Christopher Nassetta introduced the term "C-shaped eco</div>
+        <div class="news-time">05月17日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.eastmoney.com/a/202602013637837932.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">暴跌超40%！财经大V充当“吹鼓手” 切勿轻信暴富神话！这是股市的“不为”清单</div>
+        <div class="news-summary">投资的原则是宁愿错过，不要做错。 近期商业航天、AI应用、机器人等热点股自高点以来最大跌幅超过40%。这意味着，如果投资者动用了杠杆、追高买入，且买入自己不懂的</div>
+        <div class="news-time">02月01日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.pbs.org/newshour/economy/consumer-spending-pushes-u-s-economy-up-4-4-in-third-quarter-fastest-in-two-years" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Consumer spending pushes U.S. economy up 4.4% in third quarter, fastest in two years</div>
+        <div class="news-summary">WASHINGTON (AP) — Powered by strong consumer spending, the U.S. economy grew at </div>
+        <div class="news-time">01月22日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.pbs.org/newshour/economy/consumer-spending-pushes-u-s-economy-up-4-4-in-third-quarter-fastest-in-two-years" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Consumer spending pushes U.S. economy up 4.4% in third quarter, fastest in two years</div>
+        <div class="news-summary">WASHINGTON (AP) — Powered by strong consumer spending, the U.S. economy grew at </div>
+        <div class="news-time">01月22日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.pbs.org/newshour/economy/consumer-spending-pushes-u-s-economy-up-4-4-in-third-quarter-fastest-in-two-years" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Consumer spending pushes U.S. economy up 4.4% in third quarter, fastest in two years</div>
+        <div class="news-summary">WASHINGTON (AP) — Powered by strong consumer spending, the U.S. economy grew at </div>
+        <div class="news-time">01月22日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.aol.com/finance/article/we-asked-experts-whats-happening-with-the-economy-203554139.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">We asked 7 experts: 'What's happening with the economy?' Here's what they said.</div>
+        <div class="news-summary">The economy is sending mixed signals as we enter 2026. Inflation has cooled sinc</div>
+        <div class="news-time">01月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.aol.com/finance/article/we-asked-experts-whats-happening-with-the-economy-203554139.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">We asked 7 experts: 'What's happening with the economy?' Here's what they said.</div>
+        <div class="news-summary">The economy is sending mixed signals as we enter 2026. Inflation has cooled sinc</div>
+        <div class="news-time">01月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://news.fx678.com/202601020853492064.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">2025全球股市惊人分化：谁是最大赢家，谁惨遭滑铁卢？2026又将何去何从？</div>
+        <div class="news-summary">汇通财经讯——MSCI全世界国家指数作为涵盖发达市场和新市场超过2500只大中盘股票的基准指标，自年初以来累计涨幅超过21%，并于12月26日触及1024点的历</div>
+        <div class="news-time">01月02日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.politico.com/news/magazine/2025/11/12/trump-economy-strategy-industrial-policy-interview-00646509" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">‘He’s Actually Weakening the Economy’: Why Trump’s Strategy May Fail</div>
+        <div class="news-summary">Victoria Guida is an economics correspondent at POLITICO and author of Capital L</div>
+        <div class="news-time">11月12日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnn.com/2025/08/28/business/the-us-economys-rebound-in-the-second-quarter-was-stronger-than-previously-reported" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">The US economy’s rebound in the second quarter was stronger than previously reported</div>
+        <div class="news-summary">The US economy’s rebound in the second quarter was stronger than previously repo</div>
+        <div class="news-time">08月28日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://seekingalpha.com/article/4947402-macro-insights-yield-surges-vs-energy-shocks-and-navigating-market-chaos" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Macro Insights: Yield Surges Vs. Energy Shocks, And Navigating Market Chaos</div>
+        <div class="news-summary">Welcome to the SA’s The Macro Brief! This official SA Profile will highlight our</div>
+        <div class="news-time">Opinion21 </div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/robert-kiyosaki-says-biggest-stock-153126346.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Robert Kiyosaki Says the Biggest Stock Market Crash in History Has Started</div>
+        <div class="news-summary">Robert Kiyosaki claims the biggest stock and bond crash in history has started, </div>
+        <div class="news-time">Opinion2 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/economy/american-airlines-new-basic-economy-rules-even-punish-its-top-tier-frequent-flyers/ar-AA2cdD3g?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">American Airlines' new basic economy rules even punish its top-tier frequent flyers</div>
+        <div class="news-summary">What does this mean for the oneworld carrier's passengers?</div>
+        <div class="news-time">Opinion2 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/economy/why-5-bond-yields-won-t-sink-the-stock-market/ar-AA2chdpa?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Why 5% bond yields won’t sink the stock market</div>
+        <div class="news-summary">Nicholas Colas, co-founder of DataTrek Research, says “the market is doing the w</div>
+        <div class="news-time">Opinion19 </div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.nytimes.com/2026/09/17/opinion/us-economy-treasury-stable.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">There Are Three Paths for the Economy. Only One Is Good.</div>
+        <div class="news-summary">Domestically, the traditional tenets of what’s known as the Washington consensus</div>
+        <div class="news-time">Opinion12 </div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRJAGNzKtqsAIA3TbQtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzkEdnRpZAMEc2VjA3Ny/RV=2/RE=1790853518/RO=10/RU=https://www.nytimes.com/2026/09/17/business/economy/iran-war-energy-prices.html/RK=2/RS=Y8nAiLpJ5rPukWIlGr8ZdAytX64-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Global Economy Is Running Out of Wiggle Room</div>
+        <div class="news-summary">Many countries blunted the most painful effects of the energy shock from the war</div>
+        <div class="news-time">2 hours ag</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./9.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="active">10</a>
+    
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
