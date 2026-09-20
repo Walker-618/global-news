@@ -144,6 +144,32 @@
       "id": "06bbc68cd163d234"
     },
     {
+      "title": "Guidance For Trump's AI Force: Extreme Intelligence Has Two Tails",
+      "summary": "Trump's AI Force should focus on the extremes: accelerate abundance, protect American innovation and intellectual property, and defeat AI attacks. Leave the middle alone.",
+      "url": "https://www.forbes.com/sites/philipmaymin/2026/09/20/guidance-for-trumps-ai-force-extreme-intelligence-has-two-tails/",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-09-20T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:31.117848+00:00",
+      "thumbnail_url": "",
+      "id": "42b594aa27f6710f"
+    },
+    {
+      "title": "Matt Walsh questions Trump's push to rename \"Artificial Intelligence\" after POTUS unveils the final two name suggestions",
+      "summary": "Conservative political commentator Matt Walsh questioned President Trump's attempt to rename Artificial Intelligence. Amid the ongoing debate about safety concerns from AI, Trump recently dismissed th",
+      "url": "https://www.aol.com/articles/matt-walsh-questions-trump-push-201015000.html",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-09-20T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:31.117800+00:00",
+      "thumbnail_url": "",
+      "id": "1cfc092c78147121"
+    },
+    {
       "title": "Trump Floats New Names For Artificial Intelligence, Asks Public To Vote",
       "summary": "Trump says \"Artificial Intelligence\" may be inaccurate and asks followers to choose between three alternative names for the technology revolution.",
       "url": "https://www.arise.tv/trump-floats-new-names-for-artificial-intelligence-asks-public-to-vote/",
@@ -181,45 +207,6 @@
       "fetched_at": "2026-09-20T10:58:08.101912+00:00",
       "thumbnail_url": "",
       "id": "f6d1ebfe89a984bd"
-    },
-    {
-      "title": "从技术深潜到动手实战，Snowflake World Tour 技术专场让 AI 走进真实业务",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/mrl45Fq31U7JORZsV5re?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-09-19T17:02:13+00:00",
-      "fetched_at": "2026-09-20T04:13:37.467900+00:00",
-      "thumbnail_url": "",
-      "id": "4b85cfe7853cb60a"
-    },
-    {
-      "title": "Solaris 早已淡出视野，它的“转门”却还藏在 Go、WebKit 和 Rust 里",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/GAhNItmT2o7kvEA1ovxt?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-09-19T13:00:00+00:00",
-      "fetched_at": "2026-09-20T04:13:37.467921+00:00",
-      "thumbnail_url": "",
-      "id": "ab45c73a002c73bd"
-    },
-    {
-      "title": "单个机柜到底能跑多少个 Agent？答案不在 GPU 身上",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/brH7TRcHB9evl32KQJkY?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-09-19T10:55:19+00:00",
-      "fetched_at": "2026-09-20T04:13:37.467940+00:00",
-      "thumbnail_url": "",
-      "id": "42bcbd35c8125b3a"
     },
     {
       "title": "TGS Tech Week Day 1-① [What is happening right now at the Tokyo Game Show's 'AI Technology Pavilion']",
@@ -441,6 +428,19 @@
       "fetched_at": "2026-09-20T10:58:08.962608+00:00",
       "thumbnail_url": "",
       "id": "783bb8dd550029d5"
+    },
+    {
+      "title": "Your AI interviewer will see you now: How job seekers should navigate the 'jarring' new hiring technology",
+      "summary": "Employers are hoping that AI interviewers will streamline the hiring process. Some experts — and job seekers — aren't so sure ...",
+      "url": "https://www.msn.com/en-us/money/general/your-ai-interviewer-will-see-you-now-how-job-seekers-should-navigate-the-jarring-new-hiring-technology/ar-AA2clHpi?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-09-16T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:31.333307+00:00",
+      "thumbnail_url": "",
+      "id": "37223000fd50291e"
     },
     {
       "title": "Artificial Intelligence (AI) May Have a New Bear Thesis: Human Extinction",
@@ -796,45 +796,6 @@
       "id": "341b4a606b40889c"
     },
     {
-      "title": "Termexo v0.10.4 发布：集成 Grok Build，修复会话 Git 变更归零",
-      "summary": "Termexo v0.10.4 已发布。新版将 Grok Build 纳入现有 AI 编程终端工作台，并修复长时间使用后会话代码变更显示为 0、Git 面板变空的问题。 Grok Build 加入工作台 安装并登录 Grok Build CLI 后，Termexo 可以检测它、在工作区中启动终端、列出并恢复会话，也可以在任务看板中选择 Grok Build 执行任务。它与 Claude C...",
-      "url": "https://www.oschina.net/news/502594",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-09-19T17:18:46+00:00",
-      "fetched_at": "2026-09-20T04:13:36.082148+00:00",
-      "thumbnail_url": "",
-      "id": "8d15ebc6ddc1a537"
-    },
-    {
-      "title": "ColorOS 17 新技术解读，渲染、调度与 AI 升级",
-      "summary": "2026 年 9 月 17 日，2026 OPPO 开发者大会（ODC26）在珠海举行，ColorOS 17 正式发布。新系统将率先搭载在即将上市的 OPPO Find X10 系列和一加 16 等机型上，后续逐步开启推送。 一场系统发布会通常分为两部分来看，一部分是面向用户的功能清单，另一部分是面向开发者的架构改动。ColorOS 17 这次拿出来的东西，两条线...",
-      "url": "https://www.oschina.net/news/502593",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-09-19T04:47:31+00:00",
-      "fetched_at": "2026-09-20T04:13:36.082184+00:00",
-      "thumbnail_url": "",
-      "id": "9336359610e44ca9"
-    },
-    {
-      "title": "InfoSphere 迎来一次大更新：这次把国际化、书评、成就和编辑器都补上了",
-      "summary": "最近一段时间，我们对 InfoSphere 进行了一次比较大规模的更新。 这次并不是简单增加几个功能，而是围绕 内容创作、阅读体验、国际化、用户成长、SEO 与平台基础能力 做了一轮系统性的完善。 如果你之前使用过 InfoSphere，这次应该能明显感觉到很多细节都变了。 全新的首页与内容发现体验 首先，我们重新调整了首页内容...",
-      "url": "https://www.oschina.net/news/502592",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-09-19T03:56:04+00:00",
-      "fetched_at": "2026-09-20T04:13:36.082218+00:00",
-      "thumbnail_url": "",
-      "id": "6243d39d7983b2e0"
-    },
-    {
       "title": "Kmind Debuts Executive Strategy Program in Silicon Valley",
       "summary": "As the window for technological differentiation narrows, entrepreneurs increasingly face the same...",
       "url": "https://pr.newsaegis.com/article/Kmind-Debuts-Executive-Strategy-Program-in-Silicon-Valley/6aaf9101fb7acafcb4abce4f",
@@ -913,32 +874,6 @@
       "id": "c5de4b8a10da1238"
     },
     {
-      "title": "别再让 Agent 裸连数据库了：如何用 MCP + 语义网关解决 NL2SQL 幻觉与权限失控",
-      "summary": "在 2026 年，给 AI Agent（Cursor、Claude Desktop、Dify、Coze 等）外挂一个数据库连接，已经成为很多开发者的标配操作。从简单的官方 SQLite/MySQL MCP 到各种通用客户端扩展，让大模型“直接查库”的门槛被降得极低。 然而，一旦进入真实业务场景，大部分团队很快就会撞上两堵高墙： 语义幻觉严重：大模型根本不懂企业...",
-      "url": "https://www.oschina.net/news/502591",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-09-18T12:54:57+00:00",
-      "fetched_at": "2026-09-20T04:13:36.082254+00:00",
-      "thumbnail_url": "",
-      "id": "8c5c81d216ade80d"
-    },
-    {
-      "title": "灵界 OS 5.0 稳定版 · 桌面按钮可以隐藏了",
-      "summary": "这次更新，加了一个很小的开关，但解决了困扰我很久的问题。 之前桌面右上角一直挂着两个按钮： · 系统介绍 · 添加小组件 我自己看着觉得太丑了，但这两个功能又不能没有。所以这次给了个入口，让它们可以隐藏。 更新内容： · 设置 / 桌面，新增隐藏系统介绍开关 · 设置 / 桌面，新增隐藏添加小组件开关 · 两个开关...",
-      "url": "https://www.oschina.net/news/502590",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-09-18T10:47:40+00:00",
-      "fetched_at": "2026-09-20T04:13:36.082290+00:00",
-      "thumbnail_url": "",
-      "id": "f697cba3827fe566"
-    },
-    {
       "title": "智谱旗下 AI 编程工具 ZCode 被扒静默上传完整 Git 历史",
       "summary": "智谱的 AI 编程桌面端 ZCode，今天被扒出一个大问题。开发者 ferstar 发了一篇取证博客，说只要登录了账号，ZCode 会在后台静默把整个工作区——包括完整的 .git 历史、LFS 大文件缓存、reflog 和全局配置——打包加密上传到阿里云 OSS。该消息马上在国内技术圈传开，有人用自己的 Mac 顺着取证路径重跑了一遍，结论是&quot;...",
       "url": "https://www.oschina.net/news/502589",
@@ -950,6 +885,19 @@
       "fetched_at": "2026-09-20T04:13:36.082323+00:00",
       "thumbnail_url": "",
       "id": "be6d08ea419c6fe1"
+    },
+    {
+      "title": "Best Tech Stocks Right Now",
+      "summary": "Benzinga brings you the best tech stocks to invest in right now. We update our information daily so you can make the best ...",
+      "url": "https://www.benzinga.com/money/best-tech-stocks",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-09-18T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:32.833251+00:00",
+      "thumbnail_url": "",
+      "id": "e5913d690974bddc"
     },
     {
       "title": "Hyundai Motor Group seeks Silicon Valley talent for physical AI shift",
@@ -1069,6 +1017,19 @@
       "id": "6ec94abbf5ee19d8"
     },
     {
+      "title": "King Charles warns of AI's 'darker capacities' as technology executives convene at Dumfries House",
+      "summary": "The King has warned of the \"existential dangers\" AI technology poses while hosting a summit at Dumfries House this afternoon.",
+      "url": "https://www.msn.com/en-us/news/other/king-charles-warns-of-ai-s-darker-capacities-as-technology-executives-convene-at-dumfries-house/ar-AA2crRVW?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-09-17T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:32.417104+00:00",
+      "thumbnail_url": "",
+      "id": "069fbd67b538d8d6"
+    },
+    {
       "title": "Silicon Valley day spa was a brothel, and business was brisk, D.A. says",
       "summary": "A Cupertino massage spa has been accused of providing sexual services to about 30 customers daily,...",
       "url": "https://www.yahoo.com/news/us/articles/silicon-valley-day-spa-brothel-221752323.html",
@@ -1145,6 +1106,32 @@
       "fetched_at": "2026-09-20T04:13:41.617328+00:00",
       "thumbnail_url": "",
       "id": "105dc0742613f16c"
+    },
+    {
+      "title": "Adidas cuts jobs in India technology team",
+      "summary": "Sept 16 (Reuters) - Adidas said on Wednesday it has reduced a number of roles in its technology team in India as part of ...",
+      "url": "https://www.msn.com/en-us/money/general/adidas-cuts-jobs-in-india-technology-team/ar-AA2cn4pj?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-09-16T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:32.417199+00:00",
+      "thumbnail_url": "",
+      "id": "ff1c7cbea83d435d"
+    },
+    {
+      "title": "Marvell Technology (MRVL) Faces AI Volatility, Is It 58% Overvalued?",
+      "summary": "Marvell Technology (MRVL) is back in focus after an AI driven sell-off hit semiconductor stocks, with investors now weighing ...",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/marvell-technology-mrvl-faces-ai-032022856.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-09-16T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:32.417181+00:00",
+      "thumbnail_url": "",
+      "id": "ad9557f9c31c71e9"
     },
     {
       "title": "Silicon Valley Youth Climate Action feels impact of its programs",
@@ -1275,6 +1262,19 @@
       "fetched_at": "2026-09-20T04:13:41.956198+00:00",
       "thumbnail_url": "",
       "id": "8ccaedd187751c70"
+    },
+    {
+      "title": "A Strategic Perspective On The Current Development Of High-Tech Industries In China – Analysis",
+      "summary": "When it comes to high-tech industries such as robotics, commercial aerospace, and artificial intelligence, public attention ...",
+      "url": "https://www.eurasiareview.com/07092026-a-strategic-perspective-on-the-current-development-of-high-tech-industries-in-china-analysis/",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "Opinion13 days ago",
+      "fetched_at": "2026-09-20T22:17:32.833216+00:00",
+      "thumbnail_url": "",
+      "id": "92e91fe558aadb8e"
     },
     {
       "title": "Route 128 lost to Silicon Valley because of 1 crucial mistake",
@@ -1539,58 +1539,6 @@
       "id": "99cd8014df72c6f2"
     },
     {
-      "title": "Is Virtu Financial (VIRT) Using ADX POSIT Launch to Quietly Redefine Its Global...",
-      "summary": "Virtu Financial, Inc. and the Abu Dhabi Securities Exchange recently launched the POSIT block-tradin...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/virtu-financial-virt-using-adx-171239779.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-09-19T00:00:00+00:00",
-      "fetched_at": "2026-09-20T04:13:43.166599+00:00",
-      "thumbnail_url": "",
-      "id": "8e691bac35529d19"
-    },
-    {
-      "title": "Prudential Financial (PRU) Stock May Trade At A Discount After Stake Sale Plan",
-      "summary": "Prudential Financial has delivered a 45.6% share price gain over the past five years, which...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/prudential-financial-pru-stock-may-230922857.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-09-19T00:00:00+00:00",
-      "fetched_at": "2026-09-20T04:13:43.166561+00:00",
-      "thumbnail_url": "",
-      "id": "db293011368a7a47"
-    },
-    {
-      "title": "Will There Be a Stock Market Crash in Year 6 of Donald Trump's Presidency? One...",
-      "summary": "When investors’ willingness to take risks rapidly rises, look out below.",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-crash-6-donald-082601325.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-09-19T00:00:00+00:00",
-      "fetched_at": "2026-09-19T22:14:41.691468+00:00",
-      "thumbnail_url": "",
-      "id": "b3c0f6a41d7d8edc"
-    },
-    {
-      "title": "Stock News",
-      "summary": "Stay updated with the latest stock market news, trends, and insights from Global on GuruFocus Stock News Page. Get comprehensive coverage of stocks,...",
-      "url": "https://www.gurufocus.com/latest-news/all/all",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-09-19T00:00:00+00:00",
-      "fetched_at": "2026-09-19T22:14:41.691453+00:00",
-      "thumbnail_url": "",
-      "id": "8ae7f9f6a72ac202"
-    },
-    {
       "title": "Stock market today: Major indexes close sharply higher, led by tech stocks, as bond yields, oil prices drop",
       "summary": "Technology stocks powered major indexes to sharp gains Thursday, a day after the Federal Reserve raised interest rates for ...",
       "url": "https://www.msn.com/en-us/news/other/stock-market-today-tech-stocks-power-indexes-higher-as-treasury-yields-oil-prices-drop/ar-AA2cqdnk?ocid=BingNewsVerp",
@@ -1747,6 +1695,19 @@
       "id": "bab9ab10c6d119d3"
     },
     {
+      "title": "今日股市0916丨海外事件即将靴子落地 修复行情开始了吗？",
+      "summary": "A股主要指数今日集体反弹，截止收盘，沪指涨0.71%，收报3891.60点；深证成指涨1.26%，收报13454.74点；创业板指涨1.96%，收报3311.47点；科创50指数涨4.14%，收报1616.19点。沪指震荡走高，短期能否继续向上？",
+      "url": "https://www.yicai.com/news/103366673.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-09-16T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:34.491640+00:00",
+      "thumbnail_url": "",
+      "id": "bb71037bde1e52f5"
+    },
+    {
       "title": "What History Reveals About Stock Market Crashes During Presidential Transitions",
       "summary": "The stock market tends to do well under presidents of both parties.",
       "url": "https://finance.yahoo.com/markets/stocks/articles/history-reveals-stock-market-crashes-145000280.html",
@@ -1797,6 +1758,19 @@
       "fetched_at": "2026-09-20T10:58:14.219103+00:00",
       "thumbnail_url": "",
       "id": "2292fb0a90c2511e"
+    },
+    {
+      "title": "【环球财经】东京股市两大股指涨跌互现",
+      "summary": "新华财经东京8月27日电（记者李诗萌 蓝建中）日本东京股市两大股指27日涨跌互现。日经225种股票平均价格指数收盘下跌0.20% ...",
+      "url": "https://finance.sina.com.cn/jjxw/2026-08-27/doc-iniptxkv5908291.shtml",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-08-27T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:34.491627+00:00",
+      "thumbnail_url": "",
+      "id": "a42c0868dd35e709"
     },
     {
       "title": "纽约股市三大股指25日上涨",
@@ -1851,6 +1825,19 @@
       "id": "8554140a4668bfec"
     },
     {
+      "title": "Economy Grew At Unexpectedly Slow Rate In Second Quarter",
+      "summary": "Diccon Hyatt is an experienced financial and economics reporter. He's written hundreds of articles breaking down complex financial topics in plain language, emphasizing the impact that economic ...",
+      "url": "https://www.investopedia.com/gdp-q2-2026-12030710",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-07-30T00:00:00+00:00",
+      "fetched_at": "2026-09-20T22:17:34.248215+00:00",
+      "thumbnail_url": "",
+      "id": "434c5c2eec246c3e"
+    },
+    {
       "title": "Everyone’s Talking About The K-Shaped Economy. Here’s What It Means",
       "summary": "The K-shaped economy is an ongoing economic bifurcation; its upper branch comprises wealthier people who continue to increase their existing fortunes. Simultaneously, those in the wage-dependent lower",
       "url": "https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/",
@@ -1890,6 +1877,19 @@
       "id": "62fd09d48a24d6e8"
     },
     {
+      "title": "The 11 S&P 500 Sectors Are Fading Quickly. Protect Yourself Against a Stock Market Crash Now.",
+      "summary": "Headline stock indexes can easily mask underlying market weakness, and that’s exactly what I think is happening right now.",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/11-p-500-sectors-fading-140003554.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "Opinion8 hours ago",
+      "fetched_at": "2026-09-20T22:17:34.021587+00:00",
+      "thumbnail_url": "",
+      "id": "ea384878086656c0"
+    },
+    {
       "title": "Trumpflation Just Hit 3.4%. The Fed Just Raised Rates. The Stock Market Has Been This Expensive Only Once Before. Is a Crash Inevitable?",
       "summary": "Investors are staring at a market triple-whammy.",
       "url": "https://www.msn.com/en-us/general/general/trumpflation-just-hit-3-4-the-fed-just-raised-rates-the-stock-market-has-been-this-expensive-only-once-before-is-a-crash-inevitable/ar-AA2cB9hW?ocid=BingNewsVerp",
@@ -1903,6 +1903,19 @@
       "id": "bbf12bed6968bfc3"
     },
     {
+      "title": "There Are Three Paths for the Economy. Only One Is Good.",
+      "summary": "Domestically, the traditional tenets of what’s known as the Washington consensus (fiscal prudence, deregulation, and minimal ...",
+      "url": "https://www.nytimes.com/2026/09/17/opinion/us-economy-treasury-stable.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "Opinion3 days ago",
+      "fetched_at": "2026-09-20T22:17:34.248198+00:00",
+      "thumbnail_url": "",
+      "id": "1b99188700d371a7"
+    },
+    {
       "title": "Trump’s tariffs sent markets into turmoil - what went wrong? | My take",
       "summary": "Donald Trump’s tariff announcements triggered a dramatic reaction across financial markets and reignited debate over the ...",
       "url": "https://www.msn.com/en-au/money/general/trump-s-tariffs-sent-markets-into-turmoil-what-went-wrong-my-take/vi-AA2cyyO0?ocid=BingNewsVerp",
@@ -1914,19 +1927,6 @@
       "fetched_at": "2026-09-20T10:58:12.970356+00:00",
       "thumbnail_url": "",
       "id": "f596512a7a6fc0fa"
-    },
-    {
-      "title": "There Are Three Paths for the Economy. Only One Is Good.",
-      "summary": "Domestically, the traditional tenets of what’s known as the Washington consensus (fiscal prudence, deregulation, and minimal ...",
-      "url": "https://www.nytimes.com/2026/09/17/opinion/us-economy-treasury-stable.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "Opinion2 days ago",
-      "fetched_at": "2026-09-19T22:14:42.056736+00:00",
-      "thumbnail_url": "",
-      "id": "1b99188700d371a7"
     },
     {
       "title": "The US economy's double-whammy",
@@ -2608,7 +2608,7 @@
     }
   ],
   "_meta": {
-    "updated_at": "2026-09-20T18:34:34.826063+00:00",
+    "updated_at": "2026-09-20T22:17:35.904532+00:00",
     "total": 200,
     "counts": {
       "AI": 50,
