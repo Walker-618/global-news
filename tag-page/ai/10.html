@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 资讯 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🤖 AI 资讯</span>
+    </div>
+    <div class="header-date">
+      <span>2026年9月26日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历8月16日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.nature.com/subjects/water-level-forecasting-using-machine-learning-techniques" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Water Level Forecasting Using Machine Learning Techniques articles from across Nature Portfolio</div>
+        <div class="news-summary">Uncover the latest and most impactful research in Water Level Forecasting Using </div>
+        <div class="news-time">09月09日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/technology/artificial-intelligence/when-ai-disagrees-people-change-how-they-perceive-the-technology-not-their-original-view/ar-AA2cPwdH?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">When AI disagrees, people change how they perceive the technology—not their original view</div>
+        <div class="news-summary">When an AI chatbot agrees with our reasoning in resolving a social dilemma, we m</div>
+        <div class="news-time">09月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.nature.com/subjects/machine-learning-applications-in-neurosurgery" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine Learning Applications in Neurosurgery - Latest research and news | Nature</div>
+        <div class="news-summary">Uncover the latest and most impactful research in Machine Learning Applications </div>
+        <div class="news-time">09月07日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/trump-wants-to-rebrand-ai-as-super-intelligence-here-s-what-that-actually-means/ar-AA2cLGPA?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Trump wants to rebrand AI as 'Super Intelligence' — here's what that actually means</div>
+        <div class="news-summary">Trump wants to rename artificial intelligence “Super Intelligence.” Here’s what </div>
+        <div class="news-time">09月06日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/meta-unveils-ai-gadgets-including-tamagotchi-like-pendant-amid-growing-concerns-over-the-technology/ar-AA2cVRxT?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Meta Unveils AI Gadgets Including Tamagotchi-Like Pendant amid Growing Concerns Over the Technology</div>
+        <div class="news-summary">Mark Zuckerberg introduced the keychain-sized AI companion as part of Meta’s lat</div>
+        <div class="news-time">09月03日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-au/news/other/artificial-is-out-trump-orders-officials-to-call-it-super-intelligence-instead/ar-AA2cTtRa?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">'Artificial' is out: Trump orders officials to call it 'super intelligence' instead</div>
+        <div class="news-summary">The US president has decided the word "artificial" makes intelligence "sound fak</div>
+        <div class="news-time">09月02日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-in/news/other/donald-trump-latest-news-trump-says-artificial-intelligence-sounds-fake-proposes-super-intelligence-check-ai-force-unga-speech-key-details/ar-AA2cLIIO?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Donald Trump Latest News: Trump Says 'Artificial Intelligence' Sounds Fake, Proposes 'Super Intelligence'; Check AI Force, UNGA Speech & Key Details</div>
+        <div class="news-summary">India, Sept. 23 -- US President Donald Trump has proposed replacing the term "ar</div>
+        <div class="news-time">09月01日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-xl/news/other/trump-renames-ai-to-super-intelligence/ar-AA2cPB3x?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Trump renames AI to 'super intelligence'</div>
+        <div class="news-summary">World leaders gathered at the 81st United Nations General Assembly have identifi</div>
+        <div class="news-time">08月21日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/dileeprao/2026/07/21/who-will-really-win-the-ai-race-why-technology-alone-wont-decide/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Who Will Really Win The AI Race? Here's Why Technology Alone Won't Decide</div>
+        <div class="news-summary">This voice experience is generated by AI. Learn more. This voice experience is g</div>
+        <div class="news-time">07月21日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.androidpolice.com/machine-learning-guide/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine Learning: Everything you need to know</div>
+        <div class="news-summary">I’ve been covering Android since 2023, when I joined Android Police, mostly focu</div>
+        <div class="news-time">03月01日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.businessinsider.com/reference/what-is-machine-learning" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">What is machine learning? Here's what you need to know about the branch of artificial intelligence and its common applications</div>
+        <div class="news-summary">Machine learning is a fast-growing and successful branch of artificial intellige</div>
+        <div class="news-time">12月07日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/microsoft-file-patent-for-a-machine-learning-system-that-would-train-itself-on-your-playtime-to-work-out-when-youll-be-least-annoyed-by-in-game-ads/ar-AA2cH5kE?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Microsoft file patent for a machine learning system that would "train" itself on your playtime to work out when you'll be least annoyed by in-game ads</div>
+        <div class="news-summary">Microsoft file patent for in-game ad system that could use machine learning and </div>
+        <div class="news-time">Opinion4 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/us/articles/popes-ai-advisor-says-technology-155618264.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">The Pope's AI advisor says the technology can be worse for kids than cocaine</div>
+        <div class="news-summary">Paolo Benanti, a Franciscan friar and theologian, told the BBC that AI can produ</div>
+        <div class="news-time">Opinion4 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://gizmodo.com/bernie-sanders-shows-theres-a-big-problem-with-trump-renaming-ai-to-super-intelligence-2000816222" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Bernie Sanders Shows There’s a Big Problem With Trump Renaming AI to ‘Super Intelligence’</div>
+        <div class="news-summary">Bernie Sanders introduced legislation Wednesday to create a new Department of Ar</div>
+        <div class="news-time">Opinion39 </div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/microsoft-file-patent-for-a-machine-learning-system-that-would-train-itself-on-your-playtime-to-work-out-when-youll-be-least-annoyed-by-in-game-ads/ar-AA2cH5kE?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Microsoft file patent for a machine learning system that would "train" itself on your playtime to work out when you'll be least annoyed by in-game ads</div>
+        <div class="news-summary">Microsoft file patent for in-game ad system that could use machine learning and </div>
+        <div class="news-time">Opinion3 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.primetimer.com/news/we-live-in-idiocracy-mehdi-hasan-reacts-after-trump-announces-super-intelligence-as-new-name-for-ai" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">“We live in Idiocracy”: Mehdi Hasan reacts after Trump announces “Super Intelligence” as new name for AI</div>
+        <div class="news-summary">Mehdi Hasan reacts to Donald Trump renaming artificial intelligence “super intel</div>
+        <div class="news-time">Opinion22 </div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/microsoft-file-patent-for-a-machine-learning-system-that-would-train-itself-on-your-playtime-to-work-out-when-youll-be-least-annoyed-by-in-game-ads/ar-AA2cH5kE?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Microsoft file patent for a machine learning system that would "train" itself on your playtime to work out when you'll be least annoyed by in-game ads</div>
+        <div class="news-summary">Microsoft file patent for in-game ad system that could use machine learning and </div>
+        <div class="news-time">Opinion2 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQlMkn1LNqvgIAe23QtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzMEdnRpZAMEc2VjA3Ny/RV=2/RE=1791379751/RO=10/RU=https://finance.yahoo.com/technology/ai/articles/canada-td-bank-pledges-c-113918570.html?fr=sycsrp_catchall/RK=2/RS=.BGcqJMegT3FYkhXD4c85D9_HQI-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Canada’s TD Bank pledges C$25m for AI</div>
+        <div class="news-summary">The two groups will examine how AI developed in Canada can be used within TD to </div>
+        <div class="news-time">2 hours ag</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQlMkn1LNqvgIAkG3QtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzEwBHZ0aWQDBHNlYwNzcg--/RV=2/RE=1791379751/RO=10/RU=https://seekingalpha.com/article/4948902-2-near-perfect-6-percent-yielding-dividend-growth-machines-i-trust-the-most/RK=2/RS=CQfHW.ZzD0nf8UATiwo2Yr.qaNo-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">2 Near-Perfect 6% Yielding Dividend Growth Machines I Trust The Most</div>
+        <div class="news-summary">Read here for an analysis of two 6% yielding dividend growth machines that meet </div>
+        <div class="news-time">2 hours ag</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQlMkn1LNqvgIAim3QtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzgEdnRpZAMEc2VjA3Ny/RV=2/RE=1791379751/RO=10/RU=https://www.thearabtribune.com/classifieds/job/education/data-science-course-in-chandigarh/ad_a79a6bf1-0b10-41a7-ac2c-682869436102.html/RK=2/RS=QaXCZL4C_IaBpp.Z92UDBpgbZ2w-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Data Science Course in Chandigarh</div>
+        <div class="news-summary">DataMites Institute in Chandigarh offers comprehensive training in Data Science,</div>
+        <div class="news-time">13 hours a</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./9.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="active">10</a>
+    
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
