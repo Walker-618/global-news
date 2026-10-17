@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>▶ 热门视频 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">▶ 热门视频</span>
+    </div>
+    <div class="header-date">
+      <span>2026年10月17日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历9月8日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.techtarget.com/ai/feature/Attributes-of-open-vs-closed-AI-explained" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Attributes of open vs. closed AI explained</div>
+        <div class="news-summary">The practice of open AI entails openly sharing AI models, the provenance of trai</div>
+        <div class="news-time">07月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.techtarget.com/ai/feature/Attributes-of-open-vs-closed-AI-explained" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Attributes of open vs. closed AI explained</div>
+        <div class="news-summary">The practice of open AI entails openly sharing AI models, the provenance of trai</div>
+        <div class="news-time">07月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.techtarget.com/ai/feature/Attributes-of-open-vs-closed-AI-explained" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Attributes of open vs. closed AI explained</div>
+        <div class="news-summary">The practice of open AI entails openly sharing AI models, the provenance of trai</div>
+        <div class="news-time">07月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.techtarget.com/ai/feature/Attributes-of-open-vs-closed-AI-explained" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Attributes of open vs. closed AI explained</div>
+        <div class="news-summary">The practice of open AI entails openly sharing AI models, the provenance of trai</div>
+        <div class="news-time">07月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.techtarget.com/ai/feature/Attributes-of-open-vs-closed-AI-explained" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Attributes of open vs. closed AI explained</div>
+        <div class="news-summary">The practice of open AI entails openly sharing AI models, the provenance of trai</div>
+        <div class="news-time">07月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.techtarget.com/ai/feature/Attributes-of-open-vs-closed-AI-explained" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Attributes of open vs. closed AI explained</div>
+        <div class="news-summary">The practice of open AI entails openly sharing AI models, the provenance of trai</div>
+        <div class="news-time">07月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.techtarget.com/ai/feature/Attributes-of-open-vs-closed-AI-explained" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Attributes of open vs. closed AI explained</div>
+        <div class="news-summary">The practice of open AI entails openly sharing AI models, the provenance of trai</div>
+        <div class="news-time">07月08日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRIzGUetJq0gIALFLQtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzYEdnRpZAMEc2VjA3Ny/RV=2/RE=1793388436/RO=10/RU=https://shopping.yahoo.com/health/dental/articles/dyson-camerajet-review-clever-concept-143513806.html/RK=2/RS=JR3y0McVWkcltyX56S5Ra1g5TTE-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Dyson CameraJet review: A clever concept with some everyday frustrations</div>
+        <div class="news-summary">It's one of the most ambitious electric toothbrushes I've tried, but at £420, I </div>
+        <div class="news-time">5 hours ag</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQv1l4qNNqyQIA.oTQtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzgEdnRpZAMEc2VjA3Ny/RV=2/RE=1793465721/RO=10/RU=https://tech.yahoo.com/general/articles/best-video-editing-software-2026-214451367.html/RK=2/RS=72pHTjaLKK5DYrmiyzjLWwUPROM-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">The Best Video Editing Software for 2026</div>
+        <div class="news-summary">We test and rate the top video editing software for every type of user, from cas</div>
+        <div class="news-time">5 days ago</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRIzGUetJq0gIAOFLQtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzEwBHZ0aWQDBHNlYwNzcg--/RV=2/RE=1793388436/RO=10/RU=https://tech.yahoo.com/gaming/articles/bluey-video-game-bluey-happy-155239615.html/RK=2/RS=VL19sytxpohPjXpGYf5f9Ez5UzA-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">New Bluey Video Game “Bluey’s Happy Snaps” Captures Family Magic For You And The...</div>
+        <div class="news-summary">Discover Gameloft's new video game "Bluey's Happy Snaps," featuring creative cam</div>
+        <div class="news-time">4 hours ag</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQH1ZNN9JqHQMA89bQtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzMEdnRpZAMEc2VjA3Ny/RV=2/RE=1793371214/RO=10/RU=https://www.cnet.com/tech/mobile/bose-ultra-open-earbuds-2nd-gen-review//RK=2/RS=235MDpAzdOFjUex0ojEp8xmgx24-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Bose Ultra Open Earbuds (2nd Gen) Review: Affordability Is a Concern, but I Dig...</div>
+        <div class="news-summary">They're pricey at $299 -- perhaps too pricey -- but the Ultra Open Earbuds (2nd </div>
+        <div class="news-time">4 hours ag</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQH1ZNN9JqHQMA8NbQtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzIEdnRpZAMEc2VjA3Ny/RV=2/RE=1793371214/RO=10/RU=https://www.cnet.com/news/social-media/the-social-reckoning-review-facebook-safety//RK=2/RS=udjPYKlIyC3bfgxiO7y9cbwsIZA-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">The Social Reckoning Review: Sorkin’s Facebook Film Is Uncomfortably Relevant - ...</div>
+        <div class="news-summary">Commentary: The Social Reckoning is not a remake or a reboot, and it’s all the b</div>
+        <div class="news-time">4 hours ag</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRiQqcn9FqLgMAcBvQtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzIEdnRpZAMEc2VjA3Ny/RV=2/RE=1793332380/RO=10/RU=https://www.fox13seattle.com/news/uw-monkeys-primate-research-debate/RK=2/RS=TLyBwkXFpPEZ3SNxcEAg4OtTR6E-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Disturbing video of infant monkeys at UW lab reignites debate over primate...</div>
+        <div class="news-summary">Newly released footage of infant monkeys undergoing experiments at a University </div>
+        <div class="news-time">32 minutes</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQv1l4qNNqyQIAAIXQtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzEwBHZ0aWQDBHNlYwNzcg--/RV=2/RE=1793465721/RO=10/RU=https://www.prnewswire.com/news-releases/getac-to-showcase-latest-video-suite-and-ai-enabled-rugged-solutions-for-law-enforcement-at-iacp-2026-302909857.html/RK=2/RS=H8HNfD.A1P_8.THbmBCr6rIPf_0-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Getac to Showcase Latest Video Suite and AI-Enabled Rugged Solutions for Law...</div>
+        <div class="news-summary">/PRNewswire/ -- Getac Technology Corporation (Getac), a leading provider of rugg</div>
+        <div class="news-time">2 days ago</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRiQqcn9FqLgMAfxvQtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzcEdnRpZAMEc2VjA3Ny/RV=2/RE=1793332380/RO=10/RU=https://www.krgv.com/news/brownsville-isd-football-teams-gain-edge-with-new-video-review-system//RK=2/RS=qzqv7_b1eFFTdGAd8zHgCntMDbo-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Brownsville ISD football teams gain edge with new video review system</div>
+        <div class="news-summary">Brownsville ISD football programs implement the new ANSRS video technology syste</div>
+        <div class="news-time">2 days ago</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RQH1bu5dFqCwMAiBfQtDMD;_ylu=Y29sbwN1cy13ZXN0LTIEcG9zAzIEdnRpZAMEc2VjA3Ny/RV=2/RE=1793350382/RO=10/RU=https://www.yahoo.com/news/science/articles/ufos-evidence-alien-technology-science-135910707.html?fr=sycsrp_catchall/RK=2/RS=P5cjc.VrEVAPHff3xlJrgZagL1U-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Are UFOs evidence of alien technology? Here’s what science actually says</div>
+        <div class="news-summary">Some UFO cases remain difficult to explain, but that is only the beginning of th</div>
+        <div class="news-time">19 hours a</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRiQqcn9FqLgMAcxvQtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzMEdnRpZAMEc2VjA3Ny/RV=2/RE=1793332380/RO=10/RU=https://www.radiotimes.com/movies/margaret-qualley-love-of-your-life-review//RK=2/RS=0gRUHarV1Wgi6_G8gvK6qr6Fytc-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Love of Your Life review: Hot and cold Covid romance fails to ignite</div>
+        <div class="news-summary">Qualley's latest film lacks substance.</div>
+        <div class="news-time">16 hours a</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRiQqcn9FqLgMAfBvQtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzYEdnRpZAMEc2VjA3Ny/RV=2/RE=1793332380/RO=10/RU=https://www.prnewswire.com/news-releases/getac-to-showcase-latest-video-suite-and-ai-enabled-rugged-solutions-for-law-enforcement-at-iacp-2026-302909857.html/RK=2/RS=SMioyHS0LNbWjrz.U4HamqQIukQ-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Getac to Showcase Latest Video Suite and AI-Enabled Rugged Solutions for Law...</div>
+        <div class="news-summary">/PRNewswire/ -- Getac Technology Corporation (Getac), a leading provider of rugg</div>
+        <div class="news-time">15 hours a</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRiSK4LM9qFgMAQKTQtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzEwBHZ0aWQDBHNlYwNzcg--/RV=2/RE=1793171896/RO=10/RU=https://www.fastcompany.com/91619931/28-leaders-share-their-most-effective-uses-for-video/RK=2/RS=ESIBtNuQElCGhGcQW9b5V_xwjjY-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">28 leaders share their most effective uses for video</div>
+        <div class="news-summary">How video builds trust, transfers knowledge, and makes complex ideas clearer.</div>
+        <div class="news-time">13 hours a</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://r.search.yahoo.com/_ylt=A2RRJWHynM5q.wIA3zbQtDMD;_ylu=Y29sbwN1cy1lYXN0LTEEcG9zAzEwBHZ0aWQDBHNlYwNzcg--/RV=2/RE=1793135090/RO=10/RU=https://www.yahoo.com/news/science/articles/glp-1-weight-loss-drugs-154401733.html?fr=sycsrp_catchall/RK=2/RS=IHQgcsAupIdPD.4r7K9UBVNF0QI-" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">GLP-1 weight-loss drugs slow biological aging, recent studies show</div>
+        <div class="news-summary">The companies used "aging clocks," or technology that measures biological aging </div>
+        <div class="news-time">1 day ago </div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./9.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="active">10</a>
+    
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
