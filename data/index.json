@@ -1,6 +1,123 @@
 {
   "AI": [
     {
+      "title": "Cloudflare 与 VoidZero 联合推出 tsrs：由 AI 生成的 TypeScript 编译器 Rust 移植版",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/lGoA1ZSw6ojeh68GVlBl?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-11-06T17:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:05.121773+00:00",
+      "thumbnail_url": "",
+      "id": "8992ba0fbc69681a"
+    },
+    {
+      "title": "DigitalOcean 推出学习与数据服务，帮助 AI 智能体进行自我迭代",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/upfROwtEl8R75H24D13J?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-11-06T15:25:00+00:00",
+      "fetched_at": "2026-11-06T11:56:05.121805+00:00",
+      "thumbnail_url": "",
+      "id": "cbb136da5bf14a94"
+    },
+    {
+      "title": "从混元研发体系重构到 MaaS 推理优化，模型能力如何走向真实业务？",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/azhgYaRTIjsSSVfA8AaU?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-11-06T14:34:37+00:00",
+      "fetched_at": "2026-11-06T11:56:05.121822+00:00",
+      "thumbnail_url": "",
+      "id": "169904d375128674"
+    },
+    {
+      "title": "NgRx 22 发布：引入 Resource Extensions 和动态 DeepSignal，增强 Angular 状态管理能力",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/zJmwNj2Erc0Ol10eSIIY?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-11-06T14:01:37+00:00",
+      "fetched_at": "2026-11-06T11:56:05.121839+00:00",
+      "thumbnail_url": "",
+      "id": "96d3d35e9a7fa9a2"
+    },
+    {
+      "title": "智能体 Harness 的演进：从链、图到代码化",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/B7tsA5tjD08k2gd0OtXd?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-11-06T13:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:05.121855+00:00",
+      "thumbnail_url": "",
+      "id": "dc085483ee452f6f"
+    },
+    {
+      "title": "“超脑”统一指挥，“狼族”协同作战：京东物流打造供应链 AI 机器人军团",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/1YeowHagkg1Or6wwy23P?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-11-06T11:32:10+00:00",
+      "fetched_at": "2026-11-06T11:56:05.121871+00:00",
+      "thumbnail_url": "",
+      "id": "ec076196a4852df9"
+    },
+    {
+      "title": "2026 年 PyTorch 大会：谷歌和 Meta 开源 TorchTPU，在 TPU 上原生支持 PyTorch",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/5s2oa0BLlgR8fplkq2uK?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-11-06T11:17:27+00:00",
+      "fetched_at": "2026-11-06T11:56:05.121887+00:00",
+      "thumbnail_url": "",
+      "id": "eca825d2637335f4"
+    },
+    {
+      "title": "从仓储到配送，全程由 AI“指挥”：京东物流“超脑”3.0 的工业级 AI 实践",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/jBdvoUXheWN0oe6NfklO?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-11-06T11:14:55+00:00",
+      "fetched_at": "2026-11-06T11:56:05.121902+00:00",
+      "thumbnail_url": "",
+      "id": "87b9196daf3e58a7"
+    },
+    {
+      "title": "AI Native 企业研发工具链：架构重构与持续演进｜AICon北京",
+      "summary": "点击查看原文>",
+      "url": "https://www.infoq.cn/article/4IUSd2wP28ua4Jd5fHG2?utm_source=rss&utm_medium=article",
+      "source_name": "InfoQ",
+      "source_icon": "Q",
+      "source_color": "#f59e0b",
+      "category": "AI",
+      "published_at": "2026-11-06T10:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:05.121917+00:00",
+      "thumbnail_url": "",
+      "id": "a872893066ca7d7e"
+    },
+    {
       "title": "AI 狂烧 2000亿美元，谷歌全球启动“自愿买断”计划：最高补偿12个月工资",
       "summary": "点击查看原文>",
       "url": "https://www.infoq.cn/article/vMSj216sQUhmeDH4H0G7?utm_source=rss&utm_medium=article",
@@ -25,6 +142,19 @@
       "fetched_at": "2026-11-06T02:05:39.586087+00:00",
       "thumbnail_url": "",
       "id": "ad70785ae5743ea5"
+    },
+    {
+      "title": "Stock market today: Dow, S&P 500, Nasdaq futures wobble after brutal sell-off,...",
+      "summary": "Stocks are poised for steep weekly losses as a post-election rally turned into an artificial...",
+      "url": "https://finance.yahoo.com/markets/live/stock-market-today-friday-november-6-dow-sp-500-nasdaq-jobs-report-091927729.html",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:06.689121+00:00",
+      "thumbnail_url": "",
+      "id": "e6700c53dd62e208"
     },
     {
       "title": "模型之外，腾讯还在补什么？",
@@ -53,19 +183,6 @@
       "id": "1f2f854ad8321634"
     },
     {
-      "title": "PHP 修复了两处已遭到攻击的严重远程代码执行漏洞",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/qUEjcWbwOj5RO59250Lu?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-11-05T17:06:00+00:00",
-      "fetched_at": "2026-11-05T14:21:55.065682+00:00",
-      "thumbnail_url": "",
-      "id": "1f2f854ad8321634"
-    },
-    {
       "title": "Claude Code 产品负责人Cut Wu 官宣加入 OpenAI",
       "summary": "点击查看原文>",
       "url": "https://www.infoq.cn/article/cDERcarozbrsCBNs5sWM?utm_source=rss&utm_medium=article",
@@ -75,19 +192,6 @@
       "category": "AI",
       "published_at": "2026-11-05T16:53:21+00:00",
       "fetched_at": "2026-11-06T02:05:39.586139+00:00",
-      "thumbnail_url": "",
-      "id": "a2fccba70eb58b8d"
-    },
-    {
-      "title": "Claude Code 产品负责人Cut Wu 官宣加入 OpenAI",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/cDERcarozbrsCBNs5sWM?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-11-05T16:53:21+00:00",
-      "fetched_at": "2026-11-05T14:21:55.065700+00:00",
       "thumbnail_url": "",
       "id": "a2fccba70eb58b8d"
     },
@@ -105,19 +209,6 @@
       "id": "cee4d5439801f40e"
     },
     {
-      "title": "MCP C# SDK 2.0 默认启用 HTTP 无状态模式，新增多轮请求能力",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/80iUxvCNB59aOgyXB7LN?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-11-05T15:19:00+00:00",
-      "fetched_at": "2026-11-05T14:21:55.065716+00:00",
-      "thumbnail_url": "",
-      "id": "cee4d5439801f40e"
-    },
-    {
       "title": "视频生成只是开始，AI 如何把内容做对？",
       "summary": "点击查看原文>",
       "url": "https://www.infoq.cn/article/GGILIuzW0RTGhoeuz9TD?utm_source=rss&utm_medium=article",
@@ -127,19 +218,6 @@
       "category": "AI",
       "published_at": "2026-11-05T13:54:21+00:00",
       "fetched_at": "2026-11-06T02:05:39.586171+00:00",
-      "thumbnail_url": "",
-      "id": "9174dbffc46fd267"
-    },
-    {
-      "title": "视频生成只是开始，AI 如何把内容做对？",
-      "summary": "点击查看原文>",
-      "url": "https://www.infoq.cn/article/GGILIuzW0RTGhoeuz9TD?utm_source=rss&utm_medium=article",
-      "source_name": "InfoQ",
-      "source_icon": "Q",
-      "source_color": "#f59e0b",
-      "category": "AI",
-      "published_at": "2026-11-05T13:54:21+00:00",
-      "fetched_at": "2026-11-05T14:21:55.065731+00:00",
       "thumbnail_url": "",
       "id": "9174dbffc46fd267"
     },
@@ -248,95 +326,43 @@
       "id": "58ae79e8f2f634f1"
     },
     {
-      "title": "Artificial Intelligence in Animal Health Market Size, Share, Trends, and Forecast, 2026-2033 | AI Diagnostics and Livestock Management Drive 18.9% CAGR to USD 7 Billion",
-      "summary": "Dublin, Nov. 05, 2026 (GLOBE NEWSWIRE) -- \"Artificial Intelligence in Animal Health Market Size, Share & Trends Analysis Report by Solution, Application, Animal, End Use, Region, and Growth Forecasts,",
-      "url": "https://finance.yahoo.com/technology/ai/articles/artificial-intelligence-animal-health-market-150100192.html",
+      "title": "Machine Learning Model Predicts Residual Strength of Aged Silk Heritage Without Damage",
+      "summary": "Researchers trained an XGBoost machine learning model to estimate the residual tensile strength of artificially aged silk ...",
+      "url": "https://bioengineer.org/machine-learning-model-predicts-residual-strength-of-aged-silk-heritage-without-damage/",
       "source_name": "DuckDuckGo AI",
       "source_icon": "D",
       "source_color": "#f97316",
       "category": "AI",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T21:50:17.599147+00:00",
+      "published_at": "2026-11-04T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:07.512860+00:00",
       "thumbnail_url": "",
-      "id": "f0c8ec935163a10f"
+      "id": "0c64614721ede784"
     },
     {
-      "title": "Artificial general intelligence: 50% chance by mid-century",
-      "summary": "Sciencephile the AI explains what artificial general intelligence (AGI) would be and how it differs from today's specialized systems. The video summarizes a recent expert survey that gave about a 50% ",
-      "url": "https://www.msn.com/en-us/technology/artificial-intelligence/artificial-general-intelligence-50-chance-by-mid-century/vi-AA29mH3F",
+      "title": "Evergreen’s Lyra Technology Group Invests in AI Talent Across Its MSP Portfolio, Launching Its Forward-Deployed Engineer Program",
+      "summary": "Lyra Technology Group, an Evergreen company, announced today its Forward-Deployed Engineer (FDE) program, which will place ...",
+      "url": "https://finance.yahoo.com/technology/ai/articles/evergreen-lyra-technology-group-invests-110000593.html",
       "source_name": "DuckDuckGo AI",
       "source_icon": "D",
       "source_color": "#f97316",
       "category": "AI",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T21:50:17.599126+00:00",
+      "published_at": "2026-11-04T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:07.005405+00:00",
       "thumbnail_url": "",
-      "id": "5a93d89ca8c53ed1"
+      "id": "7c36f4cf30189f21"
     },
     {
-      "title": "New Wolters Kluwer survey highlights growing demand for trusted medication intelligence in the age of AI",
-      "summary": "New survey findings show rapid adoption of AI-enabled medication workflows, increasing the need for trusted medication intelligence.",
-      "url": "https://finance.yahoo.com/healthcare/articles/wolters-kluwer-survey-highlights-growing-143000580.html",
+      "title": "Column: Artificial intelligence becomes artificial connection, too",
+      "summary": "“This trend toward the performance of authenticity is currently rampant in areas heavily influenced ...",
+      "url": "https://dailytarheel.com/es_mx/490584/opinion/opinion-column-human-skills-devalued/",
       "source_name": "DuckDuckGo AI",
       "source_icon": "D",
       "source_color": "#f97316",
       "category": "AI",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T21:50:17.599076+00:00",
+      "published_at": "2026-11-04T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:06.689190+00:00",
       "thumbnail_url": "",
-      "id": "e2f21ca00020846e"
-    },
-    {
-      "title": "SpaceX (SPCX) Stock May Trade Below Fair Value On Fresh AI Compute News",
-      "summary": "Space Exploration Technologies has been under pressure lately, and the stock’s recent slide now puts...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/spacex-spcx-stock-may-trade-121235029.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.756475+00:00",
-      "thumbnail_url": "",
-      "id": "06e120eb825bdedc"
-    },
-    {
-      "title": "Together for an AI-Powered Urban Future: Dahua Technology Showcases Practical...",
-      "summary": "BARCELONA, Spain, Nov. 5, 2026 /PRNewswire/ -- Dahua Technology, a world-leading video-centric AIoT...",
-      "url": "https://www.wowktv.com/business/press-releases/cision/20261105CN90128/together-for-an-ai-powered-urban-future-dahua-technology-showcases-practical-aiot-solutions-at-scewc-2026",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.756419+00:00",
-      "thumbnail_url": "",
-      "id": "7d1c3dccc4629391"
-    },
-    {
-      "title": "MedicalAid.ai: How Artificial Intelligence Is Revolutionising Medical Aid Comparisons in South Africa",
-      "summary": "MedicalAid.ai introduces artificial intelligence to help South Africans compare complex medical aid schemes, matching plans to household budgets",
-      "url": "https://mg.co.za/partner-content/2026-11-05-medicalaid-ai-how-artificial-intelligence-is-revolutionising-medical-aid-comparisons-in-south-africa/",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.354273+00:00",
-      "thumbnail_url": "",
-      "id": "c329c9c726517df6"
-    },
-    {
-      "title": "Windward acquires Azimut.ai, adding visual intelligence layer to maritime AI platform",
-      "summary": "New visual intelligence capabilities help Windward track and identify vessels operating beyond the reach of conventional systems.",
-      "url": "https://www.msn.com/en-my/technology/artificial-intelligence/windward-acquires-azimut-ai-adding-visual-intelligence-layer-to-maritime-ai-platform/ar-AA2gN5xf",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.354231+00:00",
-      "thumbnail_url": "",
-      "id": "2968b881fba13ec1"
+      "id": "e95f759e13c7dc3f"
     },
     {
       "title": "Machine learning and robotic synthesis race to break methane conversion barrier",
@@ -378,56 +404,17 @@
       "id": "e3c7d04630848622"
     },
     {
-      "title": "Machine Learning Model Predicts Residual Strength of Aged Silk Heritage Without Damage",
-      "summary": "Researchers trained an XGBoost machine learning model to estimate the residual tensile strength of artificially aged silk ...",
-      "url": "https://bioengineer.org/machine-learning-model-predicts-residual-strength-of-aged-silk-heritage-without-damage/",
+      "title": "ReelDo AI Introduces Image-to-Video Technology for Creating Dynamic Visual Content",
+      "summary": "Introduces Image-to-Video Technology for Creating Dynamic Visual Content NEW YORK, USA, Nov. 02, 2026 (GLOBE NEWSWIRE) -- introduces image to video ai technology designed to support the ...",
+      "url": "https://finance.yahoo.com/technology/ai/articles/reeldo-ai-introduces-image-video-160900443.html",
       "source_name": "DuckDuckGo AI",
       "source_icon": "D",
       "source_color": "#f97316",
       "category": "AI",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.974729+00:00",
+      "published_at": "2026-11-03T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:07.005439+00:00",
       "thumbnail_url": "",
-      "id": "0c64614721ede784"
-    },
-    {
-      "title": "Evergreen’s Lyra Technology Group Invests in AI Talent Across Its MSP Portfolio, Launching Its Forward-Deployed Engineer Program",
-      "summary": "Lyra Technology Group, an Evergreen company, announced today its Forward-Deployed Engineer (FDE) program, which will place ...",
-      "url": "https://finance.yahoo.com/technology/ai/articles/evergreen-lyra-technology-group-invests-110000593.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.756465+00:00",
-      "thumbnail_url": "",
-      "id": "7c36f4cf30189f21"
-    },
-    {
-      "title": "How a French philosopher’s warnings about speed and power describe today’s AI ra...",
-      "summary": "Paul Virilio, a French philosopher, died in 2018. But his writings on technological ‘accidents’ help...",
-      "url": "https://tech.yahoo.com/ai/meta-ai/articles/french-philosopher-warnings-speed-power-140410173.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.354301+00:00",
-      "thumbnail_url": "",
-      "id": "1ce4386d0851afcf"
-    },
-    {
-      "title": "ASML vs. Marvell Technology: Which Artificial Intelligence Stock Is a Better Buy Going into 2027?",
-      "summary": "ASML's near-monopoly on chipmaking lithography and Marvell's AI data push sit on very different rungs of the industry, and their valuations and risks tell divergent stories.",
-      "url": "https://finance.yahoo.com/technology/ai/articles/asml-vs-marvell-technology-artificial-025356702.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.354288+00:00",
-      "thumbnail_url": "",
-      "id": "21b520edd844ab97"
+      "id": "bf83838683f21554"
     },
     {
       "title": "Nextech3D.ai to Showcase AI-Powered Event Technology at IAEE Expo Expo 2026",
@@ -454,19 +441,6 @@
       "fetched_at": "2026-11-06T02:05:41.497594+00:00",
       "thumbnail_url": "",
       "id": "b23a95118c8967e9"
-    },
-    {
-      "title": "Hexaware Selected as Strategic Technology Partner by the European Bank for Reconstruction and Development",
-      "summary": "Hexaware Technologies (NSE: HEXT), a global AI-first digital and IT solutions company, has been selected as strategic ...",
-      "url": "https://finance.yahoo.com/technology/ai/articles/hexaware-selected-strategic-technology-partner-100700399.html",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-11-01T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.756484+00:00",
-      "thumbnail_url": "",
-      "id": "04aec3e9120178f8"
     },
     {
       "title": "Machine learning models predict severe chemotherapy-induced neutropenia in breast cancer using only pre-treatment data",
@@ -508,30 +482,17 @@
       "id": "f8e85f55037231e8"
     },
     {
-      "title": "Machine learning uses brain structure to predict impulsivity",
-      "summary": "Researchers used structural MRI scans and machine learning to examine whether physical brain anatomy could predict impulsive ...",
-      "url": "https://www.msn.com/en-us/science/genetics/machine-learning-uses-brain-structure-to-predict-impulsivity/vi-AA2gNWDP?ocid=BingNewsVerp",
+      "title": "New corridor eyed for 'super intelligence' projects",
+      "summary": "MANILA, Philippines — The Philippines plans to introduce a technology corridor to attract investments across the “super intelligence” value chain, from the minerals that power these advanced ...",
+      "url": "https://www.msn.com/en-ph/technology/artificial-intelligence/new-corridor-eyed-for-super-intelligence-projects/ar-AA2gPudx?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo AI",
       "source_icon": "D",
       "source_color": "#f97316",
       "category": "AI",
-      "published_at": "2026-10-29T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.974782+00:00",
+      "published_at": "2026-10-28T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:06.689179+00:00",
       "thumbnail_url": "",
-      "id": "38aea2f5074412bb"
-    },
-    {
-      "title": "Machine learning disease prediction models rely heavily on one interpretability method, review finds",
-      "summary": "A systematic review of 82 studies found SHAP dominated interpretability methods in machine learning disease prediction, while ...",
-      "url": "https://bioengineer.org/machine-learning-disease-prediction-models-rely-heavily-on-one-interpretability-method-review-finds/",
-      "source_name": "DuckDuckGo AI",
-      "source_icon": "D",
-      "source_color": "#f97316",
-      "category": "AI",
-      "published_at": "2026-10-29T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:56.974772+00:00",
-      "thumbnail_url": "",
-      "id": "a1aeed5617e40276"
+      "id": "7c794d916faaa3de"
     },
     {
       "title": "Xbox Series X|S Get Machine Learning Upscaling with AMD FSR 4.1.2",
@@ -586,6 +547,32 @@
       "id": "c56e72ed6d0f76e5"
     },
     {
+      "title": "Together for an AI-Powered Urban Future: Dahua Technology Showcases Practical AIoT Solutions at SCEWC 2026",
+      "summary": "Dahua Technology, a world-leading video-centric AIoT solution and service provider, showcased its latest smart city solutions ...",
+      "url": "https://finance.yahoo.com/technology/ai/articles/together-ai-powered-urban-future-124300163.html",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-10-14T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:07.005452+00:00",
+      "thumbnail_url": "",
+      "id": "a866c4f72e02c9a6"
+    },
+    {
+      "title": "Artificial general intelligence: 50% chance by mid-century",
+      "summary": "Sciencephile the AI explains what artificial general intelligence (AGI) would be and how it differs from today’s specialized ...",
+      "url": "https://www.msn.com/en-us/technology/artificial-intelligence/artificial-general-intelligence-50-chance-by-mid-century/vi-AA29mH3F?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2026-10-14T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:06.689155+00:00",
+      "thumbnail_url": "",
+      "id": "7ad965fe3ffc2411"
+    },
+    {
       "title": "The 7 Technology Trends For 2027 Everyone Must Prepare For Now",
       "summary": "This voice experience is generated by AI. Learn more. This voice experience is generated by AI. Learn more. In 2027, technology enters a new phase, with AI at its core, extending beyond chatbots into ",
       "url": "https://www.forbes.com/sites/bernardmarr/2026/09/28/the-7-technology-trends-for-2027-everyone-must-prepare-for-now/",
@@ -597,6 +584,19 @@
       "fetched_at": "2026-11-06T02:05:41.497583+00:00",
       "thumbnail_url": "",
       "id": "cdb0377bbe595840"
+    },
+    {
+      "title": "Master of Science in Machine Learning Engineering",
+      "summary": "The master’s in machine learning engineering from Drexel Engineering provides the skills needed to take on the transformation of science and technology and a successful career in an exciting ...",
+      "url": "https://drexel.edu/engineering/academics/graduate-programs/masters/machine-learning-engineering/",
+      "source_name": "DuckDuckGo AI",
+      "source_icon": "D",
+      "source_color": "#f97316",
+      "category": "AI",
+      "published_at": "2025-08-29T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:07.512919+00:00",
+      "thumbnail_url": "",
+      "id": "3a632f2301507790"
     },
     {
       "title": "Master of Science in Machine Learning Engineering",
@@ -653,6 +653,175 @@
   ],
   "TECH": [
     {
+      "title": "2026 开源行业解决方案创新赛「开源基础软件与解决方案赛道」决赛名单公布",
+      "summary": "第四届开放原子大赛 · 2026 开源行业解决方案创新赛「开源基础软件与解决方案赛道」决赛入围名单今日公布，以下 10 支队伍成功晋级，将于 11 月 13 日在北京亦庄通明湖会展中心参加总决赛。 现将入围名单按报名时间顺序公示如下： 项目名称 负责人 仓库链接 实时交互数字人引擎 李恒中 https://github.com/lipku/LiveT...",
+      "url": "https://www.oschina.net/news/503457",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-11-06T11:23:16+00:00",
+      "fetched_at": "2026-11-06T11:56:03.737078+00:00",
+      "thumbnail_url": "",
+      "id": "4930533eac042624"
+    },
+    {
+      "title": "2026 开源行业解决方案创新赛「开源智能硬件解决方案赛道」决赛名单公布",
+      "summary": "第四届开放原子大赛 · 2026 开源行业解决方案创新赛「开源智能硬件解决方案赛道」决赛入围名单今日公布，以下 10 支队伍成功晋级，将于 11 月 13 日在北京亦庄通明湖会展中心参加总决赛。 现将入围名单按报名时间顺序公示如下： 项目名称 负责人 代码仓库链接 Blockless 科创教育 AI 嵌入式软件开发平台 辛瑞莉 https:...",
+      "url": "https://www.oschina.net/news/503456",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-11-06T10:54:23+00:00",
+      "fetched_at": "2026-11-06T11:56:03.737134+00:00",
+      "thumbnail_url": "",
+      "id": "515eab3709d2228e"
+    },
+    {
+      "title": "2026 开源行业解决方案创新赛「“地心飞行”AIGC创作赛道」决赛名单公布",
+      "summary": "第四届开放原子大赛 · 2026 开源行业解决方案创新赛「“地心飞行”AIGC创作赛道」决赛入围名单今日公布，以下 10 支队伍成功晋级，将于 11 月 13 日在北京亦庄通明湖会展中心参加总决赛。 现将入围名单按报名时间顺序公示如下： 项目名称 负责人 视频链接 地心脉动 王剑歌 https://www.bilibili.com/video/BV1qz4i6iEv...",
+      "url": "https://www.oschina.net/news/503451",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-11-06T07:48:43+00:00",
+      "fetched_at": "2026-11-06T11:56:03.737164+00:00",
+      "thumbnail_url": "",
+      "id": "cd1fcd114a991c8b"
+    },
+    {
+      "title": "qData 数据中台开源版 v1.6.6 发布：ETL 模块轻量化升级，优化定时任务磁盘占用问题",
+      "summary": "qData 数据中台开源版 v1.6.6 发布，本次更新主要涉及 ETL 执行模块拆分，以及定时任务运行中的 JAR 包累积问题修复。 在社区使用反馈中，有开发者发现，数据集成定时任务持续运行后，服务器上的 ETL JAR 包不断累积，占用了较多磁盘空间。对于高频、长期运行的同步任务，这类问题需要持续关注。 围绕执行包体积和运行文...",
+      "url": "https://www.oschina.net/news/503440",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-11-06T06:45:58+00:00",
+      "fetched_at": "2026-11-06T11:56:03.737195+00:00",
+      "thumbnail_url": "",
+      "id": "5ba22669dda4e51a"
+    },
+    {
+      "title": "OpenSSH 严重绕过漏洞“sshole”让任意超长密码都能登录 root",
+      "summary": "一个本该永远无法登录的账号，只要输入超过 256 个字符的任意密码，就能进去。这个漏洞在 musl libc 里躺了十四年——从 2012 年埋下，到 2026 年才被发现。 发现者 Özgün Kültekin 给它起了个名字：*sshole。他还做了个网站 sshhole.com，把这个 bug 的来龙去脉从 1980 年一路讲到今天。 先看这个漏洞怎么形成的 19...",
+      "url": "https://www.oschina.net/news/503439/openssh-sshhole",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-11-06T06:41:31+00:00",
+      "fetched_at": "2026-11-06T11:56:03.737226+00:00",
+      "thumbnail_url": "",
+      "id": "de887b36064864c2"
+    },
+    {
+      "title": "当 Coding Agent 走进研发团队：腾讯开源了云端自进化研发平台 LoopForge",
+      "summary": "单机 Coding Agent 已经能飞快写出代码，但一旦走进真实研发团队，合盖断流、多人上下文割裂、自由 Vibe Coding 质量失控、日常盯单耗时以及同类问题反复踩坑，很快就会把团队卡在“单兵提效、全局内耗”的瓶颈里。为此，腾讯轻量云团队打造并开源了云端自进化 AI 研发平台 LoopForge——集 7×24 小时云端工作区、多角色...",
+      "url": "https://www.oschina.net/news/503437",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-11-06T06:31:36+00:00",
+      "fetched_at": "2026-11-06T11:56:03.737252+00:00",
+      "thumbnail_url": "",
+      "id": "d612df37f32fb5e7"
+    },
+    {
+      "title": "ModStartBlog v12.0.0 一键安装、主题焕新、安全加固与体验升级",
+      "summary": "系统介绍 ModStart 是一个基于 Laravel 模块化极速开发框架。模块市场拥有丰富的功能应用，支持后台一键快速安装，让开发者能快的实现业务功能开发。 系统完全开源，基于 Apache 2.0 开源协议。 功能特性 丰富的模块市场，后台一键快速安装 会员模块通用且完整，支持完整的API调用 大文件分片上传，进度条显示，已上传文...",
+      "url": "https://www.oschina.net/news/503436",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-11-06T06:16:12+00:00",
+      "fetched_at": "2026-11-06T11:56:03.737278+00:00",
+      "thumbnail_url": "",
+      "id": "eda75f3a0f2cb648"
+    },
+    {
+      "title": "ModStart v12.0.0 图形化安装、安全加固与后台体验全面升级",
+      "summary": "系统介绍 ModStart 是一个基于 Laravel 模块化极速开发框架。模块市场拥有丰富的功能应用，支持后台一键快速安装，让开发者能快的实现业务功能开发。 系统完全开源，基于 Apache 2.0 开源协议，免费且不限制商业使用。 功能特性 丰富的模块市场，后台一键快速安装 会员模块通用且完整，支持完整的API调用 大文件分片上传...",
+      "url": "https://www.oschina.net/news/503435",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-11-06T06:13:41+00:00",
+      "fetched_at": "2026-11-06T11:56:03.737304+00:00",
+      "thumbnail_url": "",
+      "id": "0eb2cfea20dcb80a"
+    },
+    {
+      "title": "Fedora Linux 45 正式发布，安装系统时支持配置企业级存储",
+      "summary": "Fedora Linux 45 发布了。这次的头号变化不在桌面，在安装器——Anaconda 直接集成了 Stratis 存储支持。 如果你不熟悉 Stratis，可以这么理解：它把设备映射（device-mapper）、XFS 和 LUKS 包在一个更好用的接口里，给本地存储带来企业级特性——精简配置（thin provisioning / 超量分配）、存储池、文件系统动态扩容、...",
+      "url": "https://www.oschina.net/news/503434/fedora-linux-45",
+      "source_name": "开源中国",
+      "source_icon": "源",
+      "source_color": "#22c55e",
+      "category": "TECH",
+      "published_at": "2026-11-06T03:55:20+00:00",
+      "fetched_at": "2026-11-06T11:56:03.737332+00:00",
+      "thumbnail_url": "",
+      "id": "a96be4ca4afc0644"
+    },
+    {
+      "title": "Why the Tech Right Lost Big This Week",
+      "summary": "“This felt like a decidedly anti-tech election.”",
+      "url": "https://www.nytimes.com/2026/11/06/podcasts/hardfork-midterms-tech-right.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:09.293879+00:00",
+      "thumbnail_url": "",
+      "id": "3823e31f7bd06926"
+    },
+    {
+      "title": "Tech selloff wipes out hedge fund gains, prompting risk cuts and layoffs",
+      "summary": "A brutal global equity selloff led by technology stocks has wiped out year-to-date gains at many hed...",
+      "url": "https://www.reuters.com/world/china/tech-selloff-wipes-out-hedge-fund-gains-prompting-risk-cuts-layoffs-2026-11-06/",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:09.293862+00:00",
+      "thumbnail_url": "",
+      "id": "acd7dba8bab2c4bd"
+    },
+    {
+      "title": "Stock Market Today: Nasdaq Futures Surge in Tech Rebound; Dow Drops Ahead of...",
+      "summary": "Nasdaq futures are surging in premarket trading as tech stocks rebound amid dip-buying. The Dow is...",
+      "url": "https://www.barrons.com/livecoverage/stock-market-news-today-110626",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:09.293850+00:00",
+      "thumbnail_url": "",
+      "id": "2e2bd1181d5ef880"
+    },
+    {
+      "title": "Democrats see a winning 2028 message in voters’ tech unease",
+      "summary": "After voters helped Democrats ride backlash against the tech industry to victory in key midterm...",
+      "url": "https://www.yahoo.com/news/politics/articles/democrats-see-winning-2028-message-100000820.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:09.293821+00:00",
+      "thumbnail_url": "",
+      "id": "be993d791b05a9b8"
+    },
+    {
       "title": "OwnCoder 0.2.0 发布:安全优先，token 消耗显著低于同类产品安全优先，token 消耗显著低于同类产品的本地 AI 编程工具",
       "summary": "当前版本能力持续完善，产品效果提升明显，Token 消耗相比同类 AI 编程工具具备优势。 软件简介 OwnCode 是一款面向开发者的桌面端 AI 编程工具，从设计之初就把安全与隐私放在首位：敏感信息（API Key、密钥等）在发送给大模型之前自动脱敏，代码索引与向量检索均在本地完成。在此基础上，OwnCode 的上下文管理策略经过...",
       "url": "https://www.oschina.net/news/503432",
@@ -705,19 +874,6 @@
       "id": "52e57828ad3107dc"
     },
     {
-      "title": "百度发布最新基座模型 ERNIE 5.5 Flash Base：效率、开源、高性价比",
-      "summary": "11 月 5 日，百度正式开源最新基座模型文心 5.5 Flash Base（ERNIE 5.5 Flash Base）。模型采用 MoE 架构，总参数量 2800 亿，每个 Token 激活 140 亿参数，使用 33.5 万亿个 Token 完成预训练，预训练上下文长度最高达 128K，微调与推理阶段支持最长 100 万 Token 上下文。 据介绍，ERNIE 5.5 Flash Base ",
-      "url": "https://www.oschina.net/news/503429/ernie-5-5-flash-base",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-11-05T11:39:18+00:00",
-      "fetched_at": "2026-11-05T14:21:53.997427+00:00",
-      "thumbnail_url": "",
-      "id": "52e57828ad3107dc"
-    },
-    {
       "title": "用 AI 写后端，为什么还是在造轮子？",
       "summary": "很多人已经习惯让 AI 写代码： 生成一个 CRUD 接口、补一段 SQL、写一个工具类，效率确实比手敲高。 但真正落到一个企业后台项目上，你会发现节奏并没有变快多少。AI 帮你写完了接口，接下来还是要处理权限、菜单、工作流、报表、审计日志、数据字典。这些代码不复杂，却占了项目的大半时间，而且每个项目都要重来一遍。...",
       "url": "https://www.oschina.net/news/503428",
@@ -727,19 +883,6 @@
       "category": "TECH",
       "published_at": "2026-11-05T10:52:19+00:00",
       "fetched_at": "2026-11-06T02:05:38.480612+00:00",
-      "thumbnail_url": "",
-      "id": "fe8a0b6adae3691b"
-    },
-    {
-      "title": "用 AI 写后端，为什么还是在造轮子？",
-      "summary": "很多人已经习惯让 AI 写代码： 生成一个 CRUD 接口、补一段 SQL、写一个工具类，效率确实比手敲高。 但真正落到一个企业后台项目上，你会发现节奏并没有变快多少。AI 帮你写完了接口，接下来还是要处理权限、菜单、工作流、报表、审计日志、数据字典。这些代码不复杂，却占了项目的大半时间，而且每个项目都要重来一遍。...",
-      "url": "https://www.oschina.net/news/503428",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-11-05T10:52:19+00:00",
-      "fetched_at": "2026-11-05T14:21:53.997486+00:00",
       "thumbnail_url": "",
       "id": "fe8a0b6adae3691b"
     },
@@ -757,19 +900,6 @@
       "id": "fa816d33f9ac8a52"
     },
     {
-      "title": "登顶 HF 热榜、下载达 20 万：有道「子曰4 -R2T2」模型技术报告发布",
-      "summary": "开源仅 4 天（9月21日），网易有道子曰 Confucius4-R2T2 就登顶 Hugging Face 自动语音识别（ASR）热榜第一。目前，模型及各量化版本全球累计下载量已达到 20 万次。 围绕 R2T2，社区陆续推出量化版本与不同运行环境的适配，让更多开发者能够体验高质量的实时语音转写能力。近日，Confucius4-R2T2 的技术报告也上线论文...",
-      "url": "https://www.oschina.net/news/503427",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-11-05T10:20:04+00:00",
-      "fetched_at": "2026-11-05T14:21:53.997517+00:00",
-      "thumbnail_url": "",
-      "id": "fa816d33f9ac8a52"
-    },
-    {
       "title": "GOTC 来我这放个 P！Vibe Coding 的同时也要记得关怀屁股",
       "summary": "你是否遇到过这种情况：Vibe Coding 最上头的地方，是你永远觉得“再改一版就好”。于是你让 AI 再跑一轮，AI 让你再等一会儿。代码迭代了十版，屁股一个 commit 都没挪。直到终于跑通，才发现你的屁股已经和椅子合并分支了。 我们是即刻放P垫，一群认真研究“屁大点事”的硬件整活选手，正在做一款用放屁音效和触感提醒...",
       "url": "https://www.oschina.net/news/503412",
@@ -783,19 +913,6 @@
       "id": "5dbe4a2c367992e4"
     },
     {
-      "title": "GOTC 来我这放个 P！Vibe Coding 的同时也要记得关怀屁股",
-      "summary": "你是否遇到过这种情况：Vibe Coding 最上头的地方，是你永远觉得“再改一版就好”。于是你让 AI 再跑一轮，AI 让你再等一会儿。代码迭代了十版，屁股一个 commit 都没挪。直到终于跑通，才发现你的屁股已经和椅子合并分支了。 我们是即刻放P垫，一群认真研究“屁大点事”的硬件整活选手，正在做一款用放屁音效和触感提醒...",
-      "url": "https://www.oschina.net/news/503412",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-11-05T06:38:40+00:00",
-      "fetched_at": "2026-11-05T14:21:53.997545+00:00",
-      "thumbnail_url": "",
-      "id": "5dbe4a2c367992e4"
-    },
-    {
       "title": "FydeOS v23.1 发布，重点改善 Android 应用体验",
       "summary": "FydeOS v23.1 发布，重点改善 Android 应用体验、系统集成和企业管理，并修复部分设备上的兼容性问题。 Android 应用体验 修复部分设备上 Google Play 服务异常、导致 Google Play 商店无法正常使用的问题。 改善 Android 应用调整窗口大小时的显示效果，修复部分应用弹窗背景显示异常的问题。 修复从 Android 应用复制的...",
       "url": "https://www.oschina.net/news/503411",
@@ -805,19 +922,6 @@
       "category": "TECH",
       "published_at": "2026-11-05T05:47:45+00:00",
       "fetched_at": "2026-11-06T02:05:38.480693+00:00",
-      "thumbnail_url": "",
-      "id": "cd3af2ff26a2e82d"
-    },
-    {
-      "title": "FydeOS v23.1 发布，重点改善 Android 应用体验",
-      "summary": "FydeOS v23.1 发布，重点改善 Android 应用体验、系统集成和企业管理，并修复部分设备上的兼容性问题。 Android 应用体验 修复部分设备上 Google Play 服务异常、导致 Google Play 商店无法正常使用的问题。 改善 Android 应用调整窗口大小时的显示效果，修复部分应用弹窗背景显示异常的问题。 修复从 Android 应用复制的...",
-      "url": "https://www.oschina.net/news/503411",
-      "source_name": "开源中国",
-      "source_icon": "源",
-      "source_color": "#22c55e",
-      "category": "TECH",
-      "published_at": "2026-11-05T05:47:45+00:00",
-      "fetched_at": "2026-11-05T14:21:53.997576+00:00",
       "thumbnail_url": "",
       "id": "cd3af2ff26a2e82d"
     },
@@ -846,6 +950,45 @@
       "fetched_at": "2026-11-06T02:05:38.480743+00:00",
       "thumbnail_url": "",
       "id": "fc86df62222213aa"
+    },
+    {
+      "title": "Silicon Valley Space Unicorns",
+      "summary": "Together, the Silicon Valley Space Unicorns embody the unique culture of San Jose: ambitious, inventive, and always reaching ...",
+      "url": "https://www.milb.com/san-jose/fans/silicon-valley-space-unicorns",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-11-05T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:09.550270+00:00",
+      "thumbnail_url": "",
+      "id": "43320cc559b79c0c"
+    },
+    {
+      "title": "Tech supply chains are relocating fragility — not removing it",
+      "summary": "Tech supply chains may span more countries now, but the same critical chokepoints—and their risks—ar...",
+      "url": "https://www.cio.com/article/4225605/tech-supply-chains-are-relocating-fragility-not-removing-it.html",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-11-05T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:09.293871+00:00",
+      "thumbnail_url": "",
+      "id": "f24721afe119a289"
+    },
+    {
+      "title": "ASML vs. Marvell Technology: Which Artificial Intelligence Stock Is a Better Buy Going into 2027?",
+      "summary": "ASML's near-monopoly on chipmaking lithography and Marvell's AI data push sit on very different rungs of the industry, and ...",
+      "url": "https://www.fool.com/coverage/better-buy/2026/11/04/asml-vs-marvell-technology-which-artificial-intelligence-stock-is-a-better-buy-going-into-2027/",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-11-05T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:08.886045+00:00",
+      "thumbnail_url": "",
+      "id": "e48901068e692751"
     },
     {
       "title": "Silicon Valley’s Ro Khanna wants its billionaires to pay a 5% wealth tax",
@@ -926,32 +1069,6 @@
       "id": "5424cdcdda29430f"
     },
     {
-      "title": "Stocks crater as midterms spur investor exodus from tech and AI",
-      "summary": "Tech-heavy Nasdaq is now in a \"correction\" as Wall Street weighs the impact of the Democrats' wins...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/stocks-crater-investors-recoil-tech-180224986.html",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T21:50:21.230054+00:00",
-      "thumbnail_url": "",
-      "id": "23088d06a4bdd993"
-    },
-    {
-      "title": "Krause Center for Innovation Expands Silicon Valley AI Project Statewide...",
-      "summary": "Made possible through generous support from Google...",
-      "url": "https://www.fox44news.com/business/press-releases/cision/20261105DC83744/krause-center-for-innovation-expands-silicon-valley-ai-project-statewide-following-year-1-research-report",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:59.677832+00:00",
-      "thumbnail_url": "",
-      "id": "160427f55003d32f"
-    },
-    {
       "title": "Silicon Valley Reads explores wellness, longevity with 2027 book picks",
       "summary": "A memoir, a nonfiction book and a novel that explore the theme “Mind, Body and Beyond,” will be part of a program of more ...",
       "url": "https://www.mercurynews.com/2026/11/03/silicon-valley-reads-explores-wellness-longevity-with-2027-book-picks/",
@@ -978,45 +1095,6 @@
       "id": "6e24ed9819c1cf6a"
     },
     {
-      "title": "SpaceX to partner with Qualcomm for cell phone service technology",
-      "summary": "SpaceX announced a deal with Qualcomm for key network technology for Starlink Mobile Service to compete with Verizon, AT&T ...",
-      "url": "https://www.upi.com/Top_News/US/2026/11/04/spacex-technology-qualcomm/3701793814856/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T21:50:20.798826+00:00",
-      "thumbnail_url": "",
-      "id": "4046bf036ea57be6"
-    },
-    {
-      "title": "Robotic Surgery: When Technology Expands the Possibilities of Medicine",
-      "summary": "International Hospital of Colombia is expanding the role of robotics across complex care to enhance precision.",
-      "url": "https://www.msn.com/en-us/news/other/robotic-surgery-when-technology-expands-the-possibilities-of-medicine/ar-AA2gFxYI?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:58.581444+00:00",
-      "thumbnail_url": "",
-      "id": "6e24ed9819c1cf6a"
-    },
-    {
-      "title": "SpaceX signs deal with Qualcomm to provide network technology for US mobile service",
-      "summary": "SpaceX struck a multiyear deal with Qualcomm to build out base stations for its Starlink Mobile cellular network.",
-      "url": "https://www.msn.com/en-us/money/markets/spacex-signs-deal-with-qualcomm-to-provide-network-technology-for-us-mobile-service/ar-AA2gKvz5?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:58.581413+00:00",
-      "thumbnail_url": "",
-      "id": "e50f182798ddc757"
-    },
-    {
       "title": "NewsTECHForum: What industry leaders really think about news technology’s future",
       "summary": "DPP CEO Roman de Pomerai kicks off TVNewsCheck’s NewsTECHForum conference on Dec. 15 by drilling into the technology priorities of today’s media and journalism leaders drawing on original industry ...",
       "url": "https://www.msn.com/en-us/news/other/newstechforum-what-industry-leaders-really-think-about-news-technology-s-future/ar-AA2gzpDB?ocid=BingNewsVerp",
@@ -1028,19 +1106,6 @@
       "fetched_at": "2026-11-06T02:05:43.544530+00:00",
       "thumbnail_url": "",
       "id": "5d6cb09b0d840b8e"
-    },
-    {
-      "title": "NIT Warangal partners with MOHSoft to commercialise ozone disinfection technology",
-      "summary": "The National Institute of Technology, Warangal has signed a technology transfer agreement with MOHSoft to bring an indigenous ...",
-      "url": "https://www.msn.com/en-in/news/other/nit-warangal-partners-with-mohsoft-to-commercialise-ozone-disinfection-technology/ar-AA2gQgDP?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-11-03T00:00:00+00:00",
-      "fetched_at": "2026-11-05T21:50:20.798863+00:00",
-      "thumbnail_url": "",
-      "id": "903829d2b6b35491"
     },
     {
       "title": "Silicon Valley is real!",
@@ -1056,19 +1121,6 @@
       "id": "65a7dbf62796675a"
     },
     {
-      "title": "NewsTECHForum: What industry leaders really think about news technology’s future",
-      "summary": "DPP CEO Roman de Pomerai kicks off TVNewsCheck’s NewsTECHForum conference on Dec. 15 by drilling into the technology priorities of today’s media and journalism leaders drawing on original industry ...",
-      "url": "https://www.msn.com/en-us/news/other/newstechforum-what-industry-leaders-really-think-about-news-technology-s-future/ar-AA2gzpDB?ocid=BingNewsVerp",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-11-02T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:59.240053+00:00",
-      "thumbnail_url": "",
-      "id": "5d6cb09b0d840b8e"
-    },
-    {
       "title": "Tech Industry News",
       "summary": "The latest business news and updates related to big tech and tech startups, including industry trends, events, new hires, and layoffs. We get the scoops.",
       "url": "https://www.theinformation.com/technology",
@@ -1082,17 +1134,17 @@
       "id": "8f219185dd09c207"
     },
     {
-      "title": "Silicon Valley is real!",
-      "summary": "Visiting Silicon Valley, a real global tech hub originating from Stanford University and local garages, revealed massive corporate campuses driving world-changing innovations and modern digital ...",
-      "url": "https://www.msn.com/en-in/news/other/silicon-valley-is-real/ar-AA2gw8vc?ocid=BingNewsVerp",
+      "title": "Horizon Technology Finance signals $0.06 monthly distributions for Jan–Mar 2027 as backlog reaches $351M",
+      "summary": "Horizon Technology Finance Q3 2026 earnings: backlog hit $351M, NII covered payouts, but NAV fell on credit stress.",
+      "url": "https://seekingalpha.com/news/4667751-horizon-technology-finance-signals-0_06-monthly-distributions-for-jan-mar-2027-as-backlog",
       "source_name": "DuckDuckGo Tech",
       "source_icon": "D",
       "source_color": "#0891b2",
       "category": "TECH",
-      "published_at": "2026-11-01T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:59.677822+00:00",
+      "published_at": "2026-10-30T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:08.885999+00:00",
       "thumbnail_url": "",
-      "id": "65a7dbf62796675a"
+      "id": "d66b7f9456920a18"
     },
     {
       "title": "Silicon Valley’s historic wealth tax crusade",
@@ -1106,19 +1158,6 @@
       "fetched_at": "2026-11-06T02:05:44.295414+00:00",
       "thumbnail_url": "",
       "id": "b04f3db60f922c9f"
-    },
-    {
-      "title": "Silicon Valley Girl Has Backed 23 Startups. What Does a Creator See That a VC Doesn’t?",
-      "summary": "Silicon Valley Girl creator Marina Mogilko has backed 20+ startups. Here's what online creators see that traditional VCs miss ...",
-      "url": "https://www.inc.com/kamya-marwah/silicon-valley-girl-marina-mogilko-creator-investing/91425376",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-10-29T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:59.677810+00:00",
-      "thumbnail_url": "",
-      "id": "ad0b1eb28d84e3a8"
     },
     {
       "title": "Silicon Valley AI political groups turn on each other in the 2026 election",
@@ -1147,6 +1186,32 @@
       "id": "b04f3db60f922c9f"
     },
     {
+      "title": "Micron Technology vs. Western Digital: Which Tech Stock Is the Better Buy for 2027?",
+      "summary": "Both memory and storage stocks are riding the AI data boom, but one may be much better prepared for the next downturn.",
+      "url": "https://www.fool.com/coverage/better-buy/2026/11/05/micron-technology-vs-western-digital-which-tech-stock-is-the-better-buy-for-2027/",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-10-22T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:08.886064+00:00",
+      "thumbnail_url": "",
+      "id": "cad5a0d0aabf166e"
+    },
+    {
+      "title": "Arista Networks vs. ServiceNow: Which Technology Stock Is a Better Buy for 2027?",
+      "summary": "Arista's near-zero debt and 39% net margin stand in sharp contrast to ServiceNow's cheaper valuation, and the gap between ...",
+      "url": "https://www.fool.com/coverage/better-buy/2026/11/05/arista-networks-vs-servicenow-which-technology-stock-is-a-better-buy-for-2027/",
+      "source_name": "DuckDuckGo Tech",
+      "source_icon": "D",
+      "source_color": "#0891b2",
+      "category": "TECH",
+      "published_at": "2026-10-22T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:08.886055+00:00",
+      "thumbnail_url": "",
+      "id": "ee96d1f672aaf815"
+    },
+    {
       "title": "Tech industry leader raises concern about NYC AI regulation",
       "summary": "NEW YORK CITY (PIX11) -- The New York City Council has proposed 10 pieces of legislation to regulate artificial intelligence development, but tech leaders say some miss the mark. Julie Samuels, ...",
       "url": "https://www.msn.com/en-us/money/general/tech-industry-leader-raises-concern-about-nyc-ai-regulation/ar-AA2fFSxw?ocid=BingNewsVerp",
@@ -1160,17 +1225,17 @@
       "id": "5d9e8d61181bc245"
     },
     {
-      "title": "Tech industry leader raises concern about NYC AI regulation",
-      "summary": "NEW YORK CITY (PIX11) -- The New York City Council has proposed 10 pieces of legislation to regulate artificial intelligence development, but tech leaders say some miss the mark. Julie Samuels, ...",
-      "url": "https://www.msn.com/en-us/money/general/tech-industry-leader-raises-concern-about-nyc-ai-regulation/ar-AA2fFSxw?ocid=BingNewsVerp",
+      "title": "Krause Center for Innovation Expands Silicon Valley AI Project Statewide Following Year 1 Research Report",
+      "summary": "The Krause Center for Innovation (KCI) today announced the completion of Year 1 of the Silicon Valley Artificial Intelligence ...",
+      "url": "https://finance.yahoo.com/technology/ai/articles/krause-center-innovation-expands-silicon-131000683.html",
       "source_name": "DuckDuckGo Tech",
       "source_icon": "D",
       "source_color": "#0891b2",
       "category": "TECH",
-      "published_at": "2026-10-20T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:59.240096+00:00",
+      "published_at": "2026-10-15T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:09.550219+00:00",
       "thumbnail_url": "",
-      "id": "5d9e8d61181bc245"
+      "id": "7a5460272b10b5ec"
     },
     {
       "title": "Trump's AI to SI push splits Silicon Valley",
@@ -1186,32 +1251,6 @@
       "id": "aa07f4ec307c0a7a"
     },
     {
-      "title": "Micron Technology And 2 AI Chip Stocks To Improve Your Portfolio",
-      "summary": "Corporate earnings are currently growing at a pace last seen in 1984, powered heavily by large tech groups pouring money into ...",
-      "url": "https://finance.yahoo.com/technology/ai/articles/micron-technology-2-ai-chip-121408498.html",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-09-15T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:58.581425+00:00",
-      "thumbnail_url": "",
-      "id": "e5a1ade5031b835a"
-    },
-    {
-      "title": "Acer Announces Executive Appointments: Chief Operating Officer and Chief Technology Officer",
-      "summary": "Acer Inc. (TWSE: 2353) announced new executive appointments to strengthen the company's overall operations and technology ...",
-      "url": "https://finance.yahoo.com/technology/articles/acer-announces-executive-appointments-chief-112400176.html",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2026-09-15T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:58.581381+00:00",
-      "thumbnail_url": "",
-      "id": "ac12779bb3db283f"
-    },
-    {
       "title": "A ‘recession’ is arriving for people who want jobs in technology",
       "summary": "Newly released jobs market data paints a murky picture ahead for the tech industry, which continues to slash workers. The unemployment rate for tech jobs has been steadily rising since May, ticking up",
       "url": "https://www.washingtonpost.com/business/2025/12/17/tech-jobs-unemployment/",
@@ -1225,32 +1264,6 @@
       "id": "ef417e1418d3d968"
     },
     {
-      "title": "A ‘recession’ is arriving for people who want jobs in technology",
-      "summary": "Newly released jobs market data paints a murky picture ahead for the tech industry, which continues to slash workers. The unemployment rate for tech jobs has been steadily rising since May, ticking up",
-      "url": "https://www.washingtonpost.com/business/2025/12/17/tech-jobs-unemployment/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2025-12-17T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:59.240084+00:00",
-      "thumbnail_url": "",
-      "id": "ef417e1418d3d968"
-    },
-    {
-      "title": "Balancing Innovation And Sustainability: How The Tech Industry Can Combat Climate Change",
-      "summary": "As the world grapples with the pressing issue of climate change, it’s impossible to overlook the environmental cost of the ever-growing tech industry. Technology is a ubiquitous part of our lives; we ",
-      "url": "https://www.forbes.com/councils/forbesbusinesscouncil/2025/03/26/balancing-innovation-and-sustainability-how-the-tech-industry-can-combat-climate-change/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2025-03-26T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:59.240106+00:00",
-      "thumbnail_url": "",
-      "id": "b3621634901152fe"
-    },
-    {
       "title": "European tech industry coalition calls for ‘radical action’ on digital sovereignty — starting with buying local",
       "summary": "A broad coalition drawn from across the ranks of Europe’s tech industry is calling for “radical action” from European Union lawmakers to shrink reliance on foreign-owned digital infrastructure and ...",
       "url": "https://techcrunch.com/2025/03/16/european-tech-industry-coalition-calls-for-radical-action-on-digital-sovereignty-starting-with-buying-local/",
@@ -1260,19 +1273,6 @@
       "category": "TECH",
       "published_at": "2025-03-17T00:00:00+00:00",
       "fetched_at": "2026-11-06T02:05:43.544550+00:00",
-      "thumbnail_url": "",
-      "id": "ace57bd63c494114"
-    },
-    {
-      "title": "European tech industry coalition calls for ‘radical action’ on digital sovereignty — starting with buying local",
-      "summary": "A broad coalition drawn from across the ranks of Europe’s tech industry is calling for “radical action” from European Union lawmakers to shrink reliance on foreign-owned digital infrastructure and ...",
-      "url": "https://techcrunch.com/2025/03/16/european-tech-industry-coalition-calls-for-radical-action-on-digital-sovereignty-starting-with-buying-local/",
-      "source_name": "DuckDuckGo Tech",
-      "source_icon": "D",
-      "source_color": "#0891b2",
-      "category": "TECH",
-      "published_at": "2025-03-17T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:21:59.240116+00:00",
       "thumbnail_url": "",
       "id": "ace57bd63c494114"
     },
@@ -1305,6 +1305,71 @@
   ],
   "FINANCE": [
     {
+      "title": "UK Stock Market Today: FTSE 100 Futures Rise On BoE Rate Hike Watch",
+      "summary": "The Morning Bull - UK Market Morning Update Friday, 6 Nov 2026 UK stocks look set for a firm open as...",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/uk-stock-market-today-ftse-071242964.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:11.719668+00:00",
+      "thumbnail_url": "",
+      "id": "2ada588e5d64e774"
+    },
+    {
+      "title": "Top 3 Industrials Stocks That May Rocket Higher In November - Caterpillar...",
+      "summary": "Industrials stocks Caterpillar, Eaton and Trane Technologies are deeply oversold, with RSI near or...",
+      "url": "https://www.benzinga.com/trading-ideas/long-ideas/26/11/62969800/top-3-industrials-stocks-that-may-rocket-higher-in-november",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:11.719660+00:00",
+      "thumbnail_url": "",
+      "id": "68757b9bfa3a099c"
+    },
+    {
+      "title": "3 Energy Intensive Stocks Where Lower Oil Prices Could Lift Margins",
+      "summary": "Oil markets have flipped from feared shortages to talk of surplus, with the IEA flagging both demand...",
+      "url": "https://finance.yahoo.com/energy/articles/3-energy-intensive-stocks-where-101501609.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:11.719609+00:00",
+      "thumbnail_url": "",
+      "id": "749122b107692df3"
+    },
+    {
+      "title": "Best CD rates today, Friday, November 6, 2026: Several offers over 4.50%,...",
+      "summary": "Today, Friday, November 6, 2026, the highest CD rate among our verified partners is 5%, offered by...",
+      "url": "https://finance.yahoo.com/personal-finance/banking/article/best-cd-rates-today-friday-november-6-2026-several-offers-over-450-including-one-up-to-5-apy-110000130.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:10.989665+00:00",
+      "thumbnail_url": "",
+      "id": "1787cac62ed64fc7"
+    },
+    {
+      "title": "IGM Financial (TSX:IGM) Stock Looks Reasonable Relative To Fair Value",
+      "summary": "IGM Financial has delivered a 181.5% share price gain over the past three years, a move that...",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/igm-financial-tsx-igm-stock-081336829.html",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-11-06T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:10.989636+00:00",
+      "thumbnail_url": "",
+      "id": "c6ef8d2ff573b599"
+    },
+    {
       "title": "Japan's stock benchmark Nikkei tumbles more than 6% after trading opens - The...",
       "summary": "TOKYO (AP) — Japan’s stock benchmark Nikkei tumbled more than 6% after trading opened Friday. The de...",
       "url": "https://www.therepublic.com/2026/11/05/japans-stock-benchmark-nikkei-tumbles-more-than-6-after-trading-opens/",
@@ -1329,6 +1394,58 @@
       "fetched_at": "2026-11-06T02:05:46.018343+00:00",
       "thumbnail_url": "",
       "id": "f1e05c4ffab23892"
+    },
+    {
+      "title": "Can Filipino MSMEs keep up with growing digital economy?",
+      "summary": "MANILA, Philippines — The digital economy contributed 9.8% to the Philippine economy in 2025, according to the Philippine ...",
+      "url": "https://www.msn.com/en-ph/money/small-business/can-filipino-msmes-keep-up-with-growing-digital-economy/ar-AA2gK0Es?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-11-05T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:11.936891+00:00",
+      "thumbnail_url": "",
+      "id": "549d1ad40ee88b3e"
+    },
+    {
+      "title": "Mexico’s economy nearing ‘strong’ according to the latest MND Economy Index™",
+      "summary": "The latest MND Economy Index™ score — based mainly on data for August 2026 — was 74.5, the highest result since we created ...",
+      "url": "https://mexiconewsdaily.com/mnd-intelligence/mexicos-economy-nearing-strong-according-to-the-latest-mnd-economy-index/",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-11-05T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:11.936881+00:00",
+      "thumbnail_url": "",
+      "id": "fe7e915abe2adc5f"
+    },
+    {
+      "title": "Latest Stock Market News & Analysis - GuruFocus.com",
+      "summary": "Get actionable stock market news & analysis curated from top sources. Make informed investment decisions with GuruFocus.",
+      "url": "https://www.gurufocus.com/stock-market-news",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-11-05T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:11.719651+00:00",
+      "thumbnail_url": "",
+      "id": "5222704381b65fec"
+    },
+    {
+      "title": "Stock Market News From Nov. 5, 2026: Inside the AI Panic that Knocked 5.5% Off...",
+      "summary": "The Dow, S&P 500, and Nasdaq plummeted after the stock market reversed the midterm rally and then...",
+      "url": "https://www.barrons.com/livecoverage/stock-market-news-today-110526",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-11-05T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:11.719639+00:00",
+      "thumbnail_url": "",
+      "id": "2a83f0811486938a"
     },
     {
       "title": "Nasdaq Plunges 1,421 Points, Dow Slides 1,833 Points in Tech Rout: Stock Market...",
@@ -1448,32 +1565,6 @@
       "id": "0fa37407fe4ccb4d"
     },
     {
-      "title": "OpenAssets and Digital Asset Partner to Modernize Capital Markets Infrastructure",
-      "summary": "OpenAssets will make its \"markets-in-a-box\" platform available to institutions on Canton. It will...",
-      "url": "https://www.wowktv.com/business/press-releases/cision/20261105NE89445/openassets-and-digital-asset-partner-to-modernize-capital-markets-infrastructure",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:22:01.162419+00:00",
-      "thumbnail_url": "",
-      "id": "4b1048bf687988eb"
-    },
-    {
-      "title": "Virtu Financial (VIRT) Surpasses Q3 Earnings and Revenue Estimates",
-      "summary": "Virtu Financial (VIRT) delivered earnings and revenue surprises of +20.41% and +17.55%,...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/virtu-financial-virt-surpasses-q3-121508374.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-11-05T00:00:00+00:00",
-      "fetched_at": "2026-11-05T14:22:01.162390+00:00",
-      "thumbnail_url": "",
-      "id": "c1210a723a77b190"
-    },
-    {
       "title": "Economy Remains Top Issue, Early Exit Polls Indicate Pessimism",
       "summary": "Early exit polls indicate that today's voters headed to the voting booth displeased with the direction of the economy and ...",
       "url": "https://www.barrons.com/livecoverage/election-results-midterms-2026/card/economy-remains-top-issue-early-exit-polls-indicate-pessisism-2tUdJasUG0HrwRHvdUsO",
@@ -1552,43 +1643,17 @@
       "id": "889e884b1ccd1975"
     },
     {
-      "title": "Stock market today (Nov. 3, 2026): Nasdaq edges higher as US midterm voting begins",
-      "summary": "Apple and Palantir shares fall as Americans head to the polls.",
-      "url": "https://www.msn.com/en-us/news/money/stock-market-today-nov-3-2026-nasdaq-edges-higher-as-us-midterm-voting-begins/ar-AA2gFnnm?ocid=BingNewsVerp",
+      "title": "Global markets tumble after US tech stock sell-off",
+      "summary": "Global markets tumble after US tech stock sell-off - On Friday morning, the Asian markets followed turmoil on the US stock ...",
+      "url": "https://www.msn.com/en-us/money/top-stocks/global-markets-tumble-after-us-tech-stock-sell-off/ar-AA2gRNdC?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Finance",
       "source_icon": "D",
       "source_color": "#059669",
       "category": "FINANCE",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T05:53:50.233766+00:00",
+      "published_at": "2026-11-03T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:10.989677+00:00",
       "thumbnail_url": "",
-      "id": "fb1271a79ca6cfa4"
-    },
-    {
-      "title": "History shows the stock market tends to weather midterm election results, regardless of which party wins",
-      "summary": "Don't worry. History shows that the stock market tends to weather midterm election results, regardless of which party wins.",
-      "url": "https://www.marketwatch.com/livecoverage/stock-market-today-dow-s-p-500-nasdaq-us-midterm-elections-loom-amd-earnings-results/card/history-shows-the-stock-market-tends-to-weather-midterm-election-results-regardless-of-which-party-wins-WeGzPKnExsdqoOGjtSh0",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T05:53:50.233737+00:00",
-      "thumbnail_url": "",
-      "id": "27d6f71a01184880"
-    },
-    {
-      "title": "Stock Market Today, Nov. 3: Markets Edge Higher as Semiconductor Stocks Rebound",
-      "summary": "Midterm elections take a back seat as chip stocks lead a mixed session that left the Dow lagging, today, Nov. 3, 2026.",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-3-230359079.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-05T05:53:50.233720+00:00",
-      "thumbnail_url": "",
-      "id": "443043e60cb3e27c"
+      "id": "1f9946f17671ed06"
     },
     {
       "title": "Citizens Financial Group Targets 18% ROTCE as Private Bank and Deal Pipeline Grow",
@@ -1667,6 +1732,19 @@
       "fetched_at": "2026-11-05T14:22:01.542687+00:00",
       "thumbnail_url": "",
       "id": "7359ac8ceeb76660"
+    },
+    {
+      "title": "Economy grows at fastest pace in a year, GDP finds, and shows little sign of slowing",
+      "summary": "The U.S. economy in the late summer and early fall ripped off its fastest rate of growth in almost three years, amped up by ...",
+      "url": "https://www.marketwatch.com/story/u-s-economy-grows-at-fastest-pace-in-almost-three-years-third-quarter-gdp-shows-0e15b810",
+      "source_name": "DuckDuckGo Finance",
+      "source_icon": "D",
+      "source_color": "#059669",
+      "category": "FINANCE",
+      "published_at": "2026-10-30T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:11.936839+00:00",
+      "thumbnail_url": "",
+      "id": "6c6d137e3a94fdf3"
     },
     {
       "title": "Why is the stock market down today?",
@@ -1799,19 +1877,6 @@
       "id": "beaad1c5cdaf1369"
     },
     {
-      "title": "US economy grew a solid 2.2% in the second quarter, government says, upgrading previous estimate",
-      "summary": "WASHINGTON (AP) — The U.S. economy grew at a solid 2.2% pace from April through June as consumer spending and business investment came in strong. Growth in gross domestic product — the nation's output",
-      "url": "https://finance.yahoo.com/economy/articles/us-economy-grew-solid-2-124422923.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-09-30T00:00:00+00:00",
-      "fetched_at": "2026-11-05T05:53:50.600400+00:00",
-      "thumbnail_url": "",
-      "id": "4d2a0edb3e0de336"
-    },
-    {
       "title": "K, C or E? Why economists can’t agree on the shape of today’s economy",
       "summary": "Economists have long viewed the postpandemic economy as \"K\"-shaped. That consensus has now lifted, with letters like \"C\" and \"E\" floating around academic circles and Wall Street trading rooms alike.",
       "url": "https://www.cnbc.com/2026/08/29/k-shaped-economy-c-shaped-e-shape.html",
@@ -1838,45 +1903,6 @@
       "id": "0f4ee9777081b5cb"
     },
     {
-      "title": "Everyone’s Talking About The K-Shaped Economy. Here’s What It Means",
-      "summary": "This voice experience is generated by AI. Learn more. This voice experience is generated by AI. Learn more. The K-shaped economy is an ongoing economic bifurcation; its upper branch comprises ...",
-      "url": "https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-07-25T00:00:00+00:00",
-      "fetched_at": "2026-11-05T05:53:50.600415+00:00",
-      "thumbnail_url": "",
-      "id": "88b775f0c21c2604"
-    },
-    {
-      "title": "Americans’ evaluations of the economy remain negative",
-      "summary": "Americans remain in a sour mood about the economy – roughly a quarter (24%) rate economic conditions in the country today as excellent or good, while 41% say they are “only fair” and 35% describe them",
-      "url": "https://www.pewresearch.org/politics/2026/07/23/americans-evaluations-of-the-economy-remain-negative/",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2026-07-23T00:00:00+00:00",
-      "fetched_at": "2026-11-05T05:53:50.600428+00:00",
-      "thumbnail_url": "",
-      "id": "b998656a8fa8fba6"
-    },
-    {
-      "title": "US Economy at Risk of Wobble as Lower-Income Consumers Get Squeezed",
-      "summary": "WASHINGTON (Reuters) -The U.S. consumer's durability as a prop for the economy may be tested in coming weeks as family budgets, particularly among the less affluent, are stressed by rising healthcare ",
-      "url": "https://money.usnews.com/investing/news/articles/2025-11-03/us-economy-at-risk-of-wobble-as-lower-income-consumers-get-squeezed",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "2025-11-03T00:00:00+00:00",
-      "fetched_at": "2026-11-05T05:53:50.600382+00:00",
-      "thumbnail_url": "",
-      "id": "fd465d8e4dfd6e3d"
-    },
-    {
       "title": "RBI should deepen financial markets rather than rely on restrictions",
       "summary": "The evolving global economic and financial conditions have resulted in significant volatility in the Indian financial market ...",
       "url": "https://www.business-standard.com/opinion/editorial/rbi-should-deepen-financial-markets-rather-than-rely-on-restrictions-126110502073_1.html",
@@ -1901,32 +1927,6 @@
       "fetched_at": "2026-11-05T14:22:02.111547+00:00",
       "thumbnail_url": "",
       "id": "51b82b02893b6707"
-    },
-    {
-      "title": "Why did America swing back to the Democrats? It was the economy all along",
-      "summary": "President Donald Trump and Republicans in Congress were elected to fix the economy. Now Americans feel even worse about it ...",
-      "url": "https://www.cnn.com/2026/11/04/economy/economy-inflation-midterms-trump-democrats-republicans",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "Opinion18 hours ago",
-      "fetched_at": "2026-11-05T05:53:50.600341+00:00",
-      "thumbnail_url": "",
-      "id": "1a1c44357fbaeb4c"
-    },
-    {
-      "title": "Why the stock market is unexpectedly rallying in the wake of the Democratic blue wave",
-      "summary": "Initially, stocks got hammered as the results trickled in. The thinking was that Democrats are less pro-business than ...",
-      "url": "https://finance.yahoo.com/markets/article/why-the-stock-market-is-unexpectedly-rallying-in-the-wake-of-the-democratic-blue-wave-152956959.html",
-      "source_name": "DuckDuckGo Finance",
-      "source_icon": "D",
-      "source_color": "#059669",
-      "category": "FINANCE",
-      "published_at": "Opinion17 hours ago",
-      "fetched_at": "2026-11-05T05:53:50.233750+00:00",
-      "thumbnail_url": "",
-      "id": "2cacadf2c79365df"
     },
     {
       "title": "The Economy: Is It Bad? Well, It’s Not Good",
@@ -1968,6 +1968,32 @@
       "fetched_at": "2026-11-06T02:05:48.101367+00:00",
       "thumbnail_url": "",
       "id": "83e88b5c1f6ec66e"
+    },
+    {
+      "title": "Seattle Public Schools blocks access to YouTube, Gemini as parents rally for AI...",
+      "summary": "Seattle Public Schools is blocking Gemini AI, Minecraft and other generative AI tools for students...",
+      "url": "https://www.yahoo.com/news/articles/seattle-public-schools-blocks-access-062749052.html",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-11-05T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:13.044470+00:00",
+      "thumbnail_url": "",
+      "id": "7a37abe903f964b0"
+    },
+    {
+      "title": "Webinar Clones AI Review + Premium OTO Deal Today",
+      "summary": "Webinar Clones AI Review: The Ultimate Automated Webinar Software? (OTO Details, Discount & Bonuses Inside)",
+      "url": "https://www.thearabtribune.com/classifieds/sale/webinar-clones-ai-review-premium-oto-deal-today/ad_f230f098-4f9b-44ce-b011-d19d7ca12450.html",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-11-05T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:13.044451+00:00",
+      "thumbnail_url": "",
+      "id": "02372baa2ee9ccdb"
     },
     {
       "title": "Meta warns that election backlash against data centers could make AI expansion...",
@@ -2217,45 +2243,6 @@
       "id": "c8f0c3d9ef49edc2"
     },
     {
-      "title": "Sovereign AI at Texas A&M cuts research compute costs - SiliconANGLE",
-      "summary": "Sovereign AI is helping Texas A&M researchers get secure, lower-cost compute through through IGNITE,...",
-      "url": "https://siliconangle.com/2026/11/04/sovereign-ai-texas-m-cuts-research-compute-costs-aicybersecurityandresiliencesummit/",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-04T17:51:51.792087+00:00",
-      "thumbnail_url": "",
-      "id": "caa3f4047507db2a"
-    },
-    {
-      "title": "GTA 6 Still Has No PC Release Date, but an NVIDIA DLSS 5 and 90 FPS Multi-Frame...",
-      "summary": "A new GTA 6 experiment uses NVIDIA DLSS 5 and Frame Generation on trailer footage, previewing the...",
-      "url": "https://wccftech.com/gta-6-pc-release-date-nvidia-dlss-5-realistic/",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-04T17:51:51.792078+00:00",
-      "thumbnail_url": "",
-      "id": "b986b96fb737959b"
-    },
-    {
-      "title": "Twelve South AirFly View Review: Bluetooth for Planes, Trains and Automobiles -...",
-      "summary": "The AirFly Bluetooth transmitter lets you connect your headphones to just about any aircraft...",
-      "url": "https://www.cnet.com/travel-and-vacations/twelve-south-airfly-view-review-bluetooth-for-planes-trains-and-automobiles/",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2026-11-04T00:00:00+00:00",
-      "fetched_at": "2026-11-04T17:51:51.294045+00:00",
-      "thumbnail_url": "",
-      "id": "8c1c248ac9a6bc56"
-    },
-    {
       "title": "AI Latency vs. Throughput: TTFT, Tokens per Second, and Other Metrics Explained",
       "summary": "AI latency measures how long a request or token takes, while throughput measures how much work a...",
       "url": "https://www.unite.ai/ai-latency-vs-throughput-ttft-tokens-per-second-and-other-metrics-explained/",
@@ -2295,17 +2282,17 @@
       "id": "d6d88bba8445a5c8"
     },
     {
-      "title": "5 Best Tech Stocks for the Next 5 Years According to Financial Media",
-      "summary": "Big Tech just had a week investors will remember. At its low on Friday, Alphabet had lost $477...",
-      "url": "https://finance.yahoo.com/markets/stocks/articles/5-best-tech-stocks-next-140507052.html",
+      "title": "Why AI Models Cheat: Reward Hacking, Explained",
+      "summary": "From boat-racing bots to OpenAI models inside Hugging Face, here's how AI reward hacking works and why it matters.",
+      "url": "https://decrypt.co/382274/why-ai-models-cheat-reward-hacking-explained",
       "source_name": "DuckDuckGo Video",
       "source_icon": "D",
       "source_color": "#e11d48",
       "category": "VIDEO",
       "published_at": "2026-11-01T00:00:00+00:00",
-      "fetched_at": "2026-11-04T23:25:55.825589+00:00",
+      "fetched_at": "2026-11-06T11:56:14.068309+00:00",
       "thumbnail_url": "",
-      "id": "e72ba246f6888b50"
+      "id": "0dd555579842bb90"
     },
     {
       "title": "C & L discuss with Rich DeMuro(@richontech) A. I. service companies, Apple's 1st...",
@@ -2334,17 +2321,17 @@
       "id": "e2fc7e0e4a052622"
     },
     {
-      "title": "SMEs open the door to AI but barely explain their expertise",
-      "summary": "SMEs are not shutting out AI systems such as ChatGPT, Gemini and Perplexity: 98.6% allow them access. Yet over eight in ten websites provide too little information about their services to explain ...",
-      "url": "https://www.manilatimes.net/2026/11/04/tmt-newswire/globenewswire/smes-open-the-door-to-ai-but-barely-explain-their-expertise/2461675",
+      "title": "Anthropic IPO risk factors: AI blackmail and shutdown resistance explained",
+      "summary": "An AI company has just announced to Wall Street that their models can blackmail. Oh, the drama! Oh, the memes of Skynet! Wait ...",
+      "url": "https://www.msn.com/en-in/news/other/anthropic-ipo-risk-factors-ai-blackmail-and-shutdown-resistance-explained/ar-AA2gp9Ll?ocid=BingNewsVerp",
       "source_name": "DuckDuckGo Video",
       "source_icon": "D",
       "source_color": "#e11d48",
       "category": "VIDEO",
-      "published_at": "2026-10-30T00:00:00+00:00",
-      "fetched_at": "2026-11-04T17:51:52.087628+00:00",
+      "published_at": "2026-10-29T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:14.068359+00:00",
       "thumbnail_url": "",
-      "id": "00d0d034df217145"
+      "id": "e96327f82c8ab729"
     },
     {
       "title": "More ads are coming to Google AI mode, and Google just explained why",
@@ -2407,6 +2394,19 @@
       "source_color": "#e11d48",
       "category": "VIDEO",
       "published_at": "2026-10-16T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:14.068339+00:00",
+      "thumbnail_url": "",
+      "id": "091a9ffe9a09be3c"
+    },
+    {
+      "title": "AI explained: Boston AI Week",
+      "summary": "EAST PROVIDENCE, R.I. (WPRI) — In September of 2026, the Hult International Business School hosted a conference called \"Thriving in the age of AI: The intersection of business, higher education and ..",
+      "url": "https://www.msn.com/en-us/money/general/ai-explained-boston-ai-week/ar-AA2epexU?ocid=BingNewsVerp",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-10-16T00:00:00+00:00",
       "fetched_at": "2026-11-05T14:22:04.156003+00:00",
       "thumbnail_url": "",
       "id": "091a9ffe9a09be3c"
@@ -2423,6 +2423,19 @@
       "fetched_at": "2026-11-05T21:50:26.019675+00:00",
       "thumbnail_url": "",
       "id": "65109ce8e6803e70"
+    },
+    {
+      "title": "10 Key Takeaways From MIT Technology Review's Agent Confidence Report",
+      "summary": "This voice experience is generated by AI. Learn more. This voice experience is generated by AI. Learn more. A new report by MIT Technology Review Insights and Microsoft reveals insights into ...",
+      "url": "https://www.forbes.com/sites/janakirammsv/2026/07/03/10-key-takeaways-from-mit-technology-reviews-agent-confidence-report/",
+      "source_name": "DuckDuckGo Video",
+      "source_icon": "D",
+      "source_color": "#e11d48",
+      "category": "VIDEO",
+      "published_at": "2026-07-03T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:13.632266+00:00",
+      "thumbnail_url": "",
+      "id": "aaf0d713b535ac1f"
     },
     {
       "title": "YouTube’s likeness-detection technology has officially launched",
@@ -2464,19 +2477,6 @@
       "id": "a222c1a3f5fdd969"
     },
     {
-      "title": "Together AI's ATLAS adaptive speculator delivers 400% inference speedup by learning from workloads in real-time",
-      "summary": "Enterprises expanding AI deployments are hitting an invisible performance wall. The culprit? Static speculators that can't keep up with shifting workloads. Speculators are smaller AI models that work ",
-      "url": "https://venturebeat.com/ai/together-ais-atlas-adaptive-speculator-delivers-400-inference-speedup-by",
-      "source_name": "DuckDuckGo Video",
-      "source_icon": "D",
-      "source_color": "#e11d48",
-      "category": "VIDEO",
-      "published_at": "2025-10-10T00:00:00+00:00",
-      "fetched_at": "2026-11-04T17:51:52.087610+00:00",
-      "thumbnail_url": "",
-      "id": "a222c1a3f5fdd969"
-    },
-    {
       "title": "What Is Google AI Mode & Is It Free To Use?",
       "summary": "Bard, Gemini, NotebookLM, AI Overviews, and now AI Mode. Google's AI lineup is a lot to keep up with, and they still aren't putting the brakes on. If you're confused by its latest developments, you're",
       "url": "https://www.slashgear.com/1905450/google-ai-mode-explained-is-it-free-cost-pricing-scheme/",
@@ -2490,17 +2490,17 @@
       "id": "0aa4c214d8fb22da"
     },
     {
-      "title": "What Is Google AI Mode & Is It Free To Use?",
-      "summary": "Bard, Gemini, NotebookLM, AI Overviews, and now AI Mode. Google's AI lineup is a lot to keep up with, and they still aren't putting the brakes on. If you're confused by its latest developments, you're",
-      "url": "https://www.slashgear.com/1905450/google-ai-mode-explained-is-it-free-cost-pricing-scheme/",
+      "title": "The controversy swirling around Scale AI, explained",
+      "summary": "You're currently following this author! Click to unsubscribe from email alerts. Author of the AI Insider newsletter Charles Rollet is a rockstar tech reporter who recently joined Business Insider.",
+      "url": "https://www.businessinsider.com/tech-memo-meta-scale-ai-investment-mark-zuckerberg-2025-6",
       "source_name": "DuckDuckGo Video",
       "source_icon": "D",
       "source_color": "#e11d48",
       "category": "VIDEO",
-      "published_at": "2025-07-09T00:00:00+00:00",
-      "fetched_at": "2026-11-04T17:51:52.087619+00:00",
+      "published_at": "2025-06-27T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:14.068350+00:00",
       "thumbnail_url": "",
-      "id": "0aa4c214d8fb22da"
+      "id": "b995ab4223780429"
     },
     {
       "title": "The controversy swirling around Scale AI, explained",
@@ -2516,17 +2516,17 @@
       "id": "b995ab4223780429"
     },
     {
-      "title": "The controversy swirling around Scale AI, explained",
-      "summary": "You're currently following this author! Click to unsubscribe from email alerts. Author of the AI Insider newsletter Charles Rollet is a rockstar tech reporter who recently joined Business Insider.",
-      "url": "https://www.businessinsider.com/tech-memo-meta-scale-ai-investment-mark-zuckerberg-2025-6",
+      "title": "AI Fundamentals : AI Hallucinations, Agents, Privacy and Open Source",
+      "summary": "What happens when a technology designed to transform industries also raises profound questions about ethics, privacy, and trust? Artificial intelligence (AI) sits at the heart of this paradox. While .",
+      "url": "https://www.geeky-gadgets.com/ai-fundamentals-explained/",
       "source_name": "DuckDuckGo Video",
       "source_icon": "D",
       "source_color": "#e11d48",
       "category": "VIDEO",
-      "published_at": "2025-06-27T00:00:00+00:00",
-      "fetched_at": "2026-11-04T17:51:52.087599+00:00",
+      "published_at": "2025-06-23T00:00:00+00:00",
+      "fetched_at": "2026-11-06T11:56:14.068367+00:00",
       "thumbnail_url": "",
-      "id": "b995ab4223780429"
+      "id": "41db6dea54d3e35f"
     },
     {
       "title": "AI Fundamentals : AI Hallucinations, Agents, Privacy and Open Source",
@@ -2608,7 +2608,7 @@
     }
   ],
   "_meta": {
-    "updated_at": "2026-11-06T02:05:48.515908+00:00",
+    "updated_at": "2026-11-06T11:56:14.073191+00:00",
     "total": 200,
     "counts": {
       "AI": 50,
