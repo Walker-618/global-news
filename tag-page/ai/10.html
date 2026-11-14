@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 AI 资讯 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🤖 AI 资讯</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月14日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月6日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.newswise.com/articles/machine-learning-decodes-biochar-s-reactive-radicals-from-elemental-composition" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine learning decodes biochar’s reactive radicals from elemental composition ...</div>
+        <div class="news-summary">A research team has shown that biochar’s elemental composition can help predict </div>
+        <div class="news-time">11月04日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/ai-agents-scale-thoughtworks-technology-110000422.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">As AI agents scale, Thoughtworks Technology Radar highlights the need for stronger controls</div>
+        <div class="news-summary">Thoughtworks, a global technology consultancy that integrates design, engineerin</div>
+        <div class="news-time">11月04日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/nvidia-ceo-jensen-huang-resigns-after-his-affair-raises-national-security-concerns/ar-AA2hiXN8?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Jensen Huang, a global salesman for artificial intelligence, resigns from Nvidia after affair</div>
+        <div class="news-summary">Nvidia CEO Jensen Huang is resigning after his affair raises national security c</div>
+        <div class="news-time">11月03日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/ninjacat-introduces-enterprise-marketing-agi-130500636.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">NinjaCat Introduces Enterprise Marketing AGI, A New Category of AI Technology to Run Marketing at Enterprise Scale</div>
+        <div class="news-summary">NinjaCat, the AI Operating System for Enterprise Marketing, today introduced Ent</div>
+        <div class="news-time">11月03日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://bioengineer.org/machine-learning-model-forecasts-epidemic-outbreaks-from-wastewater-days-in-advance/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine Learning Model Forecasts Epidemic Outbreaks from Wastewater Days in Advance</div>
+        <div class="news-summary">An iterative deep learning framework accurately forecasts community disease surg</div>
+        <div class="news-time">11月03日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/fastly-vs-uipath-artificial-intelligence-024413683.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Fastly vs. UiPath: Which Artificial Intelligence Stock Is a Better Buy Going into 2027?</div>
+        <div class="news-summary">Fastly grew revenue 14.8% but still lost money, while UiPath swung to a $282 mil</div>
+        <div class="news-time">11月02日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://bioengineer.org/machine-learning-pinpoints-five-mitochondrial-genes-tied-to-bone-infection-pathology/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine Learning Pinpoints Five Mitochondrial Genes Tied to Bone Infection Pathology</div>
+        <div class="news-summary">Researchers integrated blood transcriptomics, machine-learning models, and bone </div>
+        <div class="news-time">10月31日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://bioengineer.org/machine-learning-models-predict-blood-clot-risk-in-older-hospitalized-patients/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine Learning Models Predict Blood Clot Risk in Older Hospitalized Patients</div>
+        <div class="news-summary">Researchers developed machine learning models to predict venous thromboembolism </div>
+        <div class="news-time">10月30日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://bioengineer.org/machine-learning-interpolates-known-drug-solubility-in-supercritical-carbon-dioxide/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine Learning Interpolates Known Drug Solubility in Supercritical Carbon Dioxide</div>
+        <div class="news-summary">While machine learning models can accurately interpolate drug solubility in supe</div>
+        <div class="news-time">10月30日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-au/technology/artificial-intelligence/first-workplace-artificial-intelligence-guide-released/ar-AA2hfhsU?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">First workplace artificial intelligence guide released</div>
+        <div class="news-summary">A draft plan for AI adoption in the workplace has been released by the federal g</div>
+        <div class="news-time">10月30日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-za/news/other/beyond-the-algorithms-haden-a-land-shares-vision-on-ai-innovation-and-the-power-of-human-intelligence/ar-AA2hdj2E?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Beyond the algorithms: Haden A Land shares vision on AI, innovation, and the power of human intelligence</div>
+        <div class="news-summary">Long before artificial intelligence was the business and tech sensation it is to</div>
+        <div class="news-time">10月29日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/anthropic-embraces-super-intelligence-in-updated-ipo-filing/ar-AA2h8xyA?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Anthropic embraces ‘super intelligence’ in updated IPO filing</div>
+        <div class="news-summary">Anthropic (ANT) has increasingly embraced the term “Super Intelligence” in its l</div>
+        <div class="news-time">10月28日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-ca/technology/artificial-intelligence/expert-aghast-as-trump-linked-ceo-becomes-intelligence-gold-the-enormity-of-this/ar-AA2h9XKB?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Expert aghast as Trump-linked CEO becomes 'intelligence gold': 'The enormity of this'</div>
+        <div class="news-summary">A longtime intelligence analyst warns that President Donald Trump's close ties t</div>
+        <div class="news-time">10月27日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://bioengineer.org/machine-learning-accurately-predicts-stroke-risk-among-people-living-with-hiv/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Machine Learning Accurately Predicts Stroke Risk Among People Living With HIV</div>
+        <div class="news-summary">Ensemble machine learning models trained on electronic health records achieved h</div>
+        <div class="news-time">10月22日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/science/general/the-physical-geography-shaping-artificial-intelligence-s-future/vi-AA2hdYvK?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">The physical geography shaping artificial intelligence's future</div>
+        <div class="news-summary">Artificial intelligence is influenced by physical constraints like electricity, </div>
+        <div class="news-time">10月22日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/digitech-asean-thailand-ai-connect-091400806.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">DigiTech ASEAN Thailand & AI Connect 2026: A Must-Attend Platform for Businesses to Discover the Future of Digital Technology and AI</div>
+        <div class="news-summary">As digital technology and artificial intelligence (AI) continue to reshape the w</div>
+        <div class="news-time">10月22日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/bernardmarr/2026/09/28/the-7-technology-trends-for-2027-everyone-must-prepare-for-now/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">The 7 Technology Trends For 2027 Everyone Must Prepare For Now</div>
+        <div class="news-summary">This voice experience is generated by AI. Learn more. This voice experience is g</div>
+        <div class="news-time">09月28日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://seekingalpha.com/article/4963972-global-technology-investing-ai-beyond" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Global Technology Investing: AI And Beyond</div>
+        <div class="news-summary">We sat down with our global technology portfolio managers to get insight into wh</div>
+        <div class="news-time">Opinion7 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://seekingalpha.com/article/4963972-global-technology-investing-ai-beyond" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Global Technology Investing: AI And Beyond</div>
+        <div class="news-summary">We sat down with our global technology portfolio managers to get insight into wh</div>
+        <div class="news-time">Opinion6 d</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://seekingalpha.com/article/4963972-global-technology-investing-ai-beyond" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#7c3aed;">ai</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#f97316;">D</span>
+          <span class="news-source-name">DuckDuckGo AI</span>
+        </div>
+        <div class="news-title">Global Technology Investing: AI And Beyond</div>
+        <div class="news-summary">We sat down with our global technology portfolio managers to get insight into wh</div>
+        <div class="news-time">Opinion4 d</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./9.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="active">10</a>
+    
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

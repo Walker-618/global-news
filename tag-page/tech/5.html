@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔧 科技动态 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🔧 科技动态</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月14日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月6日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.yahoo.com/news/politics/articles/silicon-valley-richest-outspent-supporters-185256581.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Silicon Valley’s richest outspent supporters more than 10 to one to kill Califor...</div>
+        <div class="news-summary">Voters also voted to pass Proposition 42, potentially blocking future taxes on i</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.morningstar.com/news/business-wire/20261111715874/morgan-stanley-real-estate-investing-acquires-silicon-valley-rd-facility-for-841-million-building-on-continued-investment-themes-across-the-platform" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Morgan Stanley Real Estate Investing Acquires Silicon Valley R&D Facility for...</div>
+        <div class="news-summary">Morgan Stanley Real Estate Investing Acquires Silicon Valley R&D Facility for $8</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/us/articles/silicon-valley-center-espionage-former-185326761.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Silicon Valley is 'a center for espionage,' former FBI agent warns after Nvidia...</div>
+        <div class="news-summary">A former FBI agent warns Silicon Valley is a center for espionage as Nvidia's bo</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/exclusive-microsoft-presses-trump-to-scuttle-expected-ban-on-chinese-data-center-technology/ar-AA2h8gBw?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Exclusive - Microsoft presses Trump to scuttle expected ban on Chinese data center technology</div>
+        <div class="news-summary">By Alexandra Alper WASHINGTON, Nov 10 (Reuters) - Microsoft has been pressing th</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.nytimes.com/2026/11/11/technology/jensen-huang-affair-nvidia-support.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Silicon Valley Tech Allies Support Jensen Huang</div>
+        <div class="news-summary">Elon Musk and other Silicon Valley figures cast the Nvidia chief’s relationship </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.morningstar.com/news/business-wire/20261111715874/morgan-stanley-real-estate-investing-acquires-silicon-valley-rd-facility-for-841-million-building-on-continued-investment-themes-across-the-platform" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Morgan Stanley Real Estate Investing Acquires Silicon Valley R&D Facility for...</div>
+        <div class="news-summary">Morgan Stanley Real Estate Investing Acquires Silicon Valley R&D Facility for $8</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/us/articles/silicon-valley-center-espionage-former-185326761.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Silicon Valley is 'a center for espionage,' former FBI agent warns after Nvidia...</div>
+        <div class="news-summary">A former FBI agent warns Silicon Valley is a center for espionage as Nvidia's bo</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/ai/articles/women-tech-reporting-higher-levels-150500008.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Women in tech are reporting higher levels of burnout than ever before — with AI,...</div>
+        <div class="news-summary">Women in tech are experiencing burnout, with office attendance, visibility, and </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/oddity-tech-odd-q3-earnings-152513102.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Oddity Tech (ODD) Q3 Earnings and Revenues Beat Estimates</div>
+        <div class="news-summary">Oddity Tech (ODD) delivered earnings and revenue surprises of +23.33% and +2.64%</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.etftrends.com/sector-investing-content-hub/tech-energy-lead-sector-fund-flows-october/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Tech & Energy Lead Sector Fund Flows in October | ETF Trends</div>
+        <div class="news-summary">October's fund flows saw more than $10 billion go in to the energy and tech sect</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/articles/beef-o-brady-parent-selects-181916334.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Beef ‘O’ Brady’s Parent Selects PAR Technology to Power Tech Stack</div>
+        <div class="news-summary">PAR Technology Corporation, a leading technology provider powering multi-unit op</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.bizjournals.com/sanjose/news/2026/11/10/santa-clara-silicon-valley-tourism-trends.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Hilton Santa Clara looks to leisure as business travel rebounds - Silicon Valley...</div>
+        <div class="news-summary">Silicon Valley hotels have long depended on business travelers. Now one Santa Cl</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503518" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">OwnCoder 0.2.0 发布，面向开发者的桌面端 AI 编程工具</div>
+        <div class="news-summary">修复了一些bug，优化了效果。 有时候我们总想多做点什么，告诉LLM要怎么做，最后发现，什么都不说，让LLM自行判断才是最好的。说的越多，越容易带偏。 佛家说，</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503518" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">OwnCoder 0.2.0 发布，面向开发者的桌面端 AI 编程工具</div>
+        <div class="news-summary">修复了一些bug，优化了效果。 有时候我们总想多做点什么，告诉LLM要怎么做，最后发现，什么都不说，让LLM自行判断才是最好的。说的越多，越容易带偏。 佛家说，</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503517" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">phimint v0.8.0 发布：模型选择跨重启生效、终端贴图、长输出不再消失</div>
+        <div class="news-summary">phimint v0.8.0 已发布（2026-11-09） phimint 是一个用 Rust 写的终端 AI 编码 agent：一条命令装上、配好 API </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503516" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">YuanQi（UIEIP）低代码平台 v1.0 开源：一个 Go 单文件，装下建模、表单、权限、流程与 AI 知识库（MIT）</div>
+        <div class="news-summary">做企业后台这些年，最耗人的从来不是业务逻辑本身。 一个能用的后台管理系统，业务代码通常只占 20%，剩下 80% 全是公共设施：数据表怎么建模、表单怎么做校验和</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503514" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">10x 工程师变成 100x 了，普通工程师还是那么普通</div>
+        <div class="news-summary">一位 CTO 用反证法证明：我们还没被 AI 取代，但理由可能和你想的不一样。 shaharglazner 是 keepalerting 的联合创始人兼 CTO</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503510" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">qOntology 本体工程平台开源版 v1.1.1 发布：完善项目详情与抽取任务管理，统一建模交互体验</div>
+        <div class="news-summary">本次 qOntology 本体建模平台开源版 v1.1.1 更新，没有新增核心业务能力，主要围绕页面形态升级、组件标准化和交互样式优化展开。 同时，针对 AI </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503507" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">开源新生力：一群中学生登上 GOTC 主会场</div>
+        <div class="news-summary">上个周末，「百格成城」少年开源 AI 黑客松在北京亦庄实验中学收官。短短两天，同学们拿出的项目都很接地气：有人只用普通摄像头识别手语字母，帮听障朋友把手势转成文</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503505" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">从路透社到 Linux Magazine：openKylin 3.0 收获全球关注</div>
+        <div class="news-summary">openKylin 3.0 正式发布两个月来，这个来自中国的智能操作系统开源根社区正在被越来越多的国际技术媒体和全球开发者看见。 从路透社到 It&apos;s</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./4.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="active">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./6.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 财经要闻 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">💰 财经要闻</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月14日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月6日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://sports.yahoo.com/articles/does-sec-championship-game-ending-164007476.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">What does SEC Championship Game ending mean for Atlanta’s economy?</div>
+        <div class="news-summary">For more than three decades, the SEC Championship has brought thousands of fans </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.fxstreet.com/news/asia-stocks-rally-sharply-amid-tech-surge-and-iran-jitters-ahead-of-us-cpi-202611100521" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Asia stocks rally amid tech surge and Iran jitters, ahead of US CPI | FXStreet</div>
+        <div class="news-summary">Asian stock markets rally sharply on Tuesday, tracking Wall Street’s biggest ral</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://seekingalpha.com/symbol/GPN" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Global Payments Inc. (GPN) Stock Price, Quote, News & Analysis | Seeking Alpha</div>
+        <div class="news-summary">A high-level overview of Global Payments Inc. (GPN) stock. View (GPN) real-time </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/stock-market-news" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Latest Stock Market News & Analysis - GuruFocus.com</div>
+        <div class="news-summary">Get actionable stock market news & analysis curated from top sources. Make infor</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/buffett-indicator-flashing-red-3-092200729.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">The Buffett Indicator Is Flashing Red. These 3 Dividend Stocks Could Be Safe...</div>
+        <div class="news-summary">The stock market is looking overvalued, according to this indicator.</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/ai-holdings-tse-3076-priced-091344322.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Is Ai Holdings (TSE:3076) Priced For Its Cash Flow Strength?</div>
+        <div class="news-summary">Ai Holdings has delivered strong long term share gains, which naturally raises a</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/ameresco-amrc-jumped-behind-latest-090737931.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Ameresco (AMRC) Jumped, So What Is Behind The Latest Attention?</div>
+        <div class="news-summary">Ameresco (AMRC) has released new financial results for the third quarter of 2026</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/world-indices/articles/uk-stock-market-today-ftse-071040648.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">UK Stock Market Today: FTSE 100 Futures Edge Higher As Traders Eye US CPI</div>
+        <div class="news-summary">The Morning Bull - UK Market Morning Update Tuesday, 10 Nov 2026 UK stocks are s</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/daishi-hokuetsu-financial-group-tse-091311656.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Is Daishi Hokuetsu Financial Group (TSE:7327) Getting Too Expensive On Earnings?</div>
+        <div class="news-summary">Daishi Hokuetsu Financial Group has been on a remarkable multi year run, and the</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-ph/money/economy/philippine-economy-slips-to-2-1-in-q3/ar-AA2h1zn5?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Philippine economy slips to 2.1 in Q3</div>
+        <div class="news-summary">MANILA, Philippines — The country’s economy slumped deeper to 2.1 percent in the</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stock-market-petrified-oracle-balance-194858775.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">The Stock Market Is “Petrified of Oracle’s Balance Sheet” as Microsoft Walks Away</div>
+        <div class="news-summary">Key TakeawaysMicrosoft is winding down a deal to rent AI computing power from Or</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/the-stock-market-is-crashing-history-says-the-smartest-investors-are-making-this-1-simple-move/ar-AA2h5K6a?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">The Stock Market Is Crashing. History Says the Smartest Investors Are Making This 1 Simple Move.</div>
+        <div class="news-summary">Major indexes fell hard last week, but history has promising news for investors.</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/general/the-airlines-that-offer-amenity-kits-to-economy-class-passengers-in-2026/ar-AA2h34fF?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">The airlines that offer amenity kits to economy class passengers in 2026</div>
+        <div class="news-summary">Amenity kits are becoming ever rarer in economy class.</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-xl/money/economy/lccs-widen-seat-pitch-cut-economy-seats-amid-comfort-shift/ar-AA2h5WAk?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">LCCs widen seat pitch, cut economy seats amid comfort shift</div>
+        <div class="news-summary">Air Premia removed 18 economy-class seats from its Boeing 787-9 aircraft operati</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/news/other/stock-market-today-dow-s-p-500-nasdaq-futures-rise-with-nvidia-stock-ai-trade-in-focus/ar-AA2h3vWP?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock market today: Nasdaq rallies despite Nvidia stock slide, Dow and S&P 500 rise as AI stocks rebound</div>
+        <div class="news-summary">All eyes will be on the artificial intelligence trade and Nvidia stock following</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://ktrh.iheart.com/featured/houston-texas-news/content/2026-11-09-us-stock-markets-up-2-3-on-low-oil-high-tech/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">US Stock Markets Up 2-3% On Low Oil, High Tech | NewsRadio 740 KTRH | KTRH Local...</div>
+        <div class="news-summary">KTRH-AM covering local news from Houston and across Texas.</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.benzinga.com/news/26/11/63076734/rocket-lab-usa-q3-2026-earnings-call-transcript" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Rocket Lab USA Q3 2026 Earnings Call Transcript - Rocket Lab (NASDAQ:RKLB)</div>
+        <div class="news-summary">Rocket Lab USA (NASDAQ:RKLB) reported third-quarter financial results on Monday.</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/us-stock-market-today-p-130935908.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">US Stock Market Today: S&P 500 Futures Nudge Higher On Jobs Strength Fed...</div>
+        <div class="news-summary">The Morning Bull - US Market Morning Update Monday, Nov, 9 2026 US stocks are se</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/options/articles/implied-volatility-surging-broadridge-financial-223900584.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Implied Volatility Surging for Broadridge Financial Solutions Stock Options</div>
+        <div class="news-summary">Investors need to pay close attention to BR stock based on the movements in the </div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9186135/genedx-reports-third-quarter-2026-financial-results" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">GeneDx Reports Third Quarter 2026 Financial Results</div>
+        <div class="news-summary">GeneDx Holdings Corp. (Nasdaq: WGS), the leader in rare disease diagnosis and im</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./4.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="active">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./6.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

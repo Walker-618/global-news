@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 财经要闻 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">💰 财经要闻</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月14日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月6日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-nov-11-2026" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock Market Today (Nov. 11, 2026): Nasdaq climbs on Nvidia rebound, CoreWeave...</div>
+        <div class="news-summary">CoreWeave soars after the cloud provider reported better-than-expected quarterly</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/canadian-stock-market-today-tsx-131015554.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Canadian Stock Market Today: TSX Futures Edge Up As Hot US Inflation Fuels Hike...</div>
+        <div class="news-summary">The Morning Bull - Canadian Market Morning Update Wednesday, 11 Nov 2026 Canadia</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/us-stock-market-today-p-131416924.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">US Stock Market Today: S&P 500 Futures Rebound On Stubborn Inflation...</div>
+        <div class="news-summary">The Morning Bull - US Market Morning Update Wednesday, Nov, 11 2026 US equities </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9192415/inmode-reports-third-quarter-2026-financial-results-quarterly-gaap-revenues-of-921-million-reaffirms-fullyear-2026-financial-outlook" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">InMode Reports Third Quarter 2026 Financial Results: Quarterly G</div>
+        <div class="news-summary">InMode Reports Third Quarter 2026 Financial Results: Quarterly GAAP Revenues of </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://seekingalpha.com/symbol/LRCX:CA" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Lam Research Corporation (LRCX:CA) Stock Price, Quote, News & Analysis | Seeking...</div>
+        <div class="news-summary">A high-level overview of Lam Research Corporation (LRCX:CA) stock. View (LRCX:CA</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/meet-1-stock-id-buy-012500198.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Meet the 1 Stock I'd Buy With $500, Even If the Market Fell 5% Tomorrow</div>
+        <div class="news-summary">The market just had its worst day since April 2025. Here's a consumer stock wort</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/synchrony-financial-syf-stock-may-120858037.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Synchrony Financial (SYF) Stock May Still Trade At A Discount On Earnings</div>
+        <div class="news-summary">Synchrony Financial has delivered a powerful share price run over the past few y</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-futures-mixed-131001619.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Markets News, Nov. 10, 2026: Stocks Fall, Treasury Yields Jump as Rate-Hike...</div>
+        <div class="news-summary">Stocks closed lower Tuesday, though well above their session lows, following an </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/worried-midterm-elections-mean-stock-112000895.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Worried About What the Midterm Elections Mean for the Stock Market? History Has...</div>
+        <div class="news-summary">Immediately following the midterm elections, the stock market had an extremely v</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stock-market-open-veterans-day-134331573.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Is the stock market open on Veterans Day? Here's what to know</div>
+        <div class="news-summary">Veterans Day is on Wednesday, Nov. 11. Here's what to know about whether the sto</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/san-ju-san-financial-groupinc-161115453.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">San ju San Financial GroupInc (TSE:7322) Stock Could Be Overvalued On Current...</div>
+        <div class="news-summary">San ju San Financial GroupInc has delivered a very large 5 year share price gain</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://seekingalpha.com/article/4965918-ameriprise-financial-inc-amp-presents-at-bmo-capital-markets-2026-financials-conference" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Ameriprise Financial, Inc. (AMP) Presents at BMO Capital Markets 2026 Financials...</div>
+        <div class="news-summary">Ameriprise Financial, Inc. (AMP) BMO Capital Markets 2026 Financials Conference </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/crypto/articles/crypto-market-today-nov-10-222002961.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Crypto Market Today, Nov. 10: Bitcoin Slides Below $74,000 as Hot Inflation Data...</div>
+        <div class="news-summary">Crypto markets extended losses as hotter-than-expected inflation hit Wall Street</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.newsweek.com/how-el-nino-could-impact-us-global-economy-12696110" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">How El Niño Could Impact US, Global Economy</div>
+        <div class="news-summary">El Niño will have “substantial and long-lasting” economic impact and could cost </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/why-market-dipped-snowflake-inc-214503744.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Why the Market Dipped But Snowflake Inc. (SNOW) Gained Today</div>
+        <div class="news-summary">In the closing of the recent trading day, Snowflake Inc. (SNOW) stood at $295.76</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/crypto/articles/crypto-market-today-nov-10-222002961.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Crypto Market Today, Nov. 10: Bitcoin Slides Below $74,000 as Hot Inflation Data...</div>
+        <div class="news-summary">Crypto markets extended losses as hotter-than-expected inflation hit Wall Street</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/economy/articles/inflation-remained-elevated-october-cpi-135032878.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Inflation remained elevated in October, CPI report shows</div>
+        <div class="news-summary">Inflation rose at a monthly pace of 0.4%, hotter than economists had forecast an</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/economy/policy/articles/fed-officials-open-door-half-164918823.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Fed officials open door to a half-point hike after inflation beats expectations</div>
+        <div class="news-summary">By Howard Schneider WASHINGTON, Nov 10 (Reuters) - Odds the US Federal Reserve m</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/economy/articles/epic-wall-street-boom-not-144323148.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">This epic Wall Street boom is not over yet</div>
+        <div class="news-summary">The US economy is overheating. The monetary and fiscal pedals are both pushed to</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.inquirer.com/news/nation-world/nvidia-ceo-affair-spy-china-20261110.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Nvidia CEO’s affair with an alleged Chinese spy could be a problem for the econo...</div>
+        <div class="news-summary">At stake is not just Jensen Huang's position at Nvidia but potentially the fate </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./3.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="active">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./5.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

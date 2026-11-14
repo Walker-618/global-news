@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 财经要闻 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">💰 财经要闻</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月14日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月6日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-10-20/doc-inivvnpt7550293.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年10月20日_财经新闻</div>
+        <div class="news-summary">10月19日，中国人民银行行长潘功胜在2026金融街论坛年会上，宣布了人民银行即将出台的几项政策举措，包括将会同金融监管总局、中国证监会设立应对非银机构大额赎回</div>
+        <div class="news-time">10月20日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-11-220503244.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Stock Market Today, Nov. 11: Nvidia Rebounds as CoreWeave Earnings Reignite the AI Trade</div>
+        <div class="news-summary">Nvidia and other semiconductor stocks rallied Wednesday as CoreWeave's latest ea</div>
+        <div class="news-time">10月20日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-in/money/economy/zerodha-ceo-nithin-kamath-on-cryptocurrency-prediction-markets-boom-nothing-expands-the-markets-like-greed-fomo/ar-AA2h7CGF?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Zerodha CEO Nithin Kamath on cryptocurrency, prediction markets boom: "Nothing expands the markets like greed, FOMO"</div>
+        <div class="news-summary">Nithin Kamath says the US market has changed sharply since COVID, as crypto deri</div>
+        <div class="news-time">10月19日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-ph/money/economy/philippine-economy-slips-to-2-1-in-q3/ar-AA2h1zn5?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Philippine economy slips to 2.1 in Q3</div>
+        <div class="news-summary">MANILA, Philippines — The country’s economy slumped deeper to 2.1 percent in the</div>
+        <div class="news-time">10月19日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-10-16/doc-inivkncx8197645.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年10月16日_财经新闻</div>
+        <div class="news-summary">10月15日，二十国集团（G20）在泰国曼谷举行今年第三次G20财长和央行行长会议。财政部部长蓝佛安出席会议并发言表示，今年是中国“十五五”规划开局之年，中国经</div>
+        <div class="news-time">10月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.caixin.com/2026-10-16/102493800.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">财经早知道｜“市值王”长鑫科技“退位” 工商银行重回A股市值第一</div>
+        <div class="news-summary">A股市值一哥易主。 工商银行总市值3.03万亿元重回第一 ，长鑫科技因单日股价跌超5%，总市值跌破3万亿元大关，报2.96万亿元，退居第三位。建设银行以3万亿元</div>
+        <div class="news-time">10月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.caixin.com/2026-10-16/102493800.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">财经早知道｜“市值王”长鑫科技“退位” 工商银行重回A股市值第一</div>
+        <div class="news-summary">A股市值一哥易主。 工商银行总市值3.03万亿元重回第一 ，长鑫科技因单日股价跌超5%，总市值跌破3万亿元大关，报2.96万亿元，退居第三位。建设银行以3万亿元</div>
+        <div class="news-time">10月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-10-16/doc-inivkncx8197645.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年10月16日_财经新闻</div>
+        <div class="news-summary">10月15日，二十国集团（G20）在泰国曼谷举行今年第三次G20财长和央行行长会议。财政部部长蓝佛安出席会议并发言表示，今年是中国“十五五”规划开局之年，中国经</div>
+        <div class="news-time">10月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-10-16/doc-inivkncx8197645.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年10月16日_财经新闻</div>
+        <div class="news-summary">10月15日，二十国集团（G20）在泰国曼谷举行今年第三次G20财长和央行行长会议。财政部部长蓝佛安出席会议并发言表示，今年是中国“十五五”规划开局之年，中国经</div>
+        <div class="news-time">10月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.caixin.com/2026-10-16/102493800.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">财经早知道｜“市值王”长鑫科技“退位” 工商银行重回A股市值第一</div>
+        <div class="news-summary">A股市值一哥易主。 工商银行总市值3.03万亿元重回第一 ，长鑫科技因单日股价跌超5%，总市值跌破3万亿元大关，报2.96万亿元，退居第三位。建设银行以3万亿元</div>
+        <div class="news-time">10月16日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/roll/2026-10-15/doc-inivhieu4542451.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">日韩股市集体跳水！韩国股市盘中暴跌近8%，日经225跌超4%</div>
+        <div class="news-summary">全球科技硬件股周四继续承压，此前美国半导体股连续六个交易日下跌，累计蒸发约1.6万亿美元市值。随着投资者重新评估AI基础设施投资的可持续性、芯片股估值以及未来盈</div>
+        <div class="news-time">10月15日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-10-15/doc-inivhaww4459901.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年10月15日_财经新闻</div>
+        <div class="news-summary">海关总署10月14日发布数据显示，今年前三季度，我国货物贸易进出口39.94万亿元，同比增长18.8%。其中：出口23.2万亿元，同比 ...</div>
+        <div class="news-time">10月15日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.sina.com.cn/stock/y/2026-10-15/doc-inivhaww4459901.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">四大证券报头版头条内容精华摘要_2026年10月15日_财经新闻</div>
+        <div class="news-summary">海关总署10月14日发布数据显示，今年前三季度，我国货物贸易进出口39.94万亿元，同比增长18.8%。其中：出口23.2万亿元，同比 ...</div>
+        <div class="news-time">10月15日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.hkcna.hk/cn/content/s6ace0146e4b0451069325a4d.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">A股3800点攻防战 财经专家拆解本轮股市波动与“国家队”布局</div>
+        <div class="news-summary">香港新闻网10月13日电（记者 王少喆）2026年10月中旬，中国资本市场再次步入一个敏感而关键的窗口期。 回看刚刚过去的9月，A股三大股指经历了一轮较为明显的</div>
+        <div class="news-time">10月13日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/economy/articles/us-economy-grew-solid-2-124422923.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">US economy grew a solid 2.2% in the second quarter, government says, upgrading previous estimate</div>
+        <div class="news-summary">WASHINGTON (AP) — The U.S. economy grew at a solid 2.2% pace from April through </div>
+        <div class="news-time">09月30日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnbc.com/2026/08/29/k-shaped-economy-c-shaped-e-shape.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">K, C or E? Why economists can’t agree on the shape of today’s economy</div>
+        <div class="news-summary">Economists have long viewed the postpandemic economy as "K"-shaped. That consens</div>
+        <div class="news-time">08月29日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Everyone’s Talking About The K-Shaped Economy. Here’s What It Means</div>
+        <div class="news-summary">This voice experience is generated by AI. Learn more. This voice experience is g</div>
+        <div class="news-time">07月25日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Everyone’s Talking About The K-Shaped Economy. Here’s What It Means</div>
+        <div class="news-summary">This voice experience is generated by AI. Learn more. This voice experience is g</div>
+        <div class="news-time">07月25日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Everyone’s Talking About The K-Shaped Economy. Here’s What It Means</div>
+        <div class="news-summary">This voice experience is generated by AI. Learn more. This voice experience is g</div>
+        <div class="news-time">07月25日 00:00</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.forbes.com/sites/investor-hub/article/what-is-k-shaped-economy/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Everyone’s Talking About The K-Shaped Economy. Here’s What It Means</div>
+        <div class="news-summary">This voice experience is generated by AI. Learn more. This voice experience is g</div>
+        <div class="news-time">07月25日 00:00</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./8.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="active">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./10.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
