@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔧 科技动态 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🔧 科技动态</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月28日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月20日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.oschina.net/news/503832/libreboot-drops-anti-ai-policy-slop-reduction" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">Libreboot 撤掉了自己上个月立的 AI 禁令</div>
+        <div class="news-summary">一个上个月刚立下 AI 禁令的项目，这个月自己把它删了。 11 月 20 日，Libreboot 维护者 Leah Rowe 把 lbmk 仓库里的 AGENT</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503832/libreboot-drops-anti-ai-policy-slop-reduction" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">Libreboot 撤掉了自己上个月立的 AI 禁令</div>
+        <div class="news-summary">一个上个月刚立下 AI 禁令的项目，这个月自己把它删了。 11 月 20 日，Libreboot 维护者 Leah Rowe 把 lbmk 仓库里的 AGENT</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503823" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">污染 0.1% 的预训练数据，就能给 AI 智能体埋下洗不掉的后门</div>
+        <div class="news-summary">只污染 0.1% 的预训练数据，就能给一个 AI 智能体埋下后门。而且用完全干净的数据做微调和强化学习，也清不掉。 这是一篇论文的结论，标题叫《Agentic </div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503823" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">污染 0.1% 的预训练数据，就能给 AI 智能体埋下洗不掉的后门</div>
+        <div class="news-summary">只污染 0.1% 的预训练数据，就能给一个 AI 智能体埋下后门。而且用完全干净的数据做微调和强化学习，也清不掉。 这是一篇论文的结论，标题叫《Agentic </div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503822/agents-are-very-harsh-customers" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">微软 Copilot 负责人：很多软件的主要客户以后不再是人类</div>
+        <div class="news-summary">“很多软件的主要客户，以后可能不再是人类了。” 说这话的是 Charles Lamanna，微软负责 Copilot、智能体与平台业务的执行副总裁。他在接受 P</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503822/agents-are-very-harsh-customers" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">微软 Copilot 负责人：很多软件的主要客户以后不再是人类</div>
+        <div class="news-summary">“很多软件的主要客户，以后可能不再是人类了。” 说这话的是 Charles Lamanna，微软负责 Copilot、智能体与平台业务的执行副总裁。他在接受 P</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/event/8598428" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">AICon 北京 2026 全日程揭晓｜探索 AI 应用边界，构建持续创造价值的生产体系</div>
+        <div class="news-summary">12 月 18 日—19 日，AICon 全球人工智能开发与应用大会·北京站将在北京新云南皇冠假日酒店举办。本届大会以「探索 AI 应用边界」为主题，设置 13</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503820/sand-ai-magi-2" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">480B 参数、每秒 0.5 元，MAGI-2 把 AI 视频价格压了一个数量级</div>
+        <div class="news-summary">三呆科技（Sand.ai）11 月 24 日发布 MAGI-2，480B 参数、单次最长 30 秒 1080P 带原生音频。官方给的价格是每秒 0.5 元，说这</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503817" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">qData 数据中台专业版 v3.0.2发布：离线同步、实时同步、整库同步及运行实例管理全面升级</div>
+        <div class="news-summary">本次qData 数据中台专业版 v3.0.2版本围绕数据集成、运行实例管理和项目类目管理进行升级，新增离线同步、实时同步功能，优化整库同步配置流程，并完善三类同</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/technology/fintech-startup-leaves-silicon-valley-for-las-vegas-to-remove-the-noise/ar-AA2icHJ1?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Fintech startup leaves Silicon Valley for Las Vegas to remove the noise</div>
+        <div class="news-summary">Jessica Chen Riolfi launched financial technology startup Uprise in Silicon Vall</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/lifestyle/articles/m-silicon-valley-couples-therapist-101001617.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">I’m a Silicon Valley couples therapist. Here’s what Jensen Huang's daily therapy...</div>
+        <div class="news-summary">Here's what Nvidia CEO Jensen Huang's daily therapy sessions might include, acco</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/lifestyle/articles/m-silicon-valley-couples-therapist-101001617.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">I’m a Silicon Valley couples therapist. Here’s what Jensen Huang's daily therapy...</div>
+        <div class="news-summary">Here's what Nvidia CEO Jensen Huang's daily therapy sessions might include, acco</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/technology/fintech-startup-leaves-silicon-valley-for-las-vegas-to-remove-the-noise/ar-AA2icHJ1?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Fintech startup leaves Silicon Valley for Las Vegas to remove the noise</div>
+        <div class="news-summary">Jessica Chen Riolfi launched financial technology startup Uprise in Silicon Vall</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503813" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">2240 亿参数的 Hy4 flash 模型，现在能跑在 64GB 的 Mac mini 上</div>
+        <div class="news-summary">腾讯混元在 11 月 25 日开源了 Hy4 flash 的 GGUF 量化权重和配套推理代码，工具是他们自己的压缩加速工具箱 AngelSlim。最小的版本权</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503813" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">2240 亿参数的 Hy4 flash 模型，现在能跑在 64GB 的 Mac mini 上</div>
+        <div class="news-summary">腾讯混元在 11 月 25 日开源了 Hy4 flash 的 GGUF 量化权重和配套推理代码，工具是他们自己的压缩加速工具箱 AngelSlim。最小的版本权</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503810/libreoffice-restricts-llm-use-development" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">LibreOffice 收紧 AI 辅助代码贡献政策</div>
+        <div class="news-summary">11 月 24 日，文档基金会（The Document Foundation，TDF）针对 AI 辅助代码贡献发布了更严格的规则。核心有几条： 贡献者在使用大</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503810/libreoffice-restricts-llm-use-development" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">LibreOffice 收紧 AI 辅助代码贡献政策</div>
+        <div class="news-summary">11 月 24 日，文档基金会（The Document Foundation，TDF）针对 AI 辅助代码贡献发布了更严格的规则。核心有几条： 贡献者在使用大</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503808" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">:fire: xbatis 1.10.15 正式发版，mybatis 系列最好用最简单最方便的 ORM !!</div>
+        <div class="news-summary">推荐理由： 强、强、强 ，单表？连表？不想连表？让你直接少写 1/3 甚至 2/3 的持久层代码；API 简单 快捷 优雅 简洁 构建 SQL 非常强！用过的 </div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503808" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">:fire: xbatis 1.10.15 正式发版，mybatis 系列最好用最简单最方便的 ORM !!</div>
+        <div class="news-summary">推荐理由： 强、强、强 ，单表？连表？不想连表？让你直接少写 1/3 甚至 2/3 的持久层代码；API 简单 快捷 优雅 简洁 构建 SQL 非常强！用过的 </div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503805" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">开源 AI 编程工具 T3 Code 被扒出“偷数据”</div>
+        <div class="news-summary">T3 Code 近日这场风波，起点不是隐私，是商标。 11 月 20 日，中文开发者「开源小新」（账号 DDdxx666）发布了他第一个公开开源项目「T3 星尘</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./2.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="active">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./4.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>▶ 热门视频 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">▶ 热门视频</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月28日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月20日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9228881/grrr-files-prospectus-for-resale-of-905-million-shares-by-existing-holders" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">GRRR Files Prospectus for Resale of 9.05 Million Shares by Exist</div>
+        <div class="news-summary">On November 27, 2026, Gorilla Technology Group Inc. (GRRR) disclosed a filing co</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/banca-generali-bit-bgn-priced-031847954.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Is Banca Generali (BIT:BGN) Priced For Perfection After A 105% Run?</div>
+        <div class="news-summary">Banca Generali has delivered a share price return of 104.8% over the past 3 year</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.northernnewsnow.com/2026/11/27/fcc-authorizes-spacex-deploy-1-million-satellites-ai-data-centers-space/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">FCC authorizes SpaceX to deploy 1 million satellites for AI data centers in...</div>
+        <div class="news-summary">The Trump administration has given SpaceX the green light to deploy 1 million sa</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tech.yahoo.com/ai/meta-ai/articles/ai-voice-local-language-030714850.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">How To Get The AI Voice Local Language Right</div>
+        <div class="news-summary">AI voice local language tech is in demand as gaps, driven by linguistic diversit</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/why-redburn-downgraded-broadcom-avgo-035057918.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Why Redburn Downgraded Broadcom (AVGO) Despite Surging AI Revenue</div>
+        <div class="news-summary">Broadcom Inc. (NASDAQ:AVGO) appears at No. 8 in 10 High-Conviction Stocks Billio</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.thearabtribune.com/classifieds/sale/webinarjack-ai-otos-review-all-8-upsells-prices-fastpass-direct-links/ad_9379c368-0ffe-482b-a6d6-1789345b716b.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">WebinarJack AI OTOs Review – All 8 Upsells, Prices, FastPass & Direct Links</div>
+        <div class="news-summary">WebinarJack AI OTOs Review – All Upsells, Prices & Direct LinksWebinarJack AI is</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.krgv.com/news/brownsville-isd-football-teams-gain-edge-with-new-video-review-system/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Brownsville ISD football teams gain edge with new video review system</div>
+        <div class="news-summary">Brownsville ISD football programs implement the new ANSRS video technology syste</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.benzinga.com/content/63661497/visionstory-introduces-ai-powered-music-video-solutions-digital-marketing" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">VisionStory Introduces AI-Powered Music Video Solutions for Digital Marketing</div>
+        <div class="news-summary">New York, United States, November 26th, 2026, FinanceWireVisionStory announces i</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.krgv.com/news/brownsville-isd-football-teams-gain-edge-with-new-video-review-system/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Brownsville ISD football teams gain edge with new video review system</div>
+        <div class="news-summary">Brownsville ISD football programs implement the new ANSRS video technology syste</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.nytimes.com/2026/11/26/world/ai-typewriter-russia-brazil-mirumi.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">In Praise of My Typewriter</div>
+        <div class="news-summary">The A.I. projects editor at The New York Times uses chatbots every day. But when</div>
+        <div class="news-time">2天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.wpri.com/aiexplained/ai-explained-how-bmw-uses-ai-for-manufacturing/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">AI Explained: How BMW uses AI for manufacturing</div>
+        <div class="news-summary">Paul Sinanian joins us to talk about how the company has global guidance in plac</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-gb/technology/artificial-intelligence/explained-should-you-use-an-ai-website-builder-a-system-like-wordpress-or-a-web-designer/ar-AA2idIXo?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Explained: Should you use an AI website builder, a system like WordPress, or a web designer?</div>
+        <div class="news-summary">What does a small business actually need to get online?</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://natlawreview.com/article/litigation-technology-and-persuasion-guide-commercial-trial-attorneys" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Litigation Technology and Persuasion: A Guide for Commercial Trial Attorneys</div>
+        <div class="news-summary">Commercial disputes are decided by people. Jurors and judges follow predictable </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.thedrum.com/industry-insight/your-brand-s-ai-visibility-problem-isn-t-global-it-s-local-sectoral-and-specific" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Your brand’s AI visibility problem isn’t global. It’s local, sectoral and specif...</div>
+        <div class="news-summary">If you work in comms or marketing, you’ve probably seen the chart. Wikipedia, Re</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cio.com/article/4241680/the-moat-is-dry-part-1-why-the-old-security-model-failed.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">The moat is dry – Part 1: Why the old security model failed</div>
+        <div class="news-summary">AI has changed who attacks us and how fast, yet most defenses still guard the pe</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/wall-street-chasing-ai-chip-134727790.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Wall Street Is Chasing AI Chip Stocks. But This Overlooked Semiconductor Company...</div>
+        <div class="news-summary">Rambus posted record quarters and raised guidance, yet its shares keep sliding w</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/ai-help-financial-adviser-deliver-110000039.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">AI Can Help Your Financial Adviser Deliver More Thoughtful Planning—Does Yours H...</div>
+        <div class="news-summary">Financial advisers can use AI to improve preparation, clarify communication and </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/okta-okta-stock-may-5-131245850.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Okta (OKTA) Stock May Be 5% Overvalued Following AI Agent Buzz</div>
+        <div class="news-summary">Okta has been on a strong run, and with the stock last closing at US$198.12, the</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.thedrum.com/industry-insight/your-brand-s-ai-visibility-problem-isn-t-global-it-s-local-sectoral-and-specific" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Your brand’s AI visibility problem isn’t global. It’s local, sectoral and specif...</div>
+        <div class="news-summary">If you work in comms or marketing, you’ve probably seen the chart. Wikipedia, Re</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.yahoo.com/news/articles/greencastle-tech-podcast-wins-3-100347897.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#e11d48;">video</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#e11d48;">D</span>
+          <span class="news-source-name">DuckDuckGo Video</span>
+        </div>
+        <div class="news-title">Greencastle tech podcast wins 3 Gold awards in first year</div>
+        <div class="news-summary">Greencastle's Brian Teller marks one year of "Ship It Weekly" with three Gold aw</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    
+    <a href="./index.html" class="active">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./2.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

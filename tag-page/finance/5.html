@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 财经要闻 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">💰 财经要闻</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月28日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月20日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/citizens-financial-services-czfs-forms-135504211.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Citizens Financial Services (CZFS) Forms 'Hammer Chart Pattern': Time for Bottom...</div>
+        <div class="news-summary">After losing some value lately, a hammer chart pattern has been formed for Citiz</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9216141/citizens-financial-group-inc-cfg-stock-up-36-but-gf-value-says-overvalued-gf-score-81100" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Citizens Financial Group Inc (CFG) Stock Up 3.6% but GF Value Sa</div>
+        <div class="news-summary">On November 23, 2026, Citizens Financial Group Inc (CFG) shares rose 3.6% today </div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/definity-financial-tsx-dfy-stock-001733180.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Definity Financial (TSX:DFY) Stock May Be 29% Undervalued On New Debt Deal</div>
+        <div class="news-summary">Definity Financial has delivered a powerful long term share price gain, and with</div>
+        <div class="news-time">4天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-au/money/economy/chalmers-flags-net-spending-cuts-in-mid-year-budget-update-amid-higher-unemployment-weaker-economy/ar-AA2i1gjD?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Chalmers flags net spending cuts in mid-year budget update amid higher unemployment, weaker economy</div>
+        <div class="news-summary">The Treasurer said the government was on track for cuts to more than cover any n</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/other/financial-services-roundup-market-talk/ar-AA2imsOj?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Financial services roundup: Market talk</div>
+        <div class="news-summary">Find insight on bank lending, Italian wealth managers and more in the latest Mar</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://pr.cullmantimes.com/article/Cboe-Global-Markets-to-Present-at-the-Goldman-Sachs-Financial-Services-Conference-on-December-9/6b04b131bde2404dafe220cf" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Cboe Global Markets to Present at the Goldman Sachs Financial Services...</div>
+        <div class="news-summary">(Cboe: CBOE), a leading global markets operator and pioneer in equity and index </div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://news.qq.com/rain/a/20261123A044V300" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">韩国股市低开，日本股市今日休市 | 日韩股市</div>
+        <div class="news-summary">记者|卢祥勇 编辑|张锦河 向江林 校对|段炼 11月23日， 韩国KOSPI指数开盘下跌2.77%，报4734.90点。三星电子、SK海力士跌近3%。日本股市</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/economy/the-world-economy-is-facing-multiple-crises-and-fixing-one-could-make-another-worse/vi-AA2i2Vet?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">The world economy is facing multiple crises – and fixing one could make another worse</div>
+        <div class="news-summary">The global economy is facing a combination of inflation, rising debt, energy sho</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://tv.cctv.com/2026/11/23/VIDE1DVv91yEDdvBThw5Eiu1261123.shtml" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">[正点财经]记者观察：三箭齐发 “稳股市”组合拳来了</div>
+        <div class="news-summary">记者观察：三箭齐发，“稳股市”组合拳来了。</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://talkbusiness.net/2026/11/outdoor-recreation-economy-was-2-5-of-arkansas-gdp-in-2025/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Outdoor recreation economy was 2.5% of Arkansas GDP in 2025 - Talk Business &...</div>
+        <div class="news-summary">The outdoor recreation economy was 2.5% of Arkansas’ gross domestic product (GDP</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-us/money/top-stocks/in-september-she-correctly-said-the-stock-market-would-fall-now-the-former-goldman-sachs-analyst-has-another-bold-call/ar-AA2hZYxq?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">In September, she correctly said the stock market would fall; now, the former Goldman Sachs analyst has another bold call</div>
+        <div class="news-summary">Former Goldman Sachs technical analyst Helene Meisler issued a new stock market </div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.prnewswire.com/news-releases/truist-to-speak-at-2026-goldman-sachs-us-financial-services-conference-302948563.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Truist to speak at 2026 Goldman Sachs U.S. Financial Services Conference</div>
+        <div class="news-summary">/PRNewswire/ -- Truist Financial Corporation (NYSE: TFC) today announced that Pr</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9215546/legence-corp-lgn-stock-is-up-128-today-without-company-news" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Legence Corp (LGN) Stock Is Up 12.8% Today Without Company News</div>
+        <div class="news-summary">Legence Corp (LGN) stock is up 12.8% today, as of 1:30 p.m. ET on Monday, Nov. 2</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.prnewswire.com/news-releases/cboe-global-markets-to-present-at-the-goldman-sachs-financial-services-conference-on-december-9-302948630.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Cboe Global Markets to Present at the Goldman Sachs Financial Services...</div>
+        <div class="news-summary">/PRNewswire/ -- Cboe Global Markets, Inc. (Cboe: CBOE), a leading global markets</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/stock-market-open-thanksgiving-black-110415213.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Is the stock market open on Thanksgiving, Black Friday?</div>
+        <div class="news-summary">Thanksgiving falls on Thursday, Nov. 26, this year. Here's what to know about wh</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.thestreet.com/crypto/markets/these-btc-miner-stocks-explode-on-shocking-nvidia-news" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">These BTC miner stocks explode on shocking Nvidia news</div>
+        <div class="news-summary">MARA, Cipher Mining, and other Bitcoin mining stocks are rallying as Nvidia jump</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/ai-rally-safe-jensen-huang-174256887.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Is the AI Rally Safe With Jensen Huang Back at Nvidia—Here’s What Wall Street Th...</div>
+        <div class="news-summary">Today’s dramatic jump in shares of Nvidia is not only lifting the market value o</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.prnewswire.com/news-releases/apolonia-capital-granted-category-2-license-by-the-uae-capital-market-authority-302948376.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Apolonia Capital Granted Category 2 License by the UAE Capital Market Authority</div>
+        <div class="news-summary">/PRNewswire/ -- Apolonia Capital Financial Services LLC ("Apolonia Capital") tod</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.morningstar.com/news/marketwatch/2026112377/a-66-year-old-nurse-faces-retirement-with-just-500-saved-whos-to-blame" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">A 66-year-old nurse faces retirement with just $500 saved. Who's to blame?</div>
+        <div class="news-summary">By Quentin Fottrell 'Retirement is a financial status, not an age' "When you spe</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/citizens-financial-eyes-branch-optimization-171700126.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#059669;">finance</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#059669;">D</span>
+          <span class="news-source-name">DuckDuckGo Finance</span>
+        </div>
+        <div class="news-title">Citizens Financial Eyes Branch Optimization Through NEXT Initiative</div>
+        <div class="news-summary">CFG's NEXT initiative aims to reshape its branch network, deepen customer relati</div>
+        <div class="news-time">5天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./4.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="active">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./6.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

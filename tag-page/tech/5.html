@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔧 科技动态 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🔧 科技动态</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月28日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月20日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9218357/gigacloud-technology-gct-stock-is-down-94-today-without-company-news" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">GigaCloud Technology (GCT) Stock Is Down 9.4% Today Without Comp</div>
+        <div class="news-summary">GigaCloud Technology (GCT) stock is down 9.4% today, as of 4:00 p.m. ET on Tuesd</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cnbc.com/2026/11/25/huang-reinstatement-reignites-voter-angst-over-techs-outsized-power.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Trump’s meddling in Huang scandal reignites voter angst over tech’s outsized pol...</div>
+        <div class="news-summary">Nvidia’s decision to reinstate CEO Jensen Huang after pressure from Trump is int</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/media-advertising/articles/tech-ad-spend-continues-grow-160000609.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Tech ad spend continues to grow, but AI industry worries could usher in a...</div>
+        <div class="news-summary">AI, software, and telco spend helped power double-digit increases from Q1 throug</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/term/payout/SZSE:002074" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Gotion High-tech Co (SZSE:002074) Dividend Payout Ratio</div>
+        <div class="news-summary">Gotion High-tech Co (SZSE:002074) Dividend Payout Ratio is (Sep. 2026). GF Score</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.msn.com/en-xl/weather/general/do-heat-pumps-actually-work-in-cold-weather-expert-reveals-how-the-technology-copes-at-20-c/ar-AA2igDC1?ocid=BingNewsVerp" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Do heat pumps actually work in cold weather? Expert reveals how the technology copes at -20°C</div>
+        <div class="news-summary">Heat pumps are becoming increasingly popular amid spiralling gas prices, but can</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/term/enterprise-value-to-fcf/HTT" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">HTT (High Templar Tech) EV-to-FCF | GuruFocus</div>
+        <div class="news-summary">HTT (High Templar Tech) EV-to-FCF (Enterprise Value to Free Cash Flow) is (Nov. </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.edweek.org/teaching-learning/keys-to-improving-career-tech-education-as-those-who-work-in-the-programs-see-it/2026/11" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Keys to Improving Career-Tech Education, as Those Who Work in the Programs See...</div>
+        <div class="news-summary">An EdWeek Research Center survey finds a desire for funding and stronger industr</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.fox44news.com/business/press-releases/cision/20261125PH06545/edda-technology-and-onyx-healthcare-to-demo-edge-ai-surgical-navigation-on-nvidia-igx-thor-at-rsna-2026" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">EDDA Technology and ONYX Healthcare to Demo Edge AI Surgical Navigation on...</div>
+        <div class="news-summary">The companies will...</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9220718/rh-rh-stock-is-up-90-today-without-company-news" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">RH (RH) Stock Is Up 9.0% Today Without Company News</div>
+        <div class="news-summary">RH (RH) stock is up 9.0% today, as of 1:30 p.m. ET on Wednesday, Nov. 25, withou</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9220831/arko-petroleum-apc-stock-is-up-53-today-without-company-news" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Arko Petroleum (APC) Stock Is Up 5.3% Today Without Company News</div>
+        <div class="news-summary">Arko Petroleum (APC) stock is up 5.3% today, as of 3:15 p.m. ET on Wednesday, No</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/news/9218357/gigacloud-technology-gct-stock-is-down-94-today-without-company-news" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">GigaCloud Technology (GCT) Stock Is Down 9.4% Today Without Comp</div>
+        <div class="news-summary">GigaCloud Technology (GCT) stock is down 9.4% today, as of 4:00 p.m. ET on Tuesd</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/articles/does-safety-certifications-change-bull-221356214.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Does Safety Certifications Change The Bull Case For Microchip Technology (MCHP)?</div>
+        <div class="news-summary">Microchip Technology recently announced fresh safety and reliability milestones,</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.bizjournals.com/sanjose/news/2026/11/24/frank-nguyen-signia-san-jose-cafe-2027.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Academic Coffee founder plans new concept at Signia - Silicon Valley Business...</div>
+        <div class="news-summary">Academic Coffee founder Frank Nguyen is planning a different kind of cafe at Sig</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503785" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">GO 语言社区&amp;问答系统 BBS-GO v4.4.8 发布，支持繁体中文</div>
+        <div class="news-summary">BBS-GO 是一个轻量级社区和问答平台，适合搭建论坛、知识库和讨论社区。项目开源、可自托管、跨平台，基于 Go 和 React 构建，支持帖子 / 文章、评论</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503783" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">:fire: xbatis 1.10.13 正式发版，mybatis 系列最好用最简单最方便的 ORM !!</div>
+        <div class="news-summary">推荐理由： 强、强、强 ，单表？连表？不想连表？让你直接少写 1/3 甚至 2/3 的持久层代码；API 简单 快捷 优雅 简洁 构建 SQL 非常强！用过的 </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503783" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">:fire: xbatis 1.10.13 正式发版，mybatis 系列最好用最简单最方便的 ORM !!</div>
+        <div class="news-summary">推荐理由： 强、强、强 ，单表？连表？不想连表？让你直接少写 1/3 甚至 2/3 的持久层代码；API 简单 快捷 优雅 简洁 构建 SQL 非常强！用过的 </div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503782" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">MateClaw 3.1.0 发布：从执行架构升级，到技能经验与长任务可靠性完善</div>
+        <div class="news-summary">MateClaw 3.1.0 发布：从执行架构升级，到技能经验与长任务可靠性完善 MateClaw 是一个开源 AI 助手项目，将对话、记忆、知识库、技能和自动</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503782" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">MateClaw 3.1.0 发布：从执行架构升级，到技能经验与长任务可靠性完善</div>
+        <div class="news-summary">MateClaw 3.1.0 发布：从执行架构升级，到技能经验与长任务可靠性完善 MateClaw 是一个开源 AI 助手项目，将对话、记忆、知识库、技能和自动</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503778" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">RNOISE Prompt Forge V5.2 发布：零 LLM 确定性 AI 音乐 Prompt 编译器与 MCP 2.0 协议引擎</div>
+        <div class="news-summary">随着 Suno V6、Udio 2.0、Sonauto V2、DiffRhythm Pro 及 Stable Audio 2.5 等多款生成式音频引擎快速发展，</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503778" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">RNOISE Prompt Forge V5.2 发布：零 LLM 确定性 AI 音乐 Prompt 编译器与 MCP 2.0 协议引擎</div>
+        <div class="news-summary">随着 Suno V6、Udio 2.0、Sonauto V2、DiffRhythm Pro 及 Stable Audio 2.5 等多款生成式音频引擎快速发展，</div>
+        <div class="news-time">3天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./4.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="active">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./6.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>

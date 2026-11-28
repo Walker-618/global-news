@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔧 科技动态 - 全球动态</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background: #f5f5f7; color: #1d1d1f; line-height: 1.5;
+  }
+  a { color: inherit; text-decoration: none; }
+  :root {
+    --radius-sm: 6px; --color-accent: #0071e3; --color-muted: #86868b;
+    --max-width: 1440px; --header-h: 52px;
+  }
+  .header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(29,29,31,0.97);
+    backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner {
+    max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    height: var(--header-h); display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .back-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    background: rgba(255,255,255,0.08); border: none; color: #fff;
+    font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .back-btn:hover { background: rgba(255,255,255,0.15); }
+  .page-title { color: #fff; font-size: 16px; font-weight: 600; }
+  .header-date { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 12px; }
+  .header-date .lunar { color: rgba(255,255,255,0.4); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 20px 32px 60px; }
+  .section-meta { font-size: 14px; color: var(--color-muted); margin-bottom: 16px; padding: 0 4px; }
+  .news-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .news-item {
+    display: flex; gap: 14px; padding: 12px 14px;
+    background: #ffffff; border-radius: var(--radius-sm);
+    cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid #f0f0f2; align-items: flex-start;
+  }
+  .news-item:hover { background: #f8f8fa; }
+  .news-item:last-child { border-bottom: none; }
+  .news-thumb {
+    width: 72px; height: 72px; border-radius: var(--radius-sm);
+    flex-shrink: 0; overflow: hidden; position: relative;
+  }
+  .news-thumb .list-tag {
+    position: absolute; top: 4px; left: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 9px; font-weight: 600;
+    color: #fff; letter-spacing: 0.2px;
+  }
+  .news-content { flex: 1; min-width: 0; }
+  .news-source { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+  .news-source-icon { width: 14px; height: 14px; border-radius: 3px; display: inline-flex; align-items: center; justify-content: center; font-size: 7px; color: #fff; flex-shrink: 0; }
+  .news-source-name { font-size: 11px; font-weight: 600; color: var(--color-muted); letter-spacing: 0.3px; }
+  .news-title { font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; color: #1d1d1f; margin-bottom: 2px; }
+  .news-summary { font-size: 12px; color: var(--color-muted); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .news-time { font-size: 11px; color: #a1a1a6; margin-top: 4px; }
+  .pagination { text-align: center; padding: 24px 0 40px; grid-column: 1 / -1; }
+  .pagination a { display: inline-block; padding: 8px 20px; border: 1px solid #d2d2d7; border-radius: 20px; background: #fff; color: #1d1d1f; font-size: 14px; font-weight: 500; cursor: pointer; margin: 0 4px; transition: all 0.2s; }
+  .pagination a:hover { border-color: var(--color-accent); color: var(--color-accent); }
+  .pagination a.active { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+  .footer { background: #1d1d1f; color: rgba(255,255,255,0.4); padding: 28px 32px; text-align: center; font-size: 12px; line-height: 1.8; }
+  @media (max-width: 640px) {
+    .container { padding: 14px 14px 40px; }
+    .header-inner { padding: 0 14px; }
+    .header-date { font-size: 10px; }
+    .header-date .lunar { display: none; }
+    .news-list { grid-template-columns: 1fr; gap: 6px; }
+    .news-thumb { width: 64px; height: 64px; }
+    .news-title { font-size: 13px; }
+    .news-item { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <button class="back-btn" onclick="location.href='../../index.html'">←</button>
+      <span class="page-title">🔧 科技动态</span>
+    </div>
+    <div class="header-date">
+      <span>2026年11月28日</span><span> · </span><span>周六</span><span> · </span><span class="lunar">农历10月20日</span>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <div class="section-meta">共 200 条内容</div>
+  <div class="news-list">
+    
+    <a class="news-item" href="https://www.oschina.net/news/503847" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">蚂蚁百灵 Ling-3.2-air 开源发布，提升编程、智能体与多模态能力</div>
+        <div class="news-summary">蚂蚁百灵发布并开源了新一代大模型：Ling-3.2-air，1240 亿总参数，每个 token 只激活 55 亿。 先看这个稀疏度：124B 里只激活 5.5</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503845" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">一键工具狗（mini-tools）v1.0.0 正式发布</div>
+        <div class="news-summary">微信小程序「一键工具狗」（mini-tools）v1.0.0 正式发布。 这是一个面向普通用户的工具合集，内置 34 个真实可用的工具，覆盖计算、生活、图片、文</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503844/quarkus-4-0-released" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">Quarkus 4.0 发布：Java 21 起步，网络层升级到 Vert.x 5，新增 HTTP/3 与 Quarkus Data</div>
+        <div class="news-summary">Quarkus 项目团队于 11 月 25 日发布了新的大版本 Quarkus 4.0。项目核心开发者 Guillaume Smet 在官方博客中介绍，这个版本</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503841" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">全新如意玲珑Linyaps Agents V3：自调试、自修复、构建负责到底！</div>
+        <div class="news-summary">linyaps-agents （如意玲珑打包 Agents）是一组把 Linux 软件包迁移到玲珑格式的 Agents，三段组成一条流水线： linyaps-a</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503840" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">novel-plus v6.5.0 发布，原创小说系统</div>
+        <div class="news-summary">本次版本重点围绕作家后台和移动端阅读体验进行优化，同时修复了若干已知问题。 📖 安装教程 - 点击查看 ✨ 新功能 作家后台新增作品评论 / 段评管理，支持查看</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.kiro7.com/news/local/floating-data-center-spotted-bellevue-company-develops-wave-powered-tech/F4ZT2LIZ6FG5HJIIAP4YWXF6RY/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Floating data center spotted in Bellevue as company develops wave-powered tech</div>
+        <div class="news-summary">Can ocean waves power AI? Inside Panthalassa's innovative floating data centers </div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/technology/ai/articles/jensen-huangs-hearings-dc-major-160531090.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Jensen Huang's hearings in DC will be a major test of the market, tech bull Dan...</div>
+        <div class="news-summary">The hearings could give insight into how the government will scrutinize the AI i</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.cio.com/article/3956362/cios-brace-for-tariff-impacts-on-tech-industry-and-their-businesses.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">CIOs brace for tariff impacts on tech industry and their businesses</div>
+        <div class="news-summary">Escalating tariffs will cut significantly into IT expenditures, while increasing</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.gurufocus.com/term/price-to-operating-cash-flow/TRT" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">TRT (Trio-Tech International) Price-to-Operating-Cash-Flow</div>
+        <div class="news-summary">TRT (Trio-Tech International) Price-to-Operating-Cash-Flow (Price to Operating C</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.bizjournals.com/sanjose/news/2026/11/27/2026-top-5-stories-alastair-goldfisher.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Silicon Valley growth, loss shape 2026's most-read stories - Silicon Valley...</div>
+        <div class="news-summary">Ray Lane and Bill Draper were the subjects of two of 2026's five most-read stori</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://hoodline.com/2026/11/santa-clara-raises-power-rates-2-council-member-blasts-city-s-profit-from-ratepayers/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Santa Clara Silicon Valley Power Rates Rise 2% in 2027</div>
+        <div class="news-summary">Santa Clara just approved another electricity rate hike — the seventh in six yea</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.bizjournals.com/sanjose/research/lists/2026/2026-largest-bay-area-venture-capital-firms.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">AI giants dominate Bay Area's biggest venture deals - Silicon Valley Business...</div>
+        <div class="news-summary">AI absorbed an extraordinary share of venture attention in 2025. OpenAI appears </div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.bizjournals.com/sanjose/research/lists/2026/2026-largest-bay-area-credit-unions.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">First Technology more than doubles assets after merger - Silicon Valley Business...</div>
+        <div class="news-summary">A January merger dramatically reshaped the Bay Area credit union rankings. The 5</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://finance.yahoo.com/markets/stocks/articles/kuaishou-sehk-1024-stock-looks-121029463.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Kuaishou (SEHK:1024) Stock Looks Stretched After Its 74% Five Year Slide</div>
+        <div class="news-summary">Kuaishou Technology has seen its share price fall sharply in recent years, and t</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://cryptonews.com/news/bitcoin-rises-from-grave-black-friday-crypto-news/" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Crypto News Today: Why Is Bitcoin Up? Gold? Wall Street?</div>
+        <div class="news-summary">Bitcoin is clawing its way back this Black Friday as global markets rally, offer</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://shopping.yahoo.com/deals/articles/target-black-friday-deals-live-082631773.html" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Target Black Friday deals live: Best deals worth shopping today</div>
+        <div class="news-summary">Target Black Friday deals are live. Follow along as USA TODAY Shopping tracks th</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.wsj.com/opinion/putin-extends-his-war-to-europehes-not-our-friend-175eddc2" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#0891b2;">D</span>
+          <span class="news-source-name">DuckDuckGo Tech</span>
+        </div>
+        <div class="news-title">Putin Extends His War to Europe—He’s Not Our “Friend”</div>
+        <div class="news-summary">The incoming Congress should risk a veto and ramp up economic pressure against M</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503837" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">🔥 Jync v2.4.7 · 目标标识符大小写、达梦原生自增与实时同步加固</div>
+        <div class="news-summary">本版概要 v2.4.7 增加 Oracle 系目标的「保持源端标识符大小写」开关与达梦 8 原生 AUTO_INCREMENT，完善一源多目标（fan-out）</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503836" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">qOntology 本体工程平台开源版 V1.1.4 发布：AI 辅助建模与图谱可视化升级</div>
+        <div class="news-summary">qOntology 本体工程平台开源版v1.1.4 本次优化： AI 辅助建模和图谱可视化进行升级 系统使用问题修复 开源地址：https://github.c</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+    <a class="news-item" href="https://www.oschina.net/news/503836" target="_blank" rel="noopener">
+      <div class="news-thumb" style="background:linear-gradient(135deg,#e2e8f0,#cbd5e1);">
+        <span class="list-tag" style="background:#0891b2;">tech</span>
+      </div>
+      <div class="news-content">
+        <div class="news-source">
+          <span class="news-source-icon" style="background:#22c55e;">源</span>
+          <span class="news-source-name">开源中国</span>
+        </div>
+        <div class="news-title">qOntology 本体工程平台开源版 V1.1.4 发布：AI 辅助建模与图谱可视化升级</div>
+        <div class="news-summary">qOntology 本体工程平台开源版v1.1.4 本次优化： AI 辅助建模和图谱可视化进行升级 系统使用问题修复 开源地址：https://github.c</div>
+        <div class="news-time">1天前</div>
+      </div>
+    </a>
+    
+  </div>
+  <div class="pagination">
+    
+    <a href="./1.html">← 上一页</a>
+    
+    
+    <a href="./index.html" class="">1</a>
+    
+    <a href="./2.html" class="active">2</a>
+    
+    <a href="./3.html" class="">3</a>
+    
+    <a href="./4.html" class="">4</a>
+    
+    <a href="./5.html" class="">5</a>
+    
+    <a href="./6.html" class="">6</a>
+    
+    <a href="./7.html" class="">7</a>
+    
+    <a href="./8.html" class="">8</a>
+    
+    <a href="./9.html" class="">9</a>
+    
+    <a href="./10.html" class="">10</a>
+    
+    
+    <a href="./3.html">下一页 →</a>
+    
+  </div>
+</main>
+
+<div class="footer">
+  <p>🌐 全球AI·科技·财经动态 — 智能聚合 · 每日更新</p>
+</div>
+</body>
+</html>
